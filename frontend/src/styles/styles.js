@@ -11,7 +11,7 @@ export const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #6BD4E7;
+  background-color: #180161;
   color: black;
   font-family: Arial, sans-serif;
   z-index: 1000;
@@ -42,9 +42,9 @@ export const NavigationLinks = styled.div`
 
 export const NavLink = styled.a`
   margin-right: 20px;
-  color: black;
+  color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
 
   &:hover {
@@ -69,13 +69,13 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const LoginButton = styled.button`
-  background-color: orange;
+  background-color: #3FA2F6;
   color: white;
   border: none;
   padding: 10px 20px;
   margin-right: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
 
   @media screen and (max-width: 768px) {
@@ -91,7 +91,7 @@ export const GuestButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  border: 2px solid orange;
+  border: 2px solid  #3FA2F6;
   border-radius: 5px;
   background-color: transparent;
   transition: background-color 0.3s ease;
@@ -111,10 +111,11 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: linear-gradient(45deg, #6BD4E7, #6FC3DF);
+  background: #180161;
   background-size: cover;
   background-position: center;
   min-height: 100vh;
+  width:100%;
   padding-top: 80px;
 
   @media screen and (max-width: 768px) {
