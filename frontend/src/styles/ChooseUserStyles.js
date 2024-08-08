@@ -8,7 +8,7 @@ export const ChooseUserContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  background-color: #FFD700; /* Playful yellow background color */
+  background-color: #180161; /* Playful yellow background color */
 
   @media screen and (min-width: 768px) {
     flex-direction: row;

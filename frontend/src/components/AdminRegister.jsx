@@ -1,15 +1,15 @@
 import { useState } from "react";
-import {AdminSignContainer,FormContainer,InputField, SubmitButton} from  "../styles/AdminSignInStyles"
-const AdminSignIn  =()=>{
+import {AdminRegisterContainer,FormContainer,InputField, SubmitButton} from  "../styles/AdminRegisterStyles"
+const AdminRegister  =()=>{
 
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('')
     const handleRegister=()=>{
-        console.log('Admin Signin',{email,password}); 
+        console.log('Adminn Register',{email,password}); 
     };
 
     return(
-        <AdminSignContainer>
+        <AdminRegisterContainer>
             <h2>Admini register</h2>
            <FormContainer>
            <InputField
@@ -28,8 +28,8 @@ const AdminSignIn  =()=>{
 
             <SubmitButton type="button" onClick={handleRegister}>Register</SubmitButton>
            </FormContainer>
-        </AdminSignContainer>
+        </AdminRegisterContainer>
     )
 }
 
-export default AdminSignIn;
+export default AdminRegister;

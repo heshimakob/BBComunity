@@ -11,12 +11,12 @@ const ChooseUser = () => {
         <Button to="/admin-signIn">Login as Admin</Button>
       </UserSection>
       <UserSection>
-        <Title>Student</Title>
-        <Button to="/student-signIn">Login as Guest</Button>
+        <Title>Guest</Title>
+        <Button to="/guest-signIn">Login as Guest</Button>
       </UserSection>
       <UserSection>
-        <Title>Teacher</Title>
-        <Button to="/teacher-signIn">Login as Member</Button>
+        <Title>Member</Title>
+        <Button to="/member-signIn">Login as Member</Button>
       </UserSection>
     </ChooseUserContainer>
   );
