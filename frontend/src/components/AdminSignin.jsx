@@ -1,15 +1,15 @@
 import { useState } from "react";
-import {AdminSignContainer,FormContainer,InputField, SubmitButton} from  "../styles/AdminSignInStyles"
+import {AdminSignInContainer,FormContainer,InputField, SubmitButton} from  "../styles/AdminSignInStyles"
 const AdminSignIn  =()=>{
 
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('')
-    const handleRegister=()=>{
+    const handleSignIn=()=>{
         console.log('Admin Signin',{email,password}); 
     };
 
     return(
-        <AdminSignContainer>
+        <AdminSignInContainer>
             <h2>Admini register</h2>
            <FormContainer>
            <InputField
@@ -26,9 +26,9 @@ const AdminSignIn  =()=>{
             onChange={(e)=> setPassword(e.target.value)}
             />
 
-            <SubmitButton type="button" onClick={handleRegister}>Register</SubmitButton>
+            <SubmitButton to="/admin/dashboard" type="button" onClick={handleSignIn}>Sign In</SubmitButton>
            </FormContainer>
-        </AdminSignContainer>
+        </AdminSignInContainer>
     )
 }
 
