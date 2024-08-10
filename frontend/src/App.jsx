@@ -8,6 +8,7 @@ import Challenge from "./pages/Admin/Challenge"
 import Annoncement from "./pages/Admin/Annoncement"
 import Courses from "./pages/Admin/Courses"
 import Cohorte from "./pages/Admin/Cohorte"
+import Blog from "./pages/Admin/blog"
 
 
 function App() {
@@ -31,11 +32,12 @@ function App() {
 
         {/* admin module here  */}
 
-        <Route  exact path="/admin/annoncement-post" element= {<Annoncement/>} />
+        <Route  exact path="/admin/annoncement" element= {<Annoncement/>} />
         <Route  exact path="/admin/Challenge" element= {<Challenge/>} />
         <Route  exact path="/admin/courses-post" element= {<AdminDashboard/>} />
         <Route  exact path="/admin/courses" element= {<Courses/>} />
         <Route  exact path="/admin/cohorte" element= {<Cohorte/>}/>
+        <Route  exact path="/admin/blog" element= {<Blog/>}/>
 
     </Routes>
   </Router>

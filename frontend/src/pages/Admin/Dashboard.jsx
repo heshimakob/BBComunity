@@ -6,6 +6,7 @@ import SettingsProfile from "./SettingsProfile"
 import Challenge from "./Challenge"
 import Performance from "./Performance"
 import Cohorte from './Cohorte'
+import Blog from './blog'
 import {
   AdminDashboardContainer,
   Content,

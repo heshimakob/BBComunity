@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import B from "../../assets/B.png"
-import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot } from 'react-icons/bs';
+import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash } from 'react-icons/bs';
 
 const SidebarContainer = styled.div`
   position: fixed;
@@ -120,6 +120,10 @@ const Sidebar=()=> {
             <SidebarNavItem>
                 <SidebarIcon> <BsChat/></SidebarIcon>
                 <StyledLink to="/admin/discussion"> Discussion</StyledLink>
+            </SidebarNavItem>
+            <SidebarNavItem>
+                <SidebarIcon> <BsSendDash/></SidebarIcon>
+                <StyledLink to="/admin/blog"> Blog</StyledLink>
             </SidebarNavItem>
             <SidebarNavItem>
                 <SidebarIcon> <BsPersonFillCheck/></SidebarIcon>
