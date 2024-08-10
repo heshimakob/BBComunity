@@ -5,6 +5,7 @@ import Annoncement from './Annoncement'
 import SettingsProfile from "./SettingsProfile"
 import Challenge from "./Challenge"
 import Performance from "./Performance"
+import Cohorte from './Cohorte'
 import {
   AdminDashboardContainer,
   Content,

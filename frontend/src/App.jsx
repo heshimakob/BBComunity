@@ -7,6 +7,7 @@ import AdminDashboard from "./pages/Admin/Dashboard"
 import Challenge from "./pages/Admin/Challenge"
 import Annoncement from "./pages/Admin/Annoncement"
 import Courses from "./pages/Admin/Courses"
+import Cohorte from "./pages/Admin/Cohorte"
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
         <Route  exact path="/admin/annoncement-post" element= {<Annoncement/>} />
         <Route  exact path="/admin/Challenge" element= {<Challenge/>} />
         <Route  exact path="/admin/courses-post" element= {<AdminDashboard/>} />
+        <Route  exact path="/admin/courses" element= {<Courses/>} />
+        <Route  exact path="/admin/cohorte" element= {<Cohorte/>}/>
 
     </Routes>
   </Router>

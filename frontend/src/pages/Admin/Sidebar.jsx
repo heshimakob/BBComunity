@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
-import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp } from 'react-icons/bs';
+import B from "../../assets/B.png"
+import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot } from 'react-icons/bs';
 
 const SidebarContainer = styled.div`
   position: fixed;
@@ -89,7 +90,7 @@ const Sidebar=()=> {
   return ( 
     <SidebarContainer style={{width:isOpen ? '250px' : '80px'}}>
         <SidebarHeader>
-            <Logo src='../../assets/B.png'/>
+            <Logo src={B}/>
         </SidebarHeader>
 
         <SidebarNav>
@@ -105,7 +106,13 @@ const Sidebar=()=> {
             <SidebarNavItem>
                 <SidebarIcon> <BsPerson/></SidebarIcon>
                 <StyledLink to="/admin/member"> Member</StyledLink>
+            </SidebarNavItem> 
+
+            <SidebarNavItem>
+                <SidebarIcon> <BsAlarm/></SidebarIcon>
+                <StyledLink to="/admin/cohorte"> Cohorte</StyledLink>
             </SidebarNavItem>
+
             <SidebarNavItem>
                 <SidebarIcon> <BsAlarm/></SidebarIcon>
                 <StyledLink to="/admin/annoncement"> Annoncement</StyledLink>
@@ -124,7 +131,7 @@ const Sidebar=()=> {
             </SidebarNavItem>
 
             <ToggleButton onClick={toggleSidebar}>
-                <ToggleIcon isOpen={isOpen}> <BsMenuApp/></ToggleIcon>
+                <ToggleIcon isOpen={isOpen}> <BsDot/></ToggleIcon>
             </ToggleButton>
         </SidebarNav>
     </SidebarContainer>
