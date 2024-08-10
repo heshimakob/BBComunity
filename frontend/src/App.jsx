@@ -3,6 +3,10 @@ import Home from '../src/components/Home'
 import ChooseUser from "./components/ChooseUser"
 import AdminSignIn from "./components/AdminSignin"
 import GuestSignIn from "./components/GuestSignin"
+import AdminDashboard from "./pages/Admin/Dashboard"
+import Challenge from "./pages/Admin/Challenge"
+import Annoncement from "./pages/Admin/Annoncement"
+import Courses from "./pages/Admin/Courses"
 
 
 function App() {
@@ -18,6 +22,18 @@ function App() {
         {/* sigin pages  */}
          <Route  exact path="/admin-signIn" element= {<AdminSignIn/>} />
          <Route  exact path="/guest-signIn" element= {<GuestSignIn/>} />
+
+{/* 
+         Dashboard routes */}
+
+<Route  exact path="/admin/dashboard" element= {<AdminDashboard/>} />
+
+        {/* admin module here  */}
+
+        <Route  exact path="/admin/annoncement-post" element= {<Annoncement/>} />
+        <Route  exact path="/admin/Challenge" element= {<Challenge/>} />
+        <Route  exact path="/admin/courses-post" element= {<AdminDashboard/>} />
+
     </Routes>
   </Router>
   )

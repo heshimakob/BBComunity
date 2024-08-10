@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SettingsProfile=()=> {
+const Courses=()=> {
   return (
     <>Course</>
   )
 }
 
-export default SettingsProfile;
+export default Courses;
