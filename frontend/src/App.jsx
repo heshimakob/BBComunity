@@ -9,6 +9,9 @@ import Annoncement from "./pages/Admin/Annoncement"
 import Courses from "./pages/Admin/Courses"
 import Cohorte from "./pages/Admin/Cohorte"
 import Blog from "./pages/Admin/blog"
+import BlogSite from "./components/BlogSite"
+import CompanySite from "./components/CompanySite"
+import SettingsProfile from "./pages/Admin/SettingsProfile"
 
 
 function App() {
@@ -19,6 +22,12 @@ function App() {
     <Routes>
         <Route path="/" element= {<Home/>} />
         <Route path="/choose-user" element= {<ChooseUser/>} />  
+
+
+        {/* web site bbc dev */}
+      
+        <Route path="/blog-site" element= {<BlogSite/>} />  
+        <Route path="/company" element= {<CompanySite/>} />  
 
 
         {/* sigin pages  */}
@@ -38,6 +47,8 @@ function App() {
         <Route  exact path="/admin/courses" element= {<Courses/>} />
         <Route  exact path="/admin/cohorte" element= {<Cohorte/>}/>
         <Route  exact path="/admin/blog" element= {<Blog/>}/>
+        <Route  exact path="/admin/settings" element= {<SettingsProfile/>}/>
+   
 
     </Routes>
   </Router>

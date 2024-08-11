@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import B from "../../assets/B.png"
-import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash } from 'react-icons/bs';
+import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload } from 'react-icons/bs';
 
 const SidebarContainer = styled.div`
   position: fixed;
@@ -126,8 +126,12 @@ const Sidebar=()=> {
                 <StyledLink to="/admin/blog"> Blog</StyledLink>
             </SidebarNavItem>
             <SidebarNavItem>
-                <SidebarIcon> <BsPersonFillCheck/></SidebarIcon>
-                <StyledLink to="/admin/settings-profile"> Settings Pofile</StyledLink>
+                <SidebarIcon> <BsSendDash/></SidebarIcon>
+                <StyledLink to="/admin/blog"> Event</StyledLink>
+            </SidebarNavItem>
+            <SidebarNavItem>
+                <SidebarIcon> <BsUpload/></SidebarIcon>
+                <StyledLink to="/admin/settings"> Settings Pofile</StyledLink>
             </SidebarNavItem>
             <SidebarNavItem>
                 <SidebarIcon> <BsGraphUp/></SidebarIcon>
