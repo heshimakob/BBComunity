@@ -12,6 +12,8 @@ import Blog from "./pages/Admin/blog"
 import BlogSite from "./components/BlogSite"
 import CompanySite from "./components/CompanySite"
 import SettingsProfile from "./pages/Admin/SettingsProfile"
+import Event from "./pages/Admin/Event"
+import Company from "./pages/Admin/company"
 
 
 function App() {
@@ -47,7 +49,12 @@ function App() {
         <Route  exact path="/admin/courses" element= {<Courses/>} />
         <Route  exact path="/admin/cohorte" element= {<Cohorte/>}/>
         <Route  exact path="/admin/blog" element= {<Blog/>}/>
+
+        <Route  exact path="/admin/events" element= {<Event/>}/>
+
         <Route  exact path="/admin/settings" element= {<SettingsProfile/>}/>
+        <Route  exact path="/admin/company" element= {<Company/>}/>
+
    
 
     </Routes>

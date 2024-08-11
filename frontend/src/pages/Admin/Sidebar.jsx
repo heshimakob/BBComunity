@@ -126,8 +126,13 @@ const Sidebar=()=> {
                 <StyledLink to="/admin/blog"> Blog</StyledLink>
             </SidebarNavItem>
             <SidebarNavItem>
-                <SidebarIcon> <BsSendDash/></SidebarIcon>
-                <StyledLink to="/admin/blog"> Event</StyledLink>
+                <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
+                <StyledLink to="/admin/events"> Event</StyledLink>
+            </SidebarNavItem>
+
+            <SidebarNavItem>
+                <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
+                <StyledLink to="/admin/company"> Company</StyledLink>
             </SidebarNavItem>
             <SidebarNavItem>
                 <SidebarIcon> <BsUpload/></SidebarIcon>
