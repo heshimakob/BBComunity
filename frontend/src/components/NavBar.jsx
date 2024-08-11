@@ -20,9 +20,18 @@ function NavBar() {
 <div className="w-auto">
 <div className="flex flex-wrap items-center">
 <div className="w-auto pr-2">
-  <a href="#">
+  {/* <a href="#">
     <img src="basko-assets/logos/basko-logo-light.png" alt />
-  </a>
+  </a> */}
+    <Link
+        to='/'
+        className='self-center whitespace-nowrap text-sm  sm:text-xl font-semibold dark:text-white'
+      >
+        <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white'>
+          BBC-Dev
+        </span>
+       
+      </Link>
 </div>
 </div>
 </div>
@@ -37,7 +46,7 @@ function NavBar() {
   </ul>
 </div>
 <div className="w-auto hidden lg:block">
-  <div className="inline-block"><a className="inline-block px-5 py-3 text-white font-semibold text-center tracking-tight bg-indigo-500 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-300 transition duration-200" href="#">Apply now</a></div>
+  <div className="inline-block"><a className="inline-block px-5 py-3 text-white font-semibold text-center tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-300 transition duration-200" href="#">Apply now</a></div>
 </div>
 <div className="w-auto lg:hidden">
   <a href="#">
