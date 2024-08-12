@@ -18,9 +18,14 @@ app.use(express.json());
 app.use(morgan("dev"));
  
 
-// app.use('/api/pizzas', require('./routes/pizzaRoute'));
+ app.use('/api/cours', require('./routes/coursRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 // app.use('/api/orders', require('./routes/orderRoute'));
+app.use('/api/candidate', require('./routes/candidateRoutes'));
+app.use('/api/pub', require('./routes/pubRoutes'));
+app.use('/api/notifications', require('./routes/notificationRoutes'));
+app.use('/api/event', require('./routes/eventRoutes'));
+app.use('/api/company', require('./routes/companyRoutes'));
 
 app.get('/',(req,res)=>{
     res.send("<h1>Hello from our server nodemon</h1>");

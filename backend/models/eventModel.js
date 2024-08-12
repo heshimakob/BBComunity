@@ -16,4 +16,4 @@ const eventSchema= mongoose.Schema({
     }
 }, {timeStamps:true})
 
-module.exports =mongoose.model('user',eventSchema)
+module.exports =mongoose.model('event',eventSchema)

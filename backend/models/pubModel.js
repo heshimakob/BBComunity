@@ -16,4 +16,4 @@ const pubSchema= mongoose.Schema({
     }
 }, {timeStamps:true})
 
-module.exports =mongoose.model('user',pubSchema)
+module.exports =mongoose.model('pub',pubSchema)

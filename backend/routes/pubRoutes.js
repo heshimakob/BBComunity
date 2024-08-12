@@ -1,15 +1,15 @@
 const express =require('express')
 const router =express.Router()
-const User =require('../models/coursModel')
+const User =require('../models/pubModel')
 
-router.post('/cours', (req, res)=>{
+router.post('/pub', (req, res)=>{
     const {name,email,password,coho}=req.body
-    const newCours = new Cours ({name,email,password,coho})
+    const newPub = new Pub ({name,email,password,coho})
     try{
-        newCours.save()
+        newPub.save()
         res.status(200).json({
             success:true,
-            message:'Success course added'
+            message:'poste added success'
         })
     } catch(error){
         res.status(400).json({
