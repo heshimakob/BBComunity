@@ -14,7 +14,7 @@ function NavBar() {
   return (
     <>
     <section className="overflow-hidden">
-<div className="bg-white">
+<div className="bg-gray-900">
 <div className="container px-4 mx-auto">
 <div className="flex items-center justify-between py-5">
 <div className="w-auto">
@@ -28,7 +28,7 @@ function NavBar() {
         className='self-center whitespace-nowrap text-sm  sm:text-xl font-semibold dark:text-white'
       >
         <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white'>
-          BBC-Dev
+          Black Born Community
         </span>
        
       </Link>
@@ -39,10 +39,10 @@ function NavBar() {
 <div className="flex flex-wrap items-center">
 <div className="w-auto hidden lg:block">
   <ul className="flex items-center mr-8">
-    <li className="mr-14 font-medium text-black hover:text-gray-200 tracking-tight">  <Link to='/blog-site'>Blog</Link></li>
-    <li className="mr-14 font-medium text-black hover:text-gray-200 tracking-tight"><Link to='/company'>For company</Link></li>
-    <li className="mr-8 font-medium text-black hover:text-gray-200 tracking-tight border-r border-gray-700 pr-8"><a href="#">Events</a></li>
-    <li   className="font-medium text-black hover:text-gray-200 tracking-tight" onClick={handleloginClick}><a href="#">Customer Login</a></li>
+    <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight">  <Link to='/blog-site'>Blog</Link></li>
+    <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/company'>For company</Link></li>
+    <li className="mr-8 font-medium text-gray-100 hover:text-gray-200 tracking-tight border-r border-gray-700 pr-8"><a href="#">Events</a></li>
+    <li   className="font-medium text-gray-100 hover:text-gray-200 tracking-tight" onClick={handleloginClick}><a href="#">Customer Login</a></li>
   </ul>
 </div>
 <div className="w-auto hidden lg:block">
