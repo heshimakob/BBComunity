@@ -1,4 +1,4 @@
-const mongoose= require('mongodb')
+const mongoose= require('mongoose')
 
 const userSchema= mongoose.Schema({
 
@@ -8,9 +8,13 @@ const userSchema= mongoose.Schema({
     },
     email:{
         type:String,
-        required:[truex, 'Email is required']
+        required:[true, 'Email is required']
     },
-    cohorte:{
+    password:{
+        type:String,
+        required:[true, 'Email is required']
+    },
+    coho:{
         type:String,
         default:false
     },
