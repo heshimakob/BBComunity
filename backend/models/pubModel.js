@@ -10,6 +10,10 @@ const pubSchema= mongoose.Schema({
         type:String,
         required:[true, 'contenu is required']
     },
+    image:{
+        type:String,
+        required:true
+    },
     auteur:{
         type:String,
         required:[true, 'auteur is required']

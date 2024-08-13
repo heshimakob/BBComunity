@@ -88,8 +88,8 @@ const Home =()=>{
 </div>
 </div>
 </div>
-<div className="w-full md:w-1/2 p-8">
-<img className="transform hover:-translate-y-2 transition duration-500" src={home} alt />
+<div className="w-full md:w-1/2 p-8 ">
+<img className="transform hover:-translate-y-2 transition duration-500 rounded-lg" src={home} alt />
 </div>
 </div>
 </div>
