@@ -3,14 +3,14 @@ import {createStore,combineReducers,applyMiddleware} from 'redux'
 // import {composeWithDevTools} from 'redux-devtools-extension'
 // import {getAllPizzaReducer,addPizzaReducer,getPizzaByIdReducer} from './reducers/pizzaReducer'
 // import { cartReducer } from './reducers/cartReducer'
-// import { registerUserReducer ,loginUserReducer,getAllUsersReducer} from './reducers/userReducer'
+import { registerUserReducer } from './reducers/userReducer'
 // import { placeOrderReducer,getUserOrdersReducer,allUserOrdersReducer} from './reducers/orderReducer'
 
 
 const rootReducer =combineReducers({
     // getAllPizzaReducer:getAllPizzaReducer,
     // cartReducer:cartReducer,
-    // registerUserReducer: registerUserReducer,
+    registerUserReducer: registerUserReducer,
     // loginUserReducer:loginUserReducer,
     // placeOrderReducer:placeOrderReducer,
     // getUserOrdersReducer:getUserOrdersReducer,

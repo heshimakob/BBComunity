@@ -14,6 +14,9 @@ import CompanySite from "./components/CompanySite"
 import SettingsProfile from "./pages/Admin/SettingsProfile"
 import Event from "./pages/Admin/Event"
 import Company from "./pages/Admin/company"
+import Member from "./pages/Admin/Member"
+import Discussion from "./pages/Admin/Discussion"
+import Users from "./pages/Admin/Users"
 
 
 
@@ -52,6 +55,12 @@ function App() {
         <Route  exact path="/admin/blog" element= {<Blog/>}/>
 
         <Route  exact path="/admin/events" element= {<Event/>}/>
+
+        <Route  exact path="/admin/users" element= {<Users/>}/>
+
+
+        <Route  exact path="/admin/member" element= {<Member/>}/>
+        <Route  exact path="/admin/discussion" element= {<Discussion/>}/>
 
         <Route  exact path="/admin/settings" element= {<SettingsProfile/>}/>
         <Route  exact path="/admin/company" element= {<Company/>}/>

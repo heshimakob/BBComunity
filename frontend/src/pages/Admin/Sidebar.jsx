@@ -134,6 +134,13 @@ const Sidebar=()=> {
                 <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
                 <StyledLink to="/admin/company"> Company</StyledLink>
             </SidebarNavItem>
+
+            <SidebarNavItem>
+                <SidebarIcon> <BsUpload/></SidebarIcon>
+                <StyledLink to="/admin/users"> Users</StyledLink>
+            </SidebarNavItem>
+
+
             <SidebarNavItem>
                 <SidebarIcon> <BsUpload/></SidebarIcon>
                 <StyledLink to="/admin/settings"> Settings Pofile</StyledLink>

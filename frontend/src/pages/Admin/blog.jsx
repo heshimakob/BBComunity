@@ -1,8 +1,12 @@
 import React from 'react'
+import Sidebar from './Sidebar';
 
 const Blog=()=> {
   return (
-    <>Blog</>
+    <>
+
+      <Sidebar/>
+    </>
   )
 }
 
