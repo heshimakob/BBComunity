@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import Outcome from './Outcome';
 import Details from './Details';
+import Marque from './marque/Marque';
 
 const lorem = new LoremIpsum();
 
@@ -97,6 +98,7 @@ const Home =()=>{
 </div>
 </div>
 <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-white overflow-hidden'>
+  <Marque/>
   <Outcome/>
 </div>
         
