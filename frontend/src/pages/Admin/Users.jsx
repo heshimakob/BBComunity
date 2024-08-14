@@ -6,7 +6,7 @@ import {
   ClassesContent,
   ClassesHeader,
   ClassList,
-  ClassItem,
+
   AddClassForm,
   AddClassInput,
   AddClassButton,
@@ -17,6 +17,7 @@ import Sidebar from './Sidebar';
 const Users=()=> {
   const [name,setName]=useState('');
   const [email,setEmail]=useState('');
+  const [cohorte,setCohorte]=useState('');
   const [password,setPassword]=useState('');
   const [confirmPassword,setConfirmPassword]=useState('');
 
@@ -29,7 +30,7 @@ const Users=()=> {
       if (password !== confirmPassword){
           alert(' diffrent password')
       }else{
-          const user={name,email,password,confirmPassword};
+          const user={name,email,password,confirmPassword,cohorte};
           dispatch(registerUser(user))
       }
   }
@@ -64,7 +65,10 @@ const Users=()=> {
         onChange={e=>setConfirmPassword(e.target.value)}/>
 
 <AddClassInput type="text"
-        placeholder='entre la cohorte'/>
+        placeholder='entre la cohorte'
+        value={cohorte}
+        onChange={e=>setCohorte(e.target.value)}
+        />
         
         <AddClassButton type="submit" onClick={registerHandler} >Add user</AddClassButton>
       </AddClassForm>

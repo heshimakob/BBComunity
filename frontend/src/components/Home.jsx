@@ -9,6 +9,8 @@ import home from "../assets/home.png"
  import NavBar from './NavBar';
 import { Link, useNavigate } from 'react-router-dom'; 
 import Footer from './Footer';
+import Outcome from './Outcome';
+import Details from './Details';
 
 const lorem = new LoremIpsum();
 
@@ -62,7 +64,7 @@ const Home =()=>{
           <path d="M3 12.5L3 13.25C3 14.4926 4.00736 15.5 5.25 15.5L12.75 15.5C13.9926 15.5 15 14.4926 15 13.25L15 12.5M12 9.5L9 12.5M9 12.5L6 9.5M9 12.5L9 3.5" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
-      <span className="text-gray-100 font-semibold tracking-tight">Make a donation</span>
+      <span className="text-gray-100 font-semibold tracking-tight">Apply Now</span>
     </a>
   </div>
 </div>
@@ -94,12 +96,11 @@ const Home =()=>{
 </div>
 </div>
 </div>
-        <HomeContainer>
-            <SchoolInfo>
-            <Title> Black Born Community</Title>
-            <AdminRegisterLink>Admin register</AdminRegisterLink>
-            </SchoolInfo>
-        </HomeContainer>
+<div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-white overflow-hidden'>
+  <Outcome/>
+</div>
+        
+        <Details/>
 
         <Footer/>
         </>

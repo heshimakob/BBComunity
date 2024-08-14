@@ -17,6 +17,7 @@ import Company from "./pages/Admin/company"
 import Member from "./pages/Admin/Member"
 import Discussion from "./pages/Admin/Discussion"
 import Users from "./pages/Admin/Users"
+import Why from "./components/Why"
 
 
 
@@ -34,6 +35,10 @@ function App() {
       
         <Route path="/blog-site" element= {<BlogSite/>} />  
         <Route path="/company" element= {<CompanySite/>} />  
+        <Route path="/why" element= {<Why/>} />  
+
+
+        
 
 
         {/* sigin pages  */}
