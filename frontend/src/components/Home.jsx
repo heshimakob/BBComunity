@@ -99,10 +99,8 @@ const Home =()=>{
 </div>
 <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-white overflow-hidden'>
   
-  <div className='h-[200px] overflow-hidden'>
+  
   <Marque/>
-  </div>
-
   <Outcome/>
 </div>
         

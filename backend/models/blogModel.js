@@ -1,12 +1,12 @@
 const mongoose= require('mongoose')
 
-const pubSchema= mongoose.Schema({
+const blogSchema= mongoose.Schema({
 
     titre:{
         type:String,
         required:[true, 'title is required']
     },
-    contenu:{
+    description:{
         type:String,
         required:[true, 'contenu is required']
     },
@@ -20,4 +20,4 @@ const pubSchema= mongoose.Schema({
     }
 }, {timeStamps:true})
 
-module.exports =mongoose.model('pub',pubSchema)
+module.exports =mongoose.model('blog',blogSchema)
