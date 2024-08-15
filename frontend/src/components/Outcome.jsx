@@ -34,7 +34,7 @@ const  Outcome =()=>{
 </div>
 </div>
 <div className="w-full md:w-1/3 p-8 ">
-<h1 className="font-heading tracking-tight text-gray-black text-4xl md:text-5xl font-medium max-w-md md:max-w-2xl">Learn anywhere</h1>
+<h1 className="font-heading tracking-tight text-gray-black text-4xl md:text-5xl font-medium max-w-md md:max-w-2xl">Work anywhere</h1>
 <p className="text-gray-500 text-xl max-w-xl">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 {/* <img className="transform hover:-translate-y-2 transition duration-500 rounded-lg" src={home} alt /> */}
 </div>
@@ -46,7 +46,7 @@ const  Outcome =()=>{
 <div className="w-full md:w-1/2 p-8">
 <div className="md:max-w-lg">
 {/* <h1 className="inline-block mb-8 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full">#Black Born Community bootcamp(BBC dev)</h1> */}
-<h1 className="font-heading tracking-tight text-black text-4xl md:text-5xl font-medium max-w-md md:max-w-2xl">Hire anywhere</h1>
+<h1 className="font-heading tracking-tight text-black text-4xl md:text-5xl font-medium max-w-md md:max-w-2xl">Connect anywhere</h1>
 
 
 
