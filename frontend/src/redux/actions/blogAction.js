@@ -2,7 +2,7 @@ import axios from 'axios';
 export const getAllBlog=()=> async(dispatch)=>{
     dispatch({type:'GET_BLOG_REQUEST'});
     try {
-        const res =  await axios.get('/api/pizzas/getAllPizzas')
+        const res =  await axios.get('/api/blog/getAllBlog')
         console.log(res)
         dispatch({type:'GET_BLOG_SUCCESS', payload:res.data})
         
@@ -15,7 +15,7 @@ export const getAllBlog=()=> async(dispatch)=>{
 export const addBlog=(blog)=> async(dispatch)=>{
     dispatch({type:'ADD_BLOG_REQUEST'});
     try {
-        const res =  await axios.post('/api/pizzas/addpizza',{blog})
+        const res =  await axios.post('/api/blog/addBlog',{blog})
     
         dispatch({type:'ADD_BLOG_SUCCESS'})
         console.log(res)
