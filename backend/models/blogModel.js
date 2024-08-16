@@ -18,9 +18,7 @@ const blogSchema= mongoose.Schema({
         type:String,
         required:[true, 'auteur is required']
     }
-}, {timeStamps:true})
+}, {timestamps:true})
 
 
-
-const blogModel = mongoose.model('blog',blogSchema);
-module.exports =blogModel;
+module.exports =mongoose.model('blog',blogSchema)

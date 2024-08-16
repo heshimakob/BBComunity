@@ -4,9 +4,9 @@ const blogModel =require('../models/blogModel')
 
 router.post('/addBlog', (req, res)=>{
     const {titre,description,image,auteur}=req.body
-    const newUser = new Blog ({titre,description,image,auteur})
+    const newBlog = new Blog ({titre,description,image,auteur})
     try{
-        newUser.save()
+        newBlog.save()
         res.status(200).json({
             success:true,
             message:'Success add blog'

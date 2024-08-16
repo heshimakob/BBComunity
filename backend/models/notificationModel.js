@@ -11,4 +11,7 @@ const notificationSchema= mongoose.Schema({
    
 }, {timeStamps:true})
 
-module.exports =mongoose.model('notifications',notificationSchema)
+
+
+
+module.exports =mongoose.model('notification',notificationSchema)

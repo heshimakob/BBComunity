@@ -26,4 +26,7 @@ const companySchema= mongoose.Schema({
    
 }, {timeStamps:true})
 
+
+
+
 module.exports =mongoose.model('company',companySchema)

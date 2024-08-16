@@ -1,6 +1,6 @@
 const mongoose= require('mongoose')
 
-const CandidateSchema= mongoose.Schema({
+const candidateSchema= mongoose.Schema({
 
     name:{
         type:String,
@@ -22,4 +22,6 @@ const CandidateSchema= mongoose.Schema({
    
 }, {timeStamps:true})
 
-module.exports =mongoose.model('candidate',CandidateSchema)
+
+
+module.exports =mongoose.model('candidate',candidateSchema)
