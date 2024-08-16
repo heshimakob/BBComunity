@@ -20,7 +20,7 @@ export const addBlogReducer=(state={ },action)=>{
 };
 
 
-export const getAllBlogReducer=(state={ blogs:[]},action)=>{
+export const getAllBlogReducer=(state={ blog:[]},action)=>{
     switch(action.type){
         case 'GET_BLOG_REQUEST':
             return{
