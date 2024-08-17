@@ -1,6 +1,6 @@
 const express =require('express')
 const router =express.Router()
-const blogModel =require('../models/blogModel')
+const Blog =require('../models/blogModel')
 
 router.post('/addBlog', (req, res)=>{
     const {titre,description,image,auteur}=req.body
@@ -32,11 +32,11 @@ router.post('/addBlog', (req, res)=>{
 
 router.get('/getAllBlog', async (req, res) => {     
     try {         
-        const blog = await blogModel.find({}); // Récupération des blogs à partir de la base de données
-        if (blog.length === 0) {
+        const blogs = await Blog.find({}); // Récupération des blogs à partir de la base de données
+        if (blogs.length === 0) {
             return res.status(404).json({ message: "Aucun blog trouvé." }); // Gestion du cas où aucun blog n'est trouvé
         }
-        res.json(blog); // Envoi des blogs au client         
+        res.json(blogs); // Envoi des blogs au client         
     } catch (error) {         
         res.status(500).json({ message: error.message }); // Gestion des erreurs     
     } 
