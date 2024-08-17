@@ -3,45 +3,51 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllBlog } from "../redux/actions/blogAction";
+import {  getAllBlogs } from "../redux/actions/blog.action";
+import vide from "../assets/vide.png"
 
 const BlogSite = () => {
     const dispatch = useDispatch();
-    const blogState = useSelector((state) => state.getAllBlogReducer);
-    const { blogs } = blogState;
+    const blogState = useSelector((state)=>state.blogReducer);
+
+    // console.log(blog)
+    // const { blogs } = blogState;
 
     useEffect(() => {
-        dispatch(getAllBlog());
+        dispatch(getAllBlogs());
     }, [dispatch]);
 
     return (
         <>
-            {blogs && blogs.length > 0 ? (
-                <div className="flex flex-wrap justify-center">
-                    {blogs.map((blog) => (
-                        <div key={blog.id} className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden m-4">
-                            <div className="flex flex-wrap">
-                                <div className="w-full md:w-1/3 p-4">
-                                    <img src={blog.image} alt="" className="w-full h-48 object-cover rounded-t-xl" />
-                                </div>
-                                <div className="w-full md:w-2/3 p-4">
-                                    <h2 className="text-2xl font-bold">{blog.titre}</h2>
-                                    <p className="text-gray-600">{blog.description}</p>
-                                </div>
-                            </div>
-                            <div className="flex justify-between p-4">
-                                <p className="text-gray-600">By {blog.auteur}</p>
-                                <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
-                                    Read More
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p>No blogs available</p>
-            )}
+            
             <NavBar />
+            {blogState && blogState.length > 0 ? (
+  <div className="container mx-auto p-4">
+    <div className="grid grid-cols-2 gap-4">
+      {blogState.map((blog) => (
+        <div key={blog.id} className="bg-cover bg-center h-96 hover:scale-105 transition duration-300 ease-in-out rounded-xl shadow-md overflow-hidden m-4 p-4" style={{ backgroundImage: `url(${blog.image})` }}>
+          <div className="flex flex-col justify-center h-full p-4">
+            <h2 className="text-2xl font-bold">{blog.titre}</h2>
+            <p className="text-gray-600 font-bold text-4xl font-weight-900">{blog.description}</p>
+          </div>
+          <div className="flex justify-between p-4">
+            <p className="text-gray-600">By {blog.auteur}</p>
+            <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+              Read More
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+) : (
+    <><div className="text-center">
+    <p>Aucun Blog disponible pour le moment ou verifier votre connexion internet</p>
+</div>
+    <div className="flex justify-center mb-4">
+                        <img src={vide} className="max-w-full h-auto rounded-md" />
+                    </div></>
+)}
             <Details />
             <Footer />
         </>

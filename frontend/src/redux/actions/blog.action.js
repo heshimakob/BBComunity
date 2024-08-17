@@ -1,16 +1,18 @@
 import axios from 'axios';
 
+export const GET_BLOGS = "GET_BLOGS";
 
-
-export const getAllBlog=()=> async(dispatch)=>{
-    dispatch({type:'GET_BLOG_REQUEST'});
+export const getAllBlogs = () => {
+  return async (dispatch) => {
     try {
-        const res =  await axios.get('http://localhost:8080/api/blog/getAllBlog')
-        console.log(res)
-        dispatch({type:'GET_BLOG_SUCCESS', payload:res.data})
-        
-    } catch (err) {
-        dispatch({type:'GET_BLOG_FAIL', payload:err})
-        
+      const response = await axios.get("http://localhost:8080/api/blogs/getAllBlog");
+
+    //   console.log(response)
+      dispatch({ type: GET_BLOGS, payload: response.data });
+    } catch (error) {
+      console.error(error);
+      // You can also dispatch an error action here if you want
+      // dispatch({ type: "ERROR", payload: error.message });
     }
+  };
 };

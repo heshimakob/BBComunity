@@ -24,11 +24,9 @@ router.post('/addBlog', (req, res)=>{
 //         const blogs =await blogModel.find({})
 //         res.send(blogs)
         
-//     } catch (error) {
-//         res.json({message:error})
-        
-//     }
-// });
+//     } catch (error) {export const GET_BLOGS ="GET_BLOGS"
+
+
 
 router.get('/getAllBlog', async (req, res) => {     
     try {         
