@@ -1,6 +1,7 @@
 import {configureStore}  from "@reduxjs/toolkit"
 import  rootReducer from "./reducers"
 import { getAllBlog } from "./actions/blog.action";
+import { getAllUser } from "./actions/user.action";
 
 
 const store  =configureStore({
@@ -9,6 +10,7 @@ const store  =configureStore({
 
 });
 
-store.dispatch(getAllBlog)
+store.dispatch(getAllBlog())
+store.dispatch(getAllUser())
 
 export default store;
