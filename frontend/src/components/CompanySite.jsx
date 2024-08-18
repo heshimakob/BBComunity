@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import {useSelector} from 'react-redux'
 import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
 import Marque from './marque/Marque';
 
 const  CompanySite =()=>{
+  const form=useRef();
+  const company = useSelector((state)=>state.companyReducer)
+  const handleForm= async(e)=>{
+    e.preventDefault();
+    console.log(form)
+
+    const postData={
+      nom:company.name,
+      email:company.email,
+      numero:company.numero,
+      adresse:company.adresse,
+      message:company.message,
+    
+
+
+    }
+    dispatchEvent(addCompany(postData))
+    form.current.reset();
+  }
   return (
     <>
     <NavBar/>
@@ -27,7 +47,7 @@ const  CompanySite =()=>{
       </div>
       <div className=" h-screen w-1/3 p-10 mt-20">
         <h1 className="text-2xl mb-10">Contactez-nous</h1>
-        <form>
+        <form ref={form} onSubmit={e=> handleForm(e)} > 
   <input
     type="text"
     placeholder="Nom"
@@ -54,7 +74,7 @@ const  CompanySite =()=>{
   ></textarea>
   <button
     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-    type="submit"
+    type="submit" 
   >
     Envoyer
   </button>

@@ -24,7 +24,7 @@ const companySchema= mongoose.Schema({
         required:[true, 'contenu de notification']
     }
    
-}, {timeStamps:true})
+}, {timestamps:true})
 
 
 

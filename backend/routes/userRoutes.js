@@ -1,8 +1,8 @@
 const express =require('express')
 const router =express.Router()
-const userModel =require('../models/userModel')
+const User =require('../models/userModel')
 
-router.post('/register', (req, res)=>{
+router.post('/addUser', (req, res)=>{
     const {name,email,password,coho}=req.body
     const newUser = new User ({name,email,password,coho})
     try{
@@ -22,7 +22,7 @@ router.post('/register', (req, res)=>{
 
 router.get('/getAllUser', async (req, res) => {     
     try {         
-        const user = await userModel.find({}); // Récupération des utilisateurs à partir de la base de données
+        const user = await User.find({}); // Récupération des utilisateurs à partir de la base de données
         if (user.length === 0) {
             return res.status(404).json({ message: "Aucun blog trouvé." }); // Gestion du cas où aucun utilisateur n'est trouvé
         }

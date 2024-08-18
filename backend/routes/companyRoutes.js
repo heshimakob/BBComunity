@@ -1,10 +1,10 @@
 const express =require('express')
 const router =express.Router()
-const User =require('../models/companyModel')
+const Company =require('../models/companyModel')
 
-router.post('/company', (req, res)=>{
+router.post('/addCompany', (req, res)=>{
     const {name,email,adress,numero,contenu}=req.body
-    const newCompany = new company ({name,email,adress,numero, contenu})
+    const newCompany = new Company ({name,email,adress,numero, contenu})
     try{
         newCompany.save()
         res.status(200).json({
