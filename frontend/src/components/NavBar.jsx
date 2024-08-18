@@ -48,7 +48,7 @@ function NavBar() {
   </ul>
 </div>
 <div className="w-auto hidden lg:block">
-  <div className="inline-block"><a className="inline-block px-5 py-3 text-white font-semibold text-center tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-300 transition duration-200" href="/company">Hire Talent</a></div>
+  <div className="inline-block"><Link className="inline-block px-5 py-3 text-white font-semibold text-center tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-300 transition duration-200" to="/company">Hire Talent</Link></div>
 </div>
 <div className="w-auto lg:hidden">
   <a href="#">

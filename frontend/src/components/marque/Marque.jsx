@@ -14,9 +14,9 @@ const  Marque =()=>{
         <Marquee>
             <div className='flex justify-center items-center h-100'>
                 <img src={wito} alt='ohh'/>
-                <img src={orange} alt='ohh'/>
-                <img src={france} alt='ohh'/>
-                <img src={find} alt='ohh'/>
+                {/* <img src={orange} alt='ohh'/> */}
+                {/* <img src={france} alt='ohh'/> */}
+                {/* <img src={find} alt='ohh'/> */}
                 <img src={eclo} alt='ohh'/>
                 <img src={voda} alt='ohh'/>
             </div>

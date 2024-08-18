@@ -12,6 +12,7 @@ import Footer from './Footer';
 import Outcome from './Outcome';
 import Details from './Details';
 import Marque from './marque/Marque';
+import Service from './Service';
 
 const lorem = new LoremIpsum();
 
@@ -44,6 +45,7 @@ const Home =()=>{
 
         </Navbar> */}
         <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden">
+          
 <div className="container px-4 mx-auto">
 <div className="flex flex-wrap -m-8">
 <div className="w-full md:w-1/2 p-8">
@@ -101,6 +103,7 @@ const Home =()=>{
   
   
   <Marque/>
+  <Service/>
   <Outcome/>
 </div>
         

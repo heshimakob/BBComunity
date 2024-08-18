@@ -22,7 +22,7 @@ const BlogSite = () => {
             
             <NavBar />
             {blogState && blogState.length > 0 ? (
-  <div className="container mx-auto p-4">
+  <div className="container mx-auto p-4 bg-white ">
     <div className="grid grid-cols-2 gap-4">
       {blogState.map((blog) => (
         <div key={blog.id} className="bg-cover bg-center h-96 hover:scale-105 transition duration-300 ease-in-out rounded-xl shadow-md overflow-hidden m-4 p-4" style={{ backgroundImage: `url(${blog.image})` }}>
@@ -41,12 +41,14 @@ const BlogSite = () => {
     </div>
   </div>
 ) : (
-    <><div className="text-center">
+    <>
+   
+    <div className=" w-auto flex justify-center mb-2">
+                        <img src={vide} className="max-w-full h-auto rounded-md" />
+                    </div> <div className="text-center mb-10" >
     <p>Aucun Blog disponible pour le moment ou verifier votre connexion internet</p>
 </div>
-    <div className="flex justify-center mb-4">
-                        <img src={vide} className="max-w-full h-auto rounded-md" />
-                    </div></>
+</>
 )}
             <Details />
             <Footer />

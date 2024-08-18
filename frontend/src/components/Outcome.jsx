@@ -3,7 +3,7 @@ import React from 'react'
 
 const  Outcome =()=>{
   return (
-        <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-white overflow-hidden'>
+        <div className='pt-16 lg:pt-12 pb-24 lg:pb-52 bg-white overflow-hidden'>
 
 <div className="container px-4 mx-auto">
 <div className="flex flex-wrap -m-8">
