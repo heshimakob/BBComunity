@@ -103,11 +103,12 @@ const Home =()=>{
   
   
   <Marque/>
-  <Service/>
   <Outcome/>
+  <Service/>
+  
 </div>
         
-        <Details/>
+        {/* <Details/> */}
 
         <Footer/>
         </>

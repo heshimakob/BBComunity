@@ -9,7 +9,7 @@ import voda from '../../assets/voda.png'
 
 const  Marque =()=>{
   return (
-    <div className='h-[200px] overflow-hidden'>
+    <div className=' overflow-hidden'>
 
         <Marquee>
             <div className='flex justify-center items-center h-100'>
