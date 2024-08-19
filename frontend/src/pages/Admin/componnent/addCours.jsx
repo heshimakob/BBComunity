@@ -1,5 +1,5 @@
 import React, {useEffect, useState}from 'react'
-import Sidebar from './Sidebar';
+
 import axios from 'axios';
 import {
   ClassesContainer,
@@ -11,12 +11,12 @@ import {
   AddClassForm,
   AddClassInput,
   AddClassButton,
-} from '../../styles/ClassesStyles';
+} from '../../../styles/ClassesStyles';
 
-const Courses=()=> {
+const AddCours=()=> {
   return (
 <ClassesContainer>
-  <Sidebar/>
+
   <Content>
     <ClassesContent>
 
@@ -57,7 +57,8 @@ const Courses=()=> {
         >
           <option value="male">Software  Development</option>
           <option value="female">Artivicial intelligence</option>
-          <option value="other">UI ,X</option>
+          <option value="other">UI UX Design</option>
+          <option value="other"></option>
         </select>
 
 <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
@@ -88,4 +89,4 @@ Description du cours *
   )
 }
 
-export default Courses;
+export default AddCours;

@@ -18,6 +18,7 @@ import Member from "./pages/Admin/Member"
 import Discussion from "./pages/Admin/Discussion"
 import Users from "./pages/Admin/Users"
 import Why from "./components/Why"
+import AnnoncementMember from "./pages/Member/AnnoncementMember"
 
 
 
@@ -69,6 +70,15 @@ function App() {
 
         <Route  exact path="/admin/settings" element= {<SettingsProfile/>}/>
         <Route  exact path="/admin/company" element= {<Company/>}/>
+
+
+
+      {/* routes member */}
+
+
+      <Route  exact path="/member/annonce" element= {<AnnoncementMember/>}/>
+
+
 
    
 

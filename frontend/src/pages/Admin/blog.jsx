@@ -41,7 +41,7 @@ const Blog=()=> {
         <form  > 
 
         <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Mobile number*
+          Ajouter un titre*
         </label>
   <input
     type="text"
@@ -49,7 +49,7 @@ const Blog=()=> {
     className="w-full p-3 mb-6 border border-gray-200 rounded-md"
   />
    <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Mobile number*
+          Ajouter une image*
         </label>
   <input
   type="file"
@@ -58,7 +58,7 @@ const Blog=()=> {
   className="w-full p-3 mb-6  border border-gray-200 rounded-md"
 />
 <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Mobile number*
+          Nom auteur du post*
         </label>
    <input
     type="text"
@@ -66,19 +66,19 @@ const Blog=()=> {
     className="w-full p-3 mb-6  border border-gray-200 rounded-md"
   />
    <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Mobile number*
+          le contenu du post*
         </label>
  
  
   <textarea
     placeholder="Description du post"
-    className="w-full p-3 mb-6  border border-gray-200 rounded-md"
+    className="w-full p-3 mb-6  border border-gray-200 rounded-md h-80"
   ></textarea>
   <button
     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
     type="submit" 
   >
-    Ajouter un cour
+    Ajouter un post 
   </button>
 </form>
       </div>
