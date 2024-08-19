@@ -1,16 +1,7 @@
 import React, { useState } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
-import {
-  ClassesContainer,
-  Content,
-  ClassesContent,
-  ClassesHeader,
-  ClassList,
-
-  AddClassForm,
-  AddClassInput,
-  AddClassButton,
-} from '../../styles/ClassesStyles';
+import {  ClassesContainer,ClassesHeader,Content, ClassesContent
+ } from '../../styles/ClassesStyles';
 import { registerUser } from '../../redux/actions/userActions';
 import {registerUserReducer} from '../../redux/reducers/userReducer'
 import Sidebar from './Sidebar';
@@ -42,41 +33,34 @@ const Users=()=> {
     <ClassesContent>
 
       <ClassesHeader> Users Magment</ClassesHeader>
-      <AddClassForm>
-        <AddClassInput type="text"
-        placeholder='entrer le nom utilisateur'
-        value={name}
-        onChange={e=>setName(e.target.value)}
-        
-        />
-           <AddClassInput type="email" required
-        placeholder='adresse mail'
-        value={email}
-        onChange={e=>setEmail(e.target.value)} />
-           <AddClassInput type="password"
-        placeholder='entre le mot de pass'
-        value={password}
-        onChange={e=>setPassword(e.target.value)} />  
-
-
-<AddClassInput type="password"
-        placeholder='confirme le password'
-        value={confirmPassword}
-        onChange={e=>setConfirmPassword(e.target.value)}/>
-
-<AddClassInput type="text"
-        placeholder='entre la cohorte'
-        value={cohorte}
-        onChange={e=>setCohorte(e.target.value)}
-        />
-        
-        <AddClassButton type="submit" onClick={registerHandler} >Add user</AddClassButton>
-      </AddClassForm>
-
-      <ClassList>
-
-        
-      </ClassList>
+      <div className=" h-screen w-1/3 p-10 mt-20">
+        <h1 className="text-2xl mb-10">Ajouter un cours </h1>
+        <form  > 
+  <input
+    type="text"
+    placeholder="Nom"
+    className="w-full p-3 mb-6 border border-gray-200 rounded-md"
+  />
+  <input
+    type="email"
+    placeholder="titre"
+    className="w-full p-3 mb-6  border border-gray-200 rounded-md"
+  />
+ 
+ 
+  <textarea
+    placeholder="Message"
+    className="w-full p-3 mb-6  border border-gray-200 rounded-md"
+  ></textarea>
+  <button
+    className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+    type="submit" 
+  >
+    Ajouter un cour
+  </button>
+</form>
+      </div>
+     
     </ClassesContent>
   </Content>
 </ClassesContainer>

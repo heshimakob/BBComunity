@@ -6,8 +6,8 @@ const Service = () => {
     <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-green-900 overflow-hidden">
     <div className=" flex justify-center items-center  text-white px-4 py-16 ml-12 mr-12">
     <div className='w-1/2'>  
-  <h1 className="text-4xl font-bold text-left mb-8">Nos processus</h1>
-  <p className="text-lg text-left mb-8">Do you want to augment your engineering team's productivity? Then welcome one of our apprentices into your team! The Andela Rwanda Apprenticeship Program connects the Africa's top organizations with talented apprentices from our Andela Technical Leadership Program</p>
+  <h1 className="text-4xl font-bold text-left mb-8">Nos processus integral</h1>
+  <p className="text-lg text-left mb-8">Do you want to augment your  productivity? Then welcome one of our apprentices into your team! Black Born Community Apprenticeship Program connects the Africa's apprentices from our Andela Technical Leadership Program</p>
   <div className="flex ">
     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Apply now</button>
   </div>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const UserContainer = styled.div`
   display: flex;
-  padding-left: 240px;
+  padding-left: 250px;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -58,9 +58,6 @@ export const AddUserButton = styled.button`
 `;
 
 
-export const UserContainer = styled.div`
-  display: flex;
-`;
 
 export const SidebarContainer = styled.div`
   flex: 0 0 250px; /* Sidebar width */

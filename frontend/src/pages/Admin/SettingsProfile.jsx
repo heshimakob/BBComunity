@@ -3,6 +3,7 @@ import React,{useState} from 'react';
 import Sidebar from './Sidebar';
 import Button from '../../components/Button';
 import AddUser from '../../components/AddUser';
+import {  ClassesContainer } from '../../styles/ClassesStyles';
 
 
 const SettingsProfile=()=> {
@@ -39,6 +40,7 @@ const SettingsProfile=()=> {
   );
 
   const TableRow = ({ user }) => (
+   
     <tr className='border-b border-gray-200 text-gray-600 hover:bg-gray-400/10'>
       <td className='p-2'>
         <div className='flex items-center gap-3'>
@@ -80,6 +82,7 @@ const SettingsProfile=()=> {
 
   return (
 <>
+<ClassesContainer>
 <Sidebar/>
 
 <div className='w-full md:px-1 px-0 mb-6'>
@@ -125,6 +128,9 @@ const SettingsProfile=()=> {
         setOpen={setOpenAction}
         onClick={userActionHandler}
       /> */}
+
+
+</ClassesContainer>
     </>
 
   )

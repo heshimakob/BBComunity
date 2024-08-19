@@ -1,10 +1,34 @@
 // import { useState } from "react";
 // import {AdminSignInContainer,FormContainer,InputField, SubmitButton} from  "../styles/AdminSignInStyles"
 
-import Textbox from "../components/Textbox";
-import Button from "../components/Button"
-import home from "../assets/home.png"
+// import Textbox from "../components/Textbox";
+// import Button from "../components/Button"
+// import home from "../assets/home.png"
+
+import React, { useState } from 'react';
+import axios from 'axios';
 const AdminSignIn  =()=>{
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post('http://localhost:8080/api/users/signin', { email, password }); 
+      if (response.status === 200) {
+        // Sign-in successful, redirect to admin dashboard
+        window.location.href = '/admin/dashboard';
+      } else {
+        // Handle sign-in errors
+        console.error('Sign-in failed');
+      }
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+    }
+  };
+
 
     return(
       <div className="h-screen flex">
@@ -28,34 +52,28 @@ const AdminSignIn  =()=>{
         <h1 className="text-2xl mb-10">Login</h1>
         <form>
   <input
-    type="text"
-    placeholder="Nom"
-    className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-  />
-  <input
     type="email"
-    placeholder="Adresse e-mail"
-    className="w-full p-3 mb-6  border border-gray-200 rounded-md"
-  />
-  <input
-    type="tel"
-    placeholder="Téléphone"
+    placeholder="Email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    required
     className="w-full p-3 mb-6 border border-gray-200 rounded-md"
   />
   <input
-    type="text"
-    placeholder="Sujet"
+     type="password"
+     placeholder="Password"
+     value={password}
+     onChange={(e) => setPassword(e.target.value)}
+     required
     className="w-full p-3 mb-6  border border-gray-200 rounded-md"
   />
-  <textarea
-    placeholder="Message"
-    className="w-full p-3 mb-6  border border-gray-200 rounded-md"
-  ></textarea>
+ 
   <button
     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
     type="submit"
-  >
-    Envoyer
+    onClick={handleSignIn}>
+  
+    Se connecter
   </button>
 </form>
       </div>

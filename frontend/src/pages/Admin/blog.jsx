@@ -36,41 +36,39 @@ const Blog=()=> {
     <ClassesContainer>
   <Sidebar/>
   <Content>
-    <ClassesContent>
-
-      <ClassesHeader> Blog managment</ClassesHeader>
-      <AddClassForm>
-        <AddClassInput type="text"
-        placeholder='entrer le titre '
-        value={titre}
-        onChange={e=>setTitre(e.target.value)}
-        
-        />
-           <AddClassInput type="text" required
-        placeholder='adresse mail'
-        value={contenu}
-        onChange={e=>setContenu(e.target.value)} />
-           <AddClassInput type="image"
-        placeholder='entrer votre image'
-        value={image}
-        onChange={e=>SetImage(e.target.value)} />  
-
-
-<AddClassInput type="text"
-        placeholder='le nom auteur article'
-        value={auteur}
-        onChange={e=>setAuteur(e.target.value)}/>
-
-
-        
-        <AddClassButton type="submit" onClick={registerHandler} >Add post</AddClassButton>
-      </AddClassForm>
-
-      <ClassList>
-
-        
-      </ClassList>
-    </ClassesContent>
+  <div className=" h-screen w-1/3 p-10 mt-20">
+        <h1 className="text-2xl mb-10">Ajouter un Post </h1>
+        <form  > 
+  <input
+    type="text"
+    placeholder="titre"
+    className="w-full p-3 mb-6 border border-gray-200 rounded-md"
+  />
+  <input
+  type="file"
+  accept="image/*"
+  placeholder="image"
+  className="w-full p-3 mb-6  border border-gray-200 rounded-md"
+/>
+   <input
+    type="text"
+    placeholder="auteur"
+    className="w-full p-3 mb-6  border border-gray-200 rounded-md"
+  />
+ 
+ 
+  <textarea
+    placeholder="Description du post"
+    className="w-full p-3 mb-6  border border-gray-200 rounded-md"
+  ></textarea>
+  <button
+    className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+    type="submit" 
+  >
+    Ajouter un cour
+  </button>
+</form>
+      </div>
   </Content>
 </ClassesContainer>
 

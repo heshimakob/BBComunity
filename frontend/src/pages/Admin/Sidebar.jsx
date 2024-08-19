@@ -88,7 +88,7 @@ const Sidebar=()=> {
     }
 
   return ( 
-    <SidebarContainer style={{width:isOpen ? '250px' : '80px'}}>
+    <SidebarContainer >
         <SidebarHeader>
             <Logo src={B}/>
         </SidebarHeader>
@@ -149,10 +149,10 @@ const Sidebar=()=> {
                 <SidebarIcon> <BsGraphUp/></SidebarIcon>
                 <StyledLink to="/admin/help"> help</StyledLink>
             </SidebarNavItem>
-
+{/* 
             <ToggleButton onClick={toggleSidebar}>
                 <ToggleIcon isOpen={isOpen}> <BsDot/></ToggleIcon>
-            </ToggleButton>
+            </ToggleButton> */}
         </SidebarNav>
     </SidebarContainer>
   )
