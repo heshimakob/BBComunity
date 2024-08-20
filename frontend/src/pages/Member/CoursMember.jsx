@@ -49,9 +49,9 @@ const CoursMember =()=>  {
    <ClassesContainer>
     <Content>
          <div className="bg-white min-h-screen py-12 px-6">
-      <div className="max-w-3xl mx-auto">
-      <div className="flex justify-between items-center py-12 px-6">
-      <div className="w-1/2">
+      <div className="max-w-7xl mx-auto">
+      <div className="flex   justify-between items-center py-12 px-6">
+      <div className="w-2/3">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">Learn</h1>
         <p className="text-gray-600 mb-12">
           Gain the skills you need to do independent data science projects.

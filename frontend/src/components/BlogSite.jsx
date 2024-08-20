@@ -23,15 +23,15 @@ const BlogSite = () => {
             <NavBar />
             {blogState && blogState.length > 0 ? (
   <div className="container mx-auto p-4 bg-white ">
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {blogState.map((blog) => (
         <div key={blog.id} className="bg-cover bg-center h-96 hover:scale-105 transition duration-300 ease-in-out rounded-xl shadow-md overflow-hidden m-4 p-4" style={{ backgroundImage: `url(${blog.image})` }}>
           <div className="flex flex-col justify-center h-full p-4">
-            <h2 className="text-2xl font-bold">{blog.titre}</h2>
-            <p className="text-gray-600 font-bold text-4xl font-weight-900">{blog.description}</p>
+            <h2 className="text-2xl font-bold text-white">{blog.titre}</h2>
+            <p className="text-gray-600 font-bold text-4xl font-weight-900 text-white">{blog.description}</p>
           </div>
           <div className="flex justify-between p-4">
-            <p className="text-gray-600">By {blog.auteur}</p>
+            <p className="text-gray-600 text-white">By {blog.auteur}</p>
             <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
               Read More
             </button>

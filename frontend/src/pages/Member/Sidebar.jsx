@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import B from "../../assets/B.png"
-import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload } from 'react-icons/bs';
+import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload, BsChatLeft, BsArrowLeft, BsSignDeadEnd, BsSignNoLeftTurn } from 'react-icons/bs';
 
 const SidebarContainer = styled.div`
   position: fixed;
@@ -106,7 +106,7 @@ const Sidebar=()=> {
 
             <SidebarNavItem className={window.location.pathname === '/member/courser' ? 'active' : ''}>
                 <SidebarIcon> <BsBook/></SidebarIcon>
-                <StyledLink to="/member/courser"> Courses</StyledLink>
+                <StyledLink to="/member/courser"> Apprendre</StyledLink>
             </SidebarNavItem>
             <SidebarNavItem className={window.location.pathname === '/member/challenger' ? 'active' : ''}>
                 <SidebarIcon> <BsPerson/></SidebarIcon>
@@ -119,8 +119,13 @@ const Sidebar=()=> {
             </SidebarNavItem>
 
             <SidebarNavItem className={window.location.pathname === '/member/profiler' ? 'active' : ''}>
-                <SidebarIcon> <BsAlarm/></SidebarIcon>
+                <SidebarIcon> <BsPerson/></SidebarIcon>
                 <StyledLink to="/member/profiler"> Profiler</StyledLink>
+            </SidebarNavItem>
+
+            <SidebarNavItem >
+                <SidebarIcon> <BsArrowLeft/></SidebarIcon>
+                <StyledLink to=""> Se deconnecter</StyledLink>
             </SidebarNavItem>
            
 

@@ -37,7 +37,7 @@ const ProfilesMember=()=> {
   <Sidebar/>
   <Content>
   <div className=" h-screen w-1/3 p-10 mt-20">
-        <h1 className="text-2xl mb-10">Ajouter un evenement </h1>
+        <h1 className="text-2xl mb-10">Modifier votre profile </h1>
         <form  > 
 
         <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
@@ -80,7 +80,7 @@ const ProfilesMember=()=> {
     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
     type="submit" 
   >
-    Ajouter un cour
+    Enregister
   </button>
 </form>
       </div>

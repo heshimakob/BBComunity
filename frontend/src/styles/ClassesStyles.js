@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const ClassesContainer = styled.div`
   display: flex;
-  padding-left: 450px;
+  padding-left: 350px;
   margin-top: 50px;
 
   @media screen and (max-width: 768px) {
