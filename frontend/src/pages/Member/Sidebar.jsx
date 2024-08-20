@@ -9,10 +9,9 @@ const SidebarContainer = styled.div`
   top: 0;
   left: 0;
   width: ${({ isOpen }) => (isOpen ? '250px' : '80px')};
-  width: 250px;
   height: 100%;
-  background-color: black; /* Dark blue background */
-  color: white;
+  background-color: white; /* White background */
+  color: #333; /* Dark text color */
   overflow-y: auto; /* Enable vertical scrolling */
   padding-top: 60px;
   transition: width 0.3s ease; /* Smooth width transition */
@@ -36,16 +35,22 @@ const SidebarNavItem = styled.li`
   align-items: center;
   padding: 12px 20px;
   font-size: 18px;
-  border-bottom: 1px solid #34495e; /* Darker border */
+  border-bottom: 1px solid #eee; /* Light grey border */
   transition: background-color 0.3s ease;
+  background-color: white;
+  border-right: 2px solid #eee; /* Right border */
   &:hover {
-    background-color: #34495e; /* Darker background on hover */
+    background-color: #f5f5f5; /* Light grey background on hover */
+  }
+  &.active {
+    background-color: #f2f2f2;
+    border-right: 2px solid #333; /* Dark grey border on active */
   }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: #333;
   margin-left: 10px;
 `;
 
@@ -64,7 +69,7 @@ const ToggleButton = styled.div`
   right: 0;
   width: 30px;
   height: 30px;
-  background-color: #34495e; /* Darker background */
+  background-color: #f2f2f2;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -73,7 +78,7 @@ const ToggleButton = styled.div`
 `;
 
 const ToggleIcon = styled.span`
-  color: white;
+  color: #333;
   font-size: 20px;
   transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   transition: transform 0.3s ease;
@@ -88,34 +93,34 @@ const Sidebar=()=> {
     }
 
   return ( 
-    <SidebarContainer >
+    <SidebarContainer isOpen={isOpen}>
         <SidebarHeader>
             <Logo src={B}/>
         </SidebarHeader>
 
         <SidebarNav>
-            <SidebarNavItem>
+            <SidebarNavItem className={window.location.pathname === '/member/dashboarder' ? 'active' : ''}>
                 <SidebarIcon> <BsGraphUp/></SidebarIcon>
-                <StyledLink to="/member/dashboard"> Dashboard</StyledLink>
+                <StyledLink to="/member/dashboarder"> Dashboard</StyledLink>
             </SidebarNavItem>
 
-            <SidebarNavItem>
+            <SidebarNavItem className={window.location.pathname === '/member/courser' ? 'active' : ''}>
                 <SidebarIcon> <BsBook/></SidebarIcon>
-                <StyledLink to="/member/courses"> Courses</StyledLink>
+                <StyledLink to="/member/courser"> Courses</StyledLink>
             </SidebarNavItem>
-            <SidebarNavItem>
+            <SidebarNavItem className={window.location.pathname === '/member/challenger' ? 'active' : ''}>
                 <SidebarIcon> <BsPerson/></SidebarIcon>
-                <StyledLink to="/member/member"> Member</StyledLink>
+                <StyledLink to="/member/challenger"> Challenger</StyledLink>
             </SidebarNavItem> 
 
-            <SidebarNavItem>
+            <SidebarNavItem className={window.location.pathname === '/member/annoncer' ? 'active' : ''}>
                 <SidebarIcon> <BsAlarm/></SidebarIcon>
-                <StyledLink to="/member/cohorte"> Cohorte</StyledLink>
+                <StyledLink to="/member/annoncer"> Notification</StyledLink>
             </SidebarNavItem>
 
-            <SidebarNavItem>
+            <SidebarNavItem className={window.location.pathname === '/member/profiler' ? 'active' : ''}>
                 <SidebarIcon> <BsAlarm/></SidebarIcon>
-                <StyledLink to="/admin/annonce"> Annoncement</StyledLink>
+                <StyledLink to="/member/profiler"> Profiler</StyledLink>
             </SidebarNavItem>
            
 

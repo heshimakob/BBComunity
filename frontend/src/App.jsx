@@ -19,6 +19,10 @@ import Discussion from "./pages/Admin/Discussion"
 import Users from "./pages/Admin/Users"
 import Why from "./components/Why"
 import AnnoncementMember from "./pages/Member/AnnoncementMember"
+import ChallengeMember from "./pages/Member/ChallengeMember"
+import ProfilesMember from "./pages/Member/ProfilesMember"
+import DashboarMember from "./pages/Member/DashboardMember"
+import CoursMember from "./pages/Member/CoursMember"
 
 
 
@@ -76,7 +80,11 @@ function App() {
       {/* routes member */}
 
 
-      <Route  exact path="/member/annonce" element= {<AnnoncementMember/>}/>
+      <Route  exact path="/member/annoncer" element= {<AnnoncementMember/>}/>
+      <Route  exact path="/member/courser" element= {<CoursMember/>}/>
+      <Route  exact path="/member/challenger" element= {<ChallengeMember/>}/>
+      <Route  exact path="/member/profiler" element= {<ProfilesMember/>}/>
+      <Route  exact path="/member/dashboarder" element= {<DashboarMember/>}/>
 
 
 
