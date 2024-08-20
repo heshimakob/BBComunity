@@ -41,7 +41,7 @@ const ProfilesMember=()=> {
         <form  > 
 
         <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Titre evenenement* 
+          Nom complet* 
         </label>
   <input
     type="text"
@@ -49,31 +49,33 @@ const ProfilesMember=()=> {
     className="w-full p-3 mb-6 border border-gray-200 rounded-md"
   />
   <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Image evenenement*
+          Adresse mail*
         </label>
   <input
-  type="file"
-  accept="image/*"
-  placeholder="image"
+  type="email"
+  placeholder="Adresse mail"
   className="w-full p-3 mb-6  border border-gray-200 rounded-md"
 />
 <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Auteur evenenement*
+          Numero de Telephone*
         </label>
    <input
     type="text"
     placeholder="auteur"
     className="w-full p-3 mb-6  border border-gray-200 rounded-md"
   />
-  <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-          Description evenement*
+ <label htmlFor="gender" className="block text-gray-700 text-sm font-bold mb-2">
+          Gender identity*
         </label>
+        <select
+          id="gender"
+          className="w-full p-3 mb-6  border border-gray-200 rounded-md"
+        >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
  
- 
-        <textarea
-  placeholder="Description du post"
-  className="w-full p-3 mb-6  border border-gray-200 rounded-md resize-none h-80"
-></textarea>
   <button
     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
     type="submit" 
