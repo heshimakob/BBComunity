@@ -99,11 +99,13 @@ const Home =()=>{
 </div>
 </div>
 </div>
-<div className='pt-16 lg:pt-32 pb-24 lg:pb-10 bg-white overflow-hidden'>
-  
+<div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
+
   
   <Marque/>
   <Outcome/>
+  <Service/>
+  
   {/* <Service/> */}
   
 </div>
