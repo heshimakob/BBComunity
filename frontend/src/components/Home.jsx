@@ -103,9 +103,10 @@ const Home =()=>{
 
   
   <Marque/>
-  <Outcome/>
   <Service/>
   
+  <Outcome/>
+ 
   {/* <Service/> */}
   
 </div>

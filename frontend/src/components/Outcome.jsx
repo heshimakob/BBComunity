@@ -6,7 +6,7 @@ const  Outcome =()=>{
     <div className="bg-white min-h-screen flex flex-col justify-center items-center">
     <div className="bg-blue-100 p-8 rounded-lg shadow-md max-w-xl text-center">
       <p className="text-3xl font-bold text-blue-900">Black Born Community (BBC)</p>
-      <p className="text-lg mt-4">Nous sommes une entreprise novatrice spécialisée dans la Réalité Virtuelle et Augmentée, l'Intelligence Artificielle et le développement web. Acteur clé de la transformation numérique des Industries Culturelles et Créatives, nous avons des partenariats solides, dont celui avec l'Institut français de Goma, pour promouvoir l'innovation et l'excellence technologique.</p>
+      <p className="text-lg mt-4">Nous sommes une startup oeuvrant dans le numerique et innovation technologique spécialisée dans le developpemtn logiciel, l'Intelligence Artificielle,Design UI UX  et realitee . Acteur clé de la transformation numérique des Industries Culturelles et Créatives, nous avons des partenariats solides, dont celui avec l'Institut français de Goma, pour promouvoir l'innovation et l'excellence technologique.</p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-5xl">

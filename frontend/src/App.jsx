@@ -23,6 +23,7 @@ import ChallengeMember from "./pages/Member/ChallengeMember"
 import ProfilesMember from "./pages/Member/ProfilesMember"
 import DashboarMember from "./pages/Member/DashboardMember"
 import CoursMember from "./pages/Member/CoursMember"
+import BlogPage from "./components/blog/BlogPage"
 
 
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/blog-site" element= {<BlogSite/>} />  
         <Route path="/company" element= {<CompanySite/>} />  
         <Route path="/why" element= {<Why/>} />  
+        <Route path="/blogPage/:id" element= {<BlogPage/>} /> 
 
 
         
