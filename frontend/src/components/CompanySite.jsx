@@ -83,7 +83,7 @@ placeholder="pays ville  quartier et numero avenue"
 className="w-full p-3 mb-6 border border-gray-200 rounded-md"
 />
 <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-  Auteur evenenement*
+  Numero de telephone*
 </label>
 <input
 type="text"
@@ -91,7 +91,7 @@ placeholder="auteur"
 className="w-full p-3 mb-6  border border-gray-200 rounded-md"
 />
 <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-  Description evenement*
+  Motif ou message*
 </label>
 
 
