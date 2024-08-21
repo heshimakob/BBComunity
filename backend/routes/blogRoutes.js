@@ -41,6 +41,41 @@ router.get('/getAllBlog', async (req, res) => {
 });
 
 
+
+router.get('/getRecentBlog', async (req, res) => {     
+    try {         
+       // Gestion du cas où aucun blog n'est trouvé
+
+   
+       const data =await Blog.find().sort ({createdAt: -1}).limit(3);
+       res.status(200).json({data:data});
+        
+             
+    } catch (error) {         
+        res.status(500).json({ message: error.message }); // Gestion des erreurs     
+    } 
+});
+
+
+
+
+
+
+router.get('/getBlog/:id', async (req, res) => {     
+    try {         
+       // Gestion du cas où aucun blog n'est trouvé
+
+       const {id}=req.params;
+       const data =await Blog.findById(id);
+       res.status(200).json({data:data});
+        
+             
+    } catch (error) {         
+        res.status(500).json({ message: error.message }); // Gestion des erreurs     
+    } 
+});
+
+
 module.exports= router;
 
 
