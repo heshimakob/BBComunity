@@ -24,6 +24,7 @@ import ProfilesMember from "./pages/Member/ProfilesMember"
 import DashboarMember from "./pages/Member/DashboardMember"
 import CoursMember from "./pages/Member/CoursMember"
 import BlogPage from "./components/blog/BlogPage"
+import AdminRegister from "./components/AdminRegister"
 
 
 
@@ -50,6 +51,7 @@ function App() {
 
         {/* sigin pages  */}
          <Route  exact path="/admin-signIn" element= {<AdminSignIn/>} />
+         <Route  exact path="/register" element= {<AdminRegister/>} />
          <Route  exact path="/guest-signIn" element= {<GuestSignIn/>} />
 
 {/* 
@@ -87,6 +89,11 @@ function App() {
       <Route  exact path="/member/challenger" element= {<ChallengeMember/>}/>
       <Route  exact path="/member/profiler" element= {<ProfilesMember/>}/>
       <Route  exact path="/member/dashboarder" element= {<DashboarMember/>}/>
+
+
+
+      {/* page error 404 */}
+      
 
 
 

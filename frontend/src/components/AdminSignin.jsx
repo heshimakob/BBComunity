@@ -4,9 +4,12 @@
 // import Textbox from "../components/Textbox";
 // import Button from "../components/Button"
 // import home from "../assets/home.png"
+import B from "../assets/B.png"
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import bglog from "../assets/bglog.jpeg"
+import { Link } from 'react-router-dom';
 const AdminSignIn  =()=>{
 
   const [email, setEmail] = useState('');
@@ -32,33 +35,31 @@ const AdminSignIn  =()=>{
 
     return(
       <div className="h-screen flex">
-      <div
-        className="bg-cover bg-center h-max md:h-screen w-2/3"
-        style={{
-          backgroundImage: 'url(https://www.shutterstock.com/shutterstock/photos/2177730489/display_1500/stock-vector-futuristic-sci-fi-modern-neon-gradient-glowing-circle-frame-with-glowing-mesh-on-dark-space-2177730489.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="p-10 text-white">
-          <h1 className="text-3xl">Welcome to our website</h1>
-          <p className="text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
-            amet nulla auctor, vestibulum magna sed, convallis ex.
-          </p>
+    
+      <div className=" h-screen w-1/3 p-20  mt-30 flex flex-col items-center ">
+     
+        <div className="text-center flex flex-col items-center ">
+        <h1 className="text-2xl text-gray-300  mb-10">Black Born Community</h1>
+        <img src={B} width="40%" height="200px" />
+        <h1 className="text-2xl mb-10">Se connecter</h1>
         </div>
-      </div>
-      <div className=" h-screen w-1/3 p-10 mt-20">
-        <h1 className="text-2xl mb-10">Login</h1>
         <form>
+        <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
+           Adresse mail* 
+        </label>
   <input
     type="email"
-    placeholder="Email"
+    placeholder="exemple@gmail.com"
     value={email}
     onChange={(e) => setEmail(e.target.value)}
     required
     className="w-full p-3 mb-6 border border-gray-200 rounded-md"
   />
+
+  
+  <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
+          Mot de pass* 
+        </label>
   <input
      type="password"
      placeholder="Password"
@@ -69,13 +70,34 @@ const AdminSignIn  =()=>{
   />
  
   <button
-    className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+    className="w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
     type="submit"
     onClick={handleSignIn}>
   
     Se connecter
   </button>
 </form>
+<div className="flex flex-col  justify-center items-center">
+  <span className='text-red-500 hover:text-red-700 font-bold pt-5 '><Link to="/register">S'inscrire</Link></span>
+  <span className='text-blue-800 font-bold pt-5 '><Link>Mot de pass oublie?</Link></span>
+</div>
+      </div>
+
+      <div
+        className="bg-cover bg-center h-max md:h-screen w-2/3"
+        style={{
+          backgroundImage:  `url(${bglog})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* <div className="p-10 text-white">
+          <h1 className="text-3xl">Welcome to our website</h1>
+          <p className="text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+            amet nulla auctor, vestibulum magna sed, convallis ex.
+          </p>
+        </div> */}
       </div>
     </div>
 
