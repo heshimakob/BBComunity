@@ -9,9 +9,8 @@ const SidebarContainer = styled.div`
   top: 0;
   left: 0;
   width: ${({ isOpen }) => (isOpen ? '250px' : '80px')};
-  width: 250px;
   height: 100%;
-  background-color: black; /* Dark blue background */
+  background-color: #2f343a; /* Dark blue background */
   color: white;
   overflow-y: auto; /* Enable vertical scrolling */
   padding-top: 60px;
@@ -24,11 +23,13 @@ const SidebarHeader = styled.div`
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+  background-color: #2f343a;
 `;
 
 const SidebarNav = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
 `;
 
 const SidebarNavItem = styled.li`
@@ -36,10 +37,10 @@ const SidebarNavItem = styled.li`
   align-items: center;
   padding: 12px 20px;
   font-size: 18px;
-  border-bottom: 1px solid #34495e; /* Darker border */
+  border-bottom: 1px solid #3b3f45; /* Darker border */
   transition: background-color 0.3s ease;
   &:hover {
-    background-color: #34495e; /* Darker background on hover */
+    background-color: #3b3f45; /* Darker background on hover */
   }
 `;
 
@@ -51,6 +52,7 @@ const StyledLink = styled(Link)`
 
 const SidebarIcon = styled.div`
   margin-right: 10px;
+  font-size: 20px;
 `;
 
 const Logo = styled.img`
@@ -64,7 +66,7 @@ const ToggleButton = styled.div`
   right: 0;
   width: 30px;
   height: 30px;
-  background-color: #34495e; /* Darker background */
+  background-color: #3b3f45; /* Darker background */
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -88,7 +90,7 @@ const Sidebar=()=> {
     }
 
   return ( 
-    <SidebarContainer >
+    <SidebarContainer isOpen={isOpen}>
         <SidebarHeader>
             <Logo src={B}/>
         </SidebarHeader>
