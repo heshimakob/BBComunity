@@ -3,19 +3,19 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
 import { useDispatch, useSelector } from 'react-redux';
-import {  getAllBlogs } from "../redux/actions/blog.action";
 import vide from "../assets/vide.png"
 import { Link } from 'react-router-dom';
+import { getBlogs } from '../store/blogSlice';
 
 const BlogSite = () => {
     const dispatch = useDispatch();
-    const blogState = useSelector((state)=>state.blogReducer);
+    const {data: blogState} = useSelector((state)=>state.blogs);
 
-    // console.log(blog)
-    // const { blogs } = blogState;
+    // console.log(blogState)
+
 
     useEffect(() => {
-        dispatch(getAllBlogs());
+        dispatch(getBlogs());
     }, [dispatch]);
 
     return (

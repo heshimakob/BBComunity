@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import Sidebar from './Sidebar';
-import {addBlog} from  '../../redux/actions/blogAction'
-import {addBlogReducer} from '../../redux/reducers/blogReducer'
+import { addBlog } from '../../store/blogSlice';
 import {
   ClassesContainer,
   Content,
@@ -11,7 +10,7 @@ import {
   ClassList,
 
   AddClassForm,
-  AddClassInput,
+  AddClassInput, 
   AddClassButton,
 } from '../../styles/ClassesStyles';
 
@@ -27,7 +26,7 @@ const Event=()=> {
   // const {error,success,loading}= registerState;
 
   const dispatch =useDispatch()
-  const registerHandler =()=>{
+  const addToBlog =()=>{
     const blog={titre,auteur,contenu,image};
     dispatch(addBlog(blog))
   }
@@ -76,7 +75,7 @@ const Event=()=> {
 ></textarea>
   <button
     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-    type="submit" 
+    type="submit"  onClick={()=> addToBlog()}
   >
     Ajouter un cour
   </button>
