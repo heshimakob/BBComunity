@@ -15,6 +15,9 @@ const blogSlice = createSlice({
     fetchBlog(state, action) {
       state.data = action.payload
     },
+    getBlogById(state, action) {
+        state.data = [action.payload];
+      },
     updateBlog(state, action) {
       const index = state.data.findIndex(item => item.id === action.payload.id);
       if (index !== -1) {
@@ -27,7 +30,7 @@ const blogSlice = createSlice({
   }
 });
 
-export const { addBlog, fetchBlog, deleteBlog, updateBlog } = blogSlice.actions;
+export const { addBlog, fetchBlog, deleteBlog, updateBlog,getBlogById } = blogSlice.actions;
 export default blogSlice.reducer;
 
 export function getBlogs() {
@@ -74,3 +77,17 @@ export function deleteBlogFromDB(id) {
     }
   }
 }
+
+
+
+export function getBlogByIdDb(id) {
+    return async function getBlogByIdThunk(dispatch, getState) {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/blogs/getBlogById/${id}`);
+        const result = response.data;
+        dispatch(fetchBlog([result])); // on passe un tableau avec un seul élément
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
