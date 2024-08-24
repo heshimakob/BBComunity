@@ -14,22 +14,22 @@ const Card = ({ icon, title, description }) => {
 const Service = () => {
   const cards = [
     {
-      icon: <FaBook size={40} />,
+      // icon: <FaBook size={40} />,
       title: 'Engager a distance et postuler',
       description: `Nous mettons en valeur le talent de la jeunesse congolaise et nous développons l'industrie culturelle et créative en République démocratique du Congo. Les entreprises font appel à notre expertise pour trouver les meilleurs talents, et nous leur proposons les meilleurs profils. Les particuliers peuvent également postuler pour des opportunités d'apprentissage.`,
     },
     {
-      icon: <FaKeyboard size={40} />,
+      // icon: <FaKeyboard size={40} />,
       title: 'Apprendre en agissant',
       description: `La période de bootcamp dure 16 semaines, pendant lesquelles vous bénéficierez d'un apprentissage intensif dans les domaines du développement logiciel, de l'intelligence artificielle, du design et de la communication, de l'analyse des données, ainsi que de la réalité virtuelle et augmentée. Ce programme est conçu pour les personnes ambitieuses qui souhaitent intégrer le secteur du numérique et acquérir les compétences nécessaires pour réussir. Grâce à notre programme d'engagement avec les entreprises, vous aurez l'opportunité de vous connecter avec des professionnels du secteur et de développer votre réseau. À l'issue de la formation, vous serez capable de travailler en remote de manière collaborative et efficace, prêt à relever les défis du marché du numérique. Et pour vous aider à démarrer, nous offrons un tarif compétitif pour notre bootcamp en ligne : 50 dollars pour les 16 semaines. `,
     },
     {
-      icon: <FaPersonBooth size={40} />,
+      // icon: <FaPersonBooth size={40} />,
       title: `Recevoir de l'aide des autres`,
       description: `Pendant votre période de bootcamp, vous bénéficierez d'un accompagnement et d'une assistance personnalisée 24h/24h de la part de nos experts du domaine. Le bootcamp se déroule du lundi au vendredi, de 8h à 16h, avec un briefing quotidien de 8h à 8h30, suivi d'une collaboration entre les apprenants de 15h30 à 16h.`,
     },
     {
-      icon: <FaGlobe size={40} />,
+      // icon: <FaGlobe size={40} />,
       title: 'Rejoindre notre Communaute',
       description: `Profiter des opportunités à l'étranger et travailler partout dans le monde dans le secteur numérique. De plus, notre startup bénéficiera de 10% de votre premier contrat.`,
     },

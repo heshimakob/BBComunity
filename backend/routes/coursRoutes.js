@@ -2,9 +2,9 @@ const express =require('express')
 const router =express.Router()
 const Cours =require('../models/coursModel')
 
-router.post('/postCours', (req, res)=>{
-    const {title, description, image, instructor }=req.body
-    const newCours = new Cours ({title, description, image, instructor })
+router.post('/addCour', (req, res)=>{
+    const {name, description, image}=req.body
+    const newCours = new Cours ({name, description, image })
     try{
         newCours.save()
         res.status(200).json({
@@ -16,6 +16,22 @@ router.post('/postCours', (req, res)=>{
             message:error,
         });
     }
+});
+
+
+
+//la routes pour reccupere les details des cours vacs les cpaitres 
+
+router.get('/courses/:courseId', (req, res) => {
+  const courseId = req.params.courseId;
+  Course.findById(courseId)
+    .populate('chapters')
+    .then(course => {
+      res.json(course.chapters);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Erreur lors de la récupération des données' });
+    });
 });
 
 // Route pour mettre à jour un cours

@@ -5,14 +5,15 @@ const coursSchema = mongoose.Schema({
         type: String,
         required: [true, 'name is required']
     },
-    contenu: {
+    description: {
         type: String,
         required: [true, 'Contenu du cours is required']
     },
-    link: {
+    image: {
         type: String,
-        required: [true, 'le lien du cours est requis'] // correction de 'liens' à 'lien'
-    }
+        required: [true, 'Contenu du cours is required']
+    },
+    chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Chapitre' }]
 }, { timestamps: true }); // correction de 'timeStamps' à 'timestamps'
 
 module.exports =mongoose.model('Cours',coursSchema)
