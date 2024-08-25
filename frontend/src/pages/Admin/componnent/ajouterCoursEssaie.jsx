@@ -1,47 +1,89 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addChapterByCoursId } from '../../../store/coursSlice';
+import axios from 'axios';
 
-const AjouterCours = () => {
-  const dispatch = useDispatch();
-  const [titre, setTitre] = useState('');
+function AjouterCours() {
+  const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [chapitres, setChapitres] = useState([]);
+  const [image, setImage] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleAjouterCours = () => {
-    const cours = { titre, description, chapitres };
-    dispatch(addChapterByCoursId(cours));
-  };
-
-  const handleAjouterChapitre = () => {
-    const titreChapitre = prompt('Entrez le titre du chapitre');
-    const descriptionChapitre = prompt('Entrez la description du chapitre');
-    const chapitre = { titre: titreChapitre, description: descriptionChapitre };
-    setChapitres([...chapitres, chapitre]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/api/cours/addCours', {
+        name,
+        description,
+        image,
+      });
+      console.log(response.data);
+      setError(null);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
   };
 
   return (
-    <div>
-      <h1>Ajouter un cours</h1>
-      <form>
-        <label>Titre :</label>
-        <input    className="w-full p-3 mb-6  border border-gray-200 rounded-md" type="text" value={titre} onChange={(e) => setTitre(e.target.value)} />
-        <br />
-        <label>Description :</label>
-        <textarea    className="w-full p-3 mb-6  border border-gray-200 rounded-md" value={description} onChange={(e) => setDescription(e.target.value)} />
-        <br />
-        <button onClick={handleAjouterChapitre}>Ajouter un chapitre</button>
-        <ul>
-          {chapitres.map((chapitre, index) => (
-            <li key={index}>
-              {chapitre.titre} - {chapitre.description}
-            </li>
-          ))}
-        </ul>
-        <button  className="bg-red-700 text-white" onClick={handleAjouterCours}>Ajouter le cours</button>
+    <div className="container mx-auto p-4 pt-6 md:p-6 lg:p-12">
+      <h1 className="text-3xl font-bold mb-4">Ajouter un cours</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-sm font-bold mb-2"
+          >
+            Nom du cours
+          </label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-2 pl-10 text-sm text-gray-700"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="description"
+            className="block text-sm font-bold mb-2"
+          >
+            Description du cours
+          </label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full p-2 pl-10 text-sm text-gray-700"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="image"
+            className="block text-sm font-bold mb-2"
+          >
+            Image du cours
+          </label>
+          <input
+            type="text"
+            id="image"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+            className="w-full p-2 pl-10 text-sm text-gray-700"
+          />
+        </div>
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            {error}
+          </div>
+        )}
+        <button
+          type="submit"
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Ajouter le cours
+        </button>
       </form>
     </div>
   );
-};
+}
 
 export default AjouterCours;

@@ -15,7 +15,7 @@ import {
 import AjouterCours from './componnent/ajouterCoursEssaie';
 import AddCourseChapter from './componnent/courchapteradd';
 import AddChapitre from './componnent/addChapitre';
-
+import ajouterCoursEssaie from './componnent/ajouterCoursEssaie';
 const Courses=()=> {
   return (
 <ClassesContainer>
@@ -83,6 +83,9 @@ Description du cours *
 
 
 <AddChapitre/>
+
+
+<AjouterCours/>
       <ClassList>
 
         

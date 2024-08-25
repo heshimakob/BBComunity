@@ -67,6 +67,13 @@ router.post('/addChapitreCours', async (req, res) => {
 
 
 
+
+
+
+
+
+
+
 //la routes pour reccupere les details des cours vacs les cpaitres 
 
 router.get('/courses/:courseId', (req, res) => {
