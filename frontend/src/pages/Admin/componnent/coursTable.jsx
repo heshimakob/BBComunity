@@ -29,15 +29,15 @@ function CoursTable() {
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th className="px-4 py-2">Titre</th>
+              <th className="px-4 py-2">Name</th>
               <th className="px-4 py-2">Chapitre</th>
             </tr>
           </thead>
           <tbody>
             {cours.map(cours => (
               <tr key={cours._id}>
-                <td className="px-4 py-2">{cours.titre}</td>
-                <td className="px-4 py-2">{cours.Chapitre.titre}</td>
+                <td className="px-4 py-2" to="">{cours.name}</td>
+                <td className="px-4 py-2" to="">{cours.Chapitre && cours.Chapitre.name}</td>
               </tr>
             ))}
           </tbody>

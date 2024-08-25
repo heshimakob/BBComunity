@@ -19,7 +19,7 @@ router.post('/addCours', async (req, res) => {
 
 router.get('/getAllcours', async (req, res) => {
   try {
-    const cours = await Cours.find().populate('Chapitre');
+    const cours = await Cours.find().populate('chapitres');
     if (!cours) {
       res.status(404).json({ message: 'Aucun cours trouvé' });
     } else {

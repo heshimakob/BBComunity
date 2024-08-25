@@ -38,7 +38,7 @@ function AjouterCours() {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 pl-10 text-sm text-gray-700"
+            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
           />
         </div>
         <div className="mb-4">
@@ -52,7 +52,7 @@ function AjouterCours() {
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 pl-10 text-sm text-gray-700"
+            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
           />
         </div>
         <div className="mb-4">
@@ -67,7 +67,7 @@ function AjouterCours() {
             id="image"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-            className="w-full p-2 pl-10 text-sm text-gray-700"
+            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
           />
         </div>
         {error && (

@@ -40,7 +40,7 @@ function AddChapitre() {
             id="idCours"
             value={idCours}
             onChange={(e) => setIdCours(e.target.value)}
-            className="w-full p-2 pl-10 text-sm text-gray-700"
+            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
           />
         </div>
         <div className="mb-4">
@@ -55,7 +55,7 @@ function AddChapitre() {
             id="titre"
             value={titre}
             onChange={(e) => setTitre(e.target.value)}
-            className="w-full p-2 pl-10 text-sm text-gray-700"
+            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
           />
         </div>
         <div className="mb-4">
@@ -69,7 +69,7 @@ function AddChapitre() {
             id="contenu"
             value={contenu}
             onChange={(e) => setContenu(e.target.value)}
-            className="w-full p-2 pl-10 text-sm text-gray-700"
+            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
           />
         </div>
         <div className="mb-4">
@@ -84,7 +84,7 @@ function AddChapitre() {
             id="lien"
             value={lien}
             onChange={(e) => setLien(e.target.value)}
-            className="w-full p-2 pl-10 text-sm text-gray-700"
+            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
           />
         </div>
         {error && (
