@@ -82,7 +82,12 @@ function AjouterCours() {
           Ajouter le cours
         </button>
       </form>
+
+      
     </div>
+
+
+
   );
 }
 
