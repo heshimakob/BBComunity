@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   data: [],
@@ -43,78 +44,63 @@ export default coursSlice.reducer;
 
 export function getCours() {
   return async function getBlogsThunk(dispatch, getState) {
-    const data = await fetch("http://localhost:8080/api/cours/getAllCours")
-    const result = await data.json();
+    const response = await axios.get("http://localhost:8080/api/cours/getAllCours")
+    const result = response.data;
     dispatch(fetchCours(result));
   }
 }
 
 export function getChapterById(id) {
   return async function getChapterThunk(dispatch, getState) {
-    const data = await fetch(`http://localhost:8080/api/chapter/getChapterById/${id}`)
-    const result = await data.json();
+    const response = await axios.get(`http://localhost:8080/api/chapter/getChapterById/${id}`)
+    const result = response.data;
     dispatch(fetchSingleChapter(result));
   }
 }
 
 export function updateCoursById(id, data) {
   return async function updateCoursThunk(dispatch, getState) {
-    const response = await fetch(`http://localhost:8080/api/cours/updateCours/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    const result = await response.json();
+    const response = await axios.put(`http://localhost:8080/api/cours/updateCours/${id}`, data)
+    const result = response.data;
     dispatch(updateCours(result));
   }
 }
 
 export function deleteCoursById(id) {
   return async function deleteCoursThunk(dispatch, getState) {
-    const response = await fetch(`http://localhost:8080/api/cours/deleteCours/${id}`, {
-      method: 'DELETE'
-    })
-    const result = await response.json();
+    const response = await axios.delete(`http://localhost:8080/api/cours/deleteCours/${id}`)
     dispatch(deleteCours(id));
   }
 }
 
 export function updateChapterById(id, data) {
   return async function updateChapterThunk(dispatch, getState) {
-    const response = await fetch(`http://localhost:8080/api/chapter/updateChapter/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    const result = await response.json();
+    const response = await axios.put(`http://localhost:8080/api/chapter/updateChapter/${id}`, data)
+    const result = response.data;
     dispatch(updateChapter(result));
   }
 }
 
 export function getAllChapterByCoursId(id) {
   return async function getAllChapterThunk(dispatch, getState) {
-    const data = await fetch(`http://localhost:8080/api/chapter/getAllChapterByCoursId/${id}`)
-    const result = await data.json();
+    const response = await axios.get(`http://localhost:8080/api/chapter/getAllChapterByCoursId/${id}`)
+    const result = response.data;
     dispatch(fetchChapter(result));
   }
 }
 
 export function addChapterByCoursId(id, data) {
   return async function addChapterThunk(dispatch, getState) {
-    const response = await fetch(`http://localhost:8080/api/chapter/addChapter/${id}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    const result = await response.json();
+    const response = await axios.post(`http://localhost:8080/api/chapter/addChapter/${id}`, data)
+    const result = response.data;
     dispatch(addChapter(result));
   }
 }
 
 export function getCoursById(id) {
   return async function getCoursThunk(dispatch, getState) {
-    const data = await fetch(`http://localhost:8080/api/cours/getCoursById/${id}`)
-    const result = await data.json();
+    const response = await axios.get(`http://localhost:8080/api/cours/getCoursById/${id}`)
+    const result = response.data;
     dispatch(fetchSingleCours(result));
   }
 }

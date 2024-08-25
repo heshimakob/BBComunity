@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const chapterSchema = mongoose.Schema({
+const chapitreSchema = mongoose.Schema({
   titre: { type: String, required: true },
   contenu: { type: String, required: true },
   lien: { type: String, required: true },
   courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Cours' }
 },{ timestamps: true });
 
-module.exports = mongoose.model('Chapitres', chapterSchema);
+module.exports = mongoose.model('Chapitre', chapitreSchema);
 
 
 

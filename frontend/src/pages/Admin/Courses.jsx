@@ -14,6 +14,7 @@ import {
 } from '../../styles/ClassesStyles';
 import AjouterCours from './componnent/ajouterCoursEssaie';
 import AddCourseChapter from './componnent/courchapteradd';
+import AddChapitre from './componnent/addChapitre';
 
 const Courses=()=> {
   return (
@@ -81,7 +82,7 @@ Description du cours *
       </div> */}
 
 
-<AddCourseChapter/>
+<AddChapitre/>
       <ClassList>
 
         

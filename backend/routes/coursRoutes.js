@@ -1,22 +1,69 @@
 const express =require('express')
 const router =express.Router()
 const Cours =require('../models/coursModel')
+const Chapitre= require ('../models/chapitreModel')
 
-router.post('/addCour', (req, res)=>{
-    const {name, description, image}=req.body
-    const newCours = new Cours ({name, description, image })
-    try{
-        newCours.save()
-        res.status(200).json({
-            success:true,
-            message:'Success course added'
-        })
-    } catch(error){
-        res.status(400).json({
-            message:error,
-        });
+router.post('/addCours', async (req, res) => {
+  try {
+    const { name, description, image } = req.body;
+    if (!name || !description || !image) {
+      return res.status(400).json({ message: 'Tous les champs sont requis' });
     }
+    const cours = new Cours({ name, description, image });
+    await cours.save();
+    res.status(201).json({ message: 'Cours ajouté avec succès' });
+  } catch (error) {
+    res.status(400).json({ message: 'Erreur lors de l\'ajout du cours' });
+  }
 });
+
+router.get('/getAllcours', async (req, res) => {
+  try {
+    const cours = await Cours.find().populate('Chapitre');
+    if (!cours) {
+      res.status(404).json({ message: 'Aucun cours trouvé' });
+    } else {
+      res.status(200).json(cours);
+    }
+  } catch (error) {
+    console.error(error); // Affiche l'erreur dans la console
+    res.status(500).json({ message: 'Erreur lors de la récupération des cours', erreur: error.message });
+  }
+});
+
+// Route pour ajouter un chapitre à un cours existant
+
+
+router.post('/addChapitreCours', async (req, res) => {
+  try {
+    // Récupérez le cours existant
+    const cours = await Cours.findById(req.body.idCours);
+    if (!cours) {
+      return res.status(404).json({ erreur: 'Cours non trouvé' });
+    }
+
+    // Créez un nouveau chapitre
+    const chapitre = new Chapitre({
+      titre: req.body.titre,
+      contenu: req.body.contenu,
+      lien:req.body.lien,
+    });
+
+    // Ajoutez le chapitre au cours
+    cours.chapitres.push(chapitre);
+    await cours.save();
+
+    // Retournez le chapitre créé
+    res.json(chapitre);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erreur: `Erreur lors de l'ajout du chapitre: ${err.message}` });
+  }
+});
+
+
+
+
 
 
 
@@ -96,6 +143,20 @@ router.get('/courses/:courseId', (req, res) => {
   });
 
 
+    // Route pour récupérer tous les cours
+    // router.get('/getAllCours', async (req, res) => {
+    //   try {
+    //     const cours = await Cours.find({}); // Récupération des blogs à partir de la base de données
+    //     if (blogs.length === 0) {
+    //       return res.status(404).json({ message: "Aucun blog trouvé." }); // Gestion du cas où aucun blog n'est trouvé
+    //     }
+    //     res.json(cours); // Envoi des blogs au client
+    //   } catch (error) {
+    //     res.status(500).json({ message: error.message }); // Gestion des erreurs
+    //   }
+    // });
+
+
 router.get('/getCour/:id', async (req, res) => {     
     try {         
        // Gestion du cas où aucun blog n'est trouvé
@@ -132,18 +193,7 @@ module.exports= router;
 //     }
 //   });
   
-//   // Route pour récupérer tous les cours
-//   router.get('/getAllCourses', async (req, res) => {
-//     try {
-//       const courses = await Course.find({}); // Récupération des cours à partir de la base de données
-//       if (courses.length === 0) {
-//         return res.status(404).json({ message: "Aucun cours trouvé." }); // Gestion du cas où aucun cours n'est trouvé
-//       }
-//       res.json(courses); // Envoi des cours au client
-//     } catch (error) {
-//       res.status(500).json({ message: error.message }); // Gestion des erreurs
-//     }
-//   });
+// 
   
 //   
   

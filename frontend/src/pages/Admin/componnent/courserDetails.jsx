@@ -8,7 +8,7 @@ const CourseDetail = () => {
   const [chapters, setChapters] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api//cours/${courseId}`)
+    axios.get(`http://localhost:8080/api/cours/${courseId}`)
       .then(response => {
         setCourse(response.data);
         setChapters(response.data.chapters);

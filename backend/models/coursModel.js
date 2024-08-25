@@ -13,7 +13,7 @@ const coursSchema = mongoose.Schema({
         type: String,
         required: [true, 'Contenu du cours is required']
     },
-    chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Chapitre' }]
+    chapitres: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Chapitre' }]
 }, { timestamps: true }); // correction de 'timeStamps' à 'timestamps'
 
 module.exports =mongoose.model('Cours',coursSchema)
