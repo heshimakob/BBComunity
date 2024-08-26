@@ -25,6 +25,8 @@ import DashboarMember from "./pages/Member/DashboardMember"
 import CoursMember from "./pages/Member/CoursMember"
 import BlogPage from "./components/blog/BlogPage"
 import AdminRegister from "./components/AdminRegister"
+import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
+import MachineLearning from "./pages/Member/cours/MachineLearning"
 
 
 
@@ -84,11 +86,13 @@ function App() {
       {/* routes member */}
 
 
-      <Route  exact path="/member/annoncer" element= {<AnnoncementMember/>}/>
-      <Route  exact path="/member/courser" element= {<CoursMember/>}/>
-      <Route  exact path="/member/challenger" element= {<ChallengeMember/>}/>
-      <Route  exact path="/member/profiler" element= {<ProfilesMember/>}/>
-      <Route  exact path="/member/dashboarder" element= {<DashboarMember/>}/>
+      <Route  exact path="/member/annonce" element= {<AnnoncementMember/>}/>
+      <Route  exact path="/member/cours" element= {<CoursMember/>}/>
+      <Route  exact path="/member/challenge" element= {<ChallengeMember/>}/>
+      <Route  exact path="/member/profile" element= {<ProfilesMember/>}/>
+      <Route  exact path="/member/dashboard" element= {<DashboarMember/>}/>
+      <Route  exact path="/member/cours/software-developer" element= {<SoftwareDeveloper/>}/>
+      <Route  exact path="/member/cours/machine-learning" element= {<SoftwareDeveloper/>}/>
 
 
 

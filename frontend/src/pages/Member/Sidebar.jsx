@@ -101,26 +101,26 @@ const Sidebar=()=> {
         <SidebarNav>
             <SidebarNavItem className={window.location.pathname === '/member/dashboarder' ? 'active' : ''}>
                 <SidebarIcon> <BsGraphUp/></SidebarIcon>
-                <StyledLink to="/member/dashboarder"> Dashboard</StyledLink>
+                <StyledLink to="/member/dashboard"> Dashboard</StyledLink>
             </SidebarNavItem>
 
             <SidebarNavItem className={window.location.pathname === '/member/courser' ? 'active' : ''}>
                 <SidebarIcon> <BsBook/></SidebarIcon>
-                <StyledLink to="/member/courser"> Apprendre</StyledLink>
+                <StyledLink to="/member/cours"> Apprendre</StyledLink>
             </SidebarNavItem>
             <SidebarNavItem className={window.location.pathname === '/member/challenger' ? 'active' : ''}>
                 <SidebarIcon> <BsPerson/></SidebarIcon>
-                <StyledLink to="/member/challenger"> Challenger</StyledLink>
+                <StyledLink to="/member/challenge"> Challenger</StyledLink>
             </SidebarNavItem> 
 
             <SidebarNavItem className={window.location.pathname === '/member/annoncer' ? 'active' : ''}>
                 <SidebarIcon> <BsAlarm/></SidebarIcon>
-                <StyledLink to="/member/annoncer"> Notification</StyledLink>
+                <StyledLink to="/member/annonce"> Notification</StyledLink>
             </SidebarNavItem>
 
             <SidebarNavItem className={window.location.pathname === '/member/profiler' ? 'active' : ''}>
                 <SidebarIcon> <BsPerson/></SidebarIcon>
-                <StyledLink to="/member/profiler"> Profiler</StyledLink>
+                <StyledLink to="/member/profile"> Profiler</StyledLink>
             </SidebarNavItem>
 
             <SidebarNavItem >

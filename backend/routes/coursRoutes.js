@@ -31,6 +31,17 @@ router.get('/getAllcours', async (req, res) => {
   }
 });
 
+
+//chapitre completed
+
+router.put('/:courseId/:chapterId', async (req, res) => {
+  const chapter = await Chapitre.findById(req.params.chapterId);
+  chapter.completed = true;
+  await Chapitre.save();
+  res.json(Chapitre);
+});
+
+
 // Route pour ajouter un chapitre à un cours existant
 
 

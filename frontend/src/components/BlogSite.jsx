@@ -38,6 +38,9 @@ const BlogSite = () => {
       <span className="text-gray-100 font-semibold tracking-tight">Make a donation</span>
     </a>
   </div> */}
+
+
+  {/* afichage d'un blog avec ses contenu */}
 </div>
     </div>
     </div>
@@ -45,12 +48,12 @@ const BlogSite = () => {
 
             {blogState && blogState.length > 0 ? (
   <div className="container mx-auto p-4 bg-white pt-10">
-    <div className="mx-auto flex flex-col grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+    <div className="mx-auto flex flex-col grid grid-cols-1 md:grid-cols-2  h-100 lg:grid-cols-2 gap-4">
       {blogState.map((blog) => (
         <div key={blog.id} className="bg-cover bg-center h-96 hover:scale-105 transition duration-300 ease-in-out  overflow-hidden m-4 p-4" style={{ backgroundImage: `url(${blog.image})` }}>
           <div className="flex flex-col justify-center h-full p-4">
          <Link className='text-white' to={`/blogPage/${blog._id}`}>   <h2 className="text-2xl font-bold text-white">{blog.titre}</h2>
-         <p className="text-gray-600 font-bold text-4xl font-weight-900 text-white">{blog.description.slice(0,500)} ...</p></Link>
+         <p className="text-gray-600 font-bold text-4xl font-weight-900 text-white">{blog.description.slice(0,100)} ...</p></Link>
           </div>
           <div className="flex justify-between p-4">
             <p className="text-gray-600 text-white">By {blog.auteur}</p>

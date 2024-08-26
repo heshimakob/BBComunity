@@ -1,3 +1,6 @@
+
+
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -13,120 +16,123 @@ import {
 } from '../../styles/ClassesStyles';
 import Sidebar from './Sidebar';
 import CoursList from './component/coursListe';
+import { Link } from 'react-router-dom';
 
 const CoursMember = () => {
-  const [courses, setCourses] = useState([]);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/cours/getAllcours')
-      .then(response => {
-        setCourses(response.data);
-      })
-      .catch(error => {
-        setError(error.message);
-      });
-  }, []);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   return (
     <>
       <Sidebar />
       <ClassesContainer>
         <Content>
-          <div className="bg-white min-h-screen py-12 px-6">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex justify-between items-center py-12 px-6">
-                <div className="w-2/3">
-                  <h1 className="text-4xl font-bold text-gray-800 mb-6">Learn</h1>
-                  <p className="text-gray-600 mb-12">
-                    Gain the skills you need to do independent data science projects.
-                  </p>
-                </div>
-                <div className="w-1/2">
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH1t9B2bcBn8RpB9T_Mpk_ixrvbUPFADIj6g&s://www.shutterstock.com/image-vector/illustration-learning-with-computer-260nw-2076016010.jpg"
-                    alt="Learn"
-                    className="w-1/2"
-                  />
-                </div>
-              </div>
-
-              <div className="bg-white rounded-md shadow-md p-6 mb-8">
-                <div className="flex items-center mb-4">
-                  <FaUserCircle className="text-blue-500 mr-2" size={24} />
-                  <h2 className="text-xl font-bold text-gray-800">Your Courses</h2>
-                </div>
-
-                <div className="border-t border-gray-200">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2 mt-4">Active</h3>
-                  {courses.map((course) => (
-                    <div
-                      key={course._id}
-                      className="flex items-center justify-between py-4 border-b border-gray-200"
-                    >
-                      <div className="flex items-center">
-                        <FaCode className="text-blue-500 mr-3" size={24} />
-                        <div>
-                          <h4 className="text-base font-bold text-gray-800">
-                            {course.name}
-                          </h4>
-                          <p className="text-sm text-gray-600">{course.description}</p>
-                        </div>
-                      </div>
-                      <div className="relative w-16 h-16">
-                        <svg
-                          className="absolute top-0 left-0 w-full h-full"
-                          viewBox="0 0 100 100"
-                        >
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="45"
-                            stroke="#e2e8f0"
-                            strokeWidth="10"
-                            fill="transparent"
-                          />
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="45"
-                            stroke="#4ade80"
-                            strokeWidth="10"
-                            fill="transparent"
-                            strokeDasharray={282.7433388230814}
-                            strokeDashoffset={282.7433388230814 - (282.7433388230814 * course.progress) / 100}
-                          />
-                        </svg>
-                        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
-                          {course.progress}%
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-white rounded-md shadow-md p-6">
-                <div className="flex items-center mb-4">
-                  <FaBookOpen className="text-blue-500 mr-2" size={24} />
-                  <h2 className="text-xl font-bold text-gray-800">Courses</h2>
-                </div>
-                <p className="text-gray-600">
-                  We pare down complex topics to their key practical components, so you
-                  gain usable skills in a few hours (instead of weeks or months). The
-                  courses are provided at no cost to you and you can now earn
-            certificates.{' '}
-            <a
-              href="#"
-              className="underline text-blue-500 hover:text-blue-700"
-            >
-              Learn more.
-            </a>
-          </p>
-        </div>
-      </div>
+          <div className="container mx-auto p-4">
+            <h1 className="text-3xl font-bold text-center mb-8">
+              Learn everything you need to know
+            </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Link to="/member/cours/software-developer">
+  <div
+    className={`rounded-lg shadow-md p-4 cursor-pointer transition duration-300 ease-in-out hover:scale-105 ${
+      selectedCategory === 1 && 'bg-blue-500 text-white'
+    }`}
+    onClick={() => setSelectedCategory(1)}
+  >
+    <div className="flex items-center justify-center mb-2">
+      <span
+        className={`text-3xl font-bold ${
+          selectedCategory === 1 ? 'text-white' : 'text-gray-700'
+        }`}
+      >
+        &lt;/&gt;
+      </span>
     </div>
-    {/* <CoursList/> */}
+    <h2
+      className={`text-lg font-medium ${
+        selectedCategory === 1 ? 'text-white' : 'text-gray-900'
+      }`}
+    >
+    Developpememt Logiciel full programme
+    </h2>
+    <p
+      className={`text-sm ${
+        selectedCategory === 1 ? 'text-white' : 'text-gray-600'
+      }`}
+    >
+     Vous allez apprendre les developpement frontale avec html css et javascript ,avec le framework reactjs et tailwind pour le 
+     developpement backend vous allez apprendre nodejs avec le framework express et les systeme de gestion de base de donnees
+    </p>
+  </div>
+</Link>
+              <div
+                className={`rounded-lg shadow-md p-4 cursor-pointer transition duration-300 ease-in-out hover:scale-105 ${
+                  selectedCategory === 2 && 'bg-blue-500 text-white'
+                }`}
+                onClick={() => setSelectedCategory(2)}
+              >
+                <div className="flex items-center justify-center mb-2">
+                  <span
+                    className={`text-3xl font-bold ${
+                      selectedCategory === 2 ? 'text-white' : 'text-gray-700'
+                    }`}
+                  >
+                    &lt;/&gt;
+                  </span>
+                </div>
+                <h2
+                  className={`text-lg font-medium ${
+                    selectedCategory === 2 ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                 Machine Learning
+                </h2>
+                <p
+                  className={`text-sm ${
+                    selectedCategory === 2 ? 'text-white' : 'text-gray-600'
+                  }`}
+                >
+                 Vous allez apprendre les base de la programmation python , utilisation de quelque biblootheque de machines learnin et participer au projet concret
+                </p>
+              </div>
+              <div
+                className={`rounded-lg shadow-md p-4 cursor-pointer transition duration-300 ease-in-out hover:scale-105 ${
+                  selectedCategory === 3 && 'bg-blue-500 text-white'
+                }`}
+                onClick={() => setSelectedCategory(3)}
+              >
+                <div className="flex items-center justify-center mb-2">
+                  <span
+                    className={`text-3xl font-bold ${
+                      selectedCategory === 3 ? 'text-white' : 'text-gray-700'
+                    }`}
+                  >
+                    🗄️
+                  </span>
+                </div>
+                <h2
+                  className={`text-lg font-medium ${
+                    selectedCategory === 3 ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  Databases
+                </h2>
+                <p
+                  className={`text-sm ${
+                    selectedCategory === 3 ? 'text-white' : 'text-gray-600'
+                  }`}
+                >
+                  Learn about different types of databases and how to interact with them.
+                </p>
+              </div>
+
+              </div>
+          
+     
+      
+    </div>
+        
+    <CoursList/>
     </Content>
    </ClassesContainer>
 

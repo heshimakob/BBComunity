@@ -21,9 +21,9 @@ function CoursList() {
       {error ? (
         <div className="alert alert-error">{error}</div>
       ) : (
-        <ul>
+        <ul >
           {cours.map(cours => (
-            <li key={cours._id} className="mb-4">
+            <li key={cours._id} className="mb-4" >
               <h2 className="text-2xl font-bold">{cours.name}</h2>
               <p>{cours.description}</p>
               <ul>

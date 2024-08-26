@@ -4,7 +4,8 @@ const chapitreSchema = mongoose.Schema({
   titre: { type: String, required: true },
   contenu: { type: String, required: true },
   lien: { type: String, required: true },
-  courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Cours' }
+  courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Cours' },
+  completed: { type: Boolean, default: false }
 },{ timestamps: true });
 
 module.exports = mongoose.model('Chapitre', chapitreSchema);
