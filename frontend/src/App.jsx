@@ -92,7 +92,7 @@ function App() {
       <Route  exact path="/member/profile" element= {<ProfilesMember/>}/>
       <Route  exact path="/member/dashboard" element= {<DashboarMember/>}/>
       <Route  exact path="/member/cours/software-developer" element= {<SoftwareDeveloper/>}/>
-      <Route  exact path="/member/cours/machine-learning" element= {<SoftwareDeveloper/>}/>
+      <Route  exact path="/member/cours/machine-learning" element= {<MachineLearning/>}/>
 
 
 

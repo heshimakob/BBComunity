@@ -65,6 +65,8 @@ const CoursMember = () => {
     </p>
   </div>
 </Link>
+
+<Link to="/member/cours/machine-learning">
               <div
                 className={`rounded-lg shadow-md p-4 cursor-pointer transition duration-300 ease-in-out hover:scale-105 ${
                   selectedCategory === 2 && 'bg-blue-500 text-white'
@@ -95,6 +97,14 @@ const CoursMember = () => {
                  Vous allez apprendre les base de la programmation python , utilisation de quelque biblootheque de machines learnin et participer au projet concret
                 </p>
               </div>
+
+
+              </Link>
+
+
+
+
+
               <div
                 className={`rounded-lg shadow-md p-4 cursor-pointer transition duration-300 ease-in-out hover:scale-105 ${
                   selectedCategory === 3 && 'bg-blue-500 text-white'

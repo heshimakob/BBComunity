@@ -1,8 +1,12 @@
 import React from 'react'
+import Sidebar from '../Sidebar'
 
 const MachineLearning = () => {
   return (
-    <div>MachineLearning</div>
+
+   <>
+   <Sidebar/>
+    <div>MachineLearning</div></>
   )
 }
 
