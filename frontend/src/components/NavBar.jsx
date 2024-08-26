@@ -13,7 +13,7 @@ function NavBar() {
 };
   return (
     <>
-    <section className="overflow-hidden">
+  <section className="overflow-hidden fixed top-0 left-0 w-full z-50">
 <div className="bg-gray-900">
 <div className="container px-4 mx-auto">
 <div className="flex items-center justify-between py-5">
