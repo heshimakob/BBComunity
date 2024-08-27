@@ -58,6 +58,7 @@ router.post('/addChapitreCours', async (req, res) => {
       titre: req.body.titre,
       contenu: req.body.contenu,
       lien:req.body.lien,
+      cours: req.body.courseId
     });
 
     // Ajoutez le chapitre au cours
@@ -84,20 +85,45 @@ router.post('/addChapitreCours', async (req, res) => {
 
 
 
+// router.get('/getCours/:courseId', (req, res) => {
+//   const courseId = req.params.courseId;
 
-//la routes pour reccupere les details des cours vacs les cpaitres 
+//   Cours.findById(courseId)
+//     .populate({
+//       path: 'chapitres',
+//       model: 'Chapitre'
+//     })
+//     .then((Cours) => {
+//       console.log(Cours); // log the entire cours document
+//       console.log(Cours.chapitres); // log the chapitres array
+//       res.json(Cours.chapitres);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(500).json({ error: 'Erreur lors de la récupération des données' });
+//     });
+// });
 
-router.get('/courses/:courseId', (req, res) => {
-  const courseId = req.params.courseId;
-  Course.findById(courseId)
-    .populate('chapters')
-    .then(course => {
-      res.json(course.chapters);
-    })
-    .catch(err => {
-      res.status(500).json({ error: 'Erreur lors de la récupération des données' });
-    });
+router.get('/getCours/:courseId', async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    console.log(`Course ID : ${courseId}`);
+
+    const cours = await Cours.findById(courseId);
+    console.log(`Cours trouvé : ${cours}`);
+
+    const chapitres = await Chapitre.find({ courseId: courseId });
+    console.log(`Chapitres trouvés : ${chapitres}`);
+
+    // ...
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erreur: `Erreur lors de la récupération du cours: ${err.message}` });
+  }
 });
+
+
+
 
 // Route pour mettre à jour un cours
   router.put('/updateCourse/:id', async (req, res) => {

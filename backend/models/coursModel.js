@@ -14,6 +14,7 @@ const coursSchema = mongoose.Schema({
         required: [true, 'Contenu du cours is required']
     },
     chapitres: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Chapitre' }]
+    
 }, { timestamps: true }); // correction de 'timeStamps' à 'timestamps'
 
 module.exports =mongoose.model('Cours',coursSchema)
