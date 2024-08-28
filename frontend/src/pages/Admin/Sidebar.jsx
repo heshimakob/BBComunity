@@ -6,25 +6,18 @@ import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalen
 
 const SidebarContainer = styled.div`
   position: fixed;
-  top: 0;
+  top: 60px; /* Adjusted to account for navbar height */
   left: 0;
-  width: ${({ isOpen }) => (isOpen ? '250px' : '80px')};
-  height: 100%;
-  background-color: #2f343a; /* Dark blue background */
-  color: white;
+  width: ${({ isOpen }) => (isOpen ? '150px' : '70px')};
+  height: calc(100% - 60px); /* Adjusted to account for navbar height */
+  background-color: gray-300; /* Dark blue background */
+  color: blue;
   overflow-y: auto; /* Enable vertical scrolling */
-  padding-top: 60px;
+  padding-top: 20px;
   transition: width 0.3s ease; /* Smooth width transition */
   z-index: 100; /* Ensure sidebar stays above content */
 `;
 
-const SidebarHeader = styled.div`
-  padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  background-color: #2f343a;
-`;
 
 const SidebarNav = styled.ul`
   list-style: none;
@@ -34,6 +27,7 @@ const SidebarNav = styled.ul`
 
 const SidebarNavItem = styled.li`
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 12px 20px;
   font-size: 18px;
@@ -44,42 +38,21 @@ const SidebarNavItem = styled.li`
   }
 `;
 
+const SidebarIcon = styled.div`
+  font-size: 20px;
+  margin-bottom: 5px; /* Add some space between icon and label */
+`;
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: blue;
   margin-left: 10px;
 `;
 
-const SidebarIcon = styled.div`
-  margin-right: 10px;
-  font-size: 20px;
-`;
 
-const Logo = styled.img`
-  width: 50px;
-  height: auto;
-`;
 
-const ToggleButton = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  background-color: #3b3f45; /* Darker background */
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
-const ToggleIcon = styled.span`
-  color: white;
-  font-size: 20px;
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
-  transition: transform 0.3s ease;
-`;
+
+
 
 
 const Sidebar=()=> {
@@ -91,70 +64,66 @@ const Sidebar=()=> {
 
   return ( 
     <SidebarContainer isOpen={isOpen}>
-        <SidebarHeader>
+        {/* <SidebarHeader>
             <Logo src={B}/>
-        </SidebarHeader>
+        </SidebarHeader> */}
 
-        <SidebarNav>
-            <SidebarNavItem>
-                <SidebarIcon> <BsGraphUp/></SidebarIcon>
-                <StyledLink to="/admin/dashboard"> Dashboard</StyledLink>
-            </SidebarNavItem>
+<SidebarNav>
+<SidebarNavItem>
+  <SidebarIcon><BsGraphUp/></SidebarIcon>
+  <StyledLink to="/admin/dashboard">Dashboard</StyledLink>
+</SidebarNavItem>
 
-            <SidebarNavItem>
-                <SidebarIcon> <BsBook/></SidebarIcon>
-                <StyledLink to="/admin/courses"> Courses</StyledLink>
-            </SidebarNavItem>
-            <SidebarNavItem>
-                <SidebarIcon> <BsPerson/></SidebarIcon>
-                <StyledLink to="/admin/member"> Member</StyledLink>
-            </SidebarNavItem> 
+        <SidebarNavItem>
+            <SidebarIcon> <BsBook/></SidebarIcon>
+            <StyledLink to="/admin/courses"> Courses</StyledLink>
+        </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsPerson/></SidebarIcon>
+            <StyledLink to="/admin/member"> Member</StyledLink>
+        </SidebarNavItem> 
 
-            <SidebarNavItem>
-                <SidebarIcon> <BsAlarm/></SidebarIcon>
-                <StyledLink to="/admin/cohorte"> Cohorte</StyledLink>
-            </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsAlarm/></SidebarIcon>
+            <StyledLink to="/admin/cohorte"> Cohorte</StyledLink>
+        </SidebarNavItem>
 
-            <SidebarNavItem>
-                <SidebarIcon> <BsAlarm/></SidebarIcon>
-                <StyledLink to="/admin/annoncement"> Annoncement</StyledLink>
-            </SidebarNavItem>
-            <SidebarNavItem>
-                <SidebarIcon> <BsChat/></SidebarIcon>
-                <StyledLink to="/admin/discussion"> Discussion</StyledLink>
-            </SidebarNavItem>
-            <SidebarNavItem>
-                <SidebarIcon> <BsSendDash/></SidebarIcon>
-                <StyledLink to="/admin/blog"> Blog</StyledLink>
-            </SidebarNavItem>
-            <SidebarNavItem>
-                <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
-                <StyledLink to="/admin/events"> Event</StyledLink>
-            </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsAlarm/></SidebarIcon>
+            <StyledLink to="/admin/annoncement"> Annoncement</StyledLink>
+        </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsChat/></SidebarIcon>
+            <StyledLink to="/admin/discussion"> Discussion</StyledLink>
+        </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsSendDash/></SidebarIcon>
+            <StyledLink to="/admin/blog"> Blog</StyledLink>
+        </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
+            <StyledLink to="/admin/events"> Event</StyledLink>
+        </SidebarNavItem>
 
-            <SidebarNavItem>
-                <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
-                <StyledLink to="/admin/company"> Company</StyledLink>
-            </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
+            <StyledLink to="/admin/company"> Company</StyledLink>
+        </SidebarNavItem>
 
-            <SidebarNavItem>
-                <SidebarIcon> <BsUpload/></SidebarIcon>
-                <StyledLink to="/admin/users"> Users</StyledLink>
-            </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsUpload/></SidebarIcon>
+            <StyledLink to="/admin/users"> Users</StyledLink>
+        </SidebarNavItem>
 
 
-            <SidebarNavItem>
-                <SidebarIcon> <BsUpload/></SidebarIcon>
-                <StyledLink to="/admin/settings"> Settings Pofile</StyledLink>
-            </SidebarNavItem>
-            <SidebarNavItem>
-                <SidebarIcon> <BsGraphUp/></SidebarIcon>
-                <StyledLink to="/admin/help"> help</StyledLink>
-            </SidebarNavItem>
-{/* 
-            <ToggleButton onClick={toggleSidebar}>
-                <ToggleIcon isOpen={isOpen}> <BsDot/></ToggleIcon>
-            </ToggleButton> */}
+        <SidebarNavItem>
+            <SidebarIcon> <BsUpload/></SidebarIcon>
+            <StyledLink to="/admin/settings"> Settings Pofile</StyledLink>
+        </SidebarNavItem>
+        <SidebarNavItem>
+            <SidebarIcon> <BsGraphUp/></SidebarIcon>
+            <StyledLink to="/admin/help"> help</StyledLink>
+        </SidebarNavItem>
         </SidebarNav>
     </SidebarContainer>
   )

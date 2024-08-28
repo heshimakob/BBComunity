@@ -19,11 +19,13 @@ import {
   CardTitle,
   CardContent,
 } from '../../styles/DashboardStyles';
+import NavBar from './NavBar'
 
 const AdminDashboard=()=> {
   return (
     <>
     <AdminDashboardContainer>
+      <NavBar/>
       <Sidebar/>
         <Content>
           <TopContent>

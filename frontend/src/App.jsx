@@ -27,6 +27,7 @@ import BlogPage from "./components/blog/BlogPage"
 import AdminRegister from "./components/AdminRegister"
 import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
 import MachineLearning from "./pages/Member/cours/MachineLearning"
+import ModulePage from "./pages/Member/component/ModulePage"
 
 
 
@@ -93,6 +94,8 @@ function App() {
       <Route  exact path="/member/dashboard" element= {<DashboarMember/>}/>
       <Route  exact path="/member/cours/software-developer" element= {<SoftwareDeveloper/>}/>
       <Route  exact path="/member/cours/machine-learning" element= {<MachineLearning/>}/>
+
+      <Route exact path="/modulePage/:courseId" element={<ModulePage/>} />
 
 
 

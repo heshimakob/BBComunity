@@ -8,23 +8,26 @@ const userSchema= mongoose.Schema({
     },
     email:{
         type:String,
-        required:[true, 'Email is required']
+        required:[true, 'Email is required'],
+        unique:true
     },
     password:{
         type:String,
-        required:[true, 'Email is required']
+        required:[true, 'password is required']
     },
-    coho:{
+    role:{
         type:String,
-        default:false
+        default:'user'
     },
-    isAdmin:{
-        type:Boolean,
-        default:false
-    }
-}, {timeStamps:true})
+    subscription:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Cours"
+        }
+    ]
+}, {timestamps:true})
 
 
 
 
-module.exports =mongoose.model('user',userSchema)
+module.exports =mongoose.model('User',userSchema)

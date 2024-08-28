@@ -49,7 +49,7 @@ const SoftwareDeveloper = () => {
 
 
 
-                <Link>
+             
              
                 <div className="border-t border-gray-200">
                   <h3 className="text-lg font-bold text-gray-800 mb-2 mt-4">Active</h3>
@@ -61,9 +61,11 @@ const SoftwareDeveloper = () => {
                       <div className="flex items-center">
                         <FaCode className="text-blue-500 mr-3" size={24} />
                         <div>
+                        <Link to={`/modulePage/${course._id}`}>
                           <h4 className="text-base font-bold text-gray-800">
                             {course.name}
                           </h4>
+                          </Link>
                           <p className="text-sm text-gray-600">{course.description}</p>
                         </div>
                       </div>
@@ -99,7 +101,7 @@ const SoftwareDeveloper = () => {
                   ))}
                 </div>
 
-                </Link>
+           
 
 
 

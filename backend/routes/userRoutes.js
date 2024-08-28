@@ -3,7 +3,7 @@ const router =express.Router()
 const User =require('../models/userModel')
 
 router.post('/addUser', (req, res)=>{
-    const {name,email,password,coho}=req.body
+    const {name,email,password}=req.body
     const newUser = new User ({name,email,password,coho})
     try{
         newUser.save()
@@ -17,6 +17,7 @@ router.post('/addUser', (req, res)=>{
         });
     }
 });
+
 
 
 
