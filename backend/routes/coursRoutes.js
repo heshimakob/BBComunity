@@ -17,6 +17,7 @@ router.post('/addCours', async (req, res) => {
   }
 });
 
+
 router.get('/getAllcours', async (req, res) => {
   try {
     const cours = await Cours.find().populate('chapitres');
@@ -45,28 +46,28 @@ router.put('/:courseId/:chapterId', async (req, res) => {
 // Route pour ajouter un chapitre à un cours existant
 
 
-router.post('/addChapitreCours', async (req, res) => {
+router.post('/addChapitreCours/:id', async (req, res) => {
   try {
     // Récupérez le cours existant
-    const cours = await Cours.findById(req.body.idCours);
+    const cours = await Cours.findById(req.params.id);
     if (!cours) {
       return res.status(404).json({ erreur: 'Cours non trouvé' });
     }
 
     // Créez un nouveau chapitre
-    const chapitre = new Chapitre({
-      titre: req.body.titre,
-      contenu: req.body.contenu,
-      lien:req.body.lien,
-      cours: req.body.courseId
+    const {titre,contenu,lien}=req.body
+    const chapitre = await Chapitre.create({
+      titre,
+      contenu,
+      lien,
+      cours: cours._id
     });
+    res.status(201).json({
+      message: 'Chapitre ajouté avec succès',
+      chapitre
+    })
 
-    // Ajoutez le chapitre au cours
-    cours.chapitres.push(chapitre);
-    await cours.save();
-
-    // Retournez le chapitre créé
-    res.json(chapitre);
+   
   } catch (err) {
     console.error(err);
     res.status(500).json({ erreur: `Erreur lors de l'ajout du chapitre: ${err.message}` });
@@ -104,16 +105,58 @@ router.post('/addChapitreCours', async (req, res) => {
 //     });
 // });
 
-router.get('/getCours/:courseId', async (req, res) => {
+
+
+
+//essay de recuperer les cours 
+
+router.get('/cours/:id/chapitres', async (req, res) => {
   try {
-    const courseId = req.params.courseId;
-    console.log(`Course ID : ${courseId}`);
+    // Récupérez le cours existant
+    const cours = await Cours.findById(req.params.id).populate('chapitres');
+    if (!cours) {
+      return res.status(404).json({ erreur: 'Cours non trouvé' });
+    }
 
-    const cours = await Cours.findById(courseId);
-    console.log(`Cours trouvé : ${cours}`);
+    // Retournez les chapitres associés au cours
+    res.status(200).json({
+      message: 'Chapitres trouvés avec succès',
+      chapitres: cours.chapitres
+    });
 
-    const chapitres = await Chapitre.find({ courseId: courseId });
-    console.log(`Chapitres trouvés : ${chapitres}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erreur: `Erreur lors de la récupération des chapitres: ${err.message}` });
+  }
+});
+
+
+
+
+
+
+//Nouvelle methodologie petit
+
+
+router.get('/getChapitre/:id', async (req, res) => {
+  try {
+   const chapitre =await Chapitre.find(req.params.id);
+   console.log(chapitre)
+   res.json(chapitre)
+
+    // ...
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erreur: `Erreur lors de la récupération des chapitre du cours cours: ${err.message}` });
+  }
+});
+
+router.get('/getSingleCours', async (req, res) => {
+  try {
+   const cours =await Cours.fiendById(req.params.id)
+   res.json({
+    cours,
+   })
 
     // ...
   } catch (err) {
@@ -121,6 +164,10 @@ router.get('/getCours/:courseId', async (req, res) => {
     res.status(500).json({ erreur: `Erreur lors de la récupération du cours: ${err.message}` });
   }
 });
+
+
+
+//ma boro tu 
 
 
 
@@ -160,31 +207,7 @@ router.get('/getCours/:courseId', async (req, res) => {
   });
 
 
-  // Route pour créer un nouveau chapitre dans un cours
-  router.post('/addChapter/:courseId', async (req, res) => {
-    const { title, description, video } = req.body;
-    const newChapter = new Chapter({ title, description, video });
-    try {
-      await newChapter.save();
-      const course = await Course.findById(req.params.courseId);
-      if (!course) {
-        return res.status(404).json({
-          success: false,
-          message: 'Course not found'
-        });
-      }
-      course.chapters.push(newChapter._id);
-      await course.save();
-      res.status(200).json({
-        success: true,
-        message: 'Success add chapter'
-      });
-    } catch (error) {
-      res.status(400).json({
-        message: error,
-      });
-    }
-  });
+
 
 
     // Route pour récupérer tous les cours
@@ -201,20 +224,7 @@ router.get('/getCours/:courseId', async (req, res) => {
     // });
 
 
-router.get('/getCour/:id', async (req, res) => {     
-    try {         
-       // Gestion du cas où aucun blog n'est trouvé
 
-       const {id}=req.params;
-       const data =await Cours.findById(id);
-       res.status(200).json({data:data});
-        
-             
-    } catch (error) {         
-        res.status(500).json({ message: error.message }); // Gestion des erreurs     
-    } 
-});
-module.exports= router;
 
 
 
@@ -291,3 +301,5 @@ module.exports= router;
 //       });
 //     }
 //   });
+
+module.exports = router;

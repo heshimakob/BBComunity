@@ -21,6 +21,8 @@ router.post('/addUser', (req, res)=>{
 
 
 
+
+
 router.get('/getAllUser', async (req, res) => {     
     try {         
         const user = await User.find({}); // Récupération des utilisateurs à partir de la base de données
@@ -39,7 +41,7 @@ module.exports= router;
 router.post('/signin',async(req,res)=>{
     const{email,password} =req.body
     try {
-        const user =await User.find({email,password})
+        const user =await User.findOne({email,password})
         if (user.length  > 0){
             const currentUser={
                 name:user[0].name,

@@ -9,6 +9,14 @@ const coursSchema = mongoose.Schema({
         type: String,
         required: [true, 'Contenu du cours is required']
     },
+    duration: {
+        type: Number,
+        required: [true, 'Contenu du cours is required']
+    },
+    category: {
+        type: Number,
+        required: [true, 'Contenu du cours is required']
+    },
     image: {
         type: String,
         required: [true, 'Contenu du cours is required']

@@ -2,49 +2,55 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from '../Sidebar';
+import Loading from '../../../components/Loading';
 
 const ModulePage = () => {
-  const { courseId } = useParams();
-  const [cours, setCours] = useState({});
-  const [chapitres, setChapitres] = useState([]);
-  const [erreur, setErreur] = useState(null);
+  const { id } = useParams(); // Retrieve course ID from URL
+  const [chapters, setChapters] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCours = async () => {
+    const fetchChapters = async () => {
+      setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:8080/api/cours/getCours/${courseId}`); // courseId avec minuscule
-        const data = response.data;
-        console.log(data)
-        setCours(data);
-        setChapitres(data.chapitres);
+        const response = await axios.get(`http://localhost:8080/cours/${id}/chapitres`);
+        setChapters(response.data.chapitres);
       } catch (error) {
-        setErreur(error.message);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchCours();
-  }, [courseId]);
+    fetchChapters();
+  }, [id]);
+
+  if (loading) {
+    return <>
+    <Loading/>
+    </>;
+  }
+
+  if (error) {
+    return <div>Erreur: {error}</div>;
+  }
 
   return (
-    <div className="container mx-auto p-4">
-      <Sidebar />
-      {erreur ? (
-        <div className="alert alert-error">{erreur}</div>
-      ) : (
-        <div>
-          <h1 className="text-3xl font-bold mb-4">{cours.name}</h1>
-          <div className="flex flex-wrap -mx-4">
-            {chapitres.map((chapitre, index) => (
-              <div key={index} className="w-full md:w-1/2 xl:w-1/3 p-4">
-                <h3 className="text-lg font-bold mb-2">{chapitre.titre}</h3>
-                <div className="text-gray-600">{chapitre.contenu}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+    <div className="max-w-md mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Chapitres du cours</h2>
+      <ul>
+        {chapters.map((chapter) => (
+          <li key={chapter._id} className="py-2 border-b border-gray-200">
+            <h3 className="text-lg font-bold">{chapter.titre}</h3>
+            <p>{chapter.contenu}</p>
+            <a href={chapter.lien} target="_blank" rel="noopener noreferrer">
+              Lien
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
-
+}
 
 export default ModulePage;

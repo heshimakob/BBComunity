@@ -95,7 +95,7 @@ function App() {
       <Route  exact path="/member/cours/software-developer" element= {<SoftwareDeveloper/>}/>
       <Route  exact path="/member/cours/machine-learning" element= {<MachineLearning/>}/>
 
-      <Route exact path="/modulePage/:courseId" element={<ModulePage/>} />
+      <Route exact path="/modulepage/:id" element={<ModulePage/>} />
 
 
 

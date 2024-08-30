@@ -5,7 +5,9 @@ const chapitreSchema = mongoose.Schema({
   contenu: { type: String, required: true },
   lien: { type: String, required: true },
 
-  courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Cours' },
+  cours: { type: mongoose.Schema.Types.ObjectId, ref: 'Cours',
+    required:true,
+   },
   completed: { type: Boolean, default: false }
 },{ timestamps: true });
 
