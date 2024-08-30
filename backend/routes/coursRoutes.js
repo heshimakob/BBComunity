@@ -1,4 +1,5 @@
 const express =require('express')
+const mongoose = require('mongoose');
 const router =express.Router()
 const Cours =require('../models/coursModel')
 const Chapitre= require ('../models/chapitreModel')
@@ -137,20 +138,17 @@ router.get('/cours/:id/chapitres', async (req, res) => {
 
 //Nouvelle methodologie petit
 
-
-router.get('/getChapitre/:id', async (req, res) => {
+router.get('/getChapitres/:id', async (req, res) => {
   try {
-   const chapitre =await Chapitre.find(req.params.id);
-   console.log(chapitre)
-   res.json(chapitre)
-
-    // ...
+    const courseId = req.params.id;
+    const chapitres = await Chapitre.find({ cours: courseId }).populate('cours');
+    console.log(chapitres);
+    res.json(chapitres);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ erreur: `Erreur lors de la récupération des chapitre du cours cours: ${err.message}` });
+    res.status(500).json({ erreur: `Erreur lors de la récupération des chapitres du cours: ${err.message}` });
   }
 });
-
 router.get('/getSingleCours', async (req, res) => {
   try {
    const cours =await Cours.fiendById(req.params.id)
