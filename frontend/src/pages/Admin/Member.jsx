@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FaList } from "react-icons/fa";
 import { MdGridView } from "react-icons/md";
 import { useParams } from "react-router-dom";
-import Loading from "../../components/Loader";
+import Loading from "../../components/Loading";
 import TaskTitle from "../../components/TaskTitle"
 
 // import { ToastContainer, toast } from 'react-toastify';

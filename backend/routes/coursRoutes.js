@@ -136,7 +136,7 @@ router.get('/cours/:id/chapitres', async (req, res) => {
 
 
 
-//Nouvelle methodologie petit
+//Nouvelle methodologie petit ce code fonctionne normalement
 
 router.get('/getChapitres/:id', async (req, res) => {
   try {
@@ -149,12 +149,16 @@ router.get('/getChapitres/:id', async (req, res) => {
     res.status(500).json({ erreur: `Erreur lors de la récupération des chapitres du cours: ${err.message}` });
   }
 });
-router.get('/getSingleCours', async (req, res) => {
+
+
+
+
+//Averifier si ca fonctionne normalement
+router.get('/getSingleChapitre/:id', async (req, res) => {
   try {
-   const cours =await Cours.fiendById(req.params.id)
-   res.json({
-    cours,
-   })
+  
+   const chapitre =await Chapitre.findById(req.params.id)
+   res.json({chapitre})
 
     // ...
   } catch (err) {
