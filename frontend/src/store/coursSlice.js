@@ -43,16 +43,21 @@ export const { fetchCours, fetchChapter, fetchSingleCours, fetchSingleChapter, u
 export default coursSlice.reducer;
 
 export function getCours() {
-  return async function getBlogsThunk(dispatch, getState) {
+  return async function getCoursThunk(dispatch, getState) {
     const response = await axios.get("http://localhost:8080/api/cours/getAllCours")
     const result = response.data;
     dispatch(fetchCours(result));
   }
 }
 
+
+
+
+//update le 1 sept 2024 
+
 export function getChapterById(id) {
   return async function getChapterThunk(dispatch, getState) {
-    const response = await axios.get(`http://localhost:8080/api/chapter/getChapterById/${id}`)
+    const response = await axios.get(`http://localhost:8080/api/cours/getSingleChapitre/${(id)}`)
     const result = response.data;
     dispatch(fetchSingleChapter(result));
   }
@@ -81,13 +86,20 @@ export function updateChapterById(id, data) {
   }
 }
 
+
+// update le 2 september 2024
+
+
 export function getAllChapterByCoursId(id) {
   return async function getAllChapterThunk(dispatch, getState) {
-    const response = await axios.get(`http://localhost:8080/api/chapter/getAllChapterByCoursId/${id}`)
+    const response = await axios.get(`http://localhost:8080/api/cours/getChapitres/${id}`)
     const result = response.data;
     dispatch(fetchChapter(result));
   }
 }
+
+
+
 
 export function addChapterByCoursId(id, data) {
   return async function addChapterThunk(dispatch, getState) {
@@ -104,3 +116,4 @@ export function getCoursById(id) {
     dispatch(fetchSingleCours(result));
   }
 }
+
