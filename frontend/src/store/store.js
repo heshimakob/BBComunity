@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import blogSlice from "./blogSlice";
 import coursSlice from "./coursSlice";
+import userSlice from "./userSlice";
 
 
 const store  = configureStore({
@@ -9,6 +10,7 @@ const store  = configureStore({
 
         blogs:blogSlice,
         cours:coursSlice,
+        users:userSlice,
         devTools:true,
     }
 });
