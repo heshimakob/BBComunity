@@ -3,6 +3,7 @@ import { Navbar, Logo, NavigationLinks, NavLink, ButtonsContainer, LoginButton, 
 import { LoremIpsum } from 'lorem-ipsum';
 // import B from "../assets/B.png";
 // import bg1 from "../assets/bg1.png";
+// import home from "../assets/home.jpeg"
 import avatar2 from "../assets/avatar2.png"
 import avatar from "../assets/avatar.png"
 import home from "../assets/home.png"
@@ -13,6 +14,7 @@ import Outcome from './Outcome';
 import Details from './Details';
 import Marque from './marque/Marque';
 import Service from './Service';
+import Informations from './Informations';
 
 const lorem = new LoremIpsum();
 
@@ -51,11 +53,11 @@ const Home =()=>{
 <div className="w-full md:w-1/2 p-8">
 <div className="md:max-w-lg">
 <h1 className="inline-block mb-8 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full">#Black Born Community bootcamp(BBC dev)</h1>
-<h1 className="font-heading tracking-tight text-gray-100 text-4xl md:text-6xl font-medium max-w-md md:max-w-2xl">With Bbc dev</h1>
+<h1 className="font-heading tracking-tight text-gray-100 text-4xl md:text-6xl font-medium max-w-md md:max-w-2xl">Avec bbc</h1>
 
 
 
-<h1 className="mb-4 text-3xl font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Learn, create, build and connect...</span> Remote is today</h1>
+<h1 className="mb-4 text-3xl font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">apprendre, creer, construire et connecter...</span> le travail a distance c'est aujourd'hui</h1>
 {/* <p className="text-gray-500 text-xl max-w-xl">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> */}
 
 <div className="flex flex-wrap -m-1 mb-14">
@@ -100,6 +102,7 @@ const Home =()=>{
 </div>
 </div>
 <div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
+  <Informations/>
 
   
   <Marque/>

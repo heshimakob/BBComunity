@@ -10,8 +10,8 @@ import voda from '../../assets/voda.png'
 const  Marque =()=>{
   return (
 
-    <div className="container mx-auto px-4 pt-10">
-    <h1 className="text-3xl font-bold text-center mb-5">Ils nous ont approuvés</h1>
+    <div className="container mx-auto px-4 pt-20">
+    <h1 className="text-4xl font-bold  text-center mb-5">Ils nous accompagnent</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-10">
       <div className="flex flex-col items-center">
         <img src={wito} alt="Goma Serena Hotel" className="w-24 h-24" />
