@@ -14,7 +14,7 @@ const userSlice = createSlice({
   reducers: {
     fetchUsers(state, action) {
       state.users = action.payload
-      console.log(action.payload)
+   
     },
     fetchSingleUser(state, action) {
       state.singleUser = action.payload

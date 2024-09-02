@@ -102,10 +102,11 @@ const Home =()=>{
 </div>
 </div>
 <div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
-  <Informations/>
+
 
   
   <Marque/>
+  <Informations/>
   <Service/>
   
   <Outcome/>

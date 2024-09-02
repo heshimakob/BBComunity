@@ -16,11 +16,12 @@ import AjouterCours from './componnent/ajouterCoursEssaie';
 import AddCourseChapter from './componnent/courchapteradd';
 import AddChapitre from './componnent/addChapitre';
 import ajouterCoursEssaie from './componnent/ajouterCoursEssaie';
-import CoursTable from './componnent/coursTable';
+
 import Tabs from '../../components/Tabs';
 import { FaList } from 'react-icons/fa';
 import { MdGridView } from 'react-icons/md';
 import NavBar from './NavBar';
+import CoursTable from './componnent/CoursTable';
 
 const TABS = [
   { title: "Liste des cours", icon: <MdGridView /> },

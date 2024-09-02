@@ -19,7 +19,7 @@ router.post('/addCours', async (req, res) => {
 });
 
 
-router.get('/getAllcours', async (req, res) => {
+router.get('/getAllCours', async (req, res) => {
   try {
     const cours = await Cours.find().populate('chapitres');
     if (!cours) {

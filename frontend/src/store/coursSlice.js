@@ -14,6 +14,7 @@ const coursSlice = createSlice({
   reducers: {
     fetchCours(state, action) {
       state.data = action.payload
+ 
     },
     fetchChapter(state, action) {
       state.chapterData = action.payload
