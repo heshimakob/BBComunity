@@ -14,6 +14,7 @@ import {
   AddClassInput,
   AddClassButton,
 } from '../../styles/ClassesStyles';
+import NavBar from './NavBar';
 
 const Blog=()=> {
 
@@ -34,6 +35,7 @@ const Blog=()=> {
   return (
     <>
     <ClassesContainer>
+      <NavBar/>
   <Sidebar/>
   <Content>
   <div className=" h-screen w-1/3 p-10 mt-20">

@@ -16,10 +16,12 @@ import {
   AnnouncementItem,
   AnnouncementContent,
 } from '../../styles/AnnouncementStyles';
+import NavBar from './NavBar';
 
 const Annoncement=()=> {
   return (
       <AnnouncementContainer>
+        <NavBar/>
         <Sidebar/>
         <Content>
           <Title>Annoncement</Title>

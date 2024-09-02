@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import B from "../../assets/B.png"
-import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload } from 'react-icons/bs';
+import { BsChatDots, BsChat } from 'react-icons/bs';
 
 const NavbarContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
-  background-color: #2f343a; /* Dark blue background */
+  height: 70px;
+  background-color: #333; /* Dark blue background */
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 30px;
   z-index: 100; /* Ensure navbar stays above content */
 `;
 
@@ -25,7 +25,7 @@ const NavbarLogo = styled.img`
 `;
 
 const NavbarInput = styled.input`
-  width: 200px;
+  width: 800px;
   height: 30px;
   padding: 10px;
   border: none;
@@ -33,9 +33,21 @@ const NavbarInput = styled.input`
   font-size: 16px;
 `;
 
-const NavbarTab = styled.div`
-  margin-right: 100px;
-  font-size: 18px;
+const NavbarIconsContainer = styled.div`
+  margin-left: auto; /* Push the icons to the right */
+  display: flex;
+  align-items: center;
+`;
+
+const NavbarNotification = styled.div`
+  margin-right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+`;
+
+const NavbarChat = styled.div`
+  margin-right: 20px;
+  font-size: 25px;
   cursor: pointer;
 `;
 
@@ -49,7 +61,7 @@ const NavbarProfileImage = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-right: 500px;
+  margin-right: 10px;
 `;
 
 const NavbarProfileUsername = styled.span`
@@ -59,14 +71,21 @@ const NavbarProfileUsername = styled.span`
 const NavBar = () => {
   return (
     <NavbarContainer>
-    <NavbarLogo src={B} />
-    <NavbarInput type="text" placeholder="Search" />
-    <NavbarTab>Chat</NavbarTab>
-    <NavbarProfile>
-      <NavbarProfileImage src="https://via.placeholder.com/30" />
-      <NavbarProfileUsername>Username</NavbarProfileUsername>
-    </NavbarProfile>
-  </NavbarContainer>
+      <NavbarLogo src={B} />
+      <NavbarInput type="text" placeholder="Search" style={{ marginLeft: 'auto', marginRight: 'auto' }} />
+      <NavbarIconsContainer>
+        <NavbarNotification>
+          <BsChatDots size={20} />
+        </NavbarNotification>
+        <NavbarChat>
+          <BsChat size={20} />
+        </NavbarChat>
+        <NavbarProfile>
+          <NavbarProfileImage src="https://via.placeholder.com/30" />
+          <NavbarProfileUsername>Username</NavbarProfileUsername>
+        </NavbarProfile>
+      </NavbarIconsContainer>
+    </NavbarContainer>
   )
 }
 

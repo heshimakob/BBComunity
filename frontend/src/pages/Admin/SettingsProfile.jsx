@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import Button from '../../components/Button';
 import AddUser from '../../components/AddUser';
 import {  ClassesContainer } from '../../styles/ClassesStyles';
+import NavBar from './NavBar';
 
 
 const SettingsProfile=()=> {
@@ -83,6 +84,7 @@ const SettingsProfile=()=> {
   return (
 <>
 <ClassesContainer>
+  <NavBar/>
 <Sidebar/>
 
 <div className='w-full md:px-1 px-0 mb-6'>

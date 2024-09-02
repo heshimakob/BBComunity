@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import B from "../../assets/B.png"
-import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload } from 'react-icons/bs';
+import { BsGraphUp, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload } from 'react-icons/bs';
 
 const SidebarContainer = styled.div`
   position: fixed;
@@ -10,8 +10,8 @@ const SidebarContainer = styled.div`
   left: 0;
   width: ${({ isOpen }) => (isOpen ? '150px' : '70px')};
   height: calc(100% - 60px); /* Adjusted to account for navbar height */
-  background-color: gray-300; /* Dark blue background */
-  color: blue;
+  background-color: #333; /* Dark blue background */
+  color: white;
   overflow-y: auto; /* Enable vertical scrolling */
   padding-top: 20px;
   transition: width 0.3s ease; /* Smooth width transition */
@@ -44,7 +44,7 @@ const SidebarIcon = styled.div`
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: blue;
+  color: white;
   margin-left: 10px;
 `;
 
@@ -122,7 +122,7 @@ const Sidebar=()=> {
         </SidebarNavItem>
         <SidebarNavItem>
             <SidebarIcon> <BsGraphUp/></SidebarIcon>
-            <StyledLink to="/admin/help"> help</StyledLink>
+            <StyledLink to="/admin/help"> Deconnexion</StyledLink>
         </SidebarNavItem>
         </SidebarNav>
     </SidebarContainer>

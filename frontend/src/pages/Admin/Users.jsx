@@ -41,7 +41,7 @@ const Users = () => {
 <>
 <NavBar/>
 <Sidebar/>
-<div className="container mx-auto p-4 mt-20 pt-6 md:p-6 lg:p-12">
+<div className="container mx-auto p-4 mt-20 pt-6 pb-6 md:p-6 lg:p-12">
       <form onSubmit={handleSubmit}>
         <label    className="block text-sm font-bold mb-2">
           <span className="text-gray-700">Nom complet*</span>
@@ -83,7 +83,7 @@ const Users = () => {
         </button>
       </form>
       <Toaster />
-      <UserTable/>
+      <UserTable className="pt-10"/>
     </div>
 </>
   );

@@ -20,6 +20,7 @@ import CoursTable from './componnent/coursTable';
 import Tabs from '../../components/Tabs';
 import { FaList } from 'react-icons/fa';
 import { MdGridView } from 'react-icons/md';
+import NavBar from './NavBar';
 
 const TABS = [
   { title: "Liste des cours", icon: <MdGridView /> },
@@ -32,6 +33,7 @@ const Courses=()=> {
   const [loading, setLoading] = useState(false);
   return (
 <ClassesContainer>
+  <NavBar/>
   <Sidebar/>
   <Content>
     <ClassesContent>

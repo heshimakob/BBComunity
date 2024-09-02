@@ -12,10 +12,13 @@ import {
   AddClassInput,
   AddClassButton,
 } from '../../styles/ClassesStyles';
+import NavBar from './NavBar';
 
 const Cohorte=()=> {
   return (
 <ClassesContainer>
+
+  <NavBar/>
   <Sidebar/>
   <Content>
     <ClassesContent>
