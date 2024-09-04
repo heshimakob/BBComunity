@@ -5,7 +5,10 @@ const initialState = {
   users: [],
   singleUser: {},
   error: null,
-  isLoggedIn: false
+  isLoggedIn: false,
+  currentUser:null,
+  loading:false,
+  isAdmin:false
 };
 
 const userSlice = createSlice({
@@ -15,6 +18,20 @@ const userSlice = createSlice({
     fetchUsers(state, action) {
       state.users = action.payload
    
+    },
+    signInStart(state){
+      state.loading=true,
+      state.error=null
+    },
+    signInSuccess(state,action){
+      state.currentUser= action.payload;
+      state.loading=false;
+      state.error=null;
+    },
+    signInFailure(state,action){
+
+      state.loading=false;
+      state.error=action.payload;
     },
     fetchSingleUser(state, action) {
       state.singleUser = action.payload
@@ -31,10 +48,14 @@ const userSlice = createSlice({
     signinUser(state, action) {
       state.isLoggedIn = true
       state.singleUser = action.payload
+      state.user = action.payload;
+      state.isAdmin = action.payload.isAdmin;
     },
     signoutUser(state) {
       state.isLoggedIn = false
       state.singleUser = {}
+      state.user = null;
+      state.isAdmin = false;
     },
     setError(state, action) {
       state.error = action.payload
@@ -48,7 +69,7 @@ const userSlice = createSlice({
   
 });
 
-export const { fetchUsers, fetchSingleUser, registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
+export const { fetchUsers, fetchSingleUser,signInStart,signInSuccess, signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
 export default userSlice.reducer;
 
 export function signin(data) {

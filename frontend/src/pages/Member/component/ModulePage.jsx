@@ -172,7 +172,7 @@ const ModulePage = () => {
 
   return (
     <>
-      {/* <NavBar/> */}
+      <NavBar/>
       <Sidebar/>
       <div className="container mx-auto w-full h-screen p-4 ">
    

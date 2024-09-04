@@ -8,7 +8,7 @@ function NavBar() {
   const navigate = useNavigate();
 
   const handleloginClick =()=>{
-    navigate('/admin-signIn')
+    navigate('/signin')
 
 };
   return (

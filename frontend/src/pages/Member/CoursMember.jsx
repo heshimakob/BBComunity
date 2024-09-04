@@ -17,6 +17,7 @@ import {
 import Sidebar from './Sidebar';
 import CoursList from './component/coursListe';
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar';
 
 const CoursMember = () => {
 
@@ -24,6 +25,7 @@ const CoursMember = () => {
 
   return (
     <>
+    <NavBar/>
       <Sidebar />
       <ClassesContainer>
         <Content>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaBookOpen, FaCode, FaUserCircle } from 'react-icons/fa';
 import Sidebar from '../Sidebar';
 import { Link } from 'react-router-dom';
+import NavBar from '../NavBar';
 
 const SoftwareDeveloper = () => {
 
@@ -22,6 +23,7 @@ const SoftwareDeveloper = () => {
   }, []);
   return (
     <div>
+      <NavBar/>
       <Sidebar/>
           <div className="bg-white min-h-screen py-12 px-6">
             <div className="max-w-7xl mx-auto">

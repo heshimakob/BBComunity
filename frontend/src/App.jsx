@@ -1,7 +1,7 @@
-import { BrowserRouter as Router  ,Routes , Route } from "react-router-dom"
+import { BrowserRouter as Router  ,Routes , Route, BrowserRouter } from "react-router-dom"
 import Home from '../src/components/Home'
 import ChooseUser from "./components/ChooseUser"
-import AdminSignIn from "./components/AdminSignin"
+import SignIn from "./components/Signin"
 import GuestSignIn from "./components/GuestSignin"
 import AdminDashboard from "./pages/Admin/Dashboard"
 import Challenge from "./pages/Admin/Challenge"
@@ -28,6 +28,8 @@ import AdminRegister from "./components/AdminRegister"
 import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
 import MachineLearning from "./pages/Member/cours/MachineLearning"
 import ModulePage from "./pages/Member/component/ModulePage"
+import ErrorPage from "./components/ErrorPage"
+import PrivateRoutes from "./components/PrivateRoutes"
 
 
 
@@ -35,6 +37,7 @@ function App() {
 
 
   return (
+  
   <Router>
     <Routes>
         <Route path="/" element= {<Home/>} />
@@ -53,25 +56,149 @@ function App() {
 
 
         {/* sigin pages  */}
-         <Route  exact path="/admin-signIn" element= {<AdminSignIn/>} />
+         <Route  exact path="/signin" element= {<SignIn/>} />
          <Route  exact path="/register" element= {<AdminRegister/>} />
          <Route  exact path="/guest-signIn" element= {<GuestSignIn/>} />
 
 {/* 
          Dashboard routes */}
 
-<Route  exact path="/admin/dashboard" element= {<AdminDashboard/>} />
+
+
+{/* private admin  page access */}
+
+<Route exact path="/admin/dashboard" element={
+  <PrivateRoutes>
+    <AdminDashboard />
+  </PrivateRoutes>
+} />
+
+<Route exact path="/admin/annoncement" element={
+  <PrivateRoutes>
+    <Annoncement />
+  </PrivateRoutes>
+} />
+<Route exact path="/admin/Challenge"  element={
+  <PrivateRoutes>
+    <Challenge />
+  </PrivateRoutes>
+} />
+<Route exact path="/admin/courses" element={
+  <PrivateRoutes>
+    <Courses />
+  </PrivateRoutes>
+} />
+<Route exact path="/admin/cohorte" element={
+  <PrivateRoutes>
+    <Cohorte />
+  </PrivateRoutes>
+} />
+
+<Route exact path="/admin/blog" element={
+  <PrivateRoutes>
+    <Blog/>
+  </PrivateRoutes>
+} />
+<Route exact path="/admin/users" element={
+  <PrivateRoutes>
+    <Users/>
+  </PrivateRoutes>
+} />
+<Route exact path="/admin/member" element={
+  <PrivateRoutes>
+    <Member/>
+  </PrivateRoutes>
+} />
+
+
+<Route exact path="/admin/settings" element={
+  <PrivateRoutes>
+    <SettingsProfile/>
+  </PrivateRoutes>
+} />
+
+
+<Route exact path="/admin/events" element={
+  <PrivateRoutes>
+    <Event/>
+  </PrivateRoutes>
+} />
+
+
+<Route exact path="/admin/company" element={
+  <PrivateRoutes>
+    <Company/>
+  </PrivateRoutes>
+} />
+
+
+
+
+
+
+{/* private member page access */}
+
+
+
+<Route exact path="/member/annonce" element={
+  <PrivateRoutes>
+    <AnnoncementMember />
+  </PrivateRoutes>
+} />
+
+
+<Route exact path="/member/dashboard" element={
+  <PrivateRoutes>
+    <DashboarMember />
+  </PrivateRoutes>
+} />
+
+
+<Route exact path="/member/cours" element={
+  <PrivateRoutes>
+    <CoursMember />
+  </PrivateRoutes>
+} />
+
+
+<Route exact path="/member/profile" element={
+  <PrivateRoutes>
+    <ProfilesMember />
+  </PrivateRoutes>
+} />
+
+<Route exact path="/member/software-developer" element={
+  <PrivateRoutes>
+    <SoftwareDeveloper />
+  </PrivateRoutes>
+} />
+<Route exact path="/member/machine-learning" element={
+  <PrivateRoutes>
+    <MachineLearning />
+  </PrivateRoutes>
+} />
+<Route exact path="/modulepage/:id" element={
+  <PrivateRoutes>
+    <ModulePage />
+  </PrivateRoutes>
+} />
+
+
+
+
+
+{/* <Route  exact path="/admin/dashboard" element= {<AdminDashboard/>} /> */}
 
         {/* admin module here  */}
 
-        <Route  exact path="/admin/annoncement" element= {<Annoncement/>} />
-        <Route  exact path="/admin/Challenge" element= {<Challenge/>} />
-        <Route  exact path="/admin/courses-post" element= {<AdminDashboard/>} />
-        <Route  exact path="/admin/courses" element= {<Courses/>} />
-        <Route  exact path="/admin/cohorte" element= {<Cohorte/>}/>
-        <Route  exact path="/admin/blog" element= {<Blog/>}/>
+        {/* <Route  exact path="/admin/annoncement" element= {<Annoncement/>} /> */}
+        {/* <Route  exact path="/admin/Challenge" element= {<Challenge/>} /> */}
+        {/* <Route  exact path="/admin/courses-post" element= {<AdminDashboard/>} /> */}
+        {/* <Route  exact path="/admin/courses" element= {<Courses/>} /> */}
+        {/* <Route  exact path="/admin/cohorte" element= {<Cohorte/>}/> */}
+        {/* <Route  exact path="/admin/blog" element= {<Blog/>}/> */}
 
-        <Route  exact path="/admin/events" element= {<Event/>}/>
+        {/* <Route  exact path="/admin/events" element= {<Event/>}/>
 
         <Route  exact path="/admin/users" element= {<Users/>}/>
 
@@ -80,26 +207,32 @@ function App() {
         <Route  exact path="/admin/discussion" element= {<Discussion/>}/>
 
         <Route  exact path="/admin/settings" element= {<SettingsProfile/>}/>
-        <Route  exact path="/admin/company" element= {<Company/>}/>
+        <Route  exact path="/admin/company" element= {<Company/>}/> */}
 
 
 
       {/* routes member */}
 
 
-      <Route  exact path="/member/annonce" element= {<AnnoncementMember/>}/>
-      <Route  exact path="/member/cours" element= {<CoursMember/>}/>
+      {/* <Route  exact path="/member/annonce" element= {<AnnoncementMember/>}/> */}
+      {/* <Route  exact path="/member/cours" element= {<CoursMember/>}/>
       <Route  exact path="/member/challenge" element= {<ChallengeMember/>}/>
       <Route  exact path="/member/profile" element= {<ProfilesMember/>}/>
       <Route  exact path="/member/dashboard" element= {<DashboarMember/>}/>
       <Route  exact path="/member/cours/software-developer" element= {<SoftwareDeveloper/>}/>
-      <Route  exact path="/member/cours/machine-learning" element= {<MachineLearning/>}/>
+      <Route  exact path="/member/cours/machine-learning" element= {<MachineLearning/>}/> */}
 
-      <Route exact path="/modulepage/:id" element={<ModulePage/>} />
+   
+
+
+
 
 
 
       {/* page error 404 */}
+
+
+      <Route  path="*" element={<ErrorPage/>} />
       
 
 
@@ -108,6 +241,7 @@ function App() {
 
     </Routes>
   </Router>
+
   )
 }
 

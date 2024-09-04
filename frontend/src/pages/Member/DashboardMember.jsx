@@ -20,12 +20,14 @@ import {
     AddClassInput,
     AddClassButton,
   } from '../../styles/ClassesStyles';
+  import NavBar from './NavBar';
 
 const DashboardMember = () => {
     const [showSurvey, setShowSurvey] = useState(false);
 
     return (
         <>
+        <NavBar/>
         <Sidebar/>
         <ClassesContainer>
             <Content>

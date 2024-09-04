@@ -89,7 +89,7 @@ router.put('/updateUser/:id', async (req, res) => {
 
 
 
-router.post('/signin', async (req, res) => {
+  router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
   
@@ -107,16 +107,13 @@ router.post('/signin', async (req, res) => {
       });
     }
   
-    // Générer un token d'authentification
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
-      expiresIn: '1h',
-    });
-  
     res.status(200).json({
       success: true,
-      token,
+      user,
     });
-  });router.delete('/delete/:id', async (req, res) => {
+  });
+  
+  router.delete('/delete/:id', async (req, res) => {
     const { id } = req.params;
   
     // Vérifier si l'utilisateur existe
