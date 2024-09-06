@@ -35,7 +35,7 @@ const SignIn  =()=>{
         dispatch(signInFailure(data.message));
       } else {
         dispatch(signInSuccess(data));
-        navigate('/member/dashboard');
+        navigate('/admin/dashboard');
       }
     } catch (error) {
       dispatch(signInFailure(error.message));

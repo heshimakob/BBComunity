@@ -66,9 +66,16 @@ function App() {
          Dashboard routes */}
 
 
-<Route  element= {<PrivateRoutes/>} >
-<Route   path="/admin/dashboard" element= {<AdminDashboard/>} />
-
+<Route element={<PrivateRoutes/>}>
+  <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
+  <Route path='/admin/courses' element={<Courses/>}/>
+  <Route path='/admin/annoncement' element={<Annoncement/>}/>
+  <Route path='/admin/challenge' element={<Challenge/>}/>
+  <Route path='/admin/cohorte' element={<Cohorte/>}/>
+  <Route path='/admin/blog' element={<Blog/>}/>
+  <Route path='/admin/users' element={<Users/>}/>
+  <Route path='/admin/member' element={<Member/>}/>
+  <Route path='/admin/settings' element={<SettingsProfile/>}/>
 </Route>
 {/* private admin  page access */}
 
@@ -78,49 +85,49 @@ function App() {
   </PrivateRoutes>
 } /> */}
 
-<Route exact path="/admin/annoncement" element={
+{/* <Route exact path="/admin/annoncement" element={
   <PrivateRoutes>
     <Annoncement />
   </PrivateRoutes>
-} />
-<Route exact path="/admin/Challenge"  element={
+} /> */}
+{/* <Route exact path="/admin/challenge"  element={
   <PrivateRoutes>
     <Challenge />
   </PrivateRoutes>
-} />
-<Route exact path="/admin/courses" element={
+} /> */}
+{/* <Route exact path="/admin/courses" element={
   <PrivateRoutes>
     <Courses />
   </PrivateRoutes>
-} />
-<Route exact path="/admin/cohorte" element={
+} /> */}
+{/* <Route exact path="/admin/cohorte" element={
   <PrivateRoutes>
     <Cohorte />
   </PrivateRoutes>
-} />
+} /> */}
 
-<Route exact path="/admin/blog" element={
+{/* <Route exact path="/admin/blog" element={
   <PrivateRoutes>
     <Blog/>
   </PrivateRoutes>
-} />
-<Route exact path="/admin/users" element={
+} /> */}
+{/* <Route exact path="/admin/users" element={
   <PrivateRoutes>
     <Users/>
   </PrivateRoutes>
-} />
-<Route exact path="/admin/member" element={
+} /> */}
+{/* <Route exact path="/admin/member" element={
   <PrivateRoutes>
     <Member/>
   </PrivateRoutes>
-} />
+} /> */}
 
 
-<Route exact path="/admin/settings" element={
+{/* <Route exact path="/admin/settings" element={
   <PrivateRoutes>
     <SettingsProfile/>
   </PrivateRoutes>
-} />
+} /> */}
 
 
 <Route exact path="/admin/events" element={
