@@ -23,6 +23,7 @@ import {
   import NavBar from './NavBar';
 
 const DashboardMember = () => {
+  console.log('DashboarMember est rendu');
     const [showSurvey, setShowSurvey] = useState(false);
 
     return (
@@ -31,7 +32,8 @@ const DashboardMember = () => {
         <Sidebar/>
         <ClassesContainer>
             <Content>
-            <div className="bg-white min-h-screen flex flex-col">
+         
+            {/* <div className="bg-white min-h-screen flex flex-col">
         <div className="flex items-center justify-between px-10 py-6">
         
           <div className="flex items-center">
@@ -206,7 +208,7 @@ const DashboardMember = () => {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
             </Content>
         </ClassesContainer>
         </>

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router  ,Routes , Route, BrowserRouter } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from '../src/components/Home'
 import ChooseUser from "./components/ChooseUser"
 import SignIn from "./components/Signin"
@@ -21,7 +21,7 @@ import Why from "./components/Why"
 import AnnoncementMember from "./pages/Member/AnnoncementMember"
 import ChallengeMember from "./pages/Member/ChallengeMember"
 import ProfilesMember from "./pages/Member/ProfilesMember"
-import DashboarMember from "./pages/Member/DashboardMember"
+
 import CoursMember from "./pages/Member/CoursMember"
 import BlogPage from "./components/blog/BlogPage"
 import AdminRegister from "./components/AdminRegister"
@@ -30,6 +30,7 @@ import MachineLearning from "./pages/Member/cours/MachineLearning"
 import ModulePage from "./pages/Member/component/ModulePage"
 import ErrorPage from "./components/ErrorPage"
 import PrivateRoutes from "./components/PrivateRoutes"
+import DashboardMember from "./pages/Member/DashboardMember"
 
 
 
@@ -38,8 +39,9 @@ function App() {
 
   return (
   
-  <Router>
-    <Routes>
+<BrowserRouter>
+
+<Routes>
         <Route path="/" element= {<Home/>} />
         <Route path="/choose-user" element= {<ChooseUser/>} />  
 
@@ -56,7 +58,7 @@ function App() {
 
 
         {/* sigin pages  */}
-         <Route  exact path="/signin" element= {<SignIn/>} />
+         <Route   path="/signin" element= {<SignIn/>} />
          <Route  exact path="/register" element= {<AdminRegister/>} />
          <Route  exact path="/guest-signIn" element= {<GuestSignIn/>} />
 
@@ -64,14 +66,17 @@ function App() {
          Dashboard routes */}
 
 
+<Route  element= {<PrivateRoutes/>} >
+<Route   path="/admin/dashboard" element= {<AdminDashboard/>} />
 
+</Route>
 {/* private admin  page access */}
 
-<Route exact path="/admin/dashboard" element={
+{/* <Route exact path="/admin/dashboard" element={
   <PrivateRoutes>
     <AdminDashboard />
   </PrivateRoutes>
-} />
+} /> */}
 
 <Route exact path="/admin/annoncement" element={
   <PrivateRoutes>
@@ -147,9 +152,16 @@ function App() {
 } />
 
 
-<Route exact path="/member/dashboard" element={
+{/* <Route exact path="/member/dashboard" element={
   <PrivateRoutes>
-    <DashboarMember />
+    <DashboardMember />
+  </PrivateRoutes>
+} /> */}
+
+
+<Route path="/member/dashboard" element={
+  <PrivateRoutes>
+    <DashboardMember />
   </PrivateRoutes>
 } />
 
@@ -187,45 +199,6 @@ function App() {
 
 
 
-{/* <Route  exact path="/admin/dashboard" element= {<AdminDashboard/>} /> */}
-
-        {/* admin module here  */}
-
-        {/* <Route  exact path="/admin/annoncement" element= {<Annoncement/>} /> */}
-        {/* <Route  exact path="/admin/Challenge" element= {<Challenge/>} /> */}
-        {/* <Route  exact path="/admin/courses-post" element= {<AdminDashboard/>} /> */}
-        {/* <Route  exact path="/admin/courses" element= {<Courses/>} /> */}
-        {/* <Route  exact path="/admin/cohorte" element= {<Cohorte/>}/> */}
-        {/* <Route  exact path="/admin/blog" element= {<Blog/>}/> */}
-
-        {/* <Route  exact path="/admin/events" element= {<Event/>}/>
-
-        <Route  exact path="/admin/users" element= {<Users/>}/>
-
-
-        <Route  exact path="/admin/member" element= {<Member/>}/>
-        <Route  exact path="/admin/discussion" element= {<Discussion/>}/>
-
-        <Route  exact path="/admin/settings" element= {<SettingsProfile/>}/>
-        <Route  exact path="/admin/company" element= {<Company/>}/> */}
-
-
-
-      {/* routes member */}
-
-
-      {/* <Route  exact path="/member/annonce" element= {<AnnoncementMember/>}/> */}
-      {/* <Route  exact path="/member/cours" element= {<CoursMember/>}/>
-      <Route  exact path="/member/challenge" element= {<ChallengeMember/>}/>
-      <Route  exact path="/member/profile" element= {<ProfilesMember/>}/>
-      <Route  exact path="/member/dashboard" element= {<DashboarMember/>}/>
-      <Route  exact path="/member/cours/software-developer" element= {<SoftwareDeveloper/>}/>
-      <Route  exact path="/member/cours/machine-learning" element= {<MachineLearning/>}/> */}
-
-   
-
-
-
 
 
 
@@ -240,7 +213,8 @@ function App() {
    
 
     </Routes>
-  </Router>
+</BrowserRouter>
+
 
   )
 }
