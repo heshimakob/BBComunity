@@ -4,7 +4,7 @@ const Blog = require('../models/blogModel');
 
 router.post('/addBlog', (req, res,next) => {
   const { titre, description, image, auteur } = req.body;
-  const newBlog = new Blog({ titre, description, image, auteur });
+  const newBlog = new Blog({ titre, description, image, auteur,category });
   try {
     newBlog.save();
     res.status(200).json({

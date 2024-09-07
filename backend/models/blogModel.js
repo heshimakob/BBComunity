@@ -25,4 +25,4 @@ const blogSchema= mongoose.Schema({
 }, {timestamps:true})
 
 
-module.exports =mongoose.model('blog',blogSchema)
+module.exports =mongoose.model('Blog',blogSchema)
