@@ -18,7 +18,7 @@ const companySchema= mongoose.Schema({
         type:String,
         required:[true, 'le numero de telephone requis']
     }, 
-    contenu:{
+    motif:{
 
         type:String,
         required:[true, 'contenu de notification']
@@ -29,4 +29,4 @@ const companySchema= mongoose.Schema({
 
 
 
-module.exports =mongoose.model('company',companySchema)
+module.exports =mongoose.model('Company',companySchema)

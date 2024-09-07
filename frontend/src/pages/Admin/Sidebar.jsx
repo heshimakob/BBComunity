@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import B from "../../assets/B.png"
 import { BsGraphUp, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload } from 'react-icons/bs';
 
+
+import { signoutSuccess } from '../../store/userSlice';
+import { useDispatch } from 'react-redux';
 const SidebarContainer = styled.div`
   position: fixed;
   top: 60px; /* Adjusted to account for navbar height */
@@ -56,6 +59,25 @@ const StyledLink = styled(Link)`
 
 
 const Sidebar=()=> {
+  const dispatch=useDispatch()
+
+  const handleSignout=async()=>{
+    try {
+      const res= await fetch("http://localhost/api/users/signout",{
+        method: 'POST',
+
+      });
+      const data= await res.json();
+      if (!res.ok){
+        console.log(data.message);
+      }else{
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message)
+      
+    }
+  }
     const [isOpen,setIsOpen]= useState(true);
 
     const toggleSidebar=()=>{
@@ -122,7 +144,7 @@ const Sidebar=()=> {
         </SidebarNavItem>
         <SidebarNavItem>
             <SidebarIcon> <BsGraphUp/></SidebarIcon>
-            <StyledLink to="/admin/help"> Deconnexion</StyledLink>
+            <StyledLink onClick={() => handleSignout()}> Deconnexion</StyledLink>
         </SidebarNavItem>
         </SidebarNav>
     </SidebarContainer>

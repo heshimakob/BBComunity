@@ -20,8 +20,10 @@ import {
   CardContent,
 } from '../../styles/DashboardStyles';
 import NavBar from './NavBar'
+import { useSelector } from 'react-redux'
 
 const AdminDashboard=()=> {
+  const {currentUser}= useSelector(state=> state.users)
   return (
     <>
     <AdminDashboardContainer>
@@ -30,7 +32,7 @@ const AdminDashboard=()=> {
         <Content>
           <TopContent>
             <Section>
-              <SectionTitle>  Welcome  on BBC ezra</SectionTitle>
+              <SectionTitle>  Welcome  on BBC {currentUser?.name}</SectionTitle>
               <CardContainer>
                 <Card>
                   <CardTitle>Total students</CardTitle>

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCompany } from '../store/companySlice';
-import { toast } from 'react-hot-toast';
+import { addCompany, addCompanyToDB } from '../store/companySlice';
+import toast,{Toaster} from 'react-hot-toast';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
@@ -9,22 +9,22 @@ import Marque from './marque/Marque';
 
 const CompanySite = () => {
   const dispatch = useDispatch();
-  const [nomEntreprise, setNomEntreprise] = useState('');
-  const [adresseMail, setAdresseMail] = useState('');
-  const [adressePhysique, setAdressePhysique] = useState('');
-  const [numeroTelephone, setNumeroTelephone] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [adress, setAdress] = useState('');
+  const [numero, setNumero] = useState('');
   const [motif, setMotif] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      nomEntreprise,
-      adresseMail,
-      adressePhysique,
-      numeroTelephone,
+      name,
+      email,
+      adress,
+      numero,
       motif,
     };
-    dispatch(addCompany(data))
+    dispatch(addCompanyToDB(data))
       .then(() => {
         toast.success('Votre demande d\'engagement a été envoyée avec succès!');
       })
@@ -33,6 +33,7 @@ const CompanySite = () => {
         console.error(error);
       });
   };
+
 
   return (
     <>
@@ -60,8 +61,8 @@ const CompanySite = () => {
             </label>
             <input
               type="text"
-              value={nomEntreprise}
-              onChange={(e) => setNomEntreprise(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Nom de l'entreprise"
               className="w-full p-3 mb-6 border border-gray-200 rounded-md"
             />
@@ -70,8 +71,8 @@ const CompanySite = () => {
             </label>
             <input
               type="mail"
-              value={adresseMail}
-              onChange={(e) => setAdresseMail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="post@entreprise.com ou adrees@gmail.com"
               className="w-full p-3 mb-6 border border-gray-200 rounded-md"
             />
@@ -80,8 +81,8 @@ const CompanySite = () => {
             </label>
             <input
               type="text"
-              value={adressePhysique}
-              onChange={(e) => setAdressePhysique(e.target.value)}
+              value={adress}
+              onChange={(e) => setAdress(e.target.value)}
               placeholder="pays ville quartier et numero avenue"
               className="w-full p-3 mb-6 border border-gray-200 rounded-md"
             />
@@ -90,8 +91,8 @@ const CompanySite = () => {
             </label>
             <input
               type="text"
-              value={numeroTelephone}
-              onChange={(e) => setNumeroTelephone(e.target.value)}
+              value={numero}
+              onChange={(e) => setNumero(e.target.value)}
               placeholder="auteur"
               className="w-full p-3 mb-6 border border-gray-200 rounded"/>
       <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
@@ -115,6 +116,7 @@ Envoyer votre demande d'engagement
 
 <Marque/>
 <Details/>
+<Toaster/>
     <Footer/>
     </>
   )

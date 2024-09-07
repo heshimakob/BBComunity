@@ -31,6 +31,17 @@ router.post('/register', async (req, res) => {
   });
 
 
+  router.post('/signout',async(res,req,next)=>{
+    try {
+      
+      
+    } catch (error) {
+      
+    }
+
+  })
+
+
 
 
 

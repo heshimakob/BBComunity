@@ -57,6 +57,14 @@ const userSlice = createSlice({
       state.user = null;
       state.isAdmin = false;
     },
+
+
+    signoutSuccess(state){
+      state.currentUser=null;
+      state.error= null;
+      state.loading=false;
+
+    },
     setError(state, action) {
       state.error = action.payload
     },
@@ -69,7 +77,7 @@ const userSlice = createSlice({
   
 });
 
-export const { fetchUsers, fetchSingleUser,signInStart,signInSuccess, signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
+export const { fetchUsers, fetchSingleUser,signInStart,signInSuccess, signoutSuccess,signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
 export default userSlice.reducer;
 
 export function signin(data) {

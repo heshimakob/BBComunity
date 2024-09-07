@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blogModel');
 
-router.post('/addBlog', (req, res) => {
+router.post('/addBlog', (req, res,next) => {
   const { titre, description, image, auteur } = req.body;
   const newBlog = new Blog({ titre, description, image, auteur });
   try {

@@ -17,6 +17,10 @@ const blogSchema= mongoose.Schema({
     auteur:{
         type:String,
         required:[true, 'auteur is required']
+    },
+    category:{
+        type:String,
+        default: 'Uncotegosider'
     }
 }, {timestamps:true})
 
