@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const AnnouncementContainer = styled.div`
   display: flex;
-  padding-left: 250px;
+  padding-left: 50px;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;

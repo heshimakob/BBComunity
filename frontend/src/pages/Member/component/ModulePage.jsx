@@ -174,10 +174,10 @@ const ModulePage = () => {
     <>
       <NavBar/>
       <Sidebar/>
-      <div className="container mx-auto w-full h-screen p-4 ">
+      <div className="container mx-auto w-full h-screen p-4 pt-20">
    
         <div className="flex items-center justify-center pt-10">
-          <div className="left w-1/2 h-screen  justify-center items-center">
+          <div className="left w-1/2 h-screen w-full justify-center items-center">
             {selectedChapter ? (
               <>
                 
@@ -194,13 +194,20 @@ const ModulePage = () => {
                 )}
                 <h1>{selectedChapter.titre}</h1>
                 <h3>{selectedChapter.contenu}</h3>
-                <button className='bg-red-600 text-white'>Terminer</button>
+                <button className='w-full bg-green-600 text-white '>Terminer</button>
+                <div className='flex justify-between p-10 pt-10'>
+  <button className=' bg-gray-300 ml-0 mt-0 mb-0'>Retour</button>
+  <button className='bg-gray-300 mr-0 mt-0 mb-0'>Prochain</button>
+</div>
+                <div>
+                  <h1>les liens complementaires du module</h1>
+                </div>
               </>
             ) : (
               <h1>Please select a chapter</h1>
             )}
           </div>
-          <div className="right w-1/2 bg-gray-200 h-screen flex justify-center items-center">
+          <div className="right w-1/2 bg-gray-200 h-screen flex ">
             <ul>
               {chapterData.map((chapitre) => (
                 <li key={chapitre._id}>

@@ -67,15 +67,16 @@ const AdminRegister  =()=>{
     className="w-full p-3 mb-6  border border-gray-200 rounded-md"
   />
 <label htmlFor="gender" className="block text-gray-700 text-sm font-bold mb-2">
-          Gender identity*
+          Domaine*
         </label>
         <select
           id="gender"
           className="w-full p-3 mb-6  border border-gray-200 rounded-md"
         >
           <option value="male">Software  Development</option>
-          <option value="female">Artivicial intelligence</option>
-          <option value="other">UI ,X</option>
+          <option value="female">Machine Learning</option>
+          <option value="other">Design</option>
+          <option value="other">Entreprenariat</option>
         </select>
     <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
           Mot de pass* 
@@ -94,12 +95,12 @@ const AdminRegister  =()=>{
     type="submit"
     onClick={handleSignIn}>
   
-    Se connecter
+    S'inscrire
   </button>
 </form>
 <div className="flex flex-col  justify-center items-center">
-  <span className='text-red-500 hover:text-red-700 font-bold pt-5 '><Link>Se connecter</Link></span>
-  <span className='text-blue-800 font-bold pt-5 '><Link>Mot de pass oublie?</Link></span>
+  <span className='text-blue-500 hover:text-blue-700 font-bold pt-5 '><Link to="/signin">Se connecter</Link></span>
+  {/* <span className='text-blue-800 font-bold pt-5 '><Link>Mot de pass oublie?</Link></span> */}
 </div>
       </div>
 

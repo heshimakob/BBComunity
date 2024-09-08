@@ -35,7 +35,7 @@ const SignIn  =()=>{
         dispatch(signInFailure(data.message));
       } else {
         dispatch(signInSuccess(data));
-        navigate('/admin/dashboard');
+        navigate('/member/dashboard');
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
@@ -84,14 +84,14 @@ const SignIn  =()=>{
               />
             </div>
             <button
-              className='purpleToBlue'
+            className="w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               type='submit'
               disabled={loading}
             >
               {loading ? (
                 <>
                 
-                  <span className='pl-3'>Loading...</span>
+                  <span className='pl-3 text-white font-bold'>Loading...</span>
                 </>
               ) : (
                 'Se connecter'

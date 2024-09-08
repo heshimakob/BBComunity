@@ -68,7 +68,19 @@ function App() {
 
 <Route element={<PrivateRoutes/>}>
   <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
+  <Route path='/member/dashboard' element={<DashboardMember/>}/>
+
+
   <Route path='/admin/courses' element={<Courses/>}/>
+  <Route path='/member/cours' element={<CoursMember/>}/>
+
+  <Route  exact path='/member/cours/software-developer' element={<SoftwareDeveloper/>}/>
+  <Route path='/modulepage/:id' element={<ModulePage/>}/>
+
+
+
+  <Route path='/member/profile' element={<ProfilesMember/>}/>
+
   <Route path='/admin/annoncement' element={<Annoncement/>}/>
   <Route path='/admin/challenge' element={<Challenge/>}/>
   <Route path='/admin/cohorte' element={<Cohorte/>}/>
@@ -173,11 +185,11 @@ function App() {
 } />
 
 
-<Route exact path="/member/cours" element={
+{/* <Route exact path="/member/cours" element={
   <PrivateRoutes>
     <CoursMember />
   </PrivateRoutes>
-} />
+} /> */}
 
 
 <Route exact path="/member/profile" element={

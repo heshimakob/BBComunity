@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import B from "../../assets/B.png"
 import { BsChatDots, BsChat } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -69,6 +70,11 @@ const NavbarProfileUsername = styled.span`
 `;
 
 const NavBar = () => {
+  const { currentUser } = useSelector((state) => state.users);
+
+  
+  const { user } = currentUser;
+  const [name, setName] = useState(user ? user.name : '');
   return (
     <NavbarContainer>
       <NavbarLogo src={B} />
@@ -82,7 +88,7 @@ const NavBar = () => {
         </NavbarChat>
         <NavbarProfile>
           <NavbarProfileImage src="https://via.placeholder.com/30" />
-          <NavbarProfileUsername>Username</NavbarProfileUsername>
+          <NavbarProfileUsername>{user.name}</NavbarProfileUsername>
         </NavbarProfile>
       </NavbarIconsContainer>
     </NavbarContainer>

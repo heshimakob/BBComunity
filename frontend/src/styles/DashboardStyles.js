@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const AdminDashboardContainer = styled.div`
   display: flex;
-  padding-left: 240px;
+  padding-left: 50px;
   margin-top:100px;
 `;
 
