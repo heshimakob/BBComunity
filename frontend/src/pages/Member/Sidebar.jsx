@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 import B from "../../assets/B.png"
 import { BsGraphUp, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload, BsArrowLeft } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { signoutSuccess } from '../../store/userSlice';
 
 const SidebarContainer = styled.div`
   position: fixed;
@@ -48,18 +50,18 @@ const StyledLink = styled(Link)`
   margin-left: 10px;
 `;
 
-
-
-
-
-
-
-
 const Sidebar=()=> {
+  const dispatch = useDispatch();
     const [isOpen,setIsOpen]= useState(true);
 
     const toggleSidebar=()=>{
         setIsOpen(!isOpen);
+    }
+
+    const handleLogout = () => {
+      dispatch(signoutSuccess());
+        // localStorage.removeItem('currentUser');
+        window.location.href = '/signin'; // Redirige vers la page de connexion
     }
 
   return ( 
@@ -91,9 +93,9 @@ const Sidebar=()=> {
                  <StyledLink to="/member/profile"> Profiler</StyledLink>
                </SidebarNavItem>
     
-              <SidebarNavItem >
+              <SidebarNavItem onClick={handleLogout}>
                  <SidebarIcon> <BsArrowLeft/></SidebarIcon>
-                 <StyledLink to=""> Deconnexion</StyledLink>
+                 <StyledLink> Deconnexion</StyledLink>
              </SidebarNavItem>
                
     
@@ -103,4 +105,4 @@ const Sidebar=()=> {
   )
 }
 
-export default Sidebar; 
+export default Sidebar;

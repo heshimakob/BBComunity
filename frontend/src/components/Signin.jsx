@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 const SignIn  =()=>{
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
-    const { error: errorMessage } = useSelector((state) => state.users);
+    const { error: errorMessage, user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -35,7 +35,11 @@ const SignIn  =()=>{
         dispatch(signInFailure(data.message));
       } else {
         dispatch(signInSuccess(data));
-        navigate('/member/dashboard');
+        if (data.user.isAdmin) {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/member/dashboard');
+        }
       }
     } catch (error) {
       dispatch(signInFailure(error.message));

@@ -176,8 +176,8 @@ const ModulePage = () => {
       <Sidebar/>
       <div className="container mx-auto w-full h-screen p-4 pt-20">
    
-        <div className="flex items-center justify-center pt-10">
-          <div className="left w-1/2 h-screen w-full justify-center items-center">
+        <div className="w-full flex items-center justify-center pt-10">
+          <div className="left w-[90%] h-screen  justify-center items-center">
             {selectedChapter ? (
               <>
                 
@@ -207,7 +207,7 @@ const ModulePage = () => {
               <h1>Please select a chapter</h1>
             )}
           </div>
-          <div className="right w-1/2 bg-gray-200 h-screen flex ">
+          <div className="right w-1/4 bg-gray-200 h-screen flex ">
             <ul>
               {chapterData.map((chapitre) => (
                 <li key={chapitre._id}>

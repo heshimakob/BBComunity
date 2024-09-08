@@ -4,6 +4,7 @@ import { updateUser } from '../../store/userSlice';
 import NavBar from './NavBar';
 import Sidebar from './Sidebar';
 import { ClassesContainer, Content } from '../../styles/ClassesStyles';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const ProfilesMember = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const ProfilesMember = () => {
 
   const [genre, setGenre] = useState(user ? user.genre : '');
 
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
@@ -64,15 +66,20 @@ const ProfilesMember = () => {
                 className="w-full p-3 mb-6 border border-gray-200 rounded-md"
               />
               <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-                Numero de Telephone*
+                Password*
               </label>
-              <input
-                type="passwod"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="auteur"
-                className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="auteur"
+                  className="w-full p-3 mb-6 border border-gray-200 rounded-md"
+                />
+                <span className="absolute top-3 right-3 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+                </span>
+              </div>
               <label htmlFor="gender" className="block text-gray-700 text-sm font-bold mb-2">
                 Gender identity*
               </label>
