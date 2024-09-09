@@ -34,11 +34,8 @@ const Blog=()=> {
   }
   return (
     <>
-    <ClassesContainer>
-      <NavBar/>
-  <Sidebar/>
-  <Content>
-  <div className=" h-screen w-1/3 p-10 mt-20">
+    <div className='container mx-auto'>
+    <div className=" h-screen w-1/3 p-10 mt-20">
         <h1 className="text-2xl mb-10">Ajouter un Post </h1>
         <form  > 
 
@@ -84,8 +81,14 @@ const Blog=()=> {
   </button>
 </form>
       </div>
-  </Content>
-</ClassesContainer>
+
+
+    </div>
+    
+      <NavBar/>
+  <Sidebar/>
+
+  
 
 
     

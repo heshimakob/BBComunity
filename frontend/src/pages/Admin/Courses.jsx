@@ -1,17 +1,7 @@
 import React, {useEffect, useState}from 'react'
 import Sidebar from './Sidebar';
 import axios from 'axios';
-import {
-  ClassesContainer,
-  Content,
-  ClassesContent,
-  ClassesHeader,
-  ClassList,
-  ClassItem,
-  AddClassForm,
-  AddClassInput,
-  AddClassButton,
-} from '../../styles/ClassesStyles';
+
 import AjouterCours from './componnent/ajouterCoursEssaie';
 import AddCourseChapter from './componnent/courchapteradd';
 import AddChapitre from './componnent/addChapitre';
@@ -33,12 +23,13 @@ const Courses=()=> {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   return (
-<ClassesContainer>
-  <NavBar/>
-  <Sidebar/>
-  <Content>
-    <ClassesContent>
-    <Tabs tabs={TABS} setSelected={setSelected}>
+
+<>
+<NavBar/>
+<Sidebar/>
+<div className='container mx-auto mt-20'>
+  
+<Tabs tabs={TABS} setSelected={setSelected}>
     
 
     {selected !== 1 ? (
@@ -50,7 +41,7 @@ const Courses=()=> {
     )}
   </Tabs>
 
-      <ClassesHeader> Gestion des cours </ClassesHeader>
+      <h1> Gestion des cours </h1>
       {/* <AddClassForm>
         <AddClassInput type="text"
         placeholder='entre la chohorte'/>
@@ -115,13 +106,10 @@ Description du cours *
 
 
 <CoursTable/>
-      <ClassList>
 
-        
-      </ClassList>
-    </ClassesContent>
-  </Content>
-</ClassesContainer>
+</div></>
+    
+   
   )
 }
 
