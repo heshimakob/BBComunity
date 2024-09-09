@@ -36,12 +36,12 @@ const BlogPage = () => {
     {/* afichage d'un blog avec ses contenu */}
 
 
-    <div className=' container mx-auto px-4 pt-10'>
+    <div className=' container mx-auto px-4 pt-10 '>
       <div className="mx-auto flex flex-col justify-center items-center">
- <img  className="h-96" src={Blog.image} alt={Blog.titre} />
+ <img  className="h-96 w-full" src={Blog.image} alt={Blog.titre} />
       <h1>{Blog.titre}</h1>
       <h2>{Blog.createdAt}</h2>
-      <p className='w-full h-full p-3 mb-6 text-justify leading-7'>{Blog.description}</p>
+      <p className='w-full h-full p-3 mb-6 text-justify items-center leading-7'>{Blog.description}</p>
 
 
                     </div>

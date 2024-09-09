@@ -15,6 +15,7 @@ import Details from './Details';
 import Marque from './marque/Marque';
 import Service from './Service';
 import Informations from './Informations';
+import img from "../assets/img.jpg"
 
 const lorem = new LoremIpsum();
 
@@ -46,9 +47,14 @@ const Home =()=>{
             </ButtonsContainer>
 
         </Navbar> */}
-        <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden">
+<div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden" style={{
+  backgroundImage: `url(${img})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
+}}>
           
-<div className="container px-4 mx-auto">
+<div className="container px-4 mx-auto" >
 <div className="flex flex-wrap -m-8">
 <div className="w-full md:w-1/2 p-8">
 <div className="md:max-w-lg">
@@ -61,16 +67,9 @@ const Home =()=>{
 {/* <p className="text-gray-500 text-xl max-w-xl">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> */}
 
 <div className="flex flex-wrap -m-1 mb-14">
-  <div className="w-auto p-2"><a className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" href="#">Apply now</a></div>
+  <div className="w-auto p-2"><a className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" href="/register">Apply now</a></div>
   <div className="w-auto p-2">
-    <a className="inline-flex items-center px-5 py-4 bg-gradient-to-r to-emerald-600 from-sky-400 hover:bg-indigo-800 border border-gray-800 hover:border-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-300 transition duration-200" href="#">
-      <div className="inline-block">
-        <svg className="mr-2.5" width={18} height={19} viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 12.5L3 13.25C3 14.4926 4.00736 15.5 5.25 15.5L12.75 15.5C13.9926 15.5 15 14.4926 15 13.25L15 12.5M12 9.5L9 12.5M9 12.5L6 9.5M9 12.5L9 3.5" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
-      <span className="text-gray-100 font-semibold tracking-tight">Apply Now</span>
-    </a>
+  
   </div>
 </div>
 <div className="max-w-md">
@@ -96,7 +95,7 @@ const Home =()=>{
 </div>
 </div>
 <div className="w-full md:w-1/2 p-8 ">
-<img className="transform hover:-translate-y-2 transition duration-500 rounded-lg" src={home} alt />
+{/* <img className="transform hover:-translate-y-2 transition duration-500 rounded-lg" src={home} alt /> */}
 </div>
 </div>
 </div>

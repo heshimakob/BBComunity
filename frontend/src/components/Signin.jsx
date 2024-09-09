@@ -3,6 +3,7 @@ import B from "../assets/B.png"
 import React, { useState } from 'react';
 import axios from 'axios';
 import bglog from "../assets/bglog.jpeg"
+import toast,{Toaster} from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInStart,signInFailure,signInSuccess } from "../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,8 +38,10 @@ const SignIn  =()=>{
         dispatch(signInSuccess(data));
         if (data.user.isAdmin) {
           navigate('/admin/dashboard');
+          toast.success('Connexion avec succès!');
         } else {
           navigate('/member/dashboard');
+          toast.success('Votre demande d\'engagement a été envoyée avec succès!');
         }
       }
     } catch (error) {
@@ -56,8 +59,9 @@ const SignIn  =()=>{
      <div className=" h-screen w-1/3 p-20  mt-30 flex flex-col items-center ">
         {/* left */}
      
-        <div className="text-center flex flex-col items-center ">
-        <h1 className="text-2xl text-gray-300  mb-10">Black Born Community</h1>        <img src={B} width="40%" height="200px" />
+        <div className="text-center flex flex-col items-center " >
+        <h1 className="text-2xl text-gray-300  mb-10">Black Born Community</h1>      
+          <img src={B} width="40%" height="200px"  />
       <h1 className="text-2xl mb-10">Se connecter</h1>
         </div>
 
@@ -132,7 +136,9 @@ const SignIn  =()=>{
       >
  
       </div>
+      <Toaster/>
     </div>
+  
 
 
     )

@@ -15,6 +15,15 @@ const CompanySite = () => {
   const [numero, setNumero] = useState('');
   const [motif, setMotif] = useState('');
 
+
+  const resetForm = () => {
+    setName('');
+    setEmail('');
+    setAdress('');
+    setNumero('');
+    setMotif('');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -27,6 +36,7 @@ const CompanySite = () => {
     dispatch(addCompanyToDB(data))
       .then(() => {
         toast.success('Votre demande d\'engagement a été envoyée avec succès!');
+        resetForm();
       })
       .catch((error) => {
         toast.error('Erreur lors de l\'envoi de votre demande d\'engagement');
@@ -46,7 +56,7 @@ const CompanySite = () => {
           </h1>
           <div className="flex justify-center items-center">
             <div className="w-auto p-2">
-              <a className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-blue-500 w-full rounded hover:bg-blue-400 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" href="#">S'enregistrer sur la liste d'attente</a>
+              <a className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-blue-500 w-full rounded hover:bg-blue-400 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" href="/register">S'enregistrer sur la liste d'attente</a>
             </div>
           </div>
         </div>
@@ -63,6 +73,7 @@ const CompanySite = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
               placeholder="Nom de l'entreprise"
               className="w-full p-3 mb-6 border border-gray-200 rounded-md"
             />
@@ -72,6 +83,7 @@ const CompanySite = () => {
             <input
               type="mail"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
               placeholder="post@entreprise.com ou adrees@gmail.com"
               className="w-full p-3 mb-6 border border-gray-200 rounded-md"
@@ -82,6 +94,7 @@ const CompanySite = () => {
             <input
               type="text"
               value={adress}
+              required
               onChange={(e) => setAdress(e.target.value)}
               placeholder="pays ville quartier et numero avenue"
               className="w-full p-3 mb-6 border border-gray-200 rounded-md"
@@ -92,6 +105,7 @@ const CompanySite = () => {
             <input
               type="text"
               value={numero}
+              required
               onChange={(e) => setNumero(e.target.value)}
               placeholder="auteur"
               className="w-full p-3 mb-6 border border-gray-200 rounded"/>

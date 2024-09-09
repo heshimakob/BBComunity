@@ -24,7 +24,7 @@ const UserTable = () => {
   };
 
   const handleDeleteSubmit = () => {
-    dispatch(deleteUserById(selectedUser.id));
+    dispatch(deleteUserById(selectedUser._id));
     setDeleteModal(false);
   };
   const handleUpdateSubmit = (e) => {
