@@ -1,4 +1,5 @@
 const express =require('express')
+const mongoose = require('mongoose'); 
 const router =express.Router()
 const bcrypt = require('bcrypt');
 const User =require('../models/userModel')
@@ -124,7 +125,7 @@ router.put('/updateUser/:id', async (req, res) => {
     });
   });
   
-  router.delete('/delete/:id', async (req, res) => {
+  router.delete('/deleteUser/:id', async (req, res) => {
     const { id } = req.params;
   
     // Vérifier si l'utilisateur existe
@@ -136,18 +137,19 @@ router.put('/updateUser/:id', async (req, res) => {
     }
   
     try {
-      await User.findByIdAndRemove(id);
+      await User.findByIdAndRemove(new mongoose.Types.ObjectId(id));
       res.status(200).json({
         success: true,
         message: 'Utilisateur supprimé avec succès',
       });
     } catch (error) {
+      console.error(error); // Affiche l'erreur dans la console
       res.status(400).json({
-        message: error,
+        message: 'Erreur lors de la suppression de l\'utilisateur',
+        error: error.message, // Affiche le message d'erreur
       });
     }
   });
-
 
 
   module.exports= router;

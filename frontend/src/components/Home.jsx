@@ -63,7 +63,7 @@ const Home =()=>{
 
 
 
-<h1 className="mb-4 text-3xl font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">apprendre, creer, construire et connecter...</span> le travail a distance c'est aujourd'hui</h1>
+<h1 className="mb-4 text-3xl font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">apprendre, creer, construire et connecter...</span> l'apprentissage a distance c'est aujourd'hui</h1>
 {/* <p className="text-gray-500 text-xl max-w-xl">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> */}
 
 <div className="flex flex-wrap -m-1 mb-14">

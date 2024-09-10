@@ -1,23 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blogModel');
+router.post('/addBlog', async (req, res, next) => {
+  const { titre, description, image, auteur, category } = req.body;
 
-router.post('/addBlog', (req, res,next) => {
-  const { titre, description, image, auteur } = req.body;
-  const newBlog = new Blog({ titre, description, image, auteur,category });
+  // Vérifiez que toutes les données requises sont présentes 
+  if (!titre || !description || !image || !auteur) {
+      return res.status(400).json({
+          success: false,
+          message: 'Veuillez fournir tous les champs requis.'
+      });
+  }
+
+  const newBlog = new Blog({
+      titre,
+      description,
+      image,
+      auteur,
+      category
+  });
+
   try {
-    newBlog.save();
-    res.status(200).json({
-      success: true,
-      message: 'Success add blog'
-    });
+      await newBlog.save(); // Utiliser await ici pour attendre la sauvegarde
+      res.status(201).json({ // Utilisation du code HTTP 201 pour une ressource nouvellement créée
+          success: true,
+          message: 'Blog ajouté avec succès'
+      });
   } catch (error) {
-    res.status(400).json({
-      message: error,
-    });
+      res.status(400).json({
+          success: false,
+          message: error.message // Retourner seulement le message d'erreur
+      });
   }
 });
-
 router.get('/getAllBlog', async (req, res) => {
   try {
     const blogs = await Blog.find({}); // Récupération des blogs à partir de la base de données
