@@ -2,20 +2,28 @@ const express =require('express')
 const mongoose = require('mongoose');
 const router =express.Router()
 const Cours =require('../models/coursModel')
-const Chapitre= require ('../models/chapitreModel')
+const Chapitre= require ('../models/chapitreModel');
+const { updloadsFiles } = require('../middleware/multer');
 
-router.post('/addCours', async (req, res) => {
-  try {
-    const { name, description, image } = req.body;
-    if (!name || !description || !image) {
-      return res.status(400).json({ message: 'Tous les champs sont requis' });
-    }
-    const cours = new Cours({ name, description, image });
-    await cours.save();
-    res.status(201).json({ message: 'Cours ajouté avec succès' });
-  } catch (error) {
-    res.status(400).json({ message: 'Erreur lors de l\'ajout du cours' });
-  }
+//code add cours plus fonctionnel que jamais
+
+router.post('/addCours',updloadsFiles, async (req, res) => {
+
+    const { name, description,duration,category } = req.body;
+    const image = req.file
+
+    await Cours.create({
+      name,
+      description,
+      duration,
+      category,
+      image: image?.path,
+    });
+    res.status(201).json({
+      message:"cours cree avec success "
+    });
+   
+    
 });
 
 

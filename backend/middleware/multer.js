@@ -1,19 +1,16 @@
-import multer from "multer";
-import {v4 as uuid} from 'uuid'
+const multer = require('multer');
+const { v4: uuid } = require('uuid');
 
-const storage = multer .diskStorage({
-
-    destination(req, file ,cb ){
-
+const storage = multer.diskStorage({
+    destination(req, file, cb) {
         cb(null, "uploads")
     },
-    filename(req,file, cb ){
+    filename(req, file, cb) {
         const id = uuid();
-        const extName= file.originalname.splite(".").pop();
-        const filename=`${id}.${extName}`
-        cb(null,filename);
-
+        const extName = file.originalname.split(".").pop();
+        const filename = `${id}.${extName}`
+        cb(null, filename);
     },
 });
 
-export const updloadsFiles=multer({storage}).single("file")
+module.exports.updloadsFiles = multer({ storage }).single("file");

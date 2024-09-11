@@ -1,37 +1,60 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blogModel');
-router.post('/addBlog', async (req, res, next) => {
-  const { titre, description, image, auteur, category } = req.body;
+const { updloadsFiles } = require('../middleware/multer');
 
-  // Vérifiez que toutes les données requises sont présentes 
-  if (!titre || !description || !image || !auteur) {
-      return res.status(400).json({
-          success: false,
-          message: 'Veuillez fournir tous les champs requis.'
-      });
-  }
 
-  const newBlog = new Blog({
-      titre,
-      description,
-      image,
-      auteur,
-      category
+// router.post('/addBlog', async (req, res, next) => {
+//   const { titre, description, image, auteur, category } = req.body;
+
+//   // Vérifiez que toutes les données requises sont présentes 
+//   if (!titre || !description || !image || !auteur) {
+//       return res.status(400).json({
+//           success: false,
+//           message: 'Veuillez fournir tous les champs requis.'
+//       });
+//   }
+
+//   const newBlog = new Blog({
+//       titre,
+//       description,
+//       image,
+//       auteur,
+//       category
+//   });
+
+//   try {
+//       await newBlog.save(); // Utiliser await ici pour attendre la sauvegarde
+//       res.status(201).json({ // Utilisation du code HTTP 201 pour une ressource nouvellement créée
+//           success: true,
+//           message: 'Blog ajouté avec succès'
+//       });
+//   } catch (error) {
+//       res.status(400).json({
+//           success: false,
+//           message: error.message // Retourner seulement le message d'erreur
+//       });
+//   }
+// });
+
+
+router.post('/addBlog',updloadsFiles, async (req, res) => {
+
+  const { titre, description, auteur, category } = req.body;
+  const image = req.file
+
+  await Blog.create({
+    titre,
+    description,
+    auteur,
+    category,
+    image: image?.path,
   });
-
-  try {
-      await newBlog.save(); // Utiliser await ici pour attendre la sauvegarde
-      res.status(201).json({ // Utilisation du code HTTP 201 pour une ressource nouvellement créée
-          success: true,
-          message: 'Blog ajouté avec succès'
-      });
-  } catch (error) {
-      res.status(400).json({
-          success: false,
-          message: error.message // Retourner seulement le message d'erreur
-      });
-  }
+  res.status(201).json({
+    message:"Blog ajouter ave success "
+  });
+ 
+  
 });
 router.get('/getAllBlog', async (req, res) => {
   try {

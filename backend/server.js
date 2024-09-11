@@ -74,6 +74,9 @@ app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/event', require('./routes/eventRoutes'));
 app.use('/api/company', require('./routes/companyRoutes'));
 
+
+app.use("/uploads", express.static("uploads"))
+
 app.get('/', (req, res) => {
   res.send("<h1>Hello from our server nodemon</h1>");
 });

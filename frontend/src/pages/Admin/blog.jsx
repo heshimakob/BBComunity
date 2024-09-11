@@ -45,7 +45,7 @@ const Blog = () => {
           
           reader.readAsDataURL(file); // Lire le fichier comme une URL de données
       } else {
-          console.error('Aucune image sélectionnée');
+          console.error('Aucune image sélectionnée'); 
       }
   };
 
