@@ -25,16 +25,16 @@ const SoftwareDeveloper = () => {
     <div>
       <NavBar/>
       <Sidebar/>
-          <div className="bg-white min-h-screen py-12 px-6">
+          <div  className="container mx-auto w-full h-screen p-4 pt-20">
             <div className="max-w-7xl mx-auto">
               <div className="flex justify-between items-center py-12 px-6">
-                <div className="w-2/3">
-                  <h1 className="text-4xl font-bold text-gray-800 mb-6">Apprentissage de developpemnt logiciel</h1>
+                <div className="w-[75%]">
+                  <h1 className="text-4xl font-bold text-gray-800 mb-6">Apprentissage det developpemnt personnel</h1>
                   <p className="text-gray-600 mb-12">
-                    Gagnant du potentiel et des qualites vous produire de logicel hors normes.
+                    Gagnant du potentiel et des qualites enfin de denicher de talents hors normes.
                   </p>
                 </div>
-                <div className="w-1/2">
+                <div className="w-[25%]">
                   <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH1t9B2bcBn8RpB9T_Mpk_ixrvbUPFADIj6g&s://www.shutterstock.com/image-vector/illustration-learning-with-computer-260nw-2076016010.jpg"
                     alt="Learn"
@@ -53,55 +53,68 @@ const SoftwareDeveloper = () => {
 
              
              
-                <div className="border-t border-gray-200">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2 mt-4">Active</h3>
-                  {courses.map((course) => (
-                    <div
-                      key={course._id}
-                      className="flex items-center justify-between py-4 border-b border-gray-200"
-                    >
-                      <div className="flex items-center">
-                        <FaCode className="text-blue-500 mr-3" size={24} />
-                        <div>
-                        <Link to={`/modulePage/${course._id}`}>
-                          <h4 className="text-base font-bold text-gray-800">
-                            {course.name}
-                          </h4>
-                          </Link>
-                          <p className="text-sm text-gray-600">{course.description}</p>
-                        </div>
-                      </div>
-                      <div className="relative w-16 h-16">
-                        <svg
-                          className="absolute top-0 left-0 w-full h-full"
-                          viewBox="0 0 100 100"
-                        >
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="45"
-                            stroke="#e2e8f0"
-                            strokeWidth="10"
-                            fill="transparent"
-                          />
-                          <circle
-                            cx="50"
-                            cy="50"
-                            r="45"
-                            stroke="#4ade80"
-                            strokeWidth="10"
-                            fill="transparent"
-                            strokeDasharray={282.7433388230814}
-                            strokeDashoffset={282.7433388230814 - (282.7433388230814 * course.progress) / 100}
-                          />
-                        </svg>
-                        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
-                          {course.progress}%
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="flex flex-wrap justify-center mb-4">
+  {courses.map((course) => (
+    <div
+      key={course._id}
+      className="w-full md:w-1/2 xl:w-1/3 p-6"
+    >
+      <Link to={`/modulePage/${course._id}`}>
+        <div className="bg-white rounded shadow-md">
+          <div className="px-4 py-5">
+            <div className='flex justify-between'>
+            <h4 className="text-lg font-bold text-gray-800 mb-2">
+              {course.name}
+            </h4>
+            <span className="flex justify-between bg-blue-800 text-sm text-white rounded" > Duree :<p className='text-white '>{course.duration} heures</p></span>
+            
+            </div>
+            <img src={course.image} alt={course.name} className="w-full h-48 object-cover mb-2" />
+           
+           <div className='flex justify-between'>
+           <p className="text-sm text-gray-600">{course.description}</p>
+           <span className="flex justify-between bg-red-600 text-sm text-white rounded" > Categorie :<p className='text-white '>{course.category}</p></span>
+           </div>
+           
+          </div>
+          <div className="px-4 py-3 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <FaCode className="text-blue-500 mr-3" size={24} />
+              <div className="relative w-16 h-16">
+                <svg
+                  className="absolute top-0 left-0 w-full h-full"
+                  viewBox="0 0 100 100"
+                >
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    stroke="#e2e8f0"
+                    strokeWidth="10"
+                    fill="transparent"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    stroke="#4ade80"
+                    strokeWidth="10"
+                    fill="transparent"
+                    strokeDasharray={282.7433388230814}
+                    strokeDashoffset={282.7433388230814 - (282.7433388230814 * course.progress) / 100}
+                  />
+                </svg>
+                <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
+                  {course.progress}%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </div>
+  ))}
+</div>
 
            
 
