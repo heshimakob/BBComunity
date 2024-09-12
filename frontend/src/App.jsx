@@ -29,7 +29,8 @@ import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
 import MachineLearning from "./pages/Member/cours/MachineLearning"
 import ModulePage from "./pages/Member/component/ModulePage"
 import ErrorPage from "./components/ErrorPage"
-import PrivateRoutes from "./components/PrivateRoutes"
+import PrivateRoutes, { AdminRoutes } from "./components/PrivateRoutes"
+import MemberRoutes from "./components/PrivateRoutes"
 import DashboardMember from "./pages/Member/DashboardMember"
 
 
@@ -67,19 +68,19 @@ function App() {
 
 
 <Route element={<PrivateRoutes/>}>
-  <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
-  <Route path='/member/dashboard' element={<DashboardMember/>}/>
+  {/* <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
+
 
 
   <Route path='/admin/courses' element={<Courses/>}/>
-  <Route path='/member/cours' element={<CoursMember/>}/>
-
-  <Route  exact path='/member/cours/software-developer' element={<SoftwareDeveloper/>}/>
-  <Route path='/modulepage/:id' element={<ModulePage/>}/>
 
 
+ 
+ 
 
-  <Route path='/member/profile' element={<ProfilesMember/>}/>
+
+
+
 
   <Route path='/admin/annoncement' element={<Annoncement/>}/>
   <Route path='/admin/challenge' element={<Challenge/>}/>
@@ -87,8 +88,33 @@ function App() {
   <Route path='/admin/blog' element={<Blog/>}/>
   <Route path='/admin/users' element={<Users/>}/>
   <Route path='/admin/member' element={<Member/>}/>
-  <Route path='/admin/settings' element={<SettingsProfile/>}/>
+  <Route path='/admin/settings' element={<SettingsProfile/>}/> */}
+
+<Route element={<AdminRoutes />}>
+                        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+                        <Route path='/admin/courses' element={<Courses />} />
+                        <Route path='/admin/annoncement' element={<Annoncement />} />
+                        <Route path='/admin/challenge' element={<Challenge />} />
+                        <Route path='/admin/users' element={<Users />} />
+                        {/* Ajoutez toutes les routes admin ici */}
+                    </Route>
+
+
+
+                    <Route element={<MemberRoutes />}>
+<Route path='/member/dashboard' element={<DashboardMember />} />
+<Route path='/member/profile' element={<ProfilesMember/>}/>
+<Route path='/member/cours' element={<CoursMember/>}/>
+<Route path='/modulepage/:id' element={<ModulePage/>}/>
+<Route  exact path='/member/cours/software-developer' element={<SoftwareDeveloper/>}/>
+
 </Route>
+
+
+
+
+                        {/* Ajoutez toutes les routes membre ici */}
+                    </Route>
 {/* private admin  page access */}
 
 {/* <Route exact path="/admin/dashboard" element={
@@ -142,77 +168,7 @@ function App() {
 } /> */}
 
 
-<Route exact path="/admin/events" element={
-  <PrivateRoutes>
-    <Event/>
-  </PrivateRoutes>
-} />
 
-
-<Route exact path="/admin/company" element={
-  <PrivateRoutes>
-    <Company/>
-  </PrivateRoutes>
-} />
-
-
-
-
-
-
-{/* private member page access */}
-
-
-
-<Route exact path="/member/annonce" element={
-  <PrivateRoutes>
-    <AnnoncementMember />
-  </PrivateRoutes>
-} />
-
-
-{/* <Route exact path="/member/dashboard" element={
-  <PrivateRoutes>
-    <DashboardMember />
-  </PrivateRoutes>
-} /> */}
-
-
-<Route path="/member/dashboard" element={
-  <PrivateRoutes>
-    <DashboardMember />
-  </PrivateRoutes>
-} />
-
-
-{/* <Route exact path="/member/cours" element={
-  <PrivateRoutes>
-    <CoursMember />
-  </PrivateRoutes>
-} /> */}
-
-
-<Route exact path="/member/profile" element={
-  <PrivateRoutes>
-    <ProfilesMember />
-  </PrivateRoutes>
-} />
-
-<Route exact path="/member/software-developer" element={
-  <PrivateRoutes>
-    <SoftwareDeveloper />
-  </PrivateRoutes>
-} />
-<Route exact path="/member/machine-learning" element={
-  <PrivateRoutes>
-    <MachineLearning />
-  </PrivateRoutes>
-} />
-<Route exact path="/modulepage/:id" element={
-  <PrivateRoutes>
-    <ModulePage />
-  </PrivateRoutes>
-} />
 
 
 

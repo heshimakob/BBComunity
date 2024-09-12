@@ -58,16 +58,22 @@ router.post('/addBlog',updloadsFiles, async (req, res) => {
 });
 router.get('/getAllBlog', async (req, res) => {
   try {
-    const blogs = await Blog.find({}); // Récupération des blogs à partir de la base de données
-    if (blogs.length === 0) {
-      return res.status(404).json({ message: "Aucun blog trouvé." }); // Gestion du cas où aucun blog n'est trouvé
-    }
-    res.json(blogs); // Envoi des blogs au client
+      const blogs = await Blog.find(); // Retrait de .populate('author')
+      const formattedBlogs = blogs.map(blog => ({
+          ...blog.toObject(),
+          image: `http://localhost:8080/${blog.image}`, // Assurez-vous que `blog.image` contient seulement le nom du fichier
+      }));
+      
+      if (!formattedBlogs.length) {
+          res.status(404).json({ message: 'Aucun blog trouvé' });
+      } else {
+          res.status(200).json(formattedBlogs);
+      }
   } catch (error) {
-    res.status(500).json({ message: error.message }); // Gestion des erreurs
+      console.error(error);
+      res.status(500).json({ message: 'Erreur lors de la récupération des blogs', erreur: error.message });
   }
 });
-
 router.get('/getRecentBlog', async (req, res) => {
   try {
     const data = await Blog.find().sort({ createdAt: -1 }).limit(3);

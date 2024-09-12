@@ -1,11 +1,13 @@
 const Loading = () => {
   return (
-    <div className='dots-container'>
-      <div className='dot'></div>
-      <div className='dot'></div>
-      <div className='dot'></div>
-      <div className='dot'></div>
-      <div className='dot'></div>
+    <div className="flex justify-center items-center h-screen">
+      <div className="flex flex-row lds-ellipsis">
+        <div className="bg-blue-900 w-4 h-4 rounded-full animate-pulse delay-100"></div>
+        <div className="bg-blue-900 w-4 h-4 rounded-full animate-pulse delay-200"></div>
+        <div className="bg-blue-900 w-4 h-4 rounded-full animate-pulse delay-300"></div>
+        <div className="bg-blue-900 w-4 h-4 rounded-full animate-pulse delay-400"></div>
+        <div className="bg-blue-900 w-4 h-4 rounded-full animate-pulse delay-500"></div>
+      </div>
     </div>
   );
 };

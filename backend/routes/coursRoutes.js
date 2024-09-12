@@ -30,17 +30,20 @@ router.post('/addCours',updloadsFiles, async (req, res) => {
 router.get('/getAllCours', async (req, res) => {
   try {
     const cours = await Cours.find().populate('chapitres');
-    if (!cours) {
+    const formattedCours = cours.map(course => ({
+      ...course.toObject(),
+      image: `http://localhost:8080/${course.image}`, // Assurez-vous que `course.image` contient seulement le nom du fichier
+    }));
+    if (!formattedCours.length) {
       res.status(404).json({ message: 'Aucun cours trouvé' });
     } else {
-      res.status(200).json(cours);
+      res.status(200).json(formattedCours);
     }
   } catch (error) {
-    console.error(error); // Affiche l'erreur dans la console
+    console.error(error);
     res.status(500).json({ message: 'Erreur lors de la récupération des cours', erreur: error.message });
   }
 });
-
 
 //chapitre completed
 

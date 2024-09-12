@@ -19,38 +19,37 @@ const SignIn  =()=>{
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return dispatch(signInFailure('Please fill all the fields'));
+        return dispatch(signInFailure('Please fill all the fields'));
     }
     try {
-      setLoading(true);
-      const res = await fetch('http://localhost:8080/api/users/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        dispatch(signInFailure(data.message));
-      } else {
-        dispatch(signInSuccess(data));
-        if (data.user.isAdmin) {
-          navigate('/admin/dashboard');
-          toast.success('Connexion avec succès!');
+        setLoading(true);
+        const res = await fetch('http://localhost:8080/api/users/signin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify(formData),
+        });
+        const data = await res.json();
+        if (data.success === false) {
+            dispatch(signInFailure(data.message));
         } else {
-          navigate('/member/dashboard');
-          toast.success('Votre demande d\'engagement a été envoyée avec succès!');
+            dispatch(signInSuccess(data));
+            if (data.user.isAdmin) {
+                navigate('/admin/dashboard'); // Pour les admins
+                toast.success('Connexion réussie en tant qu\'admin!');
+            } else {
+                navigate('/member/dashboard'); // Pour les membres
+                toast.success('Connexion réussie en tant que membre!');
+            }
         }
-      }
     } catch (error) {
-      dispatch(signInFailure(error.message));
+        dispatch(signInFailure(error.message));
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
-
+};
  
 
 
