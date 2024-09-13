@@ -41,17 +41,14 @@ router.post('/register', async (req, res) => {
       res.status(400).json({ message: error.message });
   }
 });
+router.post('/logout', async (req, res) => {
+  // Si vous utilisez un mécanisme de stockage de session, supprimez le token ici
+  // Par exemple, la suppression du token du client peut suffire.
+  
+  res.status(200).json({ message: 'Déconnexion réussie.' });
+});
 
 
-  router.post('/signout',async(res,req,next)=>{
-    try {
-      
-      
-    } catch (error) {
-      
-    }
-
-  })
 
 
 

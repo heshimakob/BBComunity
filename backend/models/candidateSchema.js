@@ -10,18 +10,26 @@ const candidateSchema= mongoose.Schema({
         type:String,
         required:[true, 'Contenu du cours is required']
     },
-    pays:{
+    domaine:{
         type:String,
         required:[true, 'le pays est rquis']
     },
-    numero:{
+    genre:{
+        type:String,
+        required:[true, 'le pays est rquis']
+    },
+    phoneNumber:{
+        type:String,
+        required:[true, 'le numero de telephone requis']
+    },
+    password:{
         type:String,
         required:[true, 'le numero de telephone requis']
     }
   
    
-}, {timeStamps:true})
+}, {timestamps:true})
 
 
 
-module.exports =mongoose.model('candidate',candidateSchema)
+module.exports =mongoose.model('Candidate',candidateSchema)

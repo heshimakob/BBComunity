@@ -7,6 +7,7 @@ import { BsGraphUp, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGea
 
 import { signoutSuccess } from '../../store/userSlice';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 const SidebarContainer = styled.div`
   position: fixed;
   top: 60px; /* Adjusted to account for navbar height */
@@ -59,33 +60,26 @@ const StyledLink = styled(Link)`
 
 
 const Sidebar=()=> {
-  const dispatch=useDispatch()
+ 
 
-  const handleSignout=async()=>{
+  const handleLogout = async () => {
     try {
-      const res= await fetch("http://localhost/api/users/signout",{
-        method: 'POST',
+        // Effectuer la requête de déconnexion vers le serveur
+        await axios.post('http://localhost:8080/api/users/logout');
+        
+        // Supprimez le token JWT du stockage du navigateur
+        localStorage.removeItem('token'); // ou sessionStorage.removeItem('token');
 
-      });
-      const data= await res.json();
-      if (!res.ok){
-        console.log(data.message);
-      }else{
-        dispatch(signoutSuccess());
-      }
+        // Optionnel : Rediriger l'utilisateur vers la page de connexion, par exemple
+        window.location.href = '/signin';
+        alert("Vous êtes déconnecté.");
     } catch (error) {
-      console.log(error.message)
-      
+        console.error("Erreur lors de la déconnexion:", error);
     }
-  }
-    const [isOpen,setIsOpen]= useState(true);
-
-    const toggleSidebar=()=>{
-        setIsOpen(!isOpen);
-    }
+};
 
   return ( 
-    <SidebarContainer isOpen={isOpen}>
+    <SidebarContainer >
         {/* <SidebarHeader>
             <Logo src={B}/>
         </SidebarHeader> */}
@@ -141,7 +135,7 @@ const Sidebar=()=> {
         </SidebarNavItem>
         <SidebarNavItem>
             <SidebarIcon> <BsGraphUp/></SidebarIcon>
-            <StyledLink onClick={() => handleSignout()}> Deconnexion</StyledLink>
+            <StyledLink onClick={handleLogout}> Deconnexion</StyledLink>
         </SidebarNavItem>
         </SidebarNav>
     </SidebarContainer>

@@ -5,12 +5,13 @@ import B from "../../assets/B.png"
 import { BsGraphUp, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare, BsAlarm, BsChat, BsPersonFillCheck, BsMenuApp, BsDash, BsThreeDots, BsBarChart, BsBarChartLine, BsDistributeHorizontal, BsDot, BsSendDash, BsUpload, BsArrowLeft } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { signoutSuccess } from '../../store/userSlice';
+import axios from 'axios';
 
 const SidebarContainer = styled.div`
   position: fixed;
   top: 60px; /* Adjusted to account for navbar height */
   left: 0;
-  width: ${({ isOpen }) => (isOpen ? '150px' : '70px')};
+  width: 150px;
   height: calc(100% - 60px); /* Adjusted to account for navbar height */
   background-color: #333; /* Dark blue background */
   color: white;
@@ -51,21 +52,24 @@ const StyledLink = styled(Link)`
 `;
 
 const Sidebar=()=> {
-  const dispatch = useDispatch();
-    const [isOpen,setIsOpen]= useState(true);
+  const handleLogout = async () => {
+    try {
+        // Effectuer la requête de déconnexion vers le serveur
+        await axios.post('http://localhost:8080/api/users/logout');
+        
+        // Supprimez le token JWT du stockage du navigateur
+        localStorage.removeItem('token'); // ou sessionStorage.removeItem('token');
 
-    const toggleSidebar=()=>{
-        setIsOpen(!isOpen);
+        // Optionnel : Rediriger l'utilisateur vers la page de connexion, par exemple
+         window.location.href = '/signin';
+        alert("Vous êtes déconnecté.");
+    } catch (error) {
+        console.error("Erreur lors de la déconnexion:", error);
     }
-
-    const handleLogout = () => {
-      dispatch(signoutSuccess());
-        // localStorage.removeItem('currentUser');
-        window.location.href = '/signin'; // Redirige vers la page de connexion
-    }
+};
 
   return ( 
-    <SidebarContainer isOpen={isOpen}>
+    <SidebarContainer>
     
     
          <SidebarNav>

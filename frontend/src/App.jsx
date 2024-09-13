@@ -24,7 +24,7 @@ import ChallengeMember from "./pages/Member/ChallengeMember"
 
 // import CoursMember from "./pages/Member/CoursMember"
 import BlogPage from "./components/blog/BlogPage"
-import AdminRegister from "./components/AdminRegister"
+import AdminRegister from "./components/Register"
 // import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
 
 // import ModulePage from "./pages/Member/component/ModulePage"
@@ -42,6 +42,7 @@ import DashboardMember from "./pages/Member/DashboardMember";
 import Courses from "./pages/Admin/Courses";
 import Annoncement from "./pages/Admin/Annoncement";
 import Blog from "./pages/Admin/blog";
+import Register from "./components/Register";
 
 
 
@@ -70,7 +71,7 @@ function App() {
 
         {/* sigin pages  */}
          <Route   path="/signin" element= {<SignIn/>} />
-         <Route  exact path="/register" element= {<AdminRegister/>} />
+         <Route  exact path="/register" element= {<Register/>} />
          <Route  exact path="/guest-signIn" element= {<GuestSignIn/>} />
 
 {/* 
