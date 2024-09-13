@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../store/userSlice';
-import NavBar from './NavBar';
+
 import Sidebar from './Sidebar';
 import { ClassesContainer, Content } from '../../styles/ClassesStyles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import NavBar from '../Admin/NavBar';
 
 const ProfilesMember = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const ProfilesMember = () => {
 
   return (
     <>
+      {/* <NavBar/> */}
       <NavBar/>
       <Sidebar />
       <ClassesContainer>

@@ -16,6 +16,8 @@ import Marque from './marque/Marque';
 import Service from './Service';
 import Informations from './Informations';
 import img from "../assets/img.jpg"
+import Learner from './Learner';
+import Category from './Category';
 
 const lorem = new LoremIpsum();
 
@@ -101,6 +103,8 @@ const Home =()=>{
 </div>
 </div>
 <div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
+  <Learner/>
+  <Category/>
 
 
   

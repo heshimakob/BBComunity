@@ -1,70 +1,155 @@
-import B from "../assets/B.png"
+// 
+
+// import React, { useState } from 'react';
+// import axios from 'axios';
+
+// 
+// import { Link, useNavigate } from 'react-router-dom';
+// import { signInStart,signInFailure,signInSuccess } from "../store/userSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// const SignIn  =()=>{
+//   // const [formData, setFormData] = useState({});
+//   const {email,setEmail}=useState();
+//   const {password,setPassword}=useState();
+//   const [loading, setLoading] = useState(false);
+//     const { error: errorMessage, user } = useSelector((state) => state.users);
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+//   };
+// //   const handleSubmit = async (e) => {
+// //     e.preventDefault();
+// //     if (!formData.email || !formData.password) {
+// //         return dispatch(signInFailure('Please fill all the fields'));
+// //     }
+// //     try {
+// //         setLoading(true);
+// //         const res = await fetch('http://localhost:8080/api/users/signin', {
+// //             method: 'POST',
+// //             headers: {
+// //                 'Content-Type': 'application/json',
+// //                 Accept: 'application/json'
+// //             },
+// //             body: JSON.stringify(formData),
+// //         });
+// //         const data = await res.json();
+// //         console.log(data)
+       
+// //         if (data.success === false) {
+// //             dispatch(signInFailure(data.message));
+           
+// //         } else {
+// //             dispatch(signInSuccess({data}));
+    
+         
+// //             if (data.user.isAdmin === false) {
+// //               navigate('/member/dashboard'); 
+             
+// //             } else if (data.user.isAdmin === true) {
+// //               navigate('/admin/dashboard'); 
+// //               toast.success('Connexion réussie en tant qu\'admin!');
+// //             } else {
+// //               navigate('/errorPage'); 
+// //               toast.error('Erreur de connexion!');
+// //             }
+// //         }
+// //     } catch (error) {
+// //         dispatch(signInFailure(error.message));
+// //     } finally {
+// //         setLoading(false);
+// //     }
+// // };
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   try {
+//     const response = await axios.post('http://localhost:8080/api/users/signin', {email, password });
+//     const { token, isAdmin } = response.data;
+//     dispatch(signInSuccess({ token, isAdmin }));
+//     localStorage.setItem('token', token);
+//     window.location.href = isAdmin ? '/admin/dashboard' : '/member/dashboard';
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+
+//     return(
+//       <div className='h-screen flex'>
+//      <div className=" h-screen w-1/3 p-20  mt-30 flex flex-col items-center ">
+//         {/* left */}
+     
+        
+          
+         
+        
+       
+//         {/* right */}
+
+     
+
+      
+//       </div>
+     
+//       <Toaster/>
+//     </div>
+  
+
+
+//     )
+// }
+
+// export default SignIn;
+
+
+
+
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { signInSuccess ,signInFailure} from '../store/userSlice';
+import { Link, useNavigate } from 'react-router-dom';
 import bglog from "../assets/bglog.jpeg"
 import toast,{Toaster} from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
-import { signInStart,signInFailure,signInSuccess } from "../store/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-const SignIn  =()=>{
-  const [formData, setFormData] = useState({});
-  const [loading, setLoading] = useState(false);
-    const { error: errorMessage, user } = useSelector((state) => state.users);
-  const dispatch = useDispatch();
+import B from "../assets/B.png"
+
+const Login = () => {
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
-  };
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { error: errorMessage, user } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password) {
-        return dispatch(signInFailure('Please fill all the fields'));
-    }
     try {
-        setLoading(true);
-        const res = await fetch('http://localhost:8080/api/users/signin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify(formData),
-        });
-        const data = await res.json();
-        if (data.success === false) {
-            dispatch(signInFailure(data.message));
-        } else {
-            dispatch(signInSuccess(data));
-            if (data.user.isAdmin) {
-                navigate('/admin/dashboard'); // Pour les admins
-                toast.success('Connexion réussie en tant qu\'admin!');
-            } else {
-                navigate('/member/dashboard'); // Pour les membres
-                toast.success('Connexion réussie en tant que membre!');
-            }
-        }
+      setLoading(true);
+      const response = await axios.post('http://localhost:8080/api/users/signin', { email, password });
+      const { token, isAdmin } = response.data;
+      dispatch(signInSuccess({ token, isAdmin }));
+      localStorage.setItem('token', token);
+      toast.success('Connexion réussie en tant que membre!');
+
+    
+      window.location.href = isAdmin ? '/admin-dashboard' : '/user-dashboard';
     } catch (error) {
-        dispatch(signInFailure(error.message));
-    } finally {
-        setLoading(false);
+      console.error(error);
     }
-};
- 
+  };
 
-
-    return(
-      <div className='h-screen flex'>
-     <div className=" h-screen w-1/3 p-20  mt-30 flex flex-col items-center ">
-        {/* left */}
-     
-        <div className="text-center flex flex-col items-center " >
+  return (
+<div className='h-screen flex'>
+<div className=" h-screen w-1/3 p-20  mt-30 flex flex-col items-center ">
+<div className="text-center flex flex-col items-center " >
         <h1 className="text-2xl text-gray-300  mb-10">Black Born Community</h1>      
           <img src={B} width="40%" height="200px"  />
       <h1 className="text-2xl mb-10">Se connecter</h1>
         </div>
 
-          <form  onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
             <div>
             <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
          Adresse mail* 
@@ -73,7 +158,7 @@ const SignIn  =()=>{
                 type='email'
                 placeholder='name@company.com'
                 id='email'
-                onChange={handleChange}
+                onChange={(e) => setEmail(e.target.value)}
 
                  className="w-full p-3 mb-6 border border-gray-200 rounded-md"
               />
@@ -86,7 +171,7 @@ const SignIn  =()=>{
                 type='password'
                 placeholder='**********'
                 id='password'
-                onChange={handleChange}
+                onChange={(e) => setPassword(e.target.value)}
                  className="w-full p-3 mb-6 border border-gray-200 rounded-md"
               />
             </div>
@@ -117,30 +202,26 @@ const SignIn  =()=>{
               {errorMessage}
             </span>
           )}
-        
-       
-        {/* right */}
-
-     
-
+          </div>
+           <div
+           className="bg-cover bg-center h-max md:h-screen w-2/3"
+           style={{
+             backgroundImage:  `url(${bglog})`,
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+           }}
+         >
+    
+         </div>
+         <Toaster/>
+         </div>
       
-      </div>
-      <div
-        className="bg-cover bg-center h-max md:h-screen w-2/3"
-        style={{
-          backgroundImage:  `url(${bglog})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
- 
-      </div>
-      <Toaster/>
-    </div>
-  
+    // <form onSubmit={handleSubmit}>
+    //   <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
+    //   <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+    //   <button type="submit">Login</button>
+    // </form>
+  );
+};
 
-
-    )
-}
-
-export default SignIn;
+export default Login;

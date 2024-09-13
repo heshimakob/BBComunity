@@ -93,17 +93,14 @@ const Sidebar=()=> {
 <SidebarNav>
 <SidebarNavItem>
   <SidebarIcon><BsGraphUp/></SidebarIcon>
-  <StyledLink to="/admin/dashboard">Dashboard</StyledLink>
+  <StyledLink to="/admin-dashboard">Dashboard</StyledLink>
 </SidebarNavItem>
 
         <SidebarNavItem>
             <SidebarIcon> <BsBook/></SidebarIcon>
-            <StyledLink to="/admin/courses"> Courses</StyledLink>
+            <StyledLink to="/admin-cours"> Courses</StyledLink>
         </SidebarNavItem>
-        <SidebarNavItem>
-            <SidebarIcon> <BsPerson/></SidebarIcon>
-            <StyledLink to="/admin/member"> Member</StyledLink>
-        </SidebarNavItem> 
+     
 
         <SidebarNavItem>
             <SidebarIcon> <BsAlarm/></SidebarIcon>
@@ -112,7 +109,7 @@ const Sidebar=()=> {
 
         <SidebarNavItem>
             <SidebarIcon> <BsAlarm/></SidebarIcon>
-            <StyledLink to="/admin/annoncement"> Annoncement</StyledLink>
+            <StyledLink to="/admin-annonce"> Annoncement</StyledLink>
         </SidebarNavItem>
         <SidebarNavItem>
             <SidebarIcon> <BsChat/></SidebarIcon>
@@ -120,7 +117,7 @@ const Sidebar=()=> {
         </SidebarNavItem>
         <SidebarNavItem>
             <SidebarIcon> <BsSendDash/></SidebarIcon>
-            <StyledLink to="/admin/blog"> Blog</StyledLink>
+            <StyledLink to="/admin-blog"> Blog</StyledLink>
         </SidebarNavItem>
         <SidebarNavItem>
             <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
@@ -134,7 +131,7 @@ const Sidebar=()=> {
 
         <SidebarNavItem>
             <SidebarIcon> <BsUpload/></SidebarIcon>
-            <StyledLink to="/admin/users"> Users</StyledLink>
+            <StyledLink to="/admin-users"> Users</StyledLink>
         </SidebarNavItem>
 
 

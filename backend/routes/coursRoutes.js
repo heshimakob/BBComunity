@@ -3,14 +3,46 @@ const mongoose = require('mongoose');
 const router =express.Router()
 const Cours =require('../models/coursModel')
 const Chapitre= require ('../models/chapitreModel');
-const { updloadsFiles } = require('../middleware/multer');
+// const { updloadsFiles } = require('../middleware/multer');
 
 //code add cours plus fonctionnel que jamais
 
-router.post('/addCours',updloadsFiles, async (req, res) => {
+// router.post('/addCours',updloadsFiles, async (req, res) => {
 
-    const { name, description,duration,category } = req.body;
-    const image = req.file
+//     const { name, description,duration,category } = req.body;
+//     const image = req.file
+
+//     await Cours.create({
+
+//     });
+//     res.status(201).json({
+//       message:"cours cree avec success "
+//     });
+   
+    
+// });
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Dossier où vous souhaitez stocker les fichiers
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname); // Vous pouvez personnaliser le nom si vous le souhaitez
+    }
+});
+
+const upload = multer({ storage: storage });
+
+router.post('/addCours', upload.single('image'), async (req, res) => {
+    const { name, description, duration, category } = req.body;
+    const image = req.file;
+
+    // Assurez-vous de vérifier si le fichier existe avant de l'utiliser
+    if (!image) {
+        return res.status(400).json({ message: "Image required" });
+    }
 
     await Cours.create({
       name,
@@ -19,11 +51,8 @@ router.post('/addCours',updloadsFiles, async (req, res) => {
       category,
       image: image?.path,
     });
-    res.status(201).json({
-      message:"cours cree avec success "
-    });
-   
-    
+
+    res.status(201).json({ message: "Cours added successfully" });
 });
 
 

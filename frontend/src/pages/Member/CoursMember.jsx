@@ -2,9 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaBookOpen, FaCode, FaUserCircle } from 'react-icons/fa';
+
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
-import NavBar from './NavBar';
+import NavBar from '../Admin/NavBar';
+
 
 const CoursMember = () => {
 
@@ -22,8 +24,11 @@ const CoursMember = () => {
       });
   }, []);
   return (
-    <div>
+    <>
+      {/* <NavBar/>
+      <Sidebar/> */}
       <NavBar/>
+
       <Sidebar/>
           <div  className="container mx-auto w-full h-screen p-4 pt-20">
             <div className="max-w-7xl mx-auto">
@@ -146,7 +151,7 @@ const CoursMember = () => {
       </div>
     </div>
       
-    </div>
+    </>
   )
 }
 

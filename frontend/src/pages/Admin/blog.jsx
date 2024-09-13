@@ -1,53 +1,52 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Sidebar from './Sidebar';
-import { addBlogToDB } from '../../store/blogSlice';
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 import NavBar from './NavBar';
+import axios from 'axios';
+import toast,{Toaster} from 'react-hot-toast';
+
 
 const Blog = () => {
     const [auteur, setAuteur] = useState('');
     const [titre, setTitre] = useState('');
-    const [contenu, setContenu] = useState('');
+    const [description, setescription] = useState('');
     const [image, setImage] = useState(null);
     const [categorie, setCategorie] = useState(''); // État pour la catégorie
     const { quill, quillRef } = useQuill();
 
-    const dispatch = useDispatch();
-
-    const registerHandler = (e) => {
+    const registerHandler = async (e) => {
         e.preventDefault();
-        const formData = {
-            titre: titre,
-            auteur: auteur,
-            contenu: quill.root.innerHTML,
-            image: image, // Image est désormais une chaîne encodée en Base64
-            categorie: categorie,
-        };
+        
+        // Créer un nouvel objet FormData
+        const formData = new FormData();
+        formData.append('titre', titre);
+        formData.append('auteur', auteur);
+        formData.append('description', quill.root.innerHTML); // Envoie le contenu du post
+        formData.append('category', categorie);
+        
+        // Si une image est sélectionnée, ajoutez-la au FormData
+        if (image) {
+            formData.append('image', image);
+        }
 
-        dispatch(addBlogToDB(formData)); // Passez l'objet formData au lieu de FormData
+        try {
+            // Envoyer à votre API Express
+            const response = await axios.post('http://localhost:8080/api/blogs/addBlog', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response.data);
+            toast.success('Vous avez ajoutez  un blog avec succès!');
+            // Vous pouvez également gérer les messages de succès ou réinitialiser le formulaire ici
+        } catch (error) {
+            toast.error('echec enregistrement');
+            console.error('Erreur lors de l\'ajout du post :', error);
+            // Gérer l'erreur si nécessaire
+        }
     };
-
-    const handleImageChange = (e) => {
-      if (e.target.files[0]) {
-          const file = e.target.files[0];
-          const reader = new FileReader();
-          
-          reader.onloadend = () => {
-              const base64String = reader.result;
-              if (typeof base64String === 'string' && base64String.startsWith('data:image')) {
-                  setImage(base64String); // Stocker l'image encodée en Base64
-              } else {
-                  console.error('L\'image n\'a pas été correctement convertie en Base64');
-              }
-          };
-          
-          reader.readAsDataURL(file); // Lire le fichier comme une URL de données
-      } else {
-          console.error('Aucune image sélectionnée'); 
-      }
-  };
 
     return (
         <>
@@ -69,11 +68,12 @@ const Blog = () => {
                             Ajouter une image*
                         </label>
                         <input
-                            type="file"
-                            accept=".jpeg, .png, .jpg"
-                            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                            onChange={handleImageChange} // Met à jour l'image
-                        />
+    type="file"
+    name="image"  // Ajoutez ce champ name
+    accept=".jpeg, .png, .jpg"
+    className="w-full p-3 mb-6 border border-gray-200 rounded-md"
+    onChange={(e) => setImage(e.target.files[0])} // Met à jour l'image
+/>
                         <label htmlFor="auteur" className="block text-gray-700 text-sm font-bold mb-2">
                             Nom auteur du post*
                         </label>
@@ -90,7 +90,7 @@ const Blog = () => {
                         <select
                             id="categorie"
                             className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                            value={categorie} // Ajoute une valeur pour le select
+                            value={categorie}
                             onChange={(e) => setCategorie(e.target.value)} // Met à jour la catégorie
                         >
                             <option value="">Choisir une catégorie</option>
@@ -115,6 +115,7 @@ const Blog = () => {
                         </div>
                     </form>
                 </div>
+                <Toaster/>
             </div>
             <NavBar />
             <Sidebar />

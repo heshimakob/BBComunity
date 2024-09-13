@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blogModel');
-const { updloadsFiles } = require('../middleware/multer');
+// const { updloadsFiles } = require('../middleware/multer');
 
 
 // router.post('/addBlog', async (req, res, next) => {
@@ -38,23 +38,57 @@ const { updloadsFiles } = require('../middleware/multer');
 // });
 
 
-router.post('/addBlog',updloadsFiles, async (req, res) => {
+// router.post('/addBlog',updloadsFiles, async (req, res) => {
 
-  const { titre, description, auteur, category } = req.body;
-  const image = req.file
+//   const { titre, description, auteur, category } = req.body;
+//   const image = req.file
 
-  await Blog.create({
-    titre,
-    description,
-    auteur,
-    category,
-    image: image?.path,
-  });
-  res.status(201).json({
-    message:"Blog ajouter ave success "
-  });
+//   await Blog.create({
+//     titre,
+//     description,
+//     auteur,
+//     category,
+//     image: image?.path,
+//   });
+//   res.status(201).json({
+//     message:"Blog ajouter ave success "
+//   });
  
   
+// });
+
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Dossier où vous souhaitez stocker les fichiers
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname); // Vous pouvez personnaliser le nom si vous le souhaitez
+    }
+});
+
+const upload = multer({ storage: storage });
+
+router.post('/addBlog', upload.single('image'), async (req, res) => {
+    const { titre, description, auteur, category } = req.body;
+    const image = req.file;
+
+    // Assurez-vous de vérifier si le fichier existe avant de l'utiliser
+    if (!image) {
+        return res.status(400).json({ message: "Image required" });
+    }
+
+    await Blog.create({
+        titre,
+        description,
+        auteur,
+        category,
+        image: image.path,
+    });
+
+    res.status(201).json({ message: "Blog added successfully" });
 });
 router.get('/getAllBlog', async (req, res) => {
   try {

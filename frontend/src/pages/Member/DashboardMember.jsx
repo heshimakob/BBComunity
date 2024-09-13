@@ -1,5 +1,5 @@
-import React from 'react'
-import Sidebar from './Sidebar'
+import React, { useEffect } from 'react'
+
 import { useState } from 'react';
 import {
   FaDatabase,
@@ -10,21 +10,41 @@ import {
   FaCommentAlt,
 } from 'react-icons/fa';
 
-  import NavBar from './NavBar';
+
 import { useSelector } from 'react-redux';
+import Sidebar from './Sidebar';
+import NavBar from '../Admin/NavBar';
+import axios from 'axios';
+
 
 const DashboardMember = () => {
   const { currentUser } = useSelector((state) => state.users);
+  const token = currentUser.token; // retrieve the token from the currentUser object
+  const [name, setName] = useState('');
+  const [showSurvey, setShowSurvey] = useState(false);
 
-  
-  const { user } = currentUser;
-  const [name, setName] = useState(user ? user.name : '');
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get('http://localhost/api/users/detailUser', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const { data } = response;
+        setName(data.name);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserDetails();
+  }, [token]);
 
-    const [showSurvey, setShowSurvey] = useState(false);
 
     return (
         <>
-        <NavBar/>
+  
+   <NavBar/>
  <Sidebar/>
      <div className="h-screen w-1/2 p-10  ml-32">
          
@@ -38,7 +58,7 @@ const DashboardMember = () => {
         </div>
         <div className="flex  mt-10">
           <h1 className="text-3xl font-bold">
-            Welcome, {user.name}
+            Welcome, {token.name}
           </h1>
         </div>
         <div className="flex justify mt-4">

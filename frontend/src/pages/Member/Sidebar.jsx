@@ -71,16 +71,16 @@ const Sidebar=()=> {
          <SidebarNav>
              <SidebarNavItem className={window.location.pathname === '/member/dashboarder' ? 'active' : ''}>
                   <SidebarIcon> <BsGraphUp/></SidebarIcon>
-                  <StyledLink to="/member/dashboard"> Dashboard</StyledLink>
+                  <StyledLink to="/user-dashboard"> Dashboard</StyledLink>
               </SidebarNavItem>
     
              <SidebarNavItem className={window.location.pathname === '/member/courser' ? 'active' : ''}>
                  <SidebarIcon> <BsBook/></SidebarIcon>
-                 <StyledLink to="/member/cours"> Apprendre</StyledLink>
+                 <StyledLink to="/member-cours"> Apprendre</StyledLink>
               </SidebarNavItem>
               <SidebarNavItem className={window.location.pathname === '/member/challenger' ? 'active' : ''}>
                  <SidebarIcon> <BsPerson/></SidebarIcon>
-                 <StyledLink to="/member/challenge"> Challenger</StyledLink>
+                 <StyledLink to="/challenge"> Challenger</StyledLink>
              </SidebarNavItem> 
     
              <SidebarNavItem className={window.location.pathname === '/member/annoncer' ? 'active' : ''}>
@@ -90,7 +90,7 @@ const Sidebar=()=> {
     
               <SidebarNavItem className={window.location.pathname === '/member/profiler' ? 'active' : ''}>
                  <SidebarIcon> <BsPerson/></SidebarIcon>
-                 <StyledLink to="/member/profile"> Profiler</StyledLink>
+                 <StyledLink to="/member-profile"> Profiler</StyledLink>
                </SidebarNavItem>
     
               <SidebarNavItem onClick={handleLogout}>

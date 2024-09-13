@@ -8,7 +8,9 @@ const initialState = {
   isLoggedIn: false,
   currentUser:null,
   loading:false,
-  isAdmin:false
+  isAdmin:false,
+  token: null,
+  
 };
 
 const userSlice = createSlice({
@@ -27,6 +29,8 @@ const userSlice = createSlice({
       state.currentUser= action.payload;
       state.loading=false;
       state.error=null;
+      state.token = action.payload.token;
+      state.isAdmin = action.payload.isAdmin;
     },
     signInFailure(state,action){
 
@@ -63,6 +67,8 @@ const userSlice = createSlice({
       state.currentUser=null;
       state.error= null;
       state.loading=false;
+      state.token = null;
+      state.isAdmin = false;
 
     },
     setError(state, action) {

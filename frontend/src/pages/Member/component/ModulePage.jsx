@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllChapterByCoursId } from '../../../store/coursSlice';
 import { Link, useParams } from 'react-router-dom';
-import Sidebar from "../Sidebar";
-import NavBar from '../NavBar';
+
+
 import { FaAngleRight, FaList } from 'react-icons/fa';
 import Loading from '../../../components/Loading';
+import Sidebar from '../Sidebar';
+import NavBar from '../../Admin/NavBar';
+
+// import Sidebar from '../Sidebar';
+// import NavBar from '../NavBar';
 
 const ModulePage = () => {
     const dispatch = useDispatch();
@@ -47,8 +52,9 @@ const ModulePage = () => {
 
     return (
         <>
-            <NavBar />
-            <Sidebar />
+          
+         <NavBar/>
+            <Sidebar/>
             <div className="container mx-auto w-full h-screen p-4 pt-20">
                 <div className="w-full flex items-center justify-center pt-10">
                     <div className="left w-[90%] h-screen justify-center items-center">
@@ -70,7 +76,7 @@ const ModulePage = () => {
                                 <div className='flex justify-between p-10 pt-10'>
                                     <div className='flex justify-between'>
                                         <button className='w-full justify-between bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded'>
-                                            <Link to="/member/cours">
+                                            <Link to="/member-cours">
                                                 <span>Tous les cours</span>
                                             </Link>
                                         </button>

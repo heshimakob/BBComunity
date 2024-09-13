@@ -3,35 +3,45 @@ import Home from '../src/components/Home'
 import ChooseUser from "./components/ChooseUser"
 import SignIn from "./components/Signin"
 import GuestSignIn from "./components/GuestSignin"
-import AdminDashboard from "./pages/Admin/Dashboard"
-import Challenge from "./pages/Admin/Challenge"
-import Annoncement from "./pages/Admin/Annoncement"
-import Courses from "./pages/Admin/Courses"
-import Cohorte from "./pages/Admin/Cohorte"
-import Blog from "./pages/Admin/blog"
+// import AdminDashboard from "./pages/Admin/Dashboard"
+// import Challenge from "./pages/Admin/Challenge"
+// import Annoncement from "./pages/Admin/Annoncement"
+// import Courses from "./pages/Admin/Courses"
+// import Cohorte from "./pages/Admin/Cohorte"
+// import Blog from "./pages/Admin/blog"
 import BlogSite from "./components/BlogSite"
 import CompanySite from "./components/CompanySite"
-import SettingsProfile from "./pages/Admin/SettingsProfile"
-import Event from "./pages/Admin/Event"
-import Company from "./pages/Admin/company"
-import Member from "./pages/Admin/Member"
-import Discussion from "./pages/Admin/Discussion"
+// import SettingsProfile from "./pages/Admin/SettingsProfile"
+// import Event from "./pages/Admin/Event"
+// import Company from "./pages/Admin/company"
+// import Member from "./pages/Admin/Member"
+// import Discussion from "./pages/Admin/Discussion"
 import Users from "./pages/Admin/Users"
 import Why from "./components/Why"
-import AnnoncementMember from "./pages/Member/AnnoncementMember"
+// import AnnoncementMember from "./pages/Member/AnnoncementMember"
 import ChallengeMember from "./pages/Member/ChallengeMember"
-import ProfilesMember from "./pages/Member/ProfilesMember"
+// import ProfilesMember from "./pages/Member/ProfilesMember"
 
-import CoursMember from "./pages/Member/CoursMember"
+// import CoursMember from "./pages/Member/CoursMember"
 import BlogPage from "./components/blog/BlogPage"
 import AdminRegister from "./components/AdminRegister"
-import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
-import MachineLearning from "./pages/Member/cours/MachineLearning"
-import ModulePage from "./pages/Member/component/ModulePage"
+// import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
+
+// import ModulePage from "./pages/Member/component/ModulePage"
 import ErrorPage from "./components/ErrorPage"
-import PrivateRoutes, { AdminRoutes } from "./components/PrivateRoutes"
-import MemberRoutes from "./components/PrivateRoutes"
-import DashboardMember from "./pages/Member/DashboardMember"
+
+// import MemberRoutes from "./components/PrivateRoutes"
+// import DashboardMember from "./pages/Member/DashboardMember"
+import PrivateRoutes from "./components/PrivateRoutes";
+// import UserDashboard from "./components/UserDashboard";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import CoursMember from "./pages/Member/CoursMember";
+import ModulePage from "./pages/Member/component/ModulePage";
+import ProfilesMember from "./pages/Member/ProfilesMember";
+import DashboardMember from "./pages/Member/DashboardMember";
+import Courses from "./pages/Admin/Courses";
+import Annoncement from "./pages/Admin/Annoncement";
+import Blog from "./pages/Admin/blog";
 
 
 
@@ -66,29 +76,34 @@ function App() {
 {/* 
          Dashboard routes */}
 
-
-<Route element={<PrivateRoutes/>}>
-  {/* <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
-
-
-
-  <Route path='/admin/courses' element={<Courses/>}/>
-
-
- 
- 
+{/* <Route element={<PrivateRoutes AdminRoutes />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        </Route>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/member/dashboard" element={<DashboardMember />} />
+        </Route> */}
 
 
 
 
+<Route element={<PrivateRoutes adminOnly />}>
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path='/admin-cours' element={<Courses/>}/>
+          <Route path='/admin-annonce' element={<Annoncement/>}/>
+          <Route path='/admin-users' element={<Users/>}/>
+          <Route path='/admin-blog' element={<Blog/>}/>
+        </Route>
 
-  <Route path='/admin/annoncement' element={<Annoncement/>}/>
-  <Route path='/admin/challenge' element={<Challenge/>}/>
-  <Route path='/admin/cohorte' element={<Cohorte/>}/>
-  <Route path='/admin/blog' element={<Blog/>}/>
-  <Route path='/admin/users' element={<Users/>}/>
-  <Route path='/admin/member' element={<Member/>}/>
-  <Route path='/admin/settings' element={<SettingsProfile/>}/> */}
+
+        <Route element={<PrivateRoutes />}>
+          <Route path="/user-dashboard" element={<DashboardMember />} />
+          <Route path='/member-cours' element={<CoursMember/>}/>
+          <Route path='/modulepage/:id' element={<ModulePage/>}/>
+          <Route path='/member-profile' element={<ProfilesMember/>}/>
+          <Route path='/challenge' element={<ChallengeMember/>}/>
+        </Route>
+{/* <Route element={<PrivateRoutes AdminRoutes/>}>
+
 
 <Route element={<AdminRoutes />}>
                         <Route path='/admin/dashboard' element={<AdminDashboard />} />
@@ -96,15 +111,15 @@ function App() {
                         <Route path='/admin/annoncement' element={<Annoncement />} />
                         <Route path='/admin/challenge' element={<Challenge />} />
                         <Route path='/admin/users' element={<Users />} />
-                        {/* Ajoutez toutes les routes admin ici */}
+                     
                     </Route>
 
 
 
                     <Route element={<MemberRoutes />}>
 <Route path='/member/dashboard' element={<DashboardMember />} />
-<Route path='/member/profile' element={<ProfilesMember/>}/>
-<Route path='/member/cours' element={<CoursMember/>}/>
+
+
 <Route path='/modulepage/:id' element={<ModulePage/>}/>
 <Route  exact path='/member/cours/software-developer' element={<SoftwareDeveloper/>}/>
 
@@ -113,59 +128,9 @@ function App() {
 
 
 
-                        {/* Ajoutez toutes les routes membre ici */}
-                    </Route>
-{/* private admin  page access */}
+                        
+                    </Route> */}
 
-{/* <Route exact path="/admin/dashboard" element={
-  <PrivateRoutes>
-    <AdminDashboard />
-  </PrivateRoutes>
-} /> */}
-
-{/* <Route exact path="/admin/annoncement" element={
-  <PrivateRoutes>
-    <Annoncement />
-  </PrivateRoutes>
-} /> */}
-{/* <Route exact path="/admin/challenge"  element={
-  <PrivateRoutes>
-    <Challenge />
-  </PrivateRoutes>
-} /> */}
-{/* <Route exact path="/admin/courses" element={
-  <PrivateRoutes>
-    <Courses />
-  </PrivateRoutes>
-} /> */}
-{/* <Route exact path="/admin/cohorte" element={
-  <PrivateRoutes>
-    <Cohorte />
-  </PrivateRoutes>
-} /> */}
-
-{/* <Route exact path="/admin/blog" element={
-  <PrivateRoutes>
-    <Blog/>
-  </PrivateRoutes>
-} /> */}
-{/* <Route exact path="/admin/users" element={
-  <PrivateRoutes>
-    <Users/>
-  </PrivateRoutes>
-} /> */}
-{/* <Route exact path="/admin/member" element={
-  <PrivateRoutes>
-    <Member/>
-  </PrivateRoutes>
-} /> */}
-
-
-{/* <Route exact path="/admin/settings" element={
-  <PrivateRoutes>
-    <SettingsProfile/>
-  </PrivateRoutes>
-} /> */}
 
 
 

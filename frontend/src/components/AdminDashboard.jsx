@@ -1,25 +1,19 @@
 import React,{useState, useEffect} from 'react'
-import Sidebar from "./Sidebar"
-import Courses from './Courses'
-import Annoncement from './Annoncement'
-import SettingsProfile from "./SettingsProfile"
-import Challenge from "./Challenge"
-import Performance from "./Performance"
-import Cohorte from './Cohorte'
-import Blog from './blog'
+import Sidebar from "../pages/Admin/Sidebar"
+
 
 import NavBar from './NavBar'
 import { useSelector } from 'react-redux'
 import { FaCommentAlt, FaDatabase, FaFileCode, FaGraduationCap, FaTrophy } from 'react-icons/fa'
 
 const AdminDashboard=()=> {
-  // const { currentUser } = useSelector((state) => state.users);
+  const { currentUser } = useSelector((state) => state.users);
 
   
-  // const { user } = currentUser;
-  // const [name, setName] = useState(user ? user.name : '');
+  const { user } = currentUser;
+  const [name, setName] = useState(user ? user.name : '');
 
-  //   const [showSurvey, setShowSurvey] = useState(false);
+    const [showSurvey, setShowSurvey] = useState(false);
 
     return (
         <>
@@ -37,7 +31,7 @@ const AdminDashboard=()=> {
         </div>
         <div className="flex  mt-10">
           <h1 className="text-3xl font-bold">
-            Welcome
+            Welcome, {user.name}
           </h1>
         </div>
         <div className="flex justify mt-4">

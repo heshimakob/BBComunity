@@ -2,34 +2,45 @@ const express =require('express')
 const mongoose = require('mongoose'); 
 const router =express.Router()
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User =require('../models/userModel')
 
+
+const generateToken = (user) => {
+  return jwt.sign(
+    { id: user._id, isAdmin: user.isAdmin },
+    'your_jwt_secret',
+    { expiresIn: '1d' }
+  );
+};
+
 router.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
-  
-    // Vérifier si l'adresse mail est déjà utilisée
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({
-        message: 'Adresse mail déjà utilisée',
-      });
-    }
-  
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password: hashedPassword });
-  
-    try {
+  const { name, email, password, isAdmin } = req.body;
+
+  // Vérification de la présence des données
+  if (!password) {
+      return res.status(400).json({ message: 'Le mot de passe est requis.' });
+  }
+
+  // Vérifier si l'adresse mail est déjà utilisée
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+      return res.status(400).json({ message: 'Adresse mail déjà utilisée' });
+  }
+
+  try {
+      const saltRounds = 10;
+      const salt = await bcrypt.genSalt(saltRounds);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      
+      const newUser = new User({ name, email, isAdmin, password: hashedPassword });
+      
       await newUser.save();
-      res.status(200).json({
-        success: true,
-        message: 'Success register',
-      });
-    } catch (error) {
-      res.status(400).json({
-        message: error,
-      });
-    }
-  });
+      res.status(200).json({ success: true, message: 'Successfully registered' });
+  } catch (error) {
+      res.status(400).json({ message: error.message });
+  }
+});
 
 
   router.post('/signout',async(res,req,next)=>{
@@ -101,28 +112,41 @@ router.put('/updateUser/:id', async (req, res) => {
 
 
 
+  // router.post('/signin', async (req, res) => {
+  //   const { email, password } = req.body;
+  //   const user = await User.findOne({ email });
+  
+  //   if (!user) {
+  //     return res.status(401).json({
+  //       message: 'Email ou mot de passe incorrect',
+  //     });
+  //   }
+  
+  //   const isValidPassword = await bcrypt.compare(password, user.password);
+  
+  //   if (!isValidPassword) {
+  //     return res.status(401).json({
+  //       message: 'Email ou mot de passe incorrect',
+  //     });
+  //   }
+  
+  //   res.status(200).json({
+  //     success: true,
+  //     user,
+  //   });
+  // });
+
+
   router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-  
-    if (!user) {
-      return res.status(401).json({
-        message: 'Email ou mot de passe incorrect',
-      });
+    
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = generateToken(user);
+      res.json({ token, isAdmin: user.isAdmin });
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });
     }
-  
-    const isValidPassword = await bcrypt.compare(password, user.password);
-  
-    if (!isValidPassword) {
-      return res.status(401).json({
-        message: 'Email ou mot de passe incorrect',
-      });
-    }
-  
-    res.status(200).json({
-      success: true,
-      user,
-    });
   });
   
   router.delete('/deleteUser/:id', async (req, res) => {
