@@ -76,7 +76,11 @@ const ModulePage = () => {
                                     autoPlay></video> // Message quand il n'y a pas de vidéo
                                 )}
                                 <h1>{selectedChapter.titre}</h1>
-                                <h3>{selectedChapter.contenu}</h3>
+                                <div 
+                                className='w-full text-xl h-full p-3 mb-6 text-justify items-center leading-7' 
+                                dangerouslySetInnerHTML={{ __html: selectedChapter.contenu }} 
+                            />
+                                {/* <h3>{selectedChapter.contenu}</h3> */}
                                 <div className='flex justify-between p-10 pt-10'>
                                     <div className='flex justify-between'>
                                         <button className='w-full justify-between bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded'>

@@ -5,6 +5,7 @@ import Sidebar from '../Sidebar';
 import NavBar from '../NavBar'; 
 import ReactQuill from 'react-quill'; 
 import 'react-quill/dist/quill.snow.css'; 
+import toast ,{Toaster} from 'react-hot-toast';
 
 function AddChapitre() { 
     const { id } = useParams(); 
@@ -32,6 +33,7 @@ function AddChapitre() {
                 }, 
             }); 
             console.log(response.data); 
+            toast.success("chapitre ajouter")
             setError(null); 
         } catch (error) { 
             setError(error.response ? error.response.data.erreur : 'Une erreur est survenue.'); 
@@ -47,23 +49,23 @@ function AddChapitre() {
                 <form onSubmit={handleSubmit}> 
                     <div className="mb-4"> 
                         <label htmlFor="idCours" className="block text-sm font-bold mb-2">ID du cours</label> 
-                        <input type="text" id="idCours" disabled value={idCours} onChange={(e) => setIdCours(e.target.value)} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
+                        <input type="text" id="idCours" required disabled value={idCours} onChange={(e) => setIdCours(e.target.value)} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
                     </div> 
                     <div className="mb-4"> 
                         <label htmlFor="titre" className="block text-sm font-bold mb-2">Titre du chapitre</label> 
-                        <input type="text" id="titre" value={titre} onChange={(e) => setTitre(e.target.value)} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
+                        <input type="text" id="titre"  required value={titre} onChange={(e) => setTitre(e.target.value)} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
                     </div> 
-                    <div className="mb-4"> 
+                    <div className="mb-4 "> 
                         <label htmlFor="description" className="block text-sm font-bold mb-2">Description du chapitre</label> 
-                        <ReactQuill value={contenu} onChange={setContenu} className="mb-6" /> 
+                        <ReactQuill  value={contenu} onChange={setContenu} className="mb-6 h-96" /> 
                     </div> 
                     <div className="mb-4"> 
                         <label htmlFor="lien" className="block text-sm font-bold mb-2">Lien du chapitre</label> 
-                        <input type="text" id="lien" value={lien} onChange={(e) => setLien(e.target.value)} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
+                        <input type="text" id="lien" required value={lien} onChange={(e) => setLien(e.target.value)} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
                     </div> 
                     <div className="mb-4"> 
                         <label htmlFor="video" className="block text-sm font-bold mb-2">Télécharger la vidéo</label> 
-                        <input type="file" id="video" accept="video/*" onChange={(e) => setVideo(e.target.files[0])} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
+                        <input type="file" id="video"  accept="video/*" onChange={(e) => setVideo(e.target.files[0])} className="w-full p-3 mb-6 border border-gray-200 rounded-md" /> 
                     </div> 
                     {error && ( 
                         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"> 
@@ -73,6 +75,7 @@ function AddChapitre() {
                     <button type="submit" className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"> Ajouter le chapitre </button> 
                 </form> 
             </div> 
+            <Toaster/>
         </> 
     ); 
 } 
