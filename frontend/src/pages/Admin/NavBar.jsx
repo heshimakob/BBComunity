@@ -11,7 +11,7 @@ const NavbarContainer = styled.div`
   left: 0;
   width: 100%;
   height: 70px;
-  background-color: #333; /* Dark blue background */
+  background-color:#1A1D23; /* Dark blue background */
   color: white;
   display: flex;
   align-items: center;

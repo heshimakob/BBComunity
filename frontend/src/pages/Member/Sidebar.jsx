@@ -13,7 +13,7 @@ const SidebarContainer = styled.div`
   left: 0;
   width: 150px;
   height: calc(100% - 60px); /* Adjusted to account for navbar height */
-  background-color: #333; /* Dark blue background */
+  background-color: #1A1D23; /* Dark blue background */
   color: white;
   overflow-y: auto; /* Enable vertical scrolling */
   padding-top: 20px;
