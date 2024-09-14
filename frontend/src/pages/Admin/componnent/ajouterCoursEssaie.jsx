@@ -99,7 +99,7 @@ function AjouterCours() {
             <div className="flex flex-wrap justify-center mb-4">
               {courses.map((course) => (
                 <div key={course._id} className="w-full md:w-1/2 xl:w-1/3 p-6">
-                  <Link>
+                  <Link to={`/addChapitre/${course._id}`}>
                     <div className="bg-white rounded shadow-md">
                       <div className="px-4 py-5">
                         <div className='flex justify-between'>

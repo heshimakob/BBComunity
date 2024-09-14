@@ -119,11 +119,23 @@ router.get('/getRecentBlog', async (req, res) => {
 
 router.get('/getBlog/:id', async (req, res) => {
   try {
-    const { id } = req.params;
-    const data = await Blog.findById(id);
-    res.status(200).json({ data: data });
+      const { id } = req.params;
+      const data = await Blog.findById(id);
+
+      if (!data) {
+          return res.status(404).json({ message: 'Blog non trouvé' });
+      }
+
+      // Formater les données pour inclure l'URL de l'image
+      const formattedData = {
+          ...data.toObject(),
+          image: `http://localhost:8080/${data.image}`, // Assurez-vous que `data.image` contient seulement le nom du fichier
+      };
+
+      res.status(200).json({ data: formattedData });
   } catch (error) {
-    res.status(500).json({ message: error.message }); // Gestion des erreurs
+      console.error(error);
+      res.status(500).json({ message: error.message }); // Gestion des erreurs
   }
 });
 

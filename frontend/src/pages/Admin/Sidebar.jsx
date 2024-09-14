@@ -12,7 +12,7 @@ const SidebarContainer = styled.div`
   position: fixed;
   top: 60px; /* Adjusted to account for navbar height */
   left: 0;
-  width: ${({ isOpen }) => (isOpen ? '150px' : '70px')};
+  width:150;
   height: calc(100% - 60px); /* Adjusted to account for navbar height */
   background-color: #333; /* Dark blue background */
   color: white;

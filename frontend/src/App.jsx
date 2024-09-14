@@ -43,6 +43,7 @@ import Courses from "./pages/Admin/Courses";
 import Annoncement from "./pages/Admin/Annoncement";
 import Blog from "./pages/Admin/blog";
 import Register from "./components/Register";
+import AddChapitre from "./pages/Admin/componnent/addChapitre";
 
 
 
@@ -93,6 +94,7 @@ function App() {
           <Route path='/admin-annonce' element={<Annoncement/>}/>
           <Route path='/admin-users' element={<Users/>}/>
           <Route path='/admin-blog' element={<Blog/>}/>
+          <Route path='/addChapitre/:id' element={<AddChapitre/>}/>
         </Route>
 
 
