@@ -56,7 +56,7 @@ const ModulePage = () => {
                         {selectedChapter ? (
                             <>
                                 {selectedChapter.video ? (  // Utilisez selectedChapter.video pour l'URL de la vidéo
-                                    <video
+                                    <video className='rounded-xl'
                                         src={selectedChapter.video}
                                         width={"100%"}
                                         controls
@@ -83,7 +83,7 @@ const ModulePage = () => {
                             />
                              </div>
                                 {/* <h3>{selectedChapter.contenu}</h3> */}
-                                <div className='flex justify-between p-10 pt-10'>
+                                <div className='flex justify-between p-20 pt-10'>
                                     <div className='flex justify-between'>
                                         <button className='w-full justify-between bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded'>
                                             <Link to="/member-cours">
@@ -116,18 +116,19 @@ const ModulePage = () => {
                         )}
                     </div>
                     <div className="fixed right-0 top-0 w-1/4 bg-white h-screen flex flex-col text-xl p-10">
-                    <div className=' w-full mt-20 bg-blue-900 text-white text-bold'>
-                        <h1>Nos chapitres disponibles</h1>
+                    <div className=' flex w-full mt-20 bg-blue-950 text-white h-16 justify-center items-center'>
+                        <h1 className='font-bold'>Nos chapitres disponibles</h1>
                     </div>
                      <div className='p-10 mb-10 '>
-                     <ul>
+                     <ul className='bg-blue-950  text-white p-10 font-sans rounded-lg'>
                             {chapterData.map((chapitre) => (
                                 <li key={chapitre._id}>
                                     <button
                                         onClick={() => handleChapterClick(chapitre)}
-                                        className={selectedChapter && selectedChapter._id === chapitre._id ? 'bg-blue-700 text-white rounded ' : ''}
+                                        className={selectedChapter && selectedChapter._id === chapitre._id ? 'bg-blue-700 text-white rounded  w-full' : ''}
                                     >
                                         {chapitre.titre}
+                                       
                                     </button>
                                 </li>
                             ))}

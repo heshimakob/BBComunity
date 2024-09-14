@@ -4,6 +4,7 @@ import axios from 'axios';
 import bglog from "../assets/bglog.jpeg";
 import { Link } from 'react-router-dom';
 import toast,{Toaster} from "react-hot-toast";
+import swal from "sweetalert";
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -39,7 +40,8 @@ const Register = () => {
         try {
             const response = await axios.post('http://localhost:8080/api/candidate/addCandidate', userData);
             console.log(response.data);
-            toast.success("demande d'inscription envoyer")
+            // toast.success("demande d'inscription envoyer")
+            swal("Demande!", "Demande envoyer", "success");
             resetForm();
             // Ajoutez éventuellement des alertes ou des redirections ici
         } catch (error) {

@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
 import Marque from './marque/Marque';
+import swal from 'sweetalert';
 
 const CompanySite = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,8 @@ const CompanySite = () => {
     };
     dispatch(addCompanyToDB(data))
       .then(() => {
-        toast.success('Votre demande d\'engagement a été envoyée avec succès!');
+        // toast.success('Votre demande d\'engagement a été envoyée avec succès!');
+        swal("Submitted!", "envoyer A bbc community", "success");
         resetForm();
       })
       .catch((error) => {
