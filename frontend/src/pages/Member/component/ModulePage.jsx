@@ -2,15 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllChapterByCoursId } from '../../../store/coursSlice';
 import { Link, useParams } from 'react-router-dom';
-
-
 import { FaAngleRight, FaList } from 'react-icons/fa';
 import Loading from '../../../components/Loading';
 import Sidebar from '../Sidebar';
 import NavBar from '../../Admin/NavBar';
-
-// import Sidebar from '../Sidebar';
-// import NavBar from '../NavBar';
+import chaptervide from "../../../assets/chaptervide.png"
 
 const ModulePage = () => {
     const dispatch = useDispatch();
@@ -47,22 +43,21 @@ const ModulePage = () => {
     };
 
     if (loading) {
-        return <Loading/>;
+        return <Loading />;
     }
 
     return (
         <>
-          
-         <NavBar/>
-            <Sidebar/>
+            <NavBar />
+            <Sidebar />
             <div className="container mx-auto w-full h-screen p-4 pt-20">
                 <div className="w-full flex items-center justify-center pt-10">
                     <div className="left w-[90%] h-screen justify-center items-center">
                         {selectedChapter ? (
                             <>
-                                {selectedChapter.lien && (
+                                {selectedChapter.video ? (  // Utilisez selectedChapter.video pour l'URL de la vidéo
                                     <video
-                                        src={`http://localhost:8080/api/cours/${selectedChapter.lien}`}
+                                        src={selectedChapter.video}
                                         width={"100%"}
                                         controls
                                         controlsList="nodownload noremoteplayback"
@@ -70,6 +65,15 @@ const ModulePage = () => {
                                         disableRemotePlayback
                                         autoPlay
                                     ></video>
+                                ) : (
+                                    <video 
+                                    src="#"
+                                    width={"100%"}
+                                    controls
+                                    controlsList="nodownload noremoteplayback"
+                                    disablePictureInPicture
+                                    disableRemotePlayback
+                                    autoPlay></video> // Message quand il n'y a pas de vidéo
                                 )}
                                 <h1>{selectedChapter.titre}</h1>
                                 <h3>{selectedChapter.contenu}</h3>
@@ -93,10 +97,18 @@ const ModulePage = () => {
                                 </div>
                             </>
                         ) : (
-                            <h1>Please select a chapter</h1>
+                            <div>
+                                <img src={chaptervide}/>
+                                <button className='w-full justify-between bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded'>
+                                            <Link to="/member-cours">
+                                                <span>Tous les cours</span>
+                                            </Link>
+                                        </button>
+
+                            </div>
                         )}
                     </div>
-                    <div className="right w-1/4 bg-gray-200 h-screen flex ">
+                    <div className="right w-1/4 bg-gray-200 h-screen flex">
                         <ul>
                             {chapterData.map((chapitre) => (
                                 <li key={chapitre._id}>

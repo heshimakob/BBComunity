@@ -3,24 +3,7 @@ const mongoose = require('mongoose');
 const router =express.Router()
 const Cours =require('../models/coursModel')
 const Chapitre= require ('../models/chapitreModel');
-// const { updloadsFiles } = require('../middleware/multer');
 
-//code add cours plus fonctionnel que jamais
-
-// router.post('/addCours',updloadsFiles, async (req, res) => {
-
-//     const { name, description,duration,category } = req.body;
-//     const image = req.file
-
-//     await Cours.create({
-
-//     });
-//     res.status(201).json({
-//       message:"cours cree avec success "
-//     });
-   
-    
-// });
 
 const multer = require('multer');
 
@@ -87,31 +70,30 @@ router.put('/:courseId/:chapterId', async (req, res) => {
 // Route pour ajouter un chapitre à un cours existant
 
 
-router.post('/addChapitreCours/:id', async (req, res) => {
+router.post('/addChapitreCours/:id', upload.single('video'), async (req, res) => {
   try {
-    // Récupérez le cours existant
-    const cours = await Cours.findById(req.params.id);
-    if (!cours) {
-      return res.status(404).json({ erreur: 'Cours non trouvé' });
-    }
+      // Récupérez le cours existant
+      const cours = await Cours.findById(req.params.id);
+      if (!cours) {
+          return res.status(404).json({ erreur: 'Cours non trouvé' });
+      }
 
-    // Créez un nouveau chapitre
-    const {titre,contenu,lien}=req.body
-    const chapitre = await Chapitre.create({
-      titre,
-      contenu,
-      lien,
-      cours: cours._id
-    });
-    res.status(201).json({
-      message: 'Chapitre ajouté avec succès',
-      chapitre
-    })
+      // Créez un nouveau chapitre
+      const { titre, contenu, lien } = req.body;
+      const videoPath = req.file ? req.file.path : null; // Vérifiez si la vidéo a été téléchargée
 
-   
+      const chapitre = await Chapitre.create({
+          titre,
+          contenu,
+          lien,
+          video: videoPath ? `http://localhost:8080/${videoPath}` : null, // Ajoutez le chemin vidéo au nouveau chapitre
+          cours: cours._id,
+      });
+
+      res.status(201).json({ message: 'Chapitre ajouté avec succès', chapitre });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ erreur: `Erreur lors de l'ajout du chapitre: ${err.message}` });
+      console.error(err);
+      res.status(500).json({ erreur: `Erreur lors de l'ajout du chapitre: ${err.message}` });
   }
 });
 

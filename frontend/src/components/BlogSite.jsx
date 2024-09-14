@@ -53,7 +53,14 @@ const BlogSite = () => {
         <div key={blog.id} className="bg-cover bg-center h-96 hover:scale-105 transition duration-300 ease-in-out  overflow-hidden m-4 p-4" style={{ backgroundImage: `url(${blog.image})` }}>
           <div className="flex flex-col justify-center h-full p-4">
          <Link className='text-white' to={`/blogPage/${blog._id}`}>   <h2 className="text-2xl font-bold text-white">{blog.titre}</h2>
-         <p className="text-gray-600 font-bold text-4xl font-weight-900 text-white">{blog.description.slice(0,100)} ...</p></Link>
+   
+         <div 
+  className='w-full h-full text-2xl p-3 mb-6 text-justify items-center leading-7' 
+>
+  {
+    blog.description.replace(/<[^>]+>/g, '').slice(20, 120)
+  }
+</div></Link>
           </div>
           <div className="flex justify-between p-4">
             <p className="text-gray-600 text-white">By {blog.auteur}</p>

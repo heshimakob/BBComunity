@@ -37,12 +37,14 @@ const BlogPage = () => {
                     {/* Affichage d'un blog avec ses contenus */}
                     <div className='container mx-auto px-4 pt-10'>
                         <div className="mx-auto flex flex-col justify-center items-center">
-                            <img className="h-96 w-full" src={Blog.image} alt={Blog.titre} />
-                            <h1>{Blog.titre}</h1>
-                            <h2>{Blog.createdAt}</h2>
+                            <img className="h-96 w-auto" src={Blog.image} alt={Blog.titre} />
+                           <div className='w-full justify-center'>
+                           <h1 className='text-bold text-2xl'>{Blog.titre}</h1>
+                           <h2 className='text-bold'>{Blog.createdAt}</h2>
+                           </div>
                             {/* Utilisation de dangerouslySetInnerHTML pour afficher le contenu HTML */}
                             <div 
-                                className='w-full h-full p-3 mb-6 text-justify items-center leading-7' 
+                                className='w-full text-xl h-full p-3 mb-6 text-justify items-center leading-7' 
                                 dangerouslySetInnerHTML={{ __html: Blog.description }} 
                             />
                         </div>
