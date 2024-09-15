@@ -43,6 +43,7 @@ const Register = () => {
             // toast.success("demande d'inscription envoyer")
             swal("Demande!", "Demande envoyer", "success");
             resetForm();
+            window.location.href = '/signin';
             // Ajoutez éventuellement des alertes ou des redirections ici
         } catch (error) {
             console.error('Erreur lors de l\'envoi des données', error);
@@ -54,7 +55,7 @@ const Register = () => {
         <div className="h-screen flex">
             <div className="h-screen w-1/3 p-20 mt-30 flex flex-col items-center">
                 <div className="text-center flex flex-col items-center">
-                    <h1 className="text-2xl text-gray-300 mb-10">Black Born Community</h1>
+                    <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1>
                     <img src={B} width="20%" height="200px" alt="Logo" />
                     <h1 className="text-2xl mb-10">S'enregister</h1>
                 </div>
@@ -89,7 +90,7 @@ const Register = () => {
                     <input
                         type="text"
                         id="phone-number"
-                        placeholder="Numero de telephone"
+                        placeholder="+243 999 412 974"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         required
@@ -125,12 +126,12 @@ const Register = () => {
                         <option value="Entreprenariat">Entreprenariat</option>
                     </select>
                     <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-                        Mot de pass*
+                        Mot de passe*
                     </label>
                     <input
                         type="password"
                         id="password"
-                        placeholder="Password"
+                        placeholder="Mot de passe"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -144,10 +145,13 @@ const Register = () => {
                     </button>
                 </form>
                 <div className="flex flex-col justify-center items-center">
-                    <span className='text-blue-500 hover:text-blue-700 font-bold pt-5 '>
+                    <span className='text-blue-500 hover:text-blue-700 font-bold pt-5 mb-10 '>
                         <Link to="/signin">Se connecter</Link>
                     </span>
                 </div>
+                <div className='mb-0 mt-auto text-center items-center'>
+          <p className=' text-gray-300  mb-10'>Black Born community @copyright 2024</p>
+         </div>
             </div>
             <div
                 className="bg-cover bg-center h-max md:h-screen w-2/3"

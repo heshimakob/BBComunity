@@ -114,6 +114,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import bglog from "../assets/bglog.jpeg"
 import toast,{Toaster} from 'react-hot-toast';
 import B from "../assets/B.png"
+import swal from "sweetalert";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -122,6 +123,11 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const { error: errorMessage, user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -131,11 +137,14 @@ const Login = () => {
       const { token, isAdmin } = response.data;
       dispatch(signInSuccess({ token, isAdmin }));
       localStorage.setItem('token', token);
-      toast.success('Connexion réussie en tant que membre!');
+      // toast.success('');
+      swal("Connecter!", "Connexion réussie!", "success");
 
     
       window.location.href = isAdmin ? '/admin-dashboard' : '/user-dashboard';
     } catch (error) {
+      swal("Connecter!", "Echec de connexion!", "error");
+      resetForm();
       console.error(error);
     }
   };
@@ -143,14 +152,14 @@ const Login = () => {
   return (
 <div className='h-screen flex'>
 <div className=" h-screen w-1/3 p-20  mt-30 flex flex-col items-center ">
-<div className="text-center flex flex-col items-center " >
-        <h1 className="text-2xl text-gray-300  mb-10">Black Born Community</h1>      
-          <img src={B} width="40%" height="200px"  />
+<div className="text-center flex flex-col items-center  " >
+        <h1 className="text-3xl text-gray-300  mb-10">Black Born Community</h1>      
+          <img src={B} width="20%" height="200px"  alt='logo bbc' />
       <h1 className="text-2xl mb-10">Se connecter</h1>
         </div>
 
-    <form  onSubmit={handleSubmit}>
-            <div>
+    <form className='mt-20'  onSubmit={handleSubmit}>
+          
             <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
          Adresse mail* 
          </label>
@@ -162,19 +171,18 @@ const Login = () => {
 
                  className="w-full p-3 mb-6 border border-gray-200 rounded-md"
               />
-            </div>
-            <div>
+    
             <label htmlFor="mobile-number" className="block text-gray-700 text-sm font-bold mb-2">
-         Password* 
+         Mot de passe* 
          </label>
               <input
                 type='password'
-                placeholder='**********'
+                placeholder='Mot de passe'
                 id='password'
                 onChange={(e) => setPassword(e.target.value)}
                  className="w-full p-3 mb-6 border border-gray-200 rounded-md"
               />
-            </div>
+        
             <button
             className="w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               type='submit'
@@ -192,9 +200,9 @@ const Login = () => {
         
           </form>
           <div className='flex gap-2 text-sm mt-5'>
-            <span>Dont Have an account?</span>
+            <span>Vous n'avez pas de compte?</span>
             <Link to='/register' className='text-blue-500'>
-              Sign Up
+              Creer un compte
             </Link>
           </div>
           {errorMessage && (
@@ -202,6 +210,9 @@ const Login = () => {
               {errorMessage}
             </span>
           )}
+            <div className='mb-0 mt-auto text-center items-center'>
+          <p className=' text-gray-300  mb-10'>Black Born community @copyright 2024</p>
+         </div>
           </div>
            <div
            className="bg-cover bg-center h-max md:h-screen w-2/3"
@@ -214,7 +225,9 @@ const Login = () => {
     
          </div>
          <Toaster/>
+       
          </div>
+       
       
     // <form onSubmit={handleSubmit}>
     //   <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
