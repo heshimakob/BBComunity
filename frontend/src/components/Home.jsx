@@ -15,7 +15,7 @@ import Details from './Details';
 import Marque from './marque/Marque';
 import Service from './Service';
 import Informations from './Informations';
-import img from "../assets/img.jpg"
+import arr from "../assets/arr.jpeg"
 import Learner from './Learner';
 import Category from './Category';
 
@@ -50,10 +50,10 @@ const Home =()=>{
 
         </Navbar> */}
 <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden md:h-auto sm:h-auto" style={{
-  backgroundImage: `url(${img})`,
+  backgroundImage: `url(${arr})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
+  // background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
 }}>
           
 <div className="container px-4 mx-auto " >
@@ -109,12 +109,12 @@ const Home =()=>{
 </div>
 <div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
   <Learner/>
-  <Category/>
+
 
 
   
   <Marque/>
-  <Informations/>
+  
   <Service/>
   
   <Outcome/>

@@ -4,11 +4,13 @@ import Footer from './Footer';
 import Details from './Details';
 import equipe from "../assets/equipe.webp"
 import ai from "../assets/ai.jpg"
+import Informations from './Informations';
 
 const  Why =()=>{
   return (
     <>
     <NavBar/>
+
 
     <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' >
       <div className='text-center'>
@@ -29,6 +31,7 @@ const  Why =()=>{
 </div>
     </div>
     </div>
+    <Informations/>
 
 
 
