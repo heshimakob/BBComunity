@@ -28,7 +28,7 @@ function Learner() {
     },
     {
       icon: <BsMarkdown size={70} color="#007aff" />,
-      title: 'Marketing',
+      title: 'Machine Learning',
       count: '88'
     },
       {
@@ -44,13 +44,13 @@ function Learner() {
   ]);
 
   return (
-    <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden md:h-auto sm:h-auto" style={{
+    <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900  overflow-hidden md:h-auto sm:h-auto" style={{
       backgroundImage: `url(${learner})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       // background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
     }}>
-    <div className="container flex  mx-auto bg-gray-100 min-h-screen py-16 px-4 sm:px-6 lg:px-8 border-none">
+    <div className="container flex  mx-auto bg-gray-100 min-h-screen justify-center items-center py-16 px-4 sm:px-6 lg:px-8 border-none">
       <div className="flex flex-wrap -m-8 mt-10"  style={{
       backgroundImage: `url(${learner})`,
       backgroundSize: 'cover',
@@ -65,7 +65,7 @@ function Learner() {
 
 
 
-       <div className="w-full md:w-1/2 p-8 ">
+       <div className="w-full md:w-1/2 p-8  ">
 
 
 
