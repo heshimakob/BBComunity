@@ -52,6 +52,10 @@ dotenv.config()
 connectDB()
 
 const app = express()
+// app.use(cors({
+//   origin: 'http://localhost:5173', // Remplacez par l'origine de votre front-end
+//   credentials: true, // Si vous utilisez des cookies ou des informations d'identification
+// }));
 
 // CORS configuration
 app.use((req, res, next) => {

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import B from "../../assets/B.png"
 import { BsChatDots, BsChat } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -70,7 +71,44 @@ const NavbarProfileUsername = styled.span`
 `;
 
 const NavBar = () => {
-  const {currentUser}= useSelector(state=> state.users)
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // État de chargement
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const token = localStorage.getItem('token');
+      console.log(token)
+      if (!token) {
+        setError("Token manquant");
+        setLoading(false);
+        return;
+      }
+      try {
+        const response = await axios.get('http://localhost:8080/api/users/userDetail', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setUser(response.data);
+      } catch (err) {
+        setError(err.response?.data?.message || "Erreur inconnue");
+      } finally {
+        setLoading(false); // Fin du chargement
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
+  if (loading) {
+    return <div>Chargement des détails de l'utilisateur...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
   return (
     <NavbarContainer>
       <NavbarLogo src={B} />
@@ -85,7 +123,7 @@ const NavBar = () => {
         <NavbarProfile>
           <NavbarProfileImage src="https://via.placeholder.com/30" />
           <NavbarProfileUsername>
-            <h2 className='text-bold text-white'>   {currentUser?.name}</h2>
+            <h2 className='text-bold text-white'>   {user.name}</h2>
           </NavbarProfileUsername>
         </NavbarProfile>
       </NavbarIconsContainer>

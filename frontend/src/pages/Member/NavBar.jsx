@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import B from "../../assets/B.png"
+import B from "../../assets/B.png";
 import { BsChatDots, BsChat } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const NavbarContainer = styled.div`
   position: fixed;
@@ -11,12 +11,12 @@ const NavbarContainer = styled.div`
   left: 0;
   width: 100%;
   height: 70px;
-  background-color: #333; /* Dark blue background */
+  background-color: #333;
   color: white;
   display: flex;
   align-items: center;
   padding: 0 30px;
-  z-index: 100; /* Ensure navbar stays above content */
+  z-index: 100;
 `;
 
 const NavbarLogo = styled.img`
@@ -35,7 +35,7 @@ const NavbarInput = styled.input`
 `;
 
 const NavbarIconsContainer = styled.div`
-  margin-left: auto; /* Push the icons to the right */
+  margin-left: auto;
   display: flex;
   align-items: center;
 `;
@@ -70,11 +70,44 @@ const NavbarProfileUsername = styled.span`
 `;
 
 const NavBar = () => {
-  const { currentUser } = useSelector((state) => state.users);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // État de chargement
 
-  
-  const { user } = currentUser;
-  const [name, setName] = useState(user ? user.name : '');
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const token = localStorage.getItem('token');
+      console.log(token)
+      if (!token) {
+        setError("Token manquant");
+        setLoading(false);
+        return;
+      }
+      try {
+        const response = await axios.get('http://localhost:8080/api/users/userDetail', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setUser(response.data);
+      } catch (err) {
+        setError(err.response?.data?.message || "Erreur inconnue");
+      } finally {
+        setLoading(false); // Fin du chargement
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
+  if (loading) {
+    return <div>Chargement des détails de l'utilisateur...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
   return (
     <NavbarContainer>
       <NavbarLogo src={B} />
@@ -88,11 +121,13 @@ const NavBar = () => {
         </NavbarChat>
         <NavbarProfile>
           <NavbarProfileImage src="https://via.placeholder.com/30" />
-          <NavbarProfileUsername>{user.name}</NavbarProfileUsername>
+          <NavbarProfileUsername>
+            <p className='text-white'>{user.name}</p>
+          </NavbarProfileUsername>
         </NavbarProfile>
       </NavbarIconsContainer>
     </NavbarContainer>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;

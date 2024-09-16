@@ -14,6 +14,33 @@ const generateToken = (user) => {
   );
 };
 
+const authMiddleware = (req, res, next) => {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+      return res.status(403).send({ message: 'Aucun token fourni.' });
+  }
+
+  jwt.verify(token.split(' ')[1], 'your_jwt_secret', (err, user) => {
+      if (err) {
+          return res.status(401).send({ message: 'Token invalide.' });
+      }
+      req.user = user;
+      next();
+  });
+};
+router.get('/userDetail', authMiddleware, async (req, res) => {
+  try {
+      const user = await User.findById(req.user.id).select('-password'); // Ne pas retourner le mot de passe
+      if (!user) {
+          return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+      }
+      res.status(200).json(user);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
+
 router.post('/register', async (req, res) => {
   const { name, email, password, isAdmin } = req.body;
 

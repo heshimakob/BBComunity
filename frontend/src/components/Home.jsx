@@ -49,27 +49,27 @@ const Home =()=>{
             </ButtonsContainer>
 
         </Navbar> */}
-<div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden" style={{
+<div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden md:h-auto sm:h-auto" style={{
   backgroundImage: `url(${img})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
 }}>
           
-<div className="container px-4 mx-auto" >
+<div className="container px-4 mx-auto " >
 <div className="flex flex-wrap -m-8">
-<div className="w-full md:w-1/2 p-8">
-<div className="md:max-w-lg">
-<h1 className="inline-block mb-8 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full">#Black Born Community bootcamp(BBC dev)</h1>
-<h1 className="font-heading tracking-tight text-gray-100 text-4xl md:text-6xl font-medium max-w-md md:max-w-2xl">Avec bbc</h1>
+<div className="w-full md:w-1/2 p-8 ">
+<div className="w-full ">
+<h1 className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full  mt-16 ">👋BIENVENUE</h1>
+<h1 className="font-heading tracking-tight text-gray-100 text-4xl md:text-6xl font-medium max-w-md md:max-w-4xl">Transformer </h1>
 
 
 
-<h1 className="mb-4 text-3xl font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">apprendre, creer, construire et connecter...</span> l'apprentissage a distance c'est aujourd'hui</h1>
+<h1 className="mb-4 text-3xl font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 sm:max-w-2xl md:max-w-4xl">l'apprentissage des  </span> <span className='relative font-serif font-bold italic text-gray-400'>métiers du futur</span></h1>
 {/* <p className="text-gray-500 text-xl max-w-xl">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> */}
 
-<div className="flex flex-wrap -m-1 mb-14">
-  <div className="w-auto p-2"><a className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" href="/register">Apply now</a></div>
+<div className="flex flex-wrap -m-1 mb-14 mt-14">
+  <div className="w-auto p-2"><a className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" href="/register">Inscription</a></div>
   <div className="w-auto p-2">
   
   </div>
@@ -90,7 +90,7 @@ const Home =()=>{
       </div>
     </div>
     <div className="flex-1 p-1.5">
-      <p className="text-gray-300 tracking-tight">Rejoindre notre programme d'apprentissage de plus de 8 cours au profit du peuples africains.</p>
+      <p className="mt-4 max-w-xl text-lg text-gray-400">Rejoindre notre programme d'apprentissage de plus de 8 cours au profit du peuples africains.</p>
     </div>
   </div>
 </div>
@@ -99,7 +99,12 @@ const Home =()=>{
 <div className="w-full md:w-1/2 p-8 ">
 {/* <img className="transform hover:-translate-y-2 transition duration-500 rounded-lg" src={home} alt /> */}
 </div>
+
+
+
 </div>
+
+
 </div>
 </div>
 <div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
