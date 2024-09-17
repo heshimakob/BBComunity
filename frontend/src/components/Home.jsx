@@ -18,6 +18,7 @@ import Informations from './Informations';
 import img from "../assets/img.jpg"
 import Learner from './Learner';
 import Category from './Category';
+import Centre from './Centre';
 
 const lorem = new LoremIpsum();
 
@@ -108,12 +109,15 @@ const Home =()=>{
 </div>
 </div>
 <div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
+
+<Centre/>
   <Learner/>
+  <Marque/>
 
 
 
   
-  <Marque/>
+
   
   <Service/>
   

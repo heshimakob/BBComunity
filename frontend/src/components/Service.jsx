@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaBook, FaKeyboard,  FaGlobe, FaPersonBooth } from 'react-icons/fa';
+import learner from"../assets/learner.jpeg"
 
 const Card = ({ icon, title, description }) => {
   return (
@@ -36,15 +37,22 @@ const Service = () => {
   ];
 
   return (
+    <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900  overflow-hidden md:h-auto sm:h-auto" style={{
+      backgroundImage: `url(${learner})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      // background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
+    }}>
     <div className="container mx-auto px-4 py-16 p-10 gap-3">
-      <h1 className="text-3xl font-bold text-center mb-8">
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-600" >
         Processus de black born community
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-500 rounded-3xl text-2xl ">
         {cards.map((card) => (
           <Card key={card.title} {...card} />
         ))}
       </div>
+    </div>
     </div>
   );
 };

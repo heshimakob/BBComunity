@@ -6,7 +6,7 @@ import NavBar from '../NavBar';
 import ReactQuill from 'react-quill'; 
 import 'react-quill/dist/quill.snow.css'; 
 import toast ,{Toaster} from 'react-hot-toast';
-
+import swal from 'sweetalert';
 function AddChapitre() { 
     const { id } = useParams(); 
     const [idCours, setIdCours] = useState(id || ''); 
@@ -33,7 +33,8 @@ function AddChapitre() {
                 }, 
             }); 
             console.log(response.data); 
-            toast.success("chapitre ajouter")
+            
+            swal("Ajouter!", "Chapitre ajouter  au cours!", "success");
             setError(null); 
         } catch (error) { 
             setError(error.response ? error.response.data.erreur : 'Une erreur est survenue.'); 
