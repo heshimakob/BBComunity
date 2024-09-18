@@ -32,9 +32,9 @@ function NavBar() {
               </div>
               <div className="w-auto hidden lg:block">
                 <ul className="flex items-center mr-8">
-                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/blog-site'>Blog</Link></li>
-                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/why'>Why BBC ?</Link></li>
-                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/company'>For company</Link></li>
+                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/blog-site'>Notre blog</Link></li>
+                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/why'>Pourquoi BBC ?</Link></li>
+                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/company'>Pour les entreprise</Link></li>
                   {/* <li className="mr-8 font-medium text-gray-100 hover:text-gray-200 tracking-tight border-r border-gray-700 pr-8"><a href="#">Events</a></li> */}
                   <li className="font-medium text-gray-100 hover:text-gray-200 tracking-tight border border-blue-200 p-2 rounded-xl hover:border-blue-500" onClick={handleloginClick}><a href="#">Se connecter</a></li>
                 </ul>

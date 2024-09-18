@@ -35,7 +35,7 @@ const  Why =()=>{
 
 
 
-    <div className="bg-white min-h-screen flex flex-col justify-center items-center" >
+    <div className="bg-white min-h-screen flex flex-col justify-center items-center mt-10 mb-10" >
     <div className="bg-blue-100 p-8 rounded-lg shadow-md max-w-5xl h-96 text-center" style={{
   backgroundImage: `url(${equipe})`,
   backgroundSize: 'cover',

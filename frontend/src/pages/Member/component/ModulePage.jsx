@@ -109,33 +109,11 @@ const ModulePage = () => {
                                         disableRemotePlayback 
                                         autoPlay></video> 
                                 )} 
-                                <div className='bg-blue-900 text-white p-4 my-4 rounded'> 
-                                    <h2 className='text-xl font-bold mb-2'>Partager ce cours</h2> 
-                                    <div className='flex space-x-4'> 
-                                        <button onClick={() => window.open("https://www.facebook.com/sharer/sharer.php?u=" + window.location.href)}> 
-                                            <FaFacebook className='text-2xl' /> 
-                                        </button> 
-                                        <button onClick={() => window.open("https://twitter.com/intent/tweet?url=" + window.location.href)}> 
-                                            <FaTwitter className='text-2xl' /> 
-                                        </button> 
-                                        <button onClick={() => window.open("https://www.instagram.com/sharer/sharer.php?u=" + window.location.href)}> 
-                                            <FaInstagram className='text-2xl' /> 
-                                        </button> 
-                                        <button onClick={() => window.open("https://api.whatsapp.com/send?text=" + window.location.href)}> 
-                                            <FaWhatsapp className='text-2xl' /> 
-                                        </button> 
-                                        <button onClick={() => window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + window.location.href)}> 
-                                            <FaLinkedin className='text-2xl' /> 
-                                        </button> 
-                                        <button onClick={handleCopy}> 
-                                            <FaCopy className='text-2xl' /> 
-                                        </button> 
-                                    </div> 
-                                </div> 
+                              
                                 <div> 
-                                    <h1 className='text-3xl font-bold text-gray-500 mb-20'>{selectedChapter.titre}</h1> 
+                                    <h1 className='text-3xl font-bold text-gray-500 mb-20 mt-10'>{selectedChapter.titre}</h1> 
                                     <div 
-                                        className='w-full text-xl text-gray-600 h-full p-3 mb-6 text-justify items-center leading-7' 
+                                        className='w-full bg-gray-100 text-xl text-gray-600 h-full p-3 mb-6 text-justify items-center leading-7 rounded-xl' 
                                         dangerouslySetInnerHTML={{ __html: selectedChapter.contenu }} 
                                     /> 
                                 </div> 
@@ -156,6 +134,29 @@ const ModulePage = () => {
                                 </div> 
                                 <div className='w-full bg-gray-300'> 
                                     <h1>les liens complementaires du module</h1> 
+                                </div> 
+                                <div className='bg-blue-300 text-white p-4 my-4 rounded-xl'> 
+                                    <h2 className='text-xl font-bold mb-2'>Partager ce cours</h2> 
+                                    <div className='flex space-x-4'> 
+                                        <button onClick={() => window.open("https://www.facebook.com/sharer/sharer.php?u=" + window.location.href)}> 
+                                            <FaFacebook className='text-2xl text-blue-950' /> 
+                                        </button> 
+                                        <button onClick={() => window.open("https://twitter.com/intent/tweet?url=" + window.location.href)}> 
+                                            <FaTwitter className='text-2xl text-blue-950' /> 
+                                        </button> 
+                                        <button onClick={() => window.open("https://www.instagram.com/sharer/sharer.php?u=" + window.location.href)}> 
+                                            <FaInstagram className='text-2xl text-blue-950' /> 
+                                        </button> 
+                                        <button onClick={() => window.open("https://api.whatsapp.com/send?text=" + window.location.href)}> 
+                                            <FaWhatsapp className='text-2xl text-blue-950' /> 
+                                        </button> 
+                                        <button onClick={() => window.open("https://www.linkedin.com/shareArticle?mini=true&url=" + window.location.href)}> 
+                                            <FaLinkedin className='text-2xl text-blue-950' /> 
+                                        </button> 
+                                        <button onClick={handleCopy}> 
+                                            <FaCopy className='text-2xl text-blue-950' /> 
+                                        </button> 
+                                    </div> 
                                 </div> 
                             </> 
                         ) : ( 
