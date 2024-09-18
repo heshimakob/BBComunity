@@ -60,10 +60,12 @@ function AjouterCours() {
 
   return (
     <>
+     
+      <div className="bbc-container mx-auto w-full h-screen p-4 pt-5">
       <div>
         <button
           onClick={() => setModalOpen(true)}
-          className="bg-blue-500 text-white px-4 py-2 mt-10 rounded"
+          className="bg-blue-500 text-white px-4 py-2 mt-10 rounded-xl"
         >
           Ajouter un Cours
         </button>
@@ -74,7 +76,6 @@ function AjouterCours() {
           course={currentCourse} // Passer le cours courant pour la modification
         />
       </div>
-      <div className="container mx-auto w-full h-screen p-4 pt-5">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center py-12 px-6">
             <div className="w-[75%]">
@@ -106,12 +107,12 @@ function AjouterCours() {
                           <h4 className="text-lg font-bold text-gray-800 mb-2">
                             {course.name}
                           </h4>
-                          <span className="flex justify-between bg-blue-800 text-sm text-white rounded"> Duree :<p className='text-white '>{course.duration} heures</p></span>
+                          <span className="flex justify-between bg-blue-800 text-sm text-white rounded p-2 mb-2"><p className='text-white '>{course.duration} heures</p></span>
                         </div>
                         <img src={course.image} alt={course.name} className="w-full h-48 object-cover mb-2" />
                         <div className='flex justify-between'>
                           <p className="text-sm text-gray-600">{course.description}</p>
-                          <span className="flex justify-between bg-red-600 text-sm text-white rounded"> Categorie :<p className='text-white '>{course.category}</p></span>
+                          <span className="flex justify-between bg-red-600 text-sm text-white rounded p-2"><p className='text-white '>{course.category}</p></span>
                         </div>
                       </div>
                       <div className="px-4 py-3 border-t border-gray-200">

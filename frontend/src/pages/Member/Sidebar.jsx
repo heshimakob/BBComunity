@@ -1,146 +1,104 @@
-import React, { useState } from 'react'; 
-import styled from 'styled-components'; 
-import { Link } from 'react-router-dom'; 
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BsAlarm, BsArrowLeft, BsBook, BsGraphUp, BsPerson } from 'react-icons/bs';
 import axios from 'axios';
 import swal from "sweetalert";
-// ... autres imports
 
-const ModalContainer = styled.div` 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  background-color: rgba(0, 0, 0, 0.5); 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  z-index: 200; /* S'assurer que la modal est au-dessus du contenu */
-`; 
+const Sidebar = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-const Modal = styled.div` 
-  background-color: white; 
-  padding: 20px; 
-  border-radius: 5px; 
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-`;
+    const handleLogout = async () => {
+        try {
+            await axios.post('http://localhost:8080/api/users/logout');
+            localStorage.removeItem('token');
+            window.location.href = '/signin';
+            swal("Deconnexion!", "Déconnexion réussie!", "success");
+        } catch (error) {
+            console.error("Erreur lors de la déconnexion:", error);
+        }
+    };
 
-const ModalButton = styled.button` 
-  margin: 0 10px; 
-`;
+    const confirmLogout = () => {
+        setIsModalOpen(true);
+    };
 
-const SidebarContainer = styled.div` 
-  position: fixed; 
-  top: 60px; 
-  left: 0; 
-  width: 150px; 
-  height: calc(100% - 60px); 
-  background-color: #1A1D23; 
-  color: white; 
-  overflow-y: auto; 
-  padding-top: 20px; 
-  transition: width 0.3s ease; 
-  z-index: 100; 
-`; 
+    const handleModalClose = (confirm) => {
+        setIsModalOpen(false);
+        if (confirm) {
+            handleLogout();
+        }
+    };
 
-const SidebarNav = styled.ul` 
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-`; 
+    return (
+        <>
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-2xl text-red-500">Confirmation de Déconnexion</h2>
+                        <p className="text-lg">Voulez-vous vraiment vous déconnecter ?</p>
+                        <button className="bg-red-500 text-lg text-white font-bold rounded-lg w-full mt-4 p-2" onClick={() => handleModalClose(true)}>Oui</button>
+                        <button className="bg-blue-500 text-lg text-white font-bold rounded-lg w-full mt-2 p-2" onClick={() => handleModalClose(false)}>Non</button>
+                    </div>
+                </div>
+            )}
+        <div className="fixed hidden top-16 left-0 w-38 h-[calc(100%-60px)] bg-gray-800 text-white overflow-y-auto p-4 z-40 md:block lg:block xl:block ">
+                <ul className="list-none p-0 m-0">
+                    <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/dashboarder' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
+                        <div className="text-xl mb-1"><BsGraphUp /></div>
+                        <Link to="/user-dashboard" className="text-white"> Dashboard</Link>
+                    </li>
+                    <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/courser' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
+                        <div className="text-xl mb-1"><BsBook /></div>
+                        <Link to="/member-cours" className="text-white"> Apprendre</Link>
+                    </li>
+                    <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/challenger' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
+                        <div className="text-xl mb-1"><BsPerson /></div>
+                        <Link to="/challenge" className="text-white"> Challenger</Link>
+                    </li>
+                    <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/annoncer' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
+                        <div className="text-xl mb-1"><BsAlarm /></div>
+                        <Link to="/member/annonce" className="text-white"> Notification</Link>
+                    </li>
+                    <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/profiler' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
+                        <div className="text-xl mb-1"><BsPerson /></div>
+                        <Link to="/member-profile" className="text-white"> Profiler</Link>
+                    </li>
+                    <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300`} onClick={confirmLogout}>
+                        <div className="text-xl mb-1"><BsArrowLeft /></div>
+                        <span className="text-white cursor-pointer"> Deconnexion</span>
+                    </li>
+                </ul>
+            </div>
 
-const SidebarNavItem = styled.li` 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  padding: 12px 20px; 
-  font-size: 18px; 
-  border-bottom: 1px solid #3b3f45; 
-  transition: background-color 0.3s ease; 
-  &:hover {
-    background-color: #3b3f45; 
-  } 
-`; 
-
-const SidebarIcon = styled.div` 
-  font-size: 20px; 
-  margin-bottom: 5px; 
-`; 
-
-const StyledLink = styled(Link)` 
-  text-decoration: none; 
-  color: white; 
-  margin-left: 10px; 
-`; 
-
-const Sidebar = () => { 
-  const [isModalOpen, setIsModalOpen] = useState(false); 
-
-  const handleLogout = async () => { 
-    try { 
-      await axios.post('http://localhost:8080/api/users/logout'); 
-      localStorage.removeItem('token'); 
-      window.location.href = '/signin'; 
-      swal("Deconnexion!", "Dedonnexion réussie!", "success");
-    } catch (error) { 
-      console.error("Erreur lors de la déconnexion:", error); 
-    } 
-  }; 
-  
-  const confirmLogout = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = (confirm) => {
-    setIsModalOpen(false);
-    if (confirm) {
-      handleLogout();
-    }
-  };
-
-  return (
-    <>
-      {isModalOpen && (
-        <ModalContainer>
-          <Modal className=' rounded-3xl p-10'>
-            <h2 className='text-2xl text-red-500'>Confirmation de Déconnexion</h2>
-            <p className='text-xl'>Voulez-vous vraiment vous déconnecter ?</p>
-            <ModalButton className='bg-red-500 text-xl text-white font-bold rounded-xl w-full mb-5' onClick={() => handleModalClose(true)}>Oui</ModalButton>
-            <ModalButton className='bg-blue-500 text-xl text-white font-bold rounded-xl w-full mt-5'   onClick={() => handleModalClose(false)}>Non</ModalButton>
-          </Modal>
-        </ModalContainer>
-      )}
-      <SidebarContainer>                    
-        <SidebarNav>
-          <SidebarNavItem className={window.location.pathname === '/member/dashboarder' ? 'active' : ''}>
-            <SidebarIcon> <BsGraphUp/></SidebarIcon>
-            <StyledLink to="/user-dashboard"> Dashboard</StyledLink>
-          </SidebarNavItem>
-          <SidebarNavItem className={window.location.pathname === '/member/courser' ? 'active' : ''}>
-            <SidebarIcon> <BsBook/></SidebarIcon>
-            <StyledLink to="/member-cours"> Apprendre</StyledLink>
-          </SidebarNavItem>
-          <SidebarNavItem className={window.location.pathname === '/member/challenger' ? 'active' : ''}>
-            <SidebarIcon> <BsPerson/></SidebarIcon>
-            <StyledLink to="/challenge"> Challenger</StyledLink>
-          </SidebarNavItem>
-          <SidebarNavItem className={window.location.pathname === '/member/annoncer' ? 'active' : ''}>
-            <SidebarIcon> <BsAlarm/></SidebarIcon>
-            <StyledLink to="/member/annonce"> Notification</StyledLink>
-          </SidebarNavItem>
-          <SidebarNavItem className={window.location.pathname === '/member/profiler' ? 'active' : ''}>
-            <SidebarIcon> <BsPerson/></SidebarIcon>
-            <StyledLink to="/member-profile"> Profiler</StyledLink>
-          </SidebarNavItem>
-          <SidebarNavItem onClick={confirmLogout}>
-            <SidebarIcon> <BsArrowLeft/></SidebarIcon>
-            <StyledLink> Deconnexion</StyledLink>
-          </SidebarNavItem>
-        </SidebarNav>
-      </SidebarContainer>
-    </>
-  );
+            {/* Sidebar mobile */}
+            <div className="fixed bottom-0 left-0 right-0 bg-gray-800 p-1 h-20 flex justify-around md:hidden">
+  <Link to="/user-dashboard" className='flex flex-col justify-center items-center'>
+    <BsGraphUp className="text-white text-2xl" />
+    <span className="text-white text-xs">Dashboard</span>
+  </Link>
+  <Link to="/member-cours " className='flex flex-col justify-center items-center'>
+    <BsBook className="text-white text-2xl" />
+    <span className="text-white text-xs">Cours</span>
+  </Link>
+  <Link to="/challenge" className='flex flex-col justify-center items-center'>
+    <BsPerson className="text-white text-2xl" />
+    <span className="text-white text-xs">Challenge</span>
+  </Link>
+  {/* <Link to="/member/annonce">
+    <BsAlarm className="text-white text-2xl" />
+    <span className="text-white text-xs">Annonces</span>
+  </Link> */}
+  <Link to="/member-profile" className='flex flex-col justify-center items-center'>
+    <BsPerson className="text-white text-3xl" />
+    <span className="text-white text-xs">Profil</span>
+  </Link>
+  <span onClick={confirmLogout} className='flex flex-col justify-center items-center'>
+    <BsArrowLeft className="text-white cursor-pointer text-2xl" />
+    <span className="text-white text-xs">Déconnexion</span>
+  </span>
+</div>
+        </>
+    );
 };
 
 export default Sidebar;

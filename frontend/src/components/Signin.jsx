@@ -34,15 +34,16 @@ const Login = () => {
         } catch (error) {
             swal("Connecter!", "Echec de connexion!", "error");
             resetForm();
-            console.error(error);
+            window.location.href = '/signin';
+            // console.error(error);
         }
     };
 
     return (
-        <div className='h-screen flex flex-col md:flex-row'>
+        <div className=' h-screen flex flex-col md:flex-row'>
             <div className="h-screen w-full md:w-1/3 p-10 flex flex-col items-center">
                 <div className="text-center flex flex-col items-center">
-                    <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1>
+                   <Link to="/"> <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1></Link>
                     <img src={B} width="20%" height="200px" alt='logo bbc' />
                     <h1 className="text-2xl mb-10">Se connecter</h1>
                 </div>

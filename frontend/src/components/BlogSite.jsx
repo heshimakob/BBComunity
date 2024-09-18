@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import vide from "../assets/vide.png";
 import { Link } from 'react-router-dom';
 import { getBlogs } from '../store/blogSlice';
+import Loading from './Loading';
 
 const BlogSite = () => {
     const dispatch = useDispatch();
@@ -102,7 +103,8 @@ const BlogSite = () => {
                             ))}
                         </div>
                         <div className='flex justify-center items-center md:flex-row lg:flex-row xl:flex-row'>
-  <img src={vide} className="bbc-container w-1/2 rounded-md md:w-1/2 lg:w-1/3 xl:w-1/3" />
+  {/* <img src={vide} className="bbc-container w-1/2 rounded-md md:w-1/2 lg:w-1/3 xl:w-1/3" /> */}
+  <Loading/>
 </div>
                     </div>
                     <div className="text-center mb-10">

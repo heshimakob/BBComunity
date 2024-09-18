@@ -1,10 +1,17 @@
 import React from 'react';
 import home from "../assets/home.jpeg";
 import { Link } from 'react-router-dom';
+import learner from "../assets/learner.jpeg"
 
 const Informations = () => {
   return (
-    <div className="container px-4 mx-auto mt-10 md:mt-20 mb-10">
+    <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900  overflow-hidden md:h-auto sm:h-auto" style={{
+      backgroundImage: `url(${learner})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      // background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
+    }}>
+    <div className="bbc-container px-4 mx-auto mt-10 md:mt-20 mb-10">
       <div className="flex flex-wrap -m-4">
         {/* Image Section */}
         <div className="w-full md:w-1/2 p-4">
@@ -45,6 +52,7 @@ const Informations = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

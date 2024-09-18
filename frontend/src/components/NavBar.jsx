@@ -35,8 +35,8 @@ function NavBar() {
                   <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/blog-site'>Blog</Link></li>
                   <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/why'>Why BBC ?</Link></li>
                   <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight"><Link to='/company'>For company</Link></li>
-                  <li className="mr-8 font-medium text-gray-100 hover:text-gray-200 tracking-tight border-r border-gray-700 pr-8"><a href="#">Events</a></li>
-                  <li className="font-medium text-gray-100 hover:text-gray-200 tracking-tight" onClick={handleloginClick}><a href="#">Customer Login</a></li>
+                  {/* <li className="mr-8 font-medium text-gray-100 hover:text-gray-200 tracking-tight border-r border-gray-700 pr-8"><a href="#">Events</a></li> */}
+                  <li className="font-medium text-gray-100 hover:text-gray-200 tracking-tight border border-blue-200 p-2 rounded-xl hover:border-blue-500" onClick={handleloginClick}><a href="#">Se connecter</a></li>
                 </ul>
               </div>
               <div className="lg:hidden">
@@ -48,7 +48,7 @@ function NavBar() {
           </div>
         </div>
 
-        {/* {isOpen && (
+        {isOpen && (
           <div className={`fixed top-0 right-0 h-full w-64 bg-gray-950 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             <div className="flex justify-between items-center p-4">
               <h2 className="font-bold">Menu</h2>
@@ -60,11 +60,11 @@ function NavBar() {
               <Link className="mb-2 hover:text-gray-400" to="/blog-site">Blog</Link>
               <Link className="mb-2 hover:text-gray-400" to="/why">Why BBC ?</Link>
               <Link className="mb-2 hover:text-gray-400" to="/company">For company</Link>
-              <Link className="mb-2 hover:text-gray-400" to="#">Events</Link>
-              <button onClick={handleloginClick} className="mb-2 hover:text-gray-400">Customer Login</button>
+              {/* <Link className="mb-2 hover:text-gray-400" to="#">Events</Link> */}
+              <button onClick={handleloginClick} className="mb-2 hover:text-gray-400">Se connecter</button>
             </nav>
           </div>
-        )} */}
+        )}
       </section>
     </>
   );

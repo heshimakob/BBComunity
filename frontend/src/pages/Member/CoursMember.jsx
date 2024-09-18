@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { FaBookOpen, FaCode, FaUserCircle } from 'react-icons/fa';
-import Sidebar from './Sidebar';
-import { Link } from 'react-router-dom';
-import NavBar from '../Admin/NavBar';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
+import { FaBookOpen, FaCode, FaUserCircle } from 'react-icons/fa'; 
+import Sidebar from './Sidebar'; 
+import { Link } from 'react-router-dom'; 
+import NavBar from '../Admin/NavBar'; 
 
 const CoursMember = () => {
     const [courses, setCourses] = useState([]);
@@ -11,18 +11,18 @@ const CoursMember = () => {
     const [selectedCategory, setSelectedCategory] = useState("Tous");
     const [searchTerm, setSearchTerm] = useState("");
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/cours/getAllcours')
-            .then(response => {
-                setCourses(response.data);
-            })
-            .catch(error => {
-                setError(error.message);
-            });
+    useEffect(() => { 
+        axios.get('http://localhost:8080/api/cours/getAllcours') 
+            .then(response => { 
+                setCourses(response.data); 
+            }) 
+            .catch(error => { 
+                setError(error.message); 
+            }); 
     }, []);
 
     const categories = ["Tous", "Software", "Machine Learning", "Design", "Entrepreneuriat"];
-
+    
     const filteredCourses = courses.filter(course => {
         const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
         const matchesSearchTerm = course.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -33,20 +33,20 @@ const CoursMember = () => {
         <>
             <NavBar />
             <Sidebar />
-            <div className="container mx-auto w-full h-screen p-4 pt-20">
+            <div className="container mx-auto w-full min-h-screen p-4 pt-20">
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex justify-between items-center py-12 px-6">
-                        <div className="w-[75%]">
-                            <h1 className="text-4xl font-bold text-gray-800 mb-6">Apprentissage det developpemnt personnel</h1>
+                    <div className="flex flex-col md:flex-row justify-between items-center py-12 px-6">
+                        <div className="md:w-[75%] w-full mb-4 md:mb-0">
+                            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Apprentissage et développement personnel</h1>
                             <p className="text-gray-600 mb-12">
-                                Gagnant du potentiel et des qualites enfin de denicher de talents hors normes.
+                                Gagnant du potentiel et des qualités enfin de dénicher des talents hors normes.
                             </p>
                         </div>
-                        <div className="w-[25%]">
+                        <div className="md:w-[25%] w-full">
                             <img
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH1t9B2bcBn8RpB9T_Mpk_ixrvbUPFADIj6g&s://www.shutterstock.com/image-vector/illustration-learning-with-computer-260nw-2076016010.jpg"
-                                alt="Learn"
-                                className="w-1/2"
+                                alt="Learn" 
+                                className="w-full h-auto"
                             />
                         </div>
                     </div>
@@ -63,8 +63,7 @@ const CoursMember = () => {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-
-                        <div className="flex justify-center mb-4">
+                        <div className="flex flex-wrap justify-center mb-4">
                             {categories.map((category) => (
                                 <button
                                     key={category}
@@ -75,10 +74,9 @@ const CoursMember = () => {
                                 </button>
                             ))}
                         </div>
-
-                        <div className="flex flex-wrap justify-center mb-4">
+                        <div className="flex flex-col md:flex-wrap md:flex-row justify-center mb-4">
                             {filteredCourses.map((course) => (
-                                <div key={course._id} className="w-full md:w-1/2 xl:w-1/3 p-6">
+                                <div key={course._id} className="w-full md:w-1/2 xl:w-1/3 p-4">
                                     <Link to={`/modulePage/${course._id}`}>
                                         <div className="bg-white rounded shadow-md">
                                             <div className="px-4 py-5">
@@ -86,12 +84,16 @@ const CoursMember = () => {
                                                     <h4 className="text-lg font-bold text-gray-800 mb-2">
                                                         {course.name}
                                                     </h4>
-                                                    <span className="flex justify-between bg-blue-800 text-sm text-white rounded"> Durée :<p className='text-white'>{course.duration} heures</p></span>
+                                                    <span className="flex justify-between bg-blue-800 text-sm text-white rounded p-2 mb-5 text-gray-300">
+                                                        <p className='text-white'>{course.duration} heures</p>
+                                                    </span>
                                                 </div>
                                                 <img src={course.image} alt={course.name} className="w-full h-48 object-cover mb-2" />
                                                 <div className='flex justify-between'>
                                                     <p className="text-sm text-gray-600">{course.description}</p>
-                                                    <span className="flex justify-between bg-red-600 text-sm text-white rounded"> Catégorie :<p className='text-white'>{course.category}</p></span>
+                                                    <span className="flex justify-between bg-red-600 text-sm text-gray-300 rounded p-2">
+                                                        <p className='text-white'>{course.category}</p>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className="px-4 py-3 border-t border-gray-200">
@@ -115,7 +117,7 @@ const CoursMember = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-md shadow-md p-6">
+                    <div className="bg-white rounded-md shadow-md p-6 mb-20">
                         <div className="flex items-center mb-4">
                             <FaBookOpen className="text-blue-500 mr-2" size={24} />
                             <h2 className="text-xl font-bold text-gray-800">Courses</h2>

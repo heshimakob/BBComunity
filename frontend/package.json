@@ -19,6 +19,7 @@
     "axios": "^1.7.3",
     "clsx": "^2.1.1",
     "devtools": "^8.40.2",
+    "framer-motion": "^11.5.4",
     "froala-editor": "^4.2.2",
     "lorem-ipsum": "^2.0.8",
     "react": "^18.3.1",
