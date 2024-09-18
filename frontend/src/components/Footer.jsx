@@ -12,9 +12,9 @@ export default function Footer() {
         <div className="md:flex md:justify-between">
         <Link
         to='/'
-        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white mb-5'
       >
-        <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white'>
+        <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white '>
           BBC-Dev
         </span>
        

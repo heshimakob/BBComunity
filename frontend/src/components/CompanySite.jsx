@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCompany, addCompanyToDB } from '../store/companySlice';
 import toast,{Toaster} from 'react-hot-toast';
@@ -8,7 +8,7 @@ import Details from './Details';
 import Marque from './marque/Marque';
 import swal from 'sweetalert';
 
-const CompanySite = () => {
+const CompanySite = ({setProgress}) => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,6 +24,12 @@ const CompanySite = () => {
     setNumero('');
     setMotif('');
   };
+  useEffect(()=>{
+    setProgress(40);
+    setTimeout(()=>{
+        setProgress(100)
+    },2000)
+},[]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

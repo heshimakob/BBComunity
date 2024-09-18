@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navbar, Logo, NavigationLinks, NavLink, ButtonsContainer, LoginButton, GuestButton, HomeContainer, SchoolInfo, SchoolImage, Title, LoremTextContainer, AdminRegisterLink } from '../styles/styles'
 import { LoremIpsum } from 'lorem-ipsum';
 // import B from "../assets/B.png";
@@ -23,15 +23,21 @@ import Centre from './Centre';
 const lorem = new LoremIpsum();
 
 
-const Home =()=>{
+const Home =({setProgress})=>{
 
     const navigate = useNavigate();
-    const loremText = lorem.generateParagraphs(1);
+    // const loremText = lorem.generateParagraphs(1);
 
-    const handleloginClick =()=>{
-        navigate('/choose-user')
+    // const handleloginClick =()=>{
+    //     navigate('/choose-user')
 
-    };
+    // };
+    useEffect(()=>{
+      setProgress(40);
+      setTimeout(()=>{
+          setProgress(100)
+      },2000)
+  },[]);
 
     return (
         <>

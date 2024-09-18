@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInSuccess, signInFailure } from '../store/userSlice';
@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import B from "../assets/B.png";
 import swal from "sweetalert";
 
-const Login = () => {
+const Login = ({setProgress}) => {
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
@@ -20,6 +20,12 @@ const Login = () => {
         setEmail('');
         setPassword('');
     };
+    useEffect(()=>{
+        setProgress(40);
+        setTimeout(()=>{
+            setProgress(100)
+        },2000)
+    },[]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,19 +41,19 @@ const Login = () => {
             swal("Connecter!", "Echec de connexion!", "error");
             resetForm();
             window.location.href = '/signin';
-            // console.error(error);
+            console.error(error);
         }
     };
 
     return (
-        <div className=' h-screen flex flex-col md:flex-row'>
-            <div className="h-screen w-full md:w-1/3 p-10 flex flex-col items-center">
+        <div className=' h-screen flex flex-col md:flex-row '>
+            <div className="h-screen w-full md:w-1/3 p-10 flex flex-col  mt-28 items-center">
                 <div className="text-center flex flex-col items-center">
                    <Link to="/"> <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1></Link>
                     <img src={B} width="20%" height="200px" alt='logo bbc' />
                     <h1 className="text-2xl mb-10">Se connecter</h1>
                 </div>
-                <form className='mt-20' onSubmit={handleSubmit}>
+                <form className='mt-14' onSubmit={handleSubmit}>
                     <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
                         Adresse mail*
                     </label>

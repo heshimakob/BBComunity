@@ -3,37 +3,23 @@ import Home from '../src/components/Home'
 import ChooseUser from "./components/ChooseUser"
 import SignIn from "./components/Signin"
 import GuestSignIn from "./components/GuestSignin"
-// import AdminDashboard from "./pages/Admin/Dashboard"
-// import Challenge from "./pages/Admin/Challenge"
-// import Annoncement from "./pages/Admin/Annoncement"
-// import Courses from "./pages/Admin/Courses"
-// import Cohorte from "./pages/Admin/Cohorte"
-// import Blog from "./pages/Admin/blog"
+
 import BlogSite from "./components/BlogSite"
 import CompanySite from "./components/CompanySite"
-// import SettingsProfile from "./pages/Admin/SettingsProfile"
-// import Event from "./pages/Admin/Event"
-// import Company from "./pages/Admin/company"
-// import Member from "./pages/Admin/Member"
-// import Discussion from "./pages/Admin/Discussion"
+
 import Users from "./pages/Admin/Users"
 import Why from "./components/Why"
-// import AnnoncementMember from "./pages/Member/AnnoncementMember"
 import ChallengeMember from "./pages/Member/ChallengeMember"
-// import ProfilesMember from "./pages/Member/ProfilesMember"
 
-// import CoursMember from "./pages/Member/CoursMember"
 import BlogPage from "./components/blog/BlogPage"
-import AdminRegister from "./components/Register"
-// import SoftwareDeveloper from "./pages/Member/cours/SoftwareDeveloper"
 
-// import ModulePage from "./pages/Member/component/ModulePage"
+
+
 import ErrorPage from "./components/ErrorPage"
 
-// import MemberRoutes from "./components/PrivateRoutes"
-// import DashboardMember from "./pages/Member/DashboardMember"
+
 import PrivateRoutes from "./components/PrivateRoutes";
-// import UserDashboard from "./components/UserDashboard";
+
 import AdminDashboard from "./pages/Admin/Dashboard";
 import CoursMember from "./pages/Member/CoursMember";
 import ModulePage from "./pages/Member/component/ModulePage";
@@ -44,46 +30,45 @@ import Annoncement from "./pages/Admin/Annoncement";
 import Blog from "./pages/Admin/blog";
 import Register from "./components/Register";
 import AddChapitre from "./pages/Admin/componnent/addChapitre";
+import LoadingBar from "react-top-loading-bar"
+import { useState } from "react";
 
 
 
 function App() {
+  const [progress,setProgress]=useState(0)
 
 
   return (
   
 <BrowserRouter>
+<LoadingBar
+color="#f11946"
+progress={progress}
+onLoaderFinished={()=>setProgress(0)}/>
 
 <Routes>
-        <Route path="/" element= {<Home/>} />
+        <Route path="/" element= {<Home setProgress={setProgress}/>} />
         <Route path="/choose-user" element= {<ChooseUser/>} />  
 
 
         {/* web site bbc dev */}
       
-        <Route path="/blog-site" element= {<BlogSite/>} />  
-        <Route path="/company" element= {<CompanySite/>} />  
-        <Route path="/why" element= {<Why/>} />  
-        <Route path="/blogPage/:id" element= {<BlogPage/>} /> 
+        <Route path="/blog-site" element= {<BlogSite setProgress={setProgress}/>} />  
+        <Route path="/company" element= {<CompanySite setProgress={setProgress}/>} />  
+        <Route path="/why" element= {<Why setProgress={setProgress}/>} />  
+        <Route path="/blogPage/:id" element= {<BlogPage setProgress={setProgress}/>} /> 
 
 
         
 
 
         {/* sigin pages  */}
-         <Route   path="/signin" element= {<SignIn/>} />
-         <Route  exact path="/register" element= {<Register/>} />
+         <Route   path="/signin" element= {<SignIn setProgress={setProgress}/>} />
+         <Route  exact path="/register" element= {<Register setProgress={setProgress}/>} />
          <Route  exact path="/guest-signIn" element= {<GuestSignIn/>} />
 
-{/* 
-         Dashboard routes */}
 
-{/* <Route element={<PrivateRoutes AdminRoutes />}>
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        </Route>
-        <Route element={<PrivateRoutes />}>
-          <Route path="/member/dashboard" element={<DashboardMember />} />
-        </Route> */}
 
 
 

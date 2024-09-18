@@ -1,12 +1,12 @@
 import B from "../assets/B.png";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import bglog from "../assets/bglog.jpeg";
 import { Link } from 'react-router-dom';
 import toast,{Toaster} from "react-hot-toast";
 import swal from "sweetalert";
 
-const Register = () => {
+const Register = ({setProgress}) => {
   const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState(''); // Pour numéro de téléphone
@@ -22,6 +22,12 @@ const Register = () => {
       setDomaine('');
       setPassword('');
     };
+    useEffect(()=>{
+        setProgress(40);
+        setTimeout(()=>{
+            setProgress(100)
+        },2000)
+    },[]);
   
 
     const handleSubmit = async (e) => {

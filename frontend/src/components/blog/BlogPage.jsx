@@ -7,7 +7,7 @@ import axios from 'axios';
 import { FaFacebook, FaInstagram, FaLinkedin, FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import Loading from '../Loading';
 
-const BlogPage = () => {
+const BlogPage = ({setProgress}) => {
     const { id } = useParams();
     const [Blog, setBlog] = useState(null); // Initialisez avec null
     const [loading, setLoading] = useState(true); // État pour gérer le chargement
@@ -16,6 +16,12 @@ const BlogPage = () => {
     const handleShareClick = () => {
         console.log('Click to share');
     };
+    useEffect(()=>{
+        setProgress(40);
+        setTimeout(()=>{
+            setProgress(100)
+        },2000)
+    },[]);
 
     useEffect(() => {
         const fetch = async () => {

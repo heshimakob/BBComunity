@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
@@ -6,7 +6,15 @@ import equipe from "../assets/equipe.webp"
 import ai from "../assets/ai.jpg"
 import Informations from './Informations';
 
-const  Why =()=>{
+const  Why =({setProgress})=>{
+  useEffect(()=>{
+    setProgress(40);
+    setTimeout(()=>{
+        setProgress(100)
+    },2000)
+},[]);
+
+
   return (
     <>
     <NavBar/>

@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import { getBlogs } from '../store/blogSlice';
 import Loading from './Loading';
 
-const BlogSite = () => {
+
+const BlogSite = ({setProgress}) => {
     const dispatch = useDispatch();
     const { data: blogState } = useSelector((state) => state.blogs);
 
@@ -18,6 +19,13 @@ const BlogSite = () => {
     useEffect(() => {
         dispatch(getBlogs());
     }, [dispatch]);
+
+    useEffect(()=>{
+        setProgress(40);
+        setTimeout(()=>{
+            setProgress(100)
+        },2000)
+    },[]);
 
     useEffect(() => {
         if (activeCategory === 'all') {
