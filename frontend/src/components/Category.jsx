@@ -74,7 +74,7 @@ function Category() {
   ]);
 
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="bbc-container mx-auto px-4 py-16">
       <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Top Categories You Want to Learn</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {categories.map((category, index) => (

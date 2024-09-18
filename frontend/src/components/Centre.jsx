@@ -8,42 +8,43 @@ import inno from "../assets/inno.jpeg"
 
 const Centre = () => {
   return (
-   <div className='container mx-auto pt-20'>
-      <div className='text-center text-5xl font-bold text-gray-400 mb-10 bg-gray-150 rounded-xl '> <h1> Dans notre centre d'apprentissage en ligne, nous pensons que la connaissance et la croissance sont les clés pour libérer votre plein potentiel. </h1></div>
-    <div className=' flex flex-row pt-10 gap-2 mb-10'>  
-    <div className='flex-col text-center'>
-        <img className='w-100 h-100' src={insi} alt="" />
-        <h1 className='text-gray-500 text-xl'>
-            Inspiration
+    <div className='bbc-container mx-auto pt-20'>
+    <div className='text-left lg:text-5xl md:text-3xl sm:text-2xl font-bold text-gray-400 mb-10 bg-gray-150 rounded-xl p-5'>
+        <h1>
+            Dans notre centre d'apprentissage en ligne, nous pensons que la connaissance et la croissance sont les clés pour libérer votre plein potentiel.
         </h1>
-        <p>Ouvrir l’avenir de l’apprentissage numérique</p>
-
     </div>
-    <div className='flex-col text-center'>
-    <img src={oppo} alt="" />
-    <h1 className='text-gray-500 text-xl'>
-            Opportinites
-        </h1>
-        <p>Renforcer votre parcours éducatif</p>
-
+    
+    <div className='flex flex-col lg:flex-row pt-10 gap-10 mb-10 text-center'>
+        {/* Premier Colonne */}
+        <div className='flex flex-col items-center text-center'>
+            <img className='w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mb-3' src={insi} alt="Inspiration" />
+            <h1 className='text-gray-500 text-2xl'>Inspiration</h1>
+            <p className='text-gray-500 text-xl'>Ouvrir l’avenir de l’apprentissage numérique</p>
+        </div>
+        
+        {/* Deuxième Colonne */}
+        <div className='flex flex-col items-center text-center'>
+            <img className='w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mb-3' src={oppo} alt="Opportunités" />
+            <h1 className='text-gray-500 text-2xl'>Opportunités</h1>
+            <p className='text-gray-500 text-xl'>Renforcer votre parcours éducatif</p>
+        </div>
+        
+        {/* Troisième Colonne */}
+        <div className='flex flex-col items-center text-center'>
+            <img className='w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mb-3' src={inno} alt="Innovation" />
+            <h1 className='text-gray-500 text-2xl'>Innovation</h1>
+            <p className='text-gray-500 text-xl'>Transformer votre façon d'apprendre</p>
+        </div>
+        
+        {/* Quatrième Colonne */}
+        <div className='flex flex-col items-center text-center'>
+            <img className='w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mb-3' src={inno} alt="Exploration" />
+            <h1 className='text-gray-500 text-2xl'>Exploration</h1>
+            <p className='text-gray-500 text-xl'>Découvrez le potentiel illimité de notre e-learning</p>
+        </div>
     </div>
-    <div className='flex-col text-center'>
-    <img  className='w-100 h-100' src={inno} alt="" />
-    <h1 className='text-gray-500 text-xl'>
-            Innovation
-        </h1>
-        <p>Transformer votre façon d'apprendre</p>
-
-    </div>
-    <div className='flex-col text-center'>
-    <img src={inno} alt="" />
-    <h1 className='text-gray-500 text-xl'>
-            Exploration
-        </h1>
-
-    </div>
-     </div>
-   </div>
+</div>
   )
 }
 

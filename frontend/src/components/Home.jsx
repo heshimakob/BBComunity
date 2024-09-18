@@ -57,7 +57,7 @@ const Home =()=>{
   background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
 }}>
           
-<div className="container px-4 mx-auto " >
+<div className="bbc-container px-4 mx-auto " >
 <div className="flex flex-wrap -m-8">
 <div className="w-full md:w-1/2 p-8 ">
 <div className="w-full ">

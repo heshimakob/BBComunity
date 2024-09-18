@@ -29,7 +29,7 @@ function Learner() {
       backgroundPosition: 'center',
       // background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
     }}>
-    <div className="container flex  mx-auto bg-gray-100 min-h-screen justify-center items-center py-16 px-4 sm:px-6 lg:px-8 border-none">
+    <div className="bbc-container flex  mx-auto bg-gray-100 min-h-screen justify-center items-center py-16 px-4 sm:px-6 lg:px-8 border-none">
       <div className="flex flex-wrap -m-8 mt-10"  style={{
       backgroundImage: `url(${learner})`,
       backgroundSize: 'cover',

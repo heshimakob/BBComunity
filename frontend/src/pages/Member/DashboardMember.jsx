@@ -18,27 +18,44 @@ import axios from 'axios';
 
 
 const DashboardMember = () => {
-  const { currentUser } = useSelector((state) => state.users);
-  const token = currentUser.token; // retrieve the token from the currentUser object
-  const [name, setName] = useState('');
-  const [showSurvey, setShowSurvey] = useState(false);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // État de chargement
 
   useEffect(() => {
     const fetchUserDetails = async () => {
+      const token = localStorage.getItem('token');
+      console.log(token)
+      if (!token) {
+        setError("Token manquant");
+        setLoading(false);
+        return;
+      }
       try {
-        const response = await axios.get('http://localhost/api/users/detailUser', {
+        const response = await axios.get('http://localhost:8080/api/users/userDetail', {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            'Authorization': `Bearer ${token}`
+          }
         });
-        const { data } = response;
-        setName(data.name);
-      } catch (error) {
-        console.error(error);
+        setUser(response.data);
+      } catch (err) {
+        setError(err.response?.data?.message || "Erreur inconnue");
+      } finally {
+        setLoading(false); // Fin du chargement
       }
     };
+
     fetchUserDetails();
-  }, [token]);
+  }, []);
+
+  if (loading) {
+    return <div>Chargement des détails de l'utilisateur...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
 
 
     return (
@@ -46,9 +63,33 @@ const DashboardMember = () => {
   
    <NavBar/>
  <Sidebar/>
-     <div className="h-screen w-1/2 p-10  ml-32">
+     <div className="h-screen w-1/2 p-10  ml-32 mt-20">
+     <div>
+      <span><h1>Dashboard</h1></span>
+      <span>{user.role}</span>
+
+     </div>
+
+     <div>
+      <div className=''>
+        <div>
+          <div>
+            <img src={user.image}/>
+          </div>
+          <div>
+            <span>{user.name}</span>
+            <div>
+              <span>{user.sexe}</span>
+              <span>bootcamp</span>
+            </div>
+          </div>
+        </div>
+        <div></div>
+
+      </div>
+     </div>
          
-            <div className="bg-white min-h-screen flex flex-col">
+            {/* <div className="bg-white min-h-screen flex flex-col">
         <div className="flex items-center justify-between px-10 py-6">
         
           <div className="flex items-center">
@@ -136,7 +177,7 @@ const DashboardMember = () => {
 
         </div>
    
-      </div>
+      </div> */}
       </div>
         </>
     

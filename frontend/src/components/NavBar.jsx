@@ -18,7 +18,7 @@ function NavBar() {
     <>
       <section className="overflow-hidden fixed top-0 left-0 w-full z-50">
         <div className="bg-gray-900">
-          <div className="container px-4 mx-auto">
+          <div className="bbc-container px-4 mx-auto">
             <div className="flex items-center justify-between py-5">
               <div className="w-auto">
                 <Link
@@ -48,8 +48,8 @@ function NavBar() {
           </div>
         </div>
 
-        {isOpen && (
-          <div className={`fixed top-0 right-0 h-full w-64 bg-blue-950 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        {/* {isOpen && (
+          <div className={`fixed top-0 right-0 h-full w-64 bg-gray-950 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             <div className="flex justify-between items-center p-4">
               <h2 className="font-bold">Menu</h2>
               <button onClick={toggleMenu} aria-label="Close Menu">
@@ -64,7 +64,7 @@ function NavBar() {
               <button onClick={handleloginClick} className="mb-2 hover:text-gray-400">Customer Login</button>
             </nav>
           </div>
-        )}
+        )} */}
       </section>
     </>
   );

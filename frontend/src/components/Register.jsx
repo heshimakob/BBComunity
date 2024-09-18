@@ -52,8 +52,8 @@ const Register = () => {
     };
 
     return (
-        <div className="h-screen flex">
-            <div className="h-screen w-1/3 p-20 mt-30 flex flex-col items-center">
+        <div className='h-screen flex flex-col md:flex-row'>
+            <div className="h-screen w-full md:w-1/3 p-10 flex flex-col items-center">
                 <div className="text-center flex flex-col items-center">
                     <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1>
                     <img src={B} width="20%" height="200px" alt="Logo" />
@@ -154,7 +154,7 @@ const Register = () => {
          </div>
             </div>
             <div
-                className="bg-cover bg-center h-max md:h-screen w-2/3"
+            className="hidden md:block bg-cover bg-center h-screen w-2/3"
                 style={{
                     backgroundImage: `url(${bglog})`,
                     backgroundSize: 'cover',
