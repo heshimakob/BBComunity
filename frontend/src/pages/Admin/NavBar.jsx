@@ -112,14 +112,15 @@ const NavBar = () => {
   return (
     <NavbarContainer>
     <div className="w-auto">
-                <Link
-                  to='/user-dashboard'
-                  className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
-                >
-                  <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white'>
-                    Black Born Community
-                  </span>
-                </Link>
+    <Link
+  to='/user-dashboard'
+  className='flex justify-between self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+>
+  <img src={B} alt="" className="w-15 h-10" />
+  <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white hidden md:block'>
+  Black Born Community
+</span>
+</Link>
               </div>
       {/* <NavbarInput type="text" placeholder="Search" style={{ marginLeft: 'auto', marginRight: 'auto' }} /> */}
       <NavbarIconsContainer>
@@ -130,7 +131,7 @@ const NavBar = () => {
         <NavbarProfile>
           <NavbarProfileImage src="https://via.placeholder.com/30" />
           <NavbarProfileUsername>
-            <h2 className='text-bold text-white'>   {user.name}</h2>
+            {/* <h2 className='text-bold text-white'>   {user.name}</h2> */}
           </NavbarProfileUsername>
         </NavbarProfile>
       </NavbarIconsContainer>

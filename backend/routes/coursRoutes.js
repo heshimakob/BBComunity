@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const router =express.Router()
 const Cours =require('../models/coursModel')
 const Chapitre= require ('../models/chapitreModel');
+const Progress= require('../models/progressModel')
 
 
 const multer = require('multer');
@@ -97,36 +98,6 @@ router.post('/addChapitreCours/:id', upload.single('video'), async (req, res) =>
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-// router.get('/getCours/:courseId', (req, res) => {
-//   const courseId = req.params.courseId;
-
-//   Cours.findById(courseId)
-//     .populate({
-//       path: 'chapitres',
-//       model: 'Chapitre'
-//     })
-//     .then((Cours) => {
-//       console.log(Cours); // log the entire cours document
-//       console.log(Cours.chapitres); // log the chapitres array
-//       res.json(Cours.chapitres);
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       res.status(500).json({ error: 'Erreur lors de la récupération des données' });
-//     });
-// });
 
 
 
@@ -234,96 +205,86 @@ router.get('/getSingleChapitre/:id', async (req, res) => {
 
 
 
-    // Route pour récupérer tous les cours
-    // router.get('/getAllCours', async (req, res) => {
-    //   try {
-    //     const cours = await Cours.find({}); // Récupération des blogs à partir de la base de données
-    //     if (blogs.length === 0) {
-    //       return res.status(404).json({ message: "Aucun blog trouvé." }); // Gestion du cas où aucun blog n'est trouvé
-    //     }
-    //     res.json(cours); // Envoi des blogs au client
-    //   } catch (error) {
-    //     res.status(500).json({ message: error.message }); // Gestion des erreurs
-    //   }
-    // });
+
+  // code a verifier le 19 spetembre 2024 su r la progression de cours  et un frgmen tde code qui doit etre contenue je crois dna le chapitre mais il e sla on le commente
+
+
+  router.post('/addProgress', async (req, res) => {
+    try {
+        const { chapitres, cours } = req.body;
+
+        // Vérifier si req.user est défini
+        if (!req.user || !req.user._id) {
+            return res.status(401).json({ message: "Utilisateur non authentifié" });
+        }
+
+        let progress = await Progress.findOne({ user: req.user._id, cours: cours });
+
+        if (!progress) {
+            progress = await Progress.create({
+                user: req.user._id,
+                course: cours,
+                completedLecture: []
+            });
+        }
+
+        if (progress.completedLecture.includes(chapitres)) {
+            return res.json({ message: "Progress already recorded." });
+        }
+
+        progress.completedLecture.push(chapitres);
+        await progress.save();
+
+        res.status(201).json({ message: "New progress added successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error adding progress", error: error.message });
+    }
+});
+
+
+
+router.get('/getProgress', async (req, res) => {
+  try {
+      const { cours } = req.query; // Le ID du cours est passé dans la requête
+
+      if (!req.user) {
+          return res.status(401).json({ message: "User not authenticated." });
+      }
+
+      if (!courseId) {
+          return res.status(400).json({ message: "Course ID is required." });
+      }
+
+      const progress = await Progress.findOne({
+          user: req.user._id,
+          course: cours,
+      });
+
+      if (!progress) {
+          return res.status(404).json({ message: "Progress not found." });
+      }
+
+      const allChapitre = await Chapitre.countDocuments({ cours: courseId });
+      const completedLecture = progress.completedLecture.length;
+      const coursProgressPourcentage = (completedLecture * 100) / allChapitre;
+
+      res.status(200).json({
+          coursProgressPourcentage,
+          completedLecture,
+          allChapitre,
+          progress,
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: `Error fetching progress: ${err.message}` });
+  }
+});
 
 
 
 
 
 
-
-
-// // Route pour créer un nouveau cours
-// router.post('/addCourse', (req, res) => {
-//     const { title, description, image, instructor } = req.body;
-//     const newCourse = new Course({ title, description, image, instructor });
-//     try {
-//       newCourse.save();
-//       res.status(200).json({
-//         success: true,
-//         message: 'Success add course'
-//       });
-//     } catch (error) {
-//       res.status(400).json({
-//         message: error,
-//       });
-//     }
-//   });
-  
-// 
-  
-//   
-  
-//   
-  
-//   
-  
-//   
-//   // Route pour récupérer tous les chapitres d'un cours
-//   router.get('/getAllChapters/:courseId', async (req, res) => {
-//     try {
-//       const course = await Course.findById(req.params.courseId);
-//       const chapters = await Chapter.find({ _id: { $in: course.chapters } });
-//       res.json(chapters); // Envoi des chapitres au client
-//     } catch (error) {
-//       res.status(500).json({ message: error.message }); // Gestion des erreurs
-//     }
-//   });
-  
-//   // Route pour récupérer les détails d'un chapitre
-//   router.get('/getChapter/:id', async (req, res) => {
-//     try {
-//       const { id } = req.params;
-//       const data = await Chapter.findById(id);
-//       res.status(200).json({ data: data });
-//     } catch (error) {
-//       res.status(500).json({ message: error.message }); // Gestion des erreurs
-//     }
-//   });
-  
-//   // Route pour mettre à jour un chapitre
-//   router.put('/updateChapter/:id', async (req, res) => {
-//     try {
-//       const { id } = req.params;
-//       const { title, description, video } = req.body;
-//       const updatedChapter = await Chapter.findByIdAndUpdate(id, { title, description, video }, { new: true });
-//       if (!updatedChapter) {
-//         return res.status(404).json({
-//           success: false,
-//           message: 'Chapter not found'
-//         });
-//       }
-//       res.status(200).json({
-//         success: true,
-//         message: 'Chapter updated successfully'
-//       });
-//     } catch (error) {
-//       res.status(500).json({
-//         success: false,
-//         message: error.message
-//       });
-//     }
-//   });
 
 module.exports = router;

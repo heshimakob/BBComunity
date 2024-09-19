@@ -61,57 +61,57 @@ const ProfilesMember = () => {
         <>
             <NavBar />
             <Sidebar />
-            <div className="container mx-auto mt-28">
-                        <h1 className="text-2xl mb-10">Modifier votre profile</h1>
-                        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Nom complet*</label>
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Titre"
-                                 className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                            />
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Adresse mail*</label>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Adresse mail"
-                                 className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                            />
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Mot de passe*</label>
-                            <div className="relative">
-                                <input
-                                    type={showPassword ? 'text' : 'password'}
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Mot de passe"
-                                    className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                                />
-                                <span className="absolute top-3 right-3 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
-                                    {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
-                                </span>
-                            </div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Identité de genre*</label>
-                            <select
-                                id="gender"
-                                value={genre}
-                                onChange={(e) => setGenre(e.target.value)}
-                                className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                            >
-                                <option value="male">Homme</option>
-                                <option value="female">Femme</option>
-                                <option value="other">Autre</option>
-                            </select>
-                            <button
-                                className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-                                type="submit"
-                            >
-                                Mettre à jour
-                            </button>
-                        </form>
+            <div className="container mx-auto my-8 px-4 sm:px-6 lg:px-8 mt-28">
+                <h1 className="text-2xl mb-6 text-center">Modifier votre profil</h1>
+                <form className="flex flex-col gap-4 max-w-md mx-auto" onSubmit={handleSubmit}>
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Nom complet*</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Titre"
+                        className="w-full p-3 mb-4 border border-gray-200 rounded-md"
+                    />
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Adresse mail*</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Adresse mail"
+                        className="w-full p-3 mb-4 border border-gray-200 rounded-md"
+                    />
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Mot de passe*</label>
+                    <div className="relative">
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Mot de passe"
+                            className="w-full p-3 mb-4 border border-gray-200 rounded-md"
+                        />
+                        <span className="absolute top-3 right-3 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+                        </span>
                     </div>
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Identité de genre*</label>
+                    <select
+                        id="gender"
+                        value={genre}
+                        onChange={(e) => setGenre(e.target.value)}
+                        className="w-full p-3 mb-6 border border-gray-200 rounded-md"
+                    >
+                        <option value="male">Homme</option>
+                        <option value="female">Femme</option>
+                        <option value="other">Autre</option>
+                    </select>
+                    <button
+                        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                        type="submit"
+                    >
+                        Mettre à jour
+                    </button>
+                </form>
+            </div>
         </>
     );
 };

@@ -42,10 +42,15 @@ function App() {
   return (
   
 <BrowserRouter>
+
+
+
 <LoadingBar
-color="#f11946"
-progress={progress}
-onLoaderFinished={()=>setProgress(0)}/>
+  color="#f11946"
+  progress={progress}
+  onLoaderFinished={() => setProgress(0)}
+  className="w-full h-10 md:h-6 lg:h-8"
+/>
 
 <Routes>
         <Route path="/" element= {<Home setProgress={setProgress}/>} />
