@@ -53,7 +53,7 @@ const Sidebar = () => {
                     </li>
                     <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/challenger' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
                         <div className="text-xl mb-1"><BsPerson /></div>
-                        <Link to="/challenge" className="text-white"> Challenger</Link>
+                        <Link to="/chat" className="text-white">Ai Assitant</Link>
                     </li>
                     <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/annoncer' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
                         <div className="text-xl mb-1"><BsAlarm /></div>

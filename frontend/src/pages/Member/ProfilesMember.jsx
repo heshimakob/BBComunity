@@ -5,30 +5,35 @@ import { updateUser } from '../../store/userSlice';
 import Sidebar from './Sidebar';
 import { ClassesContainer, Content } from '../../styles/ClassesStyles';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { FaUserCircle } from 'react-icons/fa'; // Import de l'icône d'avatar
 import NavBar from '../Admin/NavBar';
 
 const ProfilesMember = () => {
+    const [id, setId] = useState(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [genre, setGenre] = useState('');
+    const [image, setImage] = useState(null); // État pour l'image de profil
+    const [imagePreview, setImagePreview] = useState(null); // État pour l'aperçu de l'image
 
-    // Hook pour récupérer les détails de l'utilisateur
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                const token = localStorage.getItem('token'); // Assurez-vous que le jeton est stocké
+                const token = localStorage.getItem('token');
                 const response = await axios.get('http://localhost:8080/api/users/userDetail', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const userData = response.data;
 
-                // Mettez les champs de l'état avec les données utilisateur récupérées
+                setId(userData.id);
                 setName(userData.name);
                 setEmail(userData.email);
                 setGenre(userData.gender);
                 setPassword(userData.password);
+                setImage(userData.image); // Récupération de l'image
+                setImagePreview(userData.image ? userData.image : null); // Prévoir l'aperçu de l'image
             } catch (error) {
                 console.error('Erreur lors de la récupération des détails de l’utilisateur :', error);
             }
@@ -37,23 +42,36 @@ const ProfilesMember = () => {
         fetchUserDetails();
     }, []);
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+            setImagePreview(URL.createObjectURL(file)); // Créer un URL pour l'aperçu
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData(); // Pour transmettre des données, y compris le fichier image
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('gender', genre);
+        if (image) {
+            formData.append('image', image); // Ajouter l'image au FormData si elle existe
+        }
+
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put('http://localhost:8080/api/userUpdate', {
-                name,
-                email,
-                password,
-                gender: genre
-            }, {
-                headers: { Authorization: `Bearer ${token}` }
+            const response = await axios.put(`http://localhost:8080/api/users/update/${id}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
             });
-
-            // Mettez à jour l'utilisateur dans le store Redux ou affichez un message de succès
             console.log('Utilisateur mis à jour :', response.data);
         } catch (error) {
-            console.error('Erreur lors de la mise à jour de l’utilisateur :', error);
+            console.error('Erreur lors de la mise à jour de l’utilisateur :', error.response ? error.response.data : error.message);
         }
     };
 
@@ -64,6 +82,14 @@ const ProfilesMember = () => {
             <div className="container mx-auto my-8 px-4 sm:px-6 lg:px-8 mt-28">
                 <h1 className="text-2xl mb-6 text-center">Modifier votre profil</h1>
                 <form className="flex flex-col gap-4 max-w-md mx-auto" onSubmit={handleSubmit}>
+                    <div className="flex items-center justify-center mb-4">
+                        {imagePreview ? (
+                            <img src={imagePreview} alt="Profile" className="w-16 h-16 rounded-full" />
+                        ) : (
+                            <FaUserCircle size={64} className="text-gray-400" />
+                        )}
+                        <input type="file" accept="image/*" onChange={handleImageChange} className="ml-4" />
+                    </div>
                     <label className="block text-gray-700 text-sm font-bold mb-2">Nom complet*</label>
                     <input
                         type="text"

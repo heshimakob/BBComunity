@@ -4,6 +4,7 @@ const router =express.Router()
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User =require('../models/userModel')
+const multer = require('multer');
 
 
 const generateToken = (user) => {
@@ -40,9 +41,20 @@ router.get('/userDetail', authMiddleware, async (req, res) => {
       res.status(500).json({ message: error.message });
   }
 });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // Dossier où vous souhaitez stocker les fichiers
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname); // Vous pouvez personnaliser le nom si vous le souhaitez
+  }
+});
 
-router.post('/register', async (req, res) => {
+const upload = multer({ storage: storage });
+
+router.post('/register', upload.single('image'), async (req, res) => {
   const { name, email, password, isAdmin } = req.body;
+  const image = req.file; // Récupérer le fichier image
 
   // Vérification de la présence des données
   if (!password) {
@@ -59,15 +71,24 @@ router.post('/register', async (req, res) => {
       const saltRounds = 10;
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
-      
-      const newUser = new User({ name, email, isAdmin, password: hashedPassword });
-      
+
+      // Créer un nouvel utilisateur, en ajoutant le chemin de l'image si elle existe
+      const newUser = new User({
+          name,
+          email,
+          isAdmin,
+          password: hashedPassword,
+          image: image ? image.path : null // Ajouter le chemin de l'image si disponible
+      });
+
       await newUser.save();
+
       res.status(200).json({ success: true, message: 'Successfully registered' });
   } catch (error) {
       res.status(400).json({ message: error.message });
   }
 });
+
 router.post('/logout', async (req, res) => {
   // Si vous utilisez un mécanisme de stockage de session, supprimez le token ici
   // Par exemple, la suppression du token du client peut suffire.
@@ -93,45 +114,83 @@ router.get('/getAllUsers', async (req, res) => {
     } 
 });
 
-router.put('/updateUser/:id', async (req, res) => {
-    const { id } = req.params;
-    const { name, email, password } = req.body;
+router.put('/update/:id', upload.single('image'), async (req, res) => {
+  const { name, email, password, isAdmin } = req.body;
+  const image = req.file; // Récupérer le fichier image
+  const userId = req.params.id; // ID de l'utilisateur à mettre à jour
+
+  try {
+      // Vérifier si l'utilisateur existe
+      const existingUser = await User.findById(userId);
+
+      console.log('ID de l’utilisateur à mettre à jour :', userId);
+      if (!existingUser) {
+          return res.status(404).json({ message: 'Utilisateur non trouvé' });
+      }
+
+      // Mettre à jour les données de l'utilisateur
+      existingUser.name = name || existingUser.name; // Mettre à jour le nom s'il est fourni
+      existingUser.email = email || existingUser.email; // Mettre à jour l'email s'il est fourni
+
+      // Si un nouveau mot de passe est fourni, le hacher et le mettre à jour
+      if (password) {
+          const saltRounds = 10;
+          const salt = await bcrypt.genSalt(saltRounds);
+          existingUser.password = await bcrypt.hash(password, salt);
+      }
+
+      existingUser.isAdmin = isAdmin !== undefined ? isAdmin : existingUser.isAdmin; // Mettre à jour isAdmin s'il est fourni
+      existingUser.image = image ? image.path : existingUser.image; // Mettre à jour l'image si donnée
+
+      await existingUser.save();
+
+      res.status(200).json({ success: true, message: 'Utilisateur mis à jour avec succès' });
+  } catch (error) {
+      res.status(400).json({ message: error.message });
+  }
+});
+
+module.exports = router;
+
+// router.put('/updateUser/:id', async (req, res) => {
+//     const { id } = req.params;
+//     const { name, email, password } = req.body;
   
-    // Vérifier si l'utilisateur existe
-    const existingUser = await User.findById(id);
-    if (!existingUser) {
-      return res.status(404).json({
-        message: 'Utilisateur non trouvé',
-      });
-    }
+//     // Vérifier si l'utilisateur existe
+//     const existingUser = await User.findById(id);
+//     if (!existingUser) {
+//       return res.status(404).json({
+//         message: 'Utilisateur non trouvé',
+//       });
+//     }
   
-    // Vérifier si l'adresse mail est déjà utilisée par un autre utilisateur
-    const userWithSameEmail = await User.findOne({ email, _id: { $ne: id } });
-    if (userWithSameEmail) {
-      return res.status(400).json({
-        message: 'Adresse mail déjà utilisée',
-      });
-    }
+//     // Vérifier si l'adresse mail est déjà utilisée par un autre utilisateur
+//     const userWithSameEmail = await User.findOne({ email, _id: { $ne: id } });
+//     if (userWithSameEmail) {
+//       return res.status(400).json({
+//         message: 'Adresse mail déjà utilisée',
+//       });
+//     }
   
-    // Hasher le mot de passe si il est modifié
-    if (password) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      req.body.password = hashedPassword;
-    }
+//     // Hasher le mot de passe si il est modifié
+//     if (password) {
+//       const hashedPassword = await bcrypt.hash(password, 10);
+//       req.body.password = hashedPassword;
+//     }
   
-    try {
-      const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
-      res.status(200).json({
-        success: true,
-        message: 'Utilisateur mis à jour avec succès',
-        data: updatedUser,
-      });
-    } catch (error) {
-      res.status(400).json({
-        message: error,
-      });
-    }
-  });
+//     try {
+//       const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+//       res.status(200).json({
+//         success: true,
+//         message: 'Utilisateur mis à jour avec succès',
+//         data: updatedUser,
+//       });
+//     } catch (error) {
+//       res.status(400).json({
+//         message: error,
+//       });
+//     }
+//   });
 
 
 

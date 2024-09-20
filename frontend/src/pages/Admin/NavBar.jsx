@@ -1,142 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import B from "../../assets/B.png"
 import { BsChatDots, BsChat } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-
-const NavbarContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background-color:#1A1D23; /* Dark blue background */
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 30px;
-  z-index: 100; /* Ensure navbar stays above content */
-`;
-
-const NavbarLogo = styled.img`
-  width: 50px;
-  height: auto;
-  margin-right: 20px;
-`;
-
-const NavbarInput = styled.input`
-  width: 800px;
-  height: 30px;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-`;
-
-const NavbarIconsContainer = styled.div`
-  margin-left: auto; /* Push the icons to the right */
-  display: flex;
-  align-items: center;
-`;
-
-const NavbarNotification = styled.div`
-  margin-right: 20px;
-  font-size: 25px;
-  cursor: pointer;
-`;
-
-const NavbarChat = styled.div`
-  margin-right: 20px;
-  font-size: 25px;
-  cursor: pointer;
-`;
-
-const NavbarProfile = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-`;
-
-const NavbarProfileImage = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 10px;
-`;
-
-const NavbarProfileUsername = styled.span`
-  font-size: 16px;
-`;
+import { getUserDetails } from '../../store/userSlice'; // Assurez-vous que le chemin est correct
 
 const NavBar = () => {
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true); // État de chargement
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.users); // Retrieve the user state from Redux
+
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      const token = localStorage.getItem('token');
-      console.log(token)
-      if (!token) {
-        setError("Token manquant");
-        setLoading(false);
-        return;
-      }
-      try {
-        const response = await axios.get('http://localhost:8080/api/users/userDetail', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        setUser(response.data);
-      } catch (err) {
-        setError(err.response?.data?.message || "Erreur inconnue");
-      } finally {
-        setLoading(false); // Fin du chargement
-      }
-    };
-
-    fetchUserDetails();
-  }, []);
-
-  if (loading) {
-    return <div>Chargement des détails de l'utilisateur...</div>;
-  }
-
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
-  }
+    if (token) {
+      dispatch(getUserDetails(token)); // Récupérer les détails de l'utilisateur
+    }
+  }, [token, dispatch]);
 
   return (
-    <NavbarContainer>
-    <div className="w-auto">
-    <Link
-  to='/user-dashboard'
-  className='flex justify-between self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
->
-  <img src={B} alt="" className="w-15 h-10" />
-  <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white hidden md:block'>
-  Black Born Community
-</span>
-</Link>
-              </div>
-      {/* <NavbarInput type="text" placeholder="Search" style={{ marginLeft: 'auto', marginRight: 'auto' }} /> */}
-      <NavbarIconsContainer>
-       
-        <NavbarChat>
+    <nav className="fixed top-0 left-0 w-full h-16 bg-gray-900 text-white flex items-center justify-between px-4">
+      <Link to="/" className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white">
+        <span className="px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white">
+          Black Born Community
+        </span>
+      </Link>
+      <div className="flex items-center justify-end">
+        <div className="mr-4">
+          <BsChatDots size={20} />
+        </div>
+        <div className="mr-4">
           <BsChat size={20} />
-        </NavbarChat>
-        <NavbarProfile>
-          <NavbarProfileImage src="https://via.placeholder.com/30" />
-          <NavbarProfileUsername>
-            {/* <h2 className='text-bold text-white'>   {user.name}</h2> */}
-          </NavbarProfileUsername>
-        </NavbarProfile>
-      </NavbarIconsContainer>
-    </NavbarContainer>
-  )
-}
+        </div>
+        <div className="flex items-center mr-4">
+          <img src="" alt="Profile" className="w-8 h-8 rounded-full mr-2" />
+          {user && user.userDetail ? (
+            <p className="text-white">{user.userDetail.name}</p>
+          ) : (
+            <p className="text-white">Loading...</p>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-export default NavBar
+export default NavBar;

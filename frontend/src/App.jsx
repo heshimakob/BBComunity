@@ -32,6 +32,9 @@ import Register from "./components/Register";
 import AddChapitre from "./pages/Admin/componnent/addChapitre";
 import LoadingBar from "react-top-loading-bar"
 import { useState } from "react";
+import Chat from "./pages/Member/Chat";
+
+
 
 
 
@@ -93,6 +96,7 @@ function App() {
           <Route path='/member-cours' element={<CoursMember/>}/>
           <Route path='/modulepage/:id' element={<ModulePage/>}/>
           <Route path='/member-profile' element={<ProfilesMember/>}/>
+          <Route path='/chat' element={<Chat/>}/>
           <Route path='/challenge' element={<ChallengeMember/>}/>
         </Route>
 {/* <Route element={<PrivateRoutes AdminRoutes/>}>

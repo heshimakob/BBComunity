@@ -83,7 +83,7 @@ const userSlice = createSlice({
   
 });
 
-export const { fetchUsers, fetchSingleUser,signInStart,signInSuccess, signoutSuccess,signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
+export const { fetchUsers, userDetails, fetchSingleUser,signInStart,signInSuccess, signoutSuccess,signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
 export default userSlice.reducer;
 
 export function signin(data) {
@@ -97,6 +97,17 @@ export function signin(data) {
     }
   }
 }
+
+export const getUserDetails = (token) => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:8080/api/users/userDetail', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    dispatch(userDetails(response.data)); // Mettez à jour l'état avec les détails de l'utilisateur
+  } catch (error) {
+    dispatch(setError(error.message));
+  }
+};
 
 export function register(data) {
   return async function registerThunk(dispatch, getState) {
