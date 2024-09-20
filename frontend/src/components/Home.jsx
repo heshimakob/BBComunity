@@ -92,7 +92,7 @@ const Home = ({ setProgress }) => {
                                 <div className="flex flex-wrap -m-1.5">
                                     <div className="w-auto p-1.5">
                                         <div className="flex flex-wrap">
-                                            <motion.div whileHover={{ scale: 1.1 }}> // Animation de l'image
+                                            <motion.div whileHover={{ scale: 1.1 }}> 
                                                 <img src={avatar} alt="" />
                                             </motion.div>
                                             <motion.div whileHover={{ scale: 1.1 }}>
