@@ -8,7 +8,7 @@ router.post('/chatter', async (req, res) => {
 
     const OpenAI = require("openai");
     const configuration = new OpenAI.Configuration({
-        apiKey: "sk-kK1YNQh6BHd6IQ5k2Q2914RzshnM0Qss-JMErtqd5tT3BlbkFJJn-2gjjnC-uDyEGavFHnpyk5cq3OSWIhqrPJyS2koA"
+      
     });
     const openai = new OpenAI.OpenAIApi(configuration);
 
