@@ -30,14 +30,14 @@ const NavBar = () => {
         <div className="mr-4">
           <BsChat size={20} />
         </div>
-        <div className="flex items-center mr-4">
+        {/* <div className="flex items-center mr-4">
           <img src="" alt="Profile" className="w-8 h-8 rounded-full mr-2" />
           {user && user.userDetail ? (
             <p className="text-white">{user.userDetail.name}</p>
           ) : (
             <p className="text-white">Loading...</p>
           )}
-        </div>
+        </div> */}
       </div>
     </nav>
   );

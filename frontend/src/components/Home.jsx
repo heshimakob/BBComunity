@@ -27,7 +27,7 @@ const Home = ({ setProgress }) => {
         setProgress(40);
         setTimeout(() => {
             setProgress(100);
-        }, 2000);
+        }, 3000);
     }, []);
 
     return (

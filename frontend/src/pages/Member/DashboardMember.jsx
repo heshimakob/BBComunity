@@ -5,10 +5,18 @@ import Sidebar from './Sidebar';
 import NavBar from '../Admin/NavBar';
 import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
 
-const DashboardMember = () => {
+const DashboardMember = ({}) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+
+//   useEffect(()=>{
+//     setProgress(40);
+//     setTimeout(()=>{
+//         setProgress(100)
+//     },3000)
+// },[]);
+
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -31,6 +39,8 @@ const DashboardMember = () => {
         setLoading(false);
       }
     };
+
+
 
     fetchUserDetails();
   }, []);
