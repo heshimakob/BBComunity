@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import NavBar from '../Admin/NavBar';
+
 import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
+import Cours from '../../components/Cours';
 
 const DashboardMember = ({}) => {
   const [user, setUser] = useState(null);
@@ -64,12 +66,12 @@ const DashboardMember = ({}) => {
               <img className="rounded-full w-32 h-32" src={user.image} alt="User" />
             </div>
             <div className="md:w-2/3 mt-4 md:mt-0 md:ml-6">
-              <h2 className="text-2xl font-semibold">{user.name}</h2>
-              <p className="text-gray-600">{user.role}</p>
+              <h2 className="text-3xl font-semibold">{user.name}</h2>
+              <p className="text-gray-600 text-2xl">{user.role}</p>
               <div className="flex flex-col mt-4">
                 <div className="flex items-center">
                   <FaUser className="text-gray-500 mr-2" />
-                  <span>{user.sexe}</span>
+                  <span className='text-2xl'>{user.genre}</span>
                 </div>
                 <div className="flex items-center mt-2">
                   <FaMapMarkerAlt className="text-gray-500 mr-2" />
@@ -89,8 +91,22 @@ const DashboardMember = ({}) => {
                 </div>
               </div>
             </div>
+            <div> 
+         
+               </div>
+          </div>
+          <div className=' flex flex-col mb-0 bottom-0 mt-52'>
+            <div className='bbc-container mb-10 mt-10'>
+              <h1 className='text-gray-500 text-5xl'>Black Born Community Les cours mise A jours</h1>
+            </div>
+          <Cours/>
           </div>
         </div>
+
+
+
+
+
         <div className="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-0 md:ml-6">
           <h3 className="text-lg font-semibold mb-4">Medical History</h3>
           <ul className="list-disc pl-5">

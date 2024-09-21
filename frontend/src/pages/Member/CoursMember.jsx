@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
-import { FaBookOpen, FaCode, FaUserCircle } from 'react-icons/fa'; 
+import { FaBookOpen, FaCode, FaGraduationCap, FaUserCircle } from 'react-icons/fa'; 
 import Sidebar from './Sidebar'; 
 import { Link } from 'react-router-dom'; 
 import NavBar from '../Admin/NavBar'; 
@@ -101,7 +101,7 @@ const CoursMember = () => {
                                             </div>
                                             <div className="px-4 py-3 border-t border-gray-200">
                                                 <div className="flex items-center justify-between">
-                                                    <FaCode className="text-blue-500 mr-3" size={24} />
+                                                    <FaGraduationCap className="text-blue-500 mr-3" size={24} />
                                                     <div className="relative w-16 h-16">
                                                         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
                                                             <circle cx="50" cy="50" r="45" stroke="#e2e8f0" strokeWidth="10" fill="transparent" />

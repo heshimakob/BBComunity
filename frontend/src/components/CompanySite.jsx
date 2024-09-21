@@ -7,6 +7,8 @@ import Footer from './Footer';
 import Details from './Details';
 import Marque from './marque/Marque';
 import swal from 'sweetalert';
+import Cours from './Cours';
+import { Link } from 'react-router-dom';
 
 const CompanySite = ({setProgress}) => {
   const dispatch = useDispatch();
@@ -137,6 +139,7 @@ Envoyer votre demande d'engagement
       </div>
 
 <Marque/>
+{/* <Cours/> */}
 <Details/>
 <Toaster/>
     <Footer/>
