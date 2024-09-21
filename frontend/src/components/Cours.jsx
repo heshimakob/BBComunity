@@ -46,7 +46,7 @@ const Cours = () => {
                                                 </div>
                                                 <div className="flex items-center justify-between">
                                                     <FaGraduationCap className="text-blue-500 mr-3" size={24} />
-                                                    <div className="relative w-16 h-16">
+                                                    {/* <div className="relative w-16 h-16">
                                                         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
                                                             <circle cx="50" cy="50" r="45" stroke="#e2e8f0" strokeWidth="10" fill="transparent" />
                                                             <circle cx="50" cy="50" r="45" stroke="#4ade80" strokeWidth="10" fill="transparent" strokeDasharray={282.7433388230814} strokeDashoffset={282.7433388230814 - (282.7433388230814 * course.progress) / 100} />
@@ -54,7 +54,7 @@ const Cours = () => {
                                                         <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
                                                             {course.progress}%
                                                         </span>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
                                                 </Link>
           </div>

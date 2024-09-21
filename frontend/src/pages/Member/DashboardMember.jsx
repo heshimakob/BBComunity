@@ -62,7 +62,7 @@ const DashboardMember = ({}) => {
       <div className="flex flex-col md:flex-row md:h-screen p-10 md:ml-32 md:mt-20">
         <div className="w-full md:w-2/3 bg-white shadow-lg rounded-lg p-6">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/3">
+            <div className="md:w-1/3 mt-10">
               <img className="rounded-full w-32 h-32" src={user.image} alt="User" />
             </div>
             <div className="md:w-2/3 mt-4 md:mt-0 md:ml-6">
@@ -107,8 +107,8 @@ const DashboardMember = ({}) => {
 
 
 
-        <div className="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-0 md:ml-6">
-          <h3 className="text-lg font-semibold mb-4">Medical History</h3>
+        <div className="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-0 md:ml-6 mb-20">
+          <h3 className="text-4xl font-semibold mb-4">Medical History</h3>
           <ul className="list-disc pl-5">
             <li>Fractured Arm</li>
             <li>Hey you are looking very good</li>
