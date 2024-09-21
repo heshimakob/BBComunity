@@ -70,7 +70,8 @@ const Home = ({ setProgress }) => {
                                 animate={{ y: 0, opacity: 1 }} // État animé
                                 transition={{ duration: 0.75 }} // Durée de la transition
                             >
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 sm:max-w-2xl md:max-w-4xl">l'apprentissage des</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 sm:max-w-2xl md:max-w-4xl">l'apprentissage <br /> des  </span>
+                              
                                 <span className='relative font-serif font-bold italic text-gray-400'>métiers du futur</span>
                             </motion.h1>
 

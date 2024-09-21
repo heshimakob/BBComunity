@@ -7,8 +7,8 @@ export default function Footer() {
 
 
 
-<footer className=' bg-gray-800 ' >
-    <div className="mx-auto w-full  bg-gray-800 max-w-screen-xl p-4 py-6 lg:py-8">
+<footer className=' bg-blue-950 ' >
+    <div className="mx-auto w-full  bg-blue-950 max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
         <Link
         to='/'

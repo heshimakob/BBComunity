@@ -15,7 +15,7 @@ const Details = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8 w-full max-w-lg">
                 <button
-                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-5 flex items-center justify-center transition duration-300 ease-in-out"
+                    className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-5 flex items-center justify-center transition duration-300 ease-in-out rounded-xl "
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
@@ -36,7 +36,7 @@ const Details = () => {
                     )}
                 </button>
                 <button
-                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-5 flex items-center justify-center transition duration-300 ease-in-out"
+                    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-5 flex items-center justify-center transition duration-300 ease-in-out rounded-xl"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >

@@ -30,12 +30,28 @@ const authMiddleware = (req, res, next) => {
       next();
   });
 };
+// router.get('/userDetail', authMiddleware, async (req, res) => {
+//   try {
+//       const user = await User.findById(req.user.id).select('-password'); // Ne pas retourner le mot de passe
+//       if (!user) {
+//           return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+//       }
+//       res.status(200).json(user);
+//   } catch (error) {
+//       res.status(500).json({ message: error.message });
+//   }
+// });
+
 router.get('/userDetail', authMiddleware, async (req, res) => {
   try {
       const user = await User.findById(req.user.id).select('-password'); // Ne pas retourner le mot de passe
       if (!user) {
           return res.status(404).json({ message: 'Utilisateur non trouvé.' });
       }
+
+      // Assurez-vous que le chemin de l'image est correct
+      user.image = `${req.protocol}://${req.get('http://localhost:8080')}/${user.image}`;
+
       res.status(200).json(user);
   } catch (error) {
       res.status(500).json({ message: error.message });
@@ -102,7 +118,7 @@ router.post('/logout', async (req, res) => {
 
 
 
-router.get('/getAllUsers', async (req, res) => {     
+router.get('/getAllUsers', authMiddleware, async (req, res) => {     
     try {         
         const user = await User.find({}); // Récupération des utilisateurs à partir de la base de données
         if (user.length === 0) {
@@ -150,7 +166,7 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
   }
 });
 
-module.exports = router;
+// module.exports = router;
 
 // router.put('/updateUser/:id', async (req, res) => {
 //     const { id } = req.params;

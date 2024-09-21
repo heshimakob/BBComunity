@@ -1,46 +1,48 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Chat = () => {
-  const [input, setInput] = useState('');
-  const [response, setResponse] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
-  const sendMessage = async () => {
-    setLoading(true);
-    setError('');
-    try {
-      const apiUrl = 'http://localhost:8080/api/chat/chatter'; // URL de votre serveur
-      const { data } = await axios.post(apiUrl, { input }); // Envoi de l'input
-      setResponse(data.response); // Réponse de l'API
-    } catch (error) {
-      setError('Erreur lors de l\'envoi du message. Veuillez réessayer.');
-      console.error('Error sending message:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+function Chat() {
+    const [message, setMessage] = useState('');
+    const [responses, setResponses] = useState([]);
 
-  return (
-    <div className='bbc-container mt-20'>
-      <div>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Tapez votre message ici..."
-        />
-        <button onClick={sendMessage} disabled={loading}>
-          {loading ? 'Envoi...' : 'Envoyer'}
-        </button>
-      </div>
-      <div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {response && <p>{response}</p>} {/* Ajout d'un check pour afficher la réponse */}
-      </div>
-    </div>
-  );
-};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!message) return;
+
+        const userMessage = { message };
+        try {
+            const { data } = await axios.post('http://localhost:8080/api/chat', userMessage);
+            setResponses([...responses, { user: message, ai: data.choices[0].message.content }]);
+            setMessage('');
+        } catch (error) {
+            console.error('Error fetching the AI response', error);
+        }
+    };
+
+    return (
+        <div className="App">
+            <h1>Chat avec GPT</h1>
+            <div>
+                {responses.map((item, index) => (
+                    <div key={index}>
+                        <p><strong>Vous:</strong> {item.user}</p>
+                        <p><strong>GPT:</strong> {item.ai}</p>
+                    </div>
+                ))}
+            </div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Tapez votre message..."
+                    required
+                />
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    );
+}
 
 export default Chat;

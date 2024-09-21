@@ -21,6 +21,9 @@ const userSlice = createSlice({
       state.users = action.payload
    
     },
+    setUser(state, action) {
+      state.users = action.payload;
+  },
     signInStart(state){
       state.loading=true,
       state.error=null
@@ -83,7 +86,7 @@ const userSlice = createSlice({
   
 });
 
-export const { fetchUsers, userDetails, fetchSingleUser,signInStart,signInSuccess, signoutSuccess,signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
+export const { fetchUsers, userDetails,setUser, fetchSingleUser,signInStart,signInSuccess, signoutSuccess,signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
 export default userSlice.reducer;
 
 export function signin(data) {

@@ -47,7 +47,7 @@ const Login = ({setProgress}) => {
 
     return (
         <div className=' h-screen flex flex-col md:flex-row '>
-            <div className="h-screen w-full md:w-1/3 p-10 flex flex-col  mt-28 items-center">
+            <div className="h-screen w-full md:w-1/3 p-10 flex flex-col  mt-20 items-center">
                 <div className="text-center flex flex-col items-center">
                    <Link to="/"> <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1></Link>
                     <img src={B} width="20%" height="200px" alt='logo bbc' />
@@ -82,7 +82,7 @@ const Login = ({setProgress}) => {
                         {loading ? 'Loading...' : 'Se connecter'}
                     </button>
                 </form>
-                <div className='flex gap-2 text-sm mt-5'>
+                <div className='flex  flex-col  text-center gap-2 text-sm mt-5  '>
                     <span>Vous n'avez pas de compte?</span>
                     <Link to='/register' className='text-blue-500'>
                         Creer un compte
@@ -92,7 +92,7 @@ const Login = ({setProgress}) => {
                     <span className='mt-5 text-red-500'>{errorMessage}</span>
                 )}
                 <div className='mb-0 mt-auto text-center items-center'>
-                    <p className='text-gray-300 mb-10'>Black Born community @copyright 2024</p>
+                    <p className='text-gray-300 mb-0 b-0'>Black Born community @copyright 2024</p>
                 </div>
             </div>
             {/* Div de droite caché en mode mobile */}
