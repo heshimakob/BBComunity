@@ -39,7 +39,8 @@ app.use('/api/cours', require('./routes/coursRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 
 
-
+app.use('/api/chat', require('./routes/chatRoutes'));
+app.use('/api/message', require('./routes/messageRoutes'));
 app.use('/api/candidate', require('./routes/candidateRoutes'));
 app.use('/api/chapitre', require('./routes/chapitreRoutes'));
 app.use('/api/blogs', require('./routes/blogRoutes'));

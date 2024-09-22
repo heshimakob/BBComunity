@@ -108,7 +108,7 @@ const DashboardMember = ({}) => {
 
 
         <div className="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-0 md:ml-6 mb-20">
-          <h3 className="text-4xl font-semibold mb-4">Medical History</h3>
+          <h3 className="text-4xl font-semibold mb-4"> Historique des Cours</h3>
           <ul className="list-disc pl-5">
             <li>Fractured Arm</li>
             <li>Hey you are looking very good</li>
