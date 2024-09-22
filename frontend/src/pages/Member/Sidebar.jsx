@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BsAlarm, BsArrowLeft, BsBook, BsGraphUp, BsPerson } from 'react-icons/bs';
+import { BsAlarm, BsArrowLeft, BsBook, BsChat, BsGraphUp, BsPerson } from 'react-icons/bs';
 import axios from 'axios';
 import swal from "sweetalert";
 
@@ -52,8 +52,8 @@ const Sidebar = () => {
                         <Link to="/member-cours" className="text-white"> Apprendre</Link>
                     </li>
                     <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/challenger' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
-                        <div className="text-xl mb-1"><BsPerson /></div>
-                        <Link to="/chat" className="text-white">Ai Assitant</Link>
+                        <div className="text-xl mb-1"><BsChat /></div>
+                        <Link to="/chat" className="text-white">Chat</Link>
                     </li>
                     <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/annoncer' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
                         <div className="text-xl mb-1"><BsAlarm /></div>
