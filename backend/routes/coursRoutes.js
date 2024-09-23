@@ -230,78 +230,120 @@ router.get('/getSingleChapitre/:id', async (req, res) => {
   // code a verifier le 19 spetembre 2024 su r la progression de cours  et un frgmen tde code qui doit etre contenue je crois dna le chapitre mais il e sla on le commente
 
 
-  router.post('/addProgress', async (req, res) => {
-    try {
-        const { chapitres, cours } = req.body;
+//   router.post('/addProgress', async (req, res) => {
+//     try {
+//         const { chapitres, cours } = req.body;
 
-        // Vérifier si req.user est défini
-        if (!req.user || !req.user._id) {
-            return res.status(401).json({ message: "Utilisateur non authentifié" });
-        }
+//         // Vérifier si req.user est défini
+//         if (!req.user || !req.user._id) {
+//             return res.status(401).json({ message: "Utilisateur non authentifié" });
+//         }
 
-        let progress = await Progress.findOne({ user: req.user._id, cours: cours });
+//         let progress = await Progress.findOne({ user: req.user._id, cours: cours });
 
-        if (!progress) {
-            progress = await Progress.create({
-                user: req.user._id,
-                course: cours,
-                completedLecture: []
-            });
-        }
+//         if (!progress) {
+//             progress = await Progress.create({
+//                 user: req.user._id,
+//                 course: cours,
+//                 completedLecture: []
+//             });
+//         }
 
-        if (progress.completedLecture.includes(chapitres)) {
-            return res.json({ message: "Progress already recorded." });
-        }
+//         if (progress.completedLecture.includes(chapitres)) {
+//             return res.json({ message: "Progress already recorded." });
+//         }
 
-        progress.completedLecture.push(chapitres);
-        await progress.save();
+//         progress.completedLecture.push(chapitres);
+//         await progress.save();
 
-        res.status(201).json({ message: "New progress added successfully" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error adding progress", error: error.message });
-    }
-});
-
-
-
-router.get('/getProgress', async (req, res) => {
+//         res.status(201).json({ message: "New progress added successfully" });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: "Error adding progress", error: error.message });
+//     }
+// });
+router.post('/addProgress', async (req, res) => {
+  const { chapitres, cours } = req.body;
   try {
-      const { cours } = req.query; // Le ID du cours est passé dans la requête
+      let progression = await Progress.findOne({ user: req.user._id, cours });
 
-      if (!req.user) {
-          return res.status(401).json({ message: "User not authenticated." });
+      if (progression) {
+          if (!progression.chapitres.includes(chapitres)) {
+              progression.chapitres.push(chapitres);
+          }
+      } else {
+          progression = new Progress({
+              user: req.user._id,
+              cours,
+              chapitres: [chapitres]
+          });
       }
 
-      if (!courseId) {
-          return res.status(400).json({ message: "Course ID is required." });
-      }
+      await progression.save();
 
-      const progress = await Progress.findOne({
-          user: req.user._id,
-          course: cours,
-      });
-
-      if (!progress) {
-          return res.status(404).json({ message: "Progress not found." });
-      }
-
-      const allChapitre = await Chapitre.countDocuments({ cours: courseId });
-      const completedLecture = progress.completedLecture.length;
-      const coursProgressPourcentage = (completedLecture * 100) / allChapitre;
-
-      res.status(200).json({
-          coursProgressPourcentage,
-          completedLecture,
-          allChapitre,
-          progress,
-      });
-  } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: `Error fetching progress: ${err.message}` });
+      res.json(progression);
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
   }
 });
 
+
+// router.get('/getProgress', async (req, res) => {
+//   try {
+//       const { cours } = req.query; // Le ID du cours est passé dans la requête
+
+//       if (!req.user) {
+//           return res.status(401).json({ message: "User not authenticated." });
+//       }
+
+//       if (!courseId) {
+//           return res.status(400).json({ message: "Course ID is required." });
+//       }
+
+//       const progress = await Progress.findOne({
+//           user: req.user._id,
+//           course: cours,
+//       });
+
+//       if (!progress) {
+//           return res.status(404).json({ message: "Progress not found." });
+//       }
+
+//       const allChapitre = await Chapitre.countDocuments({ cours: courseId });
+//       const completedLecture = progress.completedLecture.length;
+//       const coursProgressPourcentage = (completedLecture * 100) / allChapitre;
+
+//       res.status(200).json({
+//           coursProgressPourcentage,
+//           completedLecture,
+//           allChapitre,
+//           progress,
+//       });
+//   } catch (err) {
+//       console.error(err);
+//       res.status(500).json({ error: `Error fetching progress: ${err.message}` });
+//   }
+// });
+router.get('/getProgress', async (req, res) => {
+  const { cours } = req.query;
+  try {
+      const progression = await Progress.findOne({ user: req.user.id, cours });
+
+      if (progression) {
+          const totalChapters = await Chapitre.countDocuments({ cours });
+          const completedChapters = progression.chapitres.length;
+          const coursProgressPourcentage = (completedChapters / totalChapters) * 100;
+
+          res.json({ coursProgressPourcentage });
+      } else {
+          res.json({ coursProgressPourcentage: 0 });
+      }
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+  }
+});
 
 
 

@@ -30,6 +30,19 @@ const authMiddleware = (req, res, next) => {
       next();
   });
 };
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads/'); // Dossier où vous souhaitez stocker les fichiers
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname); // Vous pouvez personnaliser le nom si vous le souhaitez
+  }
+});
+
+const upload = multer({ storage: storage });
+
 // router.get('/userDetail', authMiddleware, async (req, res) => {
 //   try {
 //       const user = await User.findById(req.user.id).select('-password'); // Ne pas retourner le mot de passe
@@ -50,26 +63,16 @@ router.get('/userDetail', authMiddleware, async (req, res) => {
       }
 
       // Assurez-vous que le chemin de l'image est correct
-      user.image = `${req.protocol}://${req.get('http://localhost:8080')}/${user.image}`;
+      user.image = `${req.protocol}://${req.get('host')}/${user.image}`;
 
       res.status(200).json(user);
   } catch (error) {
       res.status(500).json({ message: error.message });
   }
 });
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, 'uploads/'); // Dossier où vous souhaitez stocker les fichiers
-  },
-  filename: (req, file, cb) => {
-      cb(null, file.originalname); // Vous pouvez personnaliser le nom si vous le souhaitez
-  }
-});
-
-const upload = multer({ storage: storage });
 
 router.post('/register', upload.single('image'), async (req, res) => {
-  const { name, email, password, isAdmin } = req.body;
+  const { name, email, password, isAdmin ,genre} = req.body;
   const image = req.file; // Récupérer le fichier image
 
   // Vérification de la présence des données
@@ -92,6 +95,7 @@ router.post('/register', upload.single('image'), async (req, res) => {
       const newUser = new User({
           name,
           email,
+          genre,
           isAdmin,
           password: hashedPassword,
           image: image ? image.path : null // Ajouter le chemin de l'image si disponible
@@ -131,7 +135,7 @@ router.get('/getAllUsers', authMiddleware, async (req, res) => {
 });
 
 router.put('/update/:id', upload.single('image'), async (req, res) => {
-  const { name, email, password, isAdmin } = req.body;
+  const { name, email, password, isAdmin, genre } = req.body;
   const image = req.file; // Récupérer le fichier image
   const userId = req.params.id; // ID de l'utilisateur à mettre à jour
 
@@ -157,6 +161,7 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
 
       existingUser.isAdmin = isAdmin !== undefined ? isAdmin : existingUser.isAdmin; // Mettre à jour isAdmin s'il est fourni
       existingUser.image = image ? image.path : existingUser.image; // Mettre à jour l'image si donnée
+      existingUser.genre = genre || existingUser.genre; // Mettre à jour le genre s'il est fourni
 
       await existingUser.save();
 

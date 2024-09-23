@@ -4,6 +4,7 @@ const express = require("express");
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/config');
+const path = require('path');
 
 const cors = require('cors');
 require("colors");
@@ -31,9 +32,11 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/cours', require('./routes/coursRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));

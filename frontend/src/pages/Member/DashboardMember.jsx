@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import NavBar from '../Admin/NavBar';
@@ -7,18 +6,10 @@ import NavBar from '../Admin/NavBar';
 import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
 import Cours from '../../components/Cours';
 
-const DashboardMember = ({}) => {
+const DashboardMember = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
-//   useEffect(()=>{
-//     setProgress(40);
-//     setTimeout(()=>{
-//         setProgress(100)
-//     },3000)
-// },[]);
-
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -42,8 +33,6 @@ const DashboardMember = ({}) => {
       }
     };
 
-
-
     fetchUserDetails();
   }, []);
 
@@ -59,42 +48,33 @@ const DashboardMember = ({}) => {
     <>
       <NavBar />
       <Sidebar />
-      <div className="flex flex-col md:flex-row md:h-screen p-10 md:ml-32 md:mt-20">
+      <div className="flex flex-col md:flex-row md:h-screen p-10 md:ml-32 md:mt-20 bg-gray-200">
         <div className="w-full md:w-2/3 bg-white shadow-lg rounded-lg p-6">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/3 mt-10">
-              <img className="rounded-full w-32 h-32" src={user.image} alt="User" />
-            </div>
-            <div className="md:w-2/3 mt-4 md:mt-0 md:ml-6">
+          <div className="bbc-container flex flex-col md:flex-row items-center bg-slate-300 rounded-xl">
+            <div className="md:w-1/3 mt-10 flex justify-between">
+             <div  className="">
+             {user.image ? (
+                <img className="rounded-lg w-32 h-32" src={user.image} alt="User" />
+              ) : (
+                <FaUser className="rounded-full w-32 h-32" />
+              )}
+             </div>
+
+              <div>
               <h2 className="text-3xl font-semibold">{user.name}</h2>
               <p className="text-gray-600 text-2xl">{user.role}</p>
-              <div className="flex flex-col mt-4">
-                <div className="flex items-center">
-                  <FaUser className="text-gray-500 mr-2" />
-                  <span className='text-2xl'>{user.genre}</span>
-                </div>
-                <div className="flex items-center mt-2">
-                  <FaMapMarkerAlt className="text-gray-500 mr-2" />
-                  <span>Springfield</span>
-                </div>
-                <div className="flex items-center mt-2">
-                  <FaCalendarAlt className="text-gray-500 mr-2" />
-                  <span>25/09/2020, 10:45 AM</span>
-                </div>
-                <div className="flex items-center mt-2">
-                  <FaPhone className="text-gray-500 mr-2" />
-                  <span>+1-555-123-4567</span>
-                </div>
-                <div className="flex items-center mt-2">
-                  <FaEnvelope className="text-gray-500 mr-2" />
-                  <span>john.doe@example.com</span>
-                </div>
+              <p className="text-gray-600 text-2xl">{user.genre}</p>
               </div>
+              
             </div>
-            <div> 
-         
-               </div>
+        
+           
           </div>
+          <div>
+          <p className="text-gray-600 text-2xl">{user.role}</p>
+          <p className="text-gray-600 text-2xl">{user.genre}</p>
+          </div>
+
           <div className=' flex flex-col mb-0 bottom-0 mt-52'>
             <div className='bbc-container mb-10 mt-10'>
               <h1 className='text-gray-500 text-5xl'>Black Born Community Les cours mise A jours</h1>
@@ -102,10 +82,6 @@ const DashboardMember = ({}) => {
           <Cours/>
           </div>
         </div>
-
-
-
-
 
         <div className="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-0 md:ml-6 mb-20">
           <h3 className="text-4xl font-semibold mb-4"> Historique des Cours</h3>

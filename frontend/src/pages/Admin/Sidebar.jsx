@@ -97,8 +97,8 @@ const Sidebar=()=> {
      
 
         <SidebarNavItem>
-            <SidebarIcon> <BsAlarm/></SidebarIcon>
-            <StyledLink to="/admin/cohorte"> Cohorte</StyledLink>
+        <div className="text-xl mb-1"><BsChat /></div>
+        <Link to="/chat" className="text-white">Chat</Link>
         </SidebarNavItem>
 
         <SidebarNavItem>

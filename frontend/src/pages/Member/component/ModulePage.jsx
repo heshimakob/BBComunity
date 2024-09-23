@@ -45,10 +45,20 @@ const ModulePage = () => {
             setSelectedChapter(nextChapter);
         }
     };
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const config = {
+        headers: {
+            'x-auth-token': token
+        }
+    };
 
     const addProgress = async (chapterId) => {
         try {
-            await axios.post(`http://localhost:8080/api/cours/addProgress?chapitres=${chapterId}&cours=${id}`);
+            await axios.post(`http://localhost:8080/api/cours/addProgress`, {
+                chapitres: chapterId,
+                cours: id
+            }, config);
             await getProgress();
             alert("Progression ajoutée avec succès!");
         } catch (error) {
@@ -59,7 +69,8 @@ const ModulePage = () => {
 
     const getProgress = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/cours/getProgress?cours=${id}`);
+            const response = await axios.get(`http://localhost:8080/api/cours/getProgress?cours=${id}`, config);
+            console.log(response.data);  // Ajout de log pour inspecter la réponse
             const { coursProgressPourcentage } = response.data;
             setProgressPercentage(coursProgressPourcentage);
         } catch (error) {
@@ -84,9 +95,9 @@ const ModulePage = () => {
         <>
             <NavBar />
             <Sidebar />
-            <div className="container mx-auto w-full h-screen p-4 pt-20">
+            <div className="app-container mx-auto w-full h-screen p-4 pt-20">
                 <div className="flex flex-col lg:flex-row">
-                    <div className="w-full lg:w-1/4 bg-gray-100 p-4 lg:sticky lg:top-0 mb-4 lg:mb-0">
+                    <div className="w-full lg:w-1/4 bg-white p-4 lg:sticky lg:top-0 mb-4 lg:mb-0">
                         <input
                             type="text"
                             placeholder="Rechercher un cours..."
@@ -142,10 +153,10 @@ const ModulePage = () => {
                                         />
                                     )}
                                     <h1 className='text-3xl font-bold text-gray-500 mb-4'>{selectedChapter.titre}</h1>
-                                    <div className='w-full bg-gray-100 text-xl text-gray-600 h-full p-3 mb-6 text-justify leading-7 rounded-xl' dangerouslySetInnerHTML={{ __html: selectedChapter.contenu }} />
+                                    <div className='w-full bg-white text-xl text-gray-600 h-full p-3 mb-6 text-justify leading-7 rounded-xl' dangerouslySetInnerHTML={{ __html: selectedChapter.contenu }} />
                                     <div className='flex justify-around mb-4'>
                                         <Link to="/member-cours" className='w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded text-center'>Tous les cours</Link>
-                                        <button className='w-full bg-green-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded'>Terminer</button>
+                                        <button className='w-full bg-green-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={() => addProgress(selectedChapter._id)}>Terminer</button>
                                         <button className='w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={handleNextChapter}>Prochain</button>
                                     </div>
                                     <div className='w-full bg-gray-300 my-4'>
@@ -171,19 +182,36 @@ const ModulePage = () => {
                             )}
                         </div>
 
-                        <div className="w-full lg:w-1/4 lg:pl-4">
+                        <div className="w-full lg:w-1/4 lg:pl-4 mb-20">
                             <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
-                                <img className="w-full h-40 object-cover" src="https://via.placeholder.com/150" alt="Placeholder" />
+                                <img className="w-full h-40 object-cover" src="https://via.placeholder.com/400x200" alt="Image de module" />
                                 <div className="p-4">
-                                    <h5 className="text-lg font-bold mb-2">Titre 1</h5>
-                                    <p className="text-gray-700 text-base">Description 1</p>
+                                    <h2 className="text-xl font-bold">Titre du module</h2>
+                                    <p className="text-gray-700">Description courte du module. Cela peut inclure un résumé du contenu ou des objectifs d'apprentissage.</p>
+                                </div>
+                            </div>
+                            <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
+                                <div className="p-4">
+                                    <h2 className="text-xl font-bold">Détails de l'auteur</h2>
+                                    <p className="text-gray-700">Nom de l'auteur</p>
+                                    <p className="text-gray-700">Informations sur l'auteur ou sa biographie.</p>
+                                </div>
+                            </div>
+                            <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
+                                <div className="p-4">
+                                    <h2 className="text-xl font-bold">Ressources supplémentaires</h2>
+                                    <ul className="list-disc list-inside text-gray-700">
+                                        <li>Article 1</li>
+                                        <li>Article 2</li>
+                                        <li>Article 3</li>
+                                    </ul>
                                 </div>
                             </div>
                             <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                                <img className="w-full h-40 object-cover" src="https://via.placeholder.com/150" alt="Placeholder" />
                                 <div className="p-4">
-                                    <h5 className="text-lg font-bold mb-2">Titre 2</h5>
-                                    <p className="text-gray-700 text-base">Description 2</p>
+                                    <h2 className="text-xl font-bold">Commentaires des étudiants</h2>
+                                    <p className="text-gray-700">Nom de l'étudiant</p>
+                                    <p className="text-gray-700">Commentaire ou retour de l'étudiant sur le module.</p>
                                 </div>
                             </div>
                         </div>

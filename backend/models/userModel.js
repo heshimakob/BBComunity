@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
   name: {
@@ -10,10 +10,15 @@ const userSchema = mongoose.Schema({
     required: [true, 'Email is required'],
     unique: true
   },
+  genre: {
+    type: String,
+    enum: ['Masculin', 'Féminin'],
+    default: 'Masculin', // Définir "Masculin" comme valeur par défaut
+    required: [false, 'genre n\'est pas obligatoire']
+  },
   image: {
     type: String,
-    required: [false, 'imge ne pas obligatoire'],
-   
+    required: [false, 'image n\'est pas obligatoire']
   },
   password: {
     type: String,
@@ -33,6 +38,6 @@ const userSchema = mongoose.Schema({
       ref: "Cours"
     }
   ]
-}, { timestamps: true })
+}, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', userSchema);
