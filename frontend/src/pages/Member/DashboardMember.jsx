@@ -3,7 +3,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import NavBar from '../Admin/NavBar';
 
-import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser } from 'react-icons/fa';
+import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser, FaGenderless, FaCriticalRole } from 'react-icons/fa';
 import Cours from '../../components/Cours';
 
 const DashboardMember = () => {
@@ -51,20 +51,27 @@ const DashboardMember = () => {
       <div className="flex flex-col md:flex-row md:h-screen p-10 md:ml-32 md:mt-20 bg-gray-200">
         <div className="w-full md:w-2/3 bg-white shadow-lg rounded-lg p-6">
           <div className="bbc-container flex flex-col md:flex-row items-center bg-slate-300 rounded-xl">
-            <div className="md:w-1/3 mt-10 flex justify-between">
-             <div  className="">
+            
+            <div className="md:w-1/3 mt-10 flex justify-between ml-10">
+             <div  className="h-[100%] w-[100%]">
              {user.image ? (
-                <img className="rounded-lg w-32 h-32" src={user.image} alt="User" />
+                <img className="rounded-lg w-80 h-[100%]" src={user.image} alt="User" />
               ) : (
                 <FaUser className="rounded-full w-32 h-32" />
               )}
              </div>
 
-              <div>
-              <h2 className="text-3xl font-semibold">{user.name}</h2>
-              <p className="text-gray-600 text-2xl">{user.role}</p>
-              <p className="text-gray-600 text-2xl">{user.genre}</p>
-              </div>
+             <div className='flex justify-between  ml-10 '>
+  <h2 className="text-3xl font-semibold">{user.name}</h2>
+  <p className="text-gray-600 text-xl flex items-center">
+    <FaCriticalRole  />
+    {user.role}
+  </p>
+  <p className="text-gray-600 text-xl flex items-center">
+    <FaGenderless/>
+    {user.genre}
+  </p>
+</div>
               
             </div>
         
