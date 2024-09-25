@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import NavBar from '../Admin/NavBar';
+import Loading from "../../components/Loading"
 
 import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser, FaGenderless, FaCriticalRole } from 'react-icons/fa';
 import Cours from '../../components/Cours';
@@ -37,7 +38,7 @@ const DashboardMember = () => {
   }, []);
 
   if (loading) {
-    return <div>Chargement des détails de l'utilisateur...</div>;
+    return <Loading/>;
   }
 
   if (error) {

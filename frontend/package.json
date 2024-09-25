@@ -23,6 +23,7 @@
     "framer-motion": "^11.5.4",
     "froala-editor": "^4.2.2",
     "lorem-ipsum": "^2.0.8",
+    "openai": "^4.63.0",
     "react": "^18.3.1",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.3.1",

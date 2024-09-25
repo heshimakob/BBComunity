@@ -1,135 +1,80 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Sidebar from './Sidebar';
+import NavBar from '../Admin/NavBar';
 import axios from 'axios';
 
 const Chat = () => {
-  const [userId, setUserId] = useState(null);
-  const [userName, setUserName] = useState('');
-  const [userImage, setUserImage] = useState('');
-  const [chats, setChats] = useState([]);
-  const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [messageText, setMessageText] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [input, setInput] = useState('');
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        setError("Token manquant");
-        setLoading(false);
-        return;
-      }
-      try {
-        const response = await axios.get('http://localhost:8080/api/users/userDetail', {
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleSend = async () => {
+    if (input.trim() === '') return;
+
+    const newMessage = { sender: 'user', text: input };
+    setMessages([...messages, newMessage]);
+
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: "text-davinci-003",
+          prompt: input,
+          max_tokens: 150,
+        },
+        {
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer sk-LIr8DSbJ4Ua-FVsebqS7OSRU0ZlN3qUD7lNpiEozrrT3BlbkFJ6ve3qv8MIxyngqGrDYLZTilAIk8-V22jz38K_dTLEA`, // Remplacez par votre clé API OpenAI
           }
-        });
-        const userInfo = response.data; // Ajustez cela si nécessaire en fonction de la réponse de votre API
-        setUserId(userInfo._id);
-        setUserName(userInfo.name);
-        setUserImage(userInfo.image);
-      } catch (err) {
-        setError(err.response?.data?.message || "Erreur inconnue");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserDetails();
-  }, []);
-
-  useEffect(() => {
-    if (userId) {
-      const fetchChats = async () => {
-        try {
-          const response = await axios.get(`http://localhost:8080/api/chat/userChat/${userId}`);
-          setChats(response.data);
-        } catch (error) {
-          console.error(error);
         }
-      };
-      fetchChats();
-    }
-  }, [userId]);
+      );
 
-  const handleChatSelect = async (chatId) => {
-    setSelectedChat(chatId);
-    const response = await axios.get(`http://localhost:8080/api/message/getMessage/${chatId}`);
-    setMessages(response.data);
-  };
-
-  const handleMessageSend = async (e) => {
-    e.preventDefault();
-    if (messageText && selectedChat) {
-      const newMessage = {
-        chatId: selectedChat,
-        senderId: userId,
-        text: messageText,
-      };
-      await axios.post('http://localhost:8080/api/message/addMessage', newMessage);
-      setMessages([...messages, newMessage]);
-      setMessageText('');
+      const botMessage = { sender: 'bot', text: response.data.choices[0].text.trim() };
+      setMessages([...messages, newMessage, botMessage]);
+    } catch (error) {
+      console.error('Error fetching data from API:', error);
+    } finally {
+      setInput('');
     }
   };
-
-  if (loading) return <p>Chargement...</p>;
-  if (error) return <p>Erreur: {error}</p>;
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Informations de l'utilisateur */}
-      <div className="p-4">
-        <img src={userImage} alt={userName} className="w-10 h-10 rounded-full" />
-        <span className="font-bold">{userName}</span>
-      </div>
-
-      {/* Liste des chats */}
-      <div className="flex flex-col w-1/3 bg-white shadow-lg p-4">
-        <h2 className="font-bold text-xl">Chats</h2>
-        <div className="mt-4">
-          {chats.map(chat => (
-            <div
-              key={chat._id}
-              onClick={() => handleChatSelect(chat._id)}
-              className="p-2 hover:bg-gray-200 cursor-pointer rounded"
-            >
-              Chat avec {chat.members.find(id => id !== userId)} {/* Ajustez pour afficher le nom */}
-            </div>
-          ))}
+    <>
+      <NavBar />
+      <Sidebar />
+      <div className="bbc-container flex flex-col h-screen ">
+        <div className="flex-grow flex flex-col">
+          <div className="flex justify-center items-center p-4 bg-gray-100 border-b border-gray-200 mt-20">
+            <h1 className="text-xl font-semibold text-gray-700">Chat Assistant</h1>
+          </div>
+          <div className="flex-grow p-4 overflow-y-auto bg-gray-100">
+            {messages.map((msg, index) => (
+              <div key={index} className={`my-2 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
+                <p className={`inline-block p-2 rounded-lg ${msg.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
+                  {msg.text}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="p-4 bg-gray-100 border-t border-gray-200 flex mb-20">
+            <input
+              type="text"
+              value={input}
+              onChange={handleInputChange}
+              className="flex-grow p-2 border border-gray-300 rounded-lg"
+              placeholder="Type your message..."
+            />
+            <button onClick={handleSend} className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg">
+              Send
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* Messages */}
-      <div className="flex flex-col w-2/3 p-4">
-        {selectedChat ? (
-          <>
-            <div className="flex-1 overflow-y-auto">
-              {messages.map((msg, index) => (
-                <div key={index} className={`my-1 p-2 ${msg.senderId === userId ? 'bg-blue-200' : 'bg-gray-200'} rounded`}>
-                  {msg.text}
-                </div>
-              ))}
-            </div>
-            <form onSubmit={handleMessageSend} className="flex mt-4">
-              <input
-                type="text"
-                value={messageText}
-                onChange={(e) => setMessageText(e.target.value)}
-                className="flex-1 border rounded p-2"
-                placeholder="Écrire un message..."
-              />
-              <button type="submit" className="bg-blue-500 text-white rounded px-4 ml-2">Envoyer</button>
-            </form>
-          </>
-        ) : (
-          <div className="flex-1 flex items-center justify-center">
-            <h2 className="text-gray-300">Sélectionnez un chat pour voir les messages</h2>
-          </div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 
