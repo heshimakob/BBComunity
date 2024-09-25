@@ -28,7 +28,7 @@ const Chat = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer sk-LIr8DSbJ4Ua-FVsebqS7OSRU0ZlN3qUD7lNpiEozrrT3BlbkFJ6ve3qv8MIxyngqGrDYLZTilAIk8-V22jz38K_dTLEA`, // Remplacez par votre clé API OpenAI
+            'Authorization': `Bearer `, // Remplacez par votre clé API OpenAI
           }
         }
       );
