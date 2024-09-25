@@ -17,17 +17,20 @@ const BlogTable = () => {
         dispatch(getBlogs());
     }, [dispatch]);
 
+    // Fonction pour ouvrir le modal de mise à jour
     const handleUpdate = (blog) => {
         setSelectedBlog(blog);
         setUpdatedBlog(blog);
         setUpdateModal(true);
     };
 
+    // Fonction pour ouvrir le modal de suppression
     const handleDelete = (blog) => {
         setSelectedBlog(blog);
         setDeleteModal(true);
     };
 
+    // Fonction pour soumettre la demande de suppression
     const handleDeleteSubmit = async () => {
         try {
             await axios.delete(`/deleteBlog/${selectedBlog._id}`);
@@ -38,6 +41,7 @@ const BlogTable = () => {
         }
     };
 
+    // Fonction pour soumettre la mise à jour du blog
     const handleUpdateSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -130,6 +134,7 @@ const BlogTable = () => {
                             Mettre à jour
                         </button>
                         <button
+                            type="button"
                             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2"
                             onClick={() => setUpdateModal(false)}
                         >
