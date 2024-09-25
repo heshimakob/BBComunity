@@ -6,6 +6,7 @@ import 'quill/dist/quill.snow.css';
 import NavBar from './NavBar';
 import axios from 'axios';
 import toast,{Toaster} from 'react-hot-toast';
+import BlogTable from './componnent/BlogTable';
 
 
 const Blog = () => {
@@ -51,7 +52,7 @@ const Blog = () => {
     return (
         <>
             <div className='container mx-auto'>
-                <div className="h-screen w-1/3 p-10 mt-20">
+                <div className="min-h-max w-1/3 p-10 mt-20">
                     <h1 className="text-2xl mb-10">Ajouter un Post</h1>
                     <form onSubmit={registerHandler}>
                         <label htmlFor="titre" className="block text-gray-700 text-sm font-bold mb-2">
@@ -114,7 +115,9 @@ const Blog = () => {
                             </button>
                         </div>
                     </form>
+                   
                 </div>
+                <BlogTable/>
                 <Toaster/>
             </div>
             <NavBar />
