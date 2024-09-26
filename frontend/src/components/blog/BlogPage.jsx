@@ -51,9 +51,9 @@ const BlogPage = ({setProgress}) => {
                         <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden'>
                             <div className='text-center justify-center items-center'>
                                 <h1 className="mb-4 text-3xl text-center font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl">
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{Blog.titre}</span>
+                                    <span className=" font-open-sans  text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{Blog.titre}</span>
                                 </h1>
-                                <div className='bbc-container h-full text-3xl p-3 mb-6 font-serif text-center text-gray-300'>
+                                <div className='bbc-container font-open-sans h-full text-xl p-3 mb-6  text-center text-gray-300'>
                                     {Blog.description.replace(/<[^>]+>/g, '').slice(0, 150)}
                                 </div>
                                 <div className="flex justify-center items-center">
