@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaBookOpen, FaCode, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
+import { FaBookOpen, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
-
-
 
 const CoursMember = () => {
     const [courses, setCourses] = useState([]);
@@ -33,7 +31,7 @@ const CoursMember = () => {
 
     return (
         <>
-        <NavBar/>
+            <NavBar />
             <Sidebar />
 
             <div className="w-full min-h-screen p-4 pt-20">
@@ -42,7 +40,7 @@ const CoursMember = () => {
                         <div className="md:w-[75%] w-full mb-4 md:mb-0">
                             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Apprentissage et développement personnel</h1>
                             <p className="text-gray-600 mb-12">
-                                Gagnant du potentiel et des qualités enfin de dénicher des talents hors normes.
+                                Gagnant du potentiel et des qualités afin de dénicher des talents hors normes.
                             </p>
                         </div>
                         <div className="md:w-[25%] w-full">
@@ -66,7 +64,7 @@ const CoursMember = () => {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                        <div className="flex items-center justify-center mb-4">
+                        <div className="flex items-center justify-center mb-4 flex-wrap">
                             {categories.map((category) => (
                                 <button
                                     key={category}
