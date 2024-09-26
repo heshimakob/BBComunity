@@ -49,7 +49,7 @@ const BlogSite = ({setProgress}) => {
     return (
         <>
             <NavBar />
-            <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden'>
+            <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden '>
                 <div className='text-center'>
                     <h1 className="mb-4 text-3xl text-center font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl">
                         <span className="text-white font-bold">Restez connecté</span>
@@ -57,7 +57,7 @@ const BlogSite = ({setProgress}) => {
                 </div>
             </div>
             {filteredBlogs && filteredBlogs.length > 0 ? (
-                <div className="bbc-container mx-auto p-4 bg-white pt-10">
+                <div className="bbc-container mx-auto p-4 bg-white pt-10 border-l border-r  border-gray-100">
                     <div className="flex flex-col items-center space-y-4 mb-6">
                         <div className="flex flex-wrap justify-center space-x-2">
                             {categories.map(category => (
@@ -74,19 +74,31 @@ const BlogSite = ({setProgress}) => {
                     </div>
                     <div className="mx-auto flex flex-col grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
                         {filteredBlogs.map((blog) => (
-                            <div key={blog.id} className="bg-cover bg-center h-96 hover:scale-105 transition duration-300 ease-in-out overflow-hidden m-4 p-4" style={{ backgroundImage: `url(${blog.image})` }}>
+                            <div key={blog.id} className="bg-cover bg-center h-96 hover:scale-105 transition duration-300 ease-in-out overflow-hidden m-4 p-4 border-b border-gray-100 ">
                                 <div className="flex flex-col justify-center h-full p-4">
+                                <Link className='text-white' to={`/blogPage/${blog._id}`}>
+                            
+                                <img className="top-0 left-0 h-96 w-auto mt-[-250px] rounded-xl" src={blog.image} alt={blog.titre} />
+                                </Link>
                                     <Link className='text-white' to={`/blogPage/${blog._id}`}>
-                                        <h2 className="text-4xl font-bold text-gray-300">{blog.titre}</h2>
-                                        <div className='w-full h-full text-2xl p-3 mb-6 text-justify items-center leading-7 text-gray-700'>
-                                            {blog.description.replace(/<[^>]+>/g, '').slice(20, 120)}
+                                    <h2 className="text-4xl font-bold text-blue-800 hover:underline hover:underline-offset-2 hover:decoration-blue-400 hover:decoration-1">{blog.titre}</h2>
+                                        </Link>
+                                        <Link className='text-white' to={`/blogPage/${blog._id}`}>
+                                        <div className='w-full h-full text-2xl p-3 mb-6 text-justify items-center leading-7 text-gray-700 hover:underline hover:underline-offset-2 hover:decoration-blue-400 hover:decoration-1'>
+                                            {blog.description.replace(/<[^>]+>/g, '').slice(20, 80)}
                                         </div>
-                                    </Link>
+                                        </Link>
+                                        <div className='flex justify-between text-blue-600 rounded-xl p-2 '>
+                             <h2 className="text-xl rounded-xl p-1   bg-blue-200  font-bold text-blue-600">{blog.category}</h2>
+                             <h2 className="text-xl rounded-xl p-1   bg-blue-200   font-boldtext-blue-600">Numerique</h2>
+                             </div>
+                                       
+                               
                                 </div>
 
                                 <div className="flex justify-between p-4">
                                 {/* <p className="text-gray-600 ">By {blog.auteur}</p> */}
-                                    <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                                    <button className="bg-orange-500 hover:bg-orange-700 text-blue-800 font-bold py-2 px-4 rounded">
                                         Read More
                                     </button>
                                 </div>
