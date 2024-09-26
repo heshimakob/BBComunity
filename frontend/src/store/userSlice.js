@@ -1,16 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
 const initialState = {
   users: [],
   singleUser: {},
   error: null,
   isLoggedIn: false,
-  currentUser:null,
-  loading:false,
-  isAdmin:false,
+  currentUser: null,
+  loading: false,
+  isAdmin: false,
   token: null,
-  
 };
 
 const userSlice = createSlice({
@@ -18,75 +16,72 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     fetchUsers(state, action) {
-      state.users = action.payload
-   
+      state.users = action.payload;
     },
     setUser(state, action) {
       state.users = action.payload;
-  },
-    signInStart(state){
-      state.loading=true,
-      state.error=null
     },
-    signInSuccess(state,action){
-      state.currentUser= action.payload;
-      state.loading=false;
-      state.error=null;
+    signInStart(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    signInSuccess(state, action) {
+      state.currentUser = action.payload;
+      state.loading = false;
+      state.error = null;
       state.token = action.payload.token;
       state.isAdmin = action.payload.isAdmin;
     },
-    signInFailure(state,action){
-
-      state.loading=false;
-      state.error=action.payload;
+    signInFailure(state, action) {
+      state.loading = false;
+      state.error = action.payload;
     },
     fetchSingleUser(state, action) {
-      state.singleUser = action.payload
+      state.singleUser = action.payload;
     },
     registerUser(state, action) {
-      state.users.push(action.payload)
+      state.users.push(action.payload);
     },
     deleteUser(state, action) {
-      state.users = state.users.filter(user => user._id !== action.payload)
+      state.users = state.users.filter(user => user._id !== action.payload);
     },
     updateUser(state, action) {
-      state.users = state.users.map(user => user._id === action.payload._id ? action.payload : user)
+      state.users = state.users.map(user => user._id === action.payload._id ? action.payload : user);
     },
     signinUser(state, action) {
-      state.isLoggedIn = true
-      state.singleUser = action.payload
-      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.singleUser = action.payload;
+      state.currentUser = action.payload;
       state.isAdmin = action.payload.isAdmin;
     },
     signoutUser(state) {
-      state.isLoggedIn = false
-      state.singleUser = {}
-      state.user = null;
+      state.isLoggedIn = false;
+      state.singleUser = {};
+      state.currentUser = null;
       state.isAdmin = false;
     },
-
-
-    signoutSuccess(state){
-      state.currentUser=null;
-      state.error= null;
-      state.loading=false;
+    signoutSuccess(state) {
+      state.currentUser = null;
+      state.error = null;
+      state.loading = false;
       state.token = null;
       state.isAdmin = false;
-
     },
     setError(state, action) {
-      state.error = action.payload
+      state.error = action.payload;
     },
-    setStatus: (state, action) => {
+    setStatus(state, action) {
       state.status = action.payload;
-    }
-  }
-
-
-  
+    },
+    userDetails(state, action) {
+      state.currentUser = action.payload;
+      state.loading = false;
+      state.error = null;
+    },
+  },
 });
 
-export const { fetchUsers, userDetails,setUser, fetchSingleUser,signInStart,signInSuccess, signoutSuccess,signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
+export const { fetchUsers,   userDetails,setUser, fetchSingleUser,signInStart,signInSuccess, signoutSuccess,signInFailure,registerUser, deleteUser, updateUser, signinUser, signoutUser, setError } = userSlice.actions;
 export default userSlice.reducer;
 
 export function signin(data) {
@@ -102,11 +97,12 @@ export function signin(data) {
 }
 
 export const getUserDetails = (token) => async (dispatch) => {
+  dispatch(signInStart());
   try {
     const response = await axios.get('http://localhost:8080/api/users/userDetail', {
-      headers: { 'Authorization': `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     });
-    dispatch(userDetails(response.data)); // Mettez à jour l'état avec les détails de l'utilisateur
+    dispatch(userDetails(response.data));
   } catch (error) {
     dispatch(setError(error.message));
   }

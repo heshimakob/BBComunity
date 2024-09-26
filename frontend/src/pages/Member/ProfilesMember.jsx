@@ -313,9 +313,10 @@ import axios from 'axios';
 import { updateUser } from '../../store/userSlice';
 import Sidebar from './Sidebar';
 import { FaUserCircle } from 'react-icons/fa';
-import NavBar from '../Admin/NavBar';
+
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import swal from 'sweetalert';
+import NavBar from './NavBar';
 
 const ProfilesMember = () => {
     const [id, setId] = useState(null);
@@ -326,6 +327,29 @@ const ProfilesMember = () => {
     const [genre, setGenre] = useState('');
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleLogout = async () => {
+        try {
+            await axios.post('http://localhost:8080/api/users/logout');
+            localStorage.removeItem('token');
+            window.location.href = '/signin';
+            swal("Deconnexion!", "Déconnexion réussie!", "success");
+        } catch (error) {
+            console.error("Erreur lors de la déconnexion:", error);
+        }
+    };
+
+    const confirmLogout = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = (confirm) => {
+        setIsModalOpen(false);
+        if (confirm) {
+            handleLogout();
+        }
+    };
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -396,9 +420,20 @@ const ProfilesMember = () => {
 
     return (
         <>
-            <NavBar />
-            <Sidebar />
-            <div className="container mx-auto my-8 px-4 sm:px-6 lg:px-8 mt-28 mb-32">
+          <NavBar/>
+          <Sidebar/>
+        
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-2xl text-red-500">Confirmation de Déconnexion</h2>
+                        <p className="text-lg">Voulez-vous vraiment vous déconnecter ?</p>
+                        <button className="bg-red-500 text-lg text-white font-bold rounded-lg w-full mt-4 p-2" onClick={() => handleModalClose(true)}>Oui</button>
+                        <button className="bg-blue-500 text-lg text-white font-bold rounded-lg w-full mt-2 p-2" onClick={() => handleModalClose(false)}>Non</button>
+                    </div>
+                </div>
+            )}
+            <div className="bbc-container mx-auto my-8 px-4 sm:px-6 lg:px-8 mt-28 mb-32">
                 <h1 className="text-2xl mb-6 text-center">Modifier votre profil</h1>
                 <form className="flex flex-col gap-4 max-w-md mx-auto" onSubmit={handleSubmit}>
                     <div className="flex flex-col items-center justify-center mb-4">
@@ -458,7 +493,15 @@ const ProfilesMember = () => {
                     >
                         Mettre à jour
                     </button>
+                    <button
+                        className="bg-red-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                      
+                        onClick={confirmLogout}>
+                        Deconnexion
+                    </button>
                 </form>
+
+           
             </div>
         </>
     );

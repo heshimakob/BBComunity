@@ -92,8 +92,8 @@ const BlogSite = ({ setProgress }) => {
                                         <h2 className="text-2xl font-bold text-blue-800 hover:underline hover:underline-offset-2">{blog.titre}</h2>
                                         <div className='flex justify-between text-blue-600 mt-5'>
                                         <h2 className="rounded-2xl p-1 bg-blue-200 font-bold p-2" >{blog.category}</h2>
-                                        <button className="bg-white hover:bg-blue-300 text-blue-500 font-bold py-2 px-4 rounded">
-                                            Read More...
+                                        <button className="bg-white  text-blue-500 font-bold py-2 px-4 rounded">
+                                            lire plus...
                                         </button>
                                     </div>
                              

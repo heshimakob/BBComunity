@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import NavBar from '../Admin/NavBar';
+
 import axios from 'axios';
+import NavBar from './NavBar';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -44,8 +45,8 @@ const Chat = () => {
 
   return (
     <>
-      <NavBar />
-      <Sidebar />
+      <NavBar/>
+      {/* <Sidebar /> */}
       <div className="bbc-container flex flex-col h-screen ">
         <div className="flex-grow flex flex-col">
           <div className="flex justify-center items-center p-4 bg-gray-100 border-b border-gray-200 mt-20">

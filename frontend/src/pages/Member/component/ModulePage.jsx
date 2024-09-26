@@ -4,10 +4,10 @@ import { getAllChapterByCoursId } from '../../../store/coursSlice';
 import { Link, useParams } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaLinkedin, FaCopy, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import Loading from '../../../components/Loading';
-import Sidebar from '../Sidebar';
-import NavBar from '../../Admin/NavBar';
+
 import chaptervide from "../../../assets/chaptervide.png";
 import axios from 'axios';
+import NavBar from '../NavBar';
 
 const ModulePage = () => {
     const dispatch = useDispatch();
@@ -46,7 +46,6 @@ const ModulePage = () => {
         }
     };
     const token = localStorage.getItem('token');
-    console.log(token)
     const config = {
         headers: {
             'x-auth-token': token
@@ -70,7 +69,6 @@ const ModulePage = () => {
     const getProgress = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/api/cours/getProgress?cours=${id}`, config);
-            console.log(response.data);  // Ajout de log pour inspecter la réponse
             const { coursProgressPourcentage } = response.data;
             setProgressPercentage(coursProgressPourcentage);
         } catch (error) {
@@ -93,11 +91,10 @@ const ModulePage = () => {
 
     return (
         <>
-            <NavBar />
-            <Sidebar />
-            <div className="app-container mx-auto w-full h-screen p-4 pt-20">
+        <NavBar/>
+            <div className="app-container mx-auto w-full h-screen p-4 pt-32">
                 <div className="flex flex-col lg:flex-row">
-                    <div className="w-full lg:w-1/4 bg-white p-4 lg:sticky lg:top-0 mb-4 lg:mb-0">
+                    <div className="w-full lg:w-1/4 bg-white p-4 lg:sticky lg:top-20 mb-4 lg:mb-0">
                         <input
                             type="text"
                             placeholder="Rechercher un cours..."
@@ -106,7 +103,7 @@ const ModulePage = () => {
                             className="w-full p-2 mb-4 border border-gray-300 rounded"
                         />
                         <h2 className="font-bold mb-2">Nos chapitres disponibles</h2>
-                        <ul className="bg-blue-950 text-white p-2 font-sans rounded-lg">
+                        <ul className="bg-blue-950 text-white p-2 font-sans rounded-lg max-h-screen overflow-y-auto">
                             {filteredChapters.map((chapter) => (
                                 <li key={chapter._id}>
                                     <button
@@ -120,8 +117,8 @@ const ModulePage = () => {
                         </ul>
                     </div>
 
-                    <div className="w-full lg:w-3/4 p-4 flex flex-col lg:flex-row">
-                        <div className="w-full lg:w-3/4">
+                    <div className="w-full lg:w-3/4 p-4">
+                        <div className="w-full">
                             <div className="progress-bar h-2 bg-green-500 mb-4 rounded" style={{ width: `${progressPercentage}%` }} />
                             <h1 className="text-lg font-semibold">Progression : {progressPercentage}%</h1>
 
@@ -154,10 +151,10 @@ const ModulePage = () => {
                                     )}
                                     <h1 className='text-3xl font-bold text-gray-500 mb-4'>{selectedChapter.titre}</h1>
                                     <div className='w-full bg-white text-xl text-gray-600 h-full p-3 mb-6 text-justify leading-7 rounded-xl' dangerouslySetInnerHTML={{ __html: selectedChapter.contenu }} />
-                                    <div className='flex justify-around mb-4'>
-                                        <Link to="/member-cours" className='w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded text-center'>Tous les cours</Link>
-                                        <button className='w-full bg-green-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={() => addProgress(selectedChapter._id)}>Terminer</button>
-                                        <button className='w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={handleNextChapter}>Prochain</button>
+                                    <div className='flex justify-between mb-4'>
+                                        <Link to="/member-cours" className='w-full mx-2 bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded text-center'>Tous les cours</Link>
+                                        <button className='w-full mx-2 bg-green-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={() => addProgress(selectedChapter._id)}>Terminer</button>
+                                        <button className='w-full mx-2 bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={handleNextChapter}>Prochain</button>
                                     </div>
                                     <div className='w-full bg-gray-300 my-4'>
                                         <h1 className="p-2">Les liens complémentaires du module</h1>
@@ -180,40 +177,6 @@ const ModulePage = () => {
                                     <Link to="/member-cours" className='w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded text-center mt-4'>Tous les cours</Link>
                                 </div>
                             )}
-                        </div>
-
-                        <div className="w-full lg:w-1/4 lg:pl-4 mb-20">
-                            <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
-                                <img className="w-full h-40 object-cover" src="https://via.placeholder.com/400x200" alt="Image de module" />
-                                <div className="p-4">
-                                    <h2 className="text-xl font-bold">Titre du module</h2>
-                                    <p className="text-gray-700">Description courte du module. Cela peut inclure un résumé du contenu ou des objectifs d'apprentissage.</p>
-                                </div>
-                            </div>
-                            <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
-                                <div className="p-4">
-                                    <h2 className="text-xl font-bold">Détails de l'auteur</h2>
-                                    <p className="text-gray-700">Nom de l'auteur</p>
-                                    <p className="text-gray-700">Informations sur l'auteur ou sa biographie.</p>
-                                </div>
-                            </div>
-                            <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
-                                <div className="p-4">
-                                    <h2 className="text-xl font-bold">Ressources supplémentaires</h2>
-                                    <ul className="list-disc list-inside text-gray-700">
-                                        <li>Article 1</li>
-                                        <li>Article 2</li>
-                                        <li>Article 3</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                                <div className="p-4">
-                                    <h2 className="text-xl font-bold">Commentaires des étudiants</h2>
-                                    <p className="text-gray-700">Nom de l'étudiant</p>
-                                    <p className="text-gray-700">Commentaire ou retour de l'étudiant sur le module.</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,7 @@ const Sidebar = () => {
                     </div>
                 </div>
             )}
-        <div className="fixed hidden top-16 left-0 w-38 h-[calc(100%-60px)] bg-gray-800 text-white overflow-y-auto p-4 z-40 md:block lg:block xl:block ">
+        {/* <div className="fixed hidden top-16 left-0 w-38 h-[calc(100%-60px)] bg-gray-800 text-white overflow-y-auto p-4 z-40 md:block lg:block xl:block ">
                 <ul className="list-none p-0 m-0">
                     <li className={`flex flex-col items-center p-3 text-lg border-b border-gray-600 transition duration-300 ${window.location.pathname === '/member/dashboarder' ? 'bg-gray-600' : 'hover:bg-gray-700'}`}>
                         <div className="text-xl mb-1"><BsGraphUp /></div>
@@ -68,7 +68,7 @@ const Sidebar = () => {
                         <span className="text-white cursor-pointer"> Deconnexion</span>
                     </li>
                 </ul>
-            </div>
+            </div> */}
 
             {/* Sidebar mobile */}
             <div className="fixed bottom-0 left-0 right-0 bg-gray-800 p-1 h-20 flex justify-around md:hidden">

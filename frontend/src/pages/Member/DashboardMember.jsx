@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar';
-import NavBar from '../Admin/NavBar';
+
 import Loading from "../../components/Loading"
 
 import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser, FaGenderless, FaCriticalRole } from 'react-icons/fa';
 import Cours from '../../components/Cours';
+import NavBar from './NavBar';
 
 const DashboardMember = () => {
   const [user, setUser] = useState(null);
@@ -47,8 +48,9 @@ const DashboardMember = () => {
 
   return (
     <>
-      <NavBar />
-      <Sidebar />
+    <NavBar/>
+      
+      {/* <Sidebar /> */}
       <div className="flex flex-col md:flex-row md:h-screen p-10 md:ml-32 md:mt-20 bg-gray-200">
         <div className="w-full md:w-2/3 bg-white shadow-lg rounded-lg p-6">
           <div className="bbc-container flex flex-col md:flex-row items-center bg-slate-300 rounded-xl">
