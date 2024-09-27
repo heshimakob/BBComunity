@@ -103,7 +103,7 @@ function NavBar() {
       </section>
 
       {isOpen && (
-        <div className={`fixed top-0 right-0 h-full w-64 bg-gray-950 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`fixed top-0 right-0 h-full w-64 mt-20 bg-gray-950 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="flex justify-between items-center p-4">
             <h2 className="font-bold">Menu</h2>
             <button onClick={toggleMenu} aria-label="Close Menu">

@@ -9,6 +9,7 @@ import Marque from './marque/Marque';
 import swal from 'sweetalert';
 import Cours from './Cours';
 import { Link } from 'react-router-dom';
+import {motion} from "framer-motion"
 
 const CompanySite = ({setProgress}) => {
   const dispatch = useDispatch();
@@ -61,8 +62,16 @@ const CompanySite = ({setProgress}) => {
 
       <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden">
         <div className="text-center mt-5">
+        <motion.h1
+                        className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        👋 Ce que nous offons pour les entreprises?
+                    </motion.h1>
           <h1 className="mb-4 text-3xl text-center font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span> Agir en grand avec nous
+            <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span> Des excellent(e)s candidat(e)s
           </h1>
           <div className="flex justify-center items-center">
             <div className="w-auto p-2">

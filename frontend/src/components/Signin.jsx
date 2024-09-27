@@ -7,6 +7,7 @@ import bglog from "../assets/bglog.jpeg";
 import toast, { Toaster } from 'react-hot-toast';
 import B from "../assets/B.png";
 import swal from "sweetalert";
+import {motion} from "framer-motion"
 
 const Login = ({setProgress}) => {
     const [email, setEmail] = useState('');
@@ -47,9 +48,21 @@ const Login = ({setProgress}) => {
 
     return (
         <div className=' h-screen flex flex-col md:flex-row '>
-            <div className="h-screen w-full md:w-1/3 p-10 flex flex-col  mt-20 items-center">
+            <div className="h-screen w-full md:w-1/3 p-10 flex flex-col  mt-14 items-center">
                 <div className="text-center flex flex-col items-center">
-                   <Link to="/"> <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1></Link>
+                   <Link to="/">
+                   <motion.h1
+                        className="text-3xl text-gray-300 mb-10"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                         Black Born Community
+                    </motion.h1>
+                    {/* <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1> */}
+                    
+                    
+                     </Link>
                     <img src={B} width="20%" height="200px" alt='logo bbc' />
                     <h1 className="text-2xl mb-10">Se connecter</h1>
                 </div>
@@ -61,6 +74,7 @@ const Login = ({setProgress}) => {
                         type='email'
                         placeholder='name@company.com'
                         id='email'
+                        required
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full p-3 mb-6 border border-gray-200 rounded-md"
                     />
@@ -71,6 +85,7 @@ const Login = ({setProgress}) => {
                         type='password'
                         placeholder='Mot de passe'
                         id='password'
+                        required
                         onChange={(e) => setPassword(e.target.value)}
                         className="w-full p-3 mb-6 border border-gray-200 rounded-md"
                     />
@@ -91,8 +106,8 @@ const Login = ({setProgress}) => {
                 {errorMessage && (
                     <span className='mt-5 text-red-500'>{errorMessage}</span>
                 )}
-                <div className='mb-0 mt-auto text-center items-center'>
-                    <p className='text-gray-300 mb-0 b-0'>Black Born community @copyright 2024</p>
+                <div className='mb-0 mt-52  text-center items-center'>
+                    <p className='text-gray-300 '>Black Born community @copyright 2024</p>
                 </div>
             </div>
             {/* Div de droite caché en mode mobile */}
