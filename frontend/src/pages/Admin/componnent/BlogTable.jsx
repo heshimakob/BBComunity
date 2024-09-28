@@ -57,7 +57,7 @@ const BlogTable = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mb-10 border rounded-xl">
             <table className="table-auto w-full">
                 <thead className="bg-gray-100">
                     <tr>
