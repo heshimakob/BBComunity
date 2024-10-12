@@ -7,6 +7,7 @@ import ai from "../assets/ai.jpg"
 import Informations from './Informations';
 import {motion} from "framer-motion"
 import { Link } from 'react-router-dom';
+import Team from './Team';
 
 const  Why =({setProgress})=>{
   useEffect(()=>{
@@ -22,7 +23,7 @@ const  Why =({setProgress})=>{
     <NavBar/>
 
 
-    <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' >
+    <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}} >
       <div className='text-center'>
       <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"
@@ -50,9 +51,10 @@ const  Why =({setProgress})=>{
     </div>
     </div>
     <Informations/>
+    <Team/>
 
 
-
+{/* 
     <div className="bg-white min-h-screen flex flex-col justify-center items-center mt-10 mb-10" >
     <div className="bg-blue-100 p-8 rounded-lg shadow-md max-w-5xl h-96 text-center" style={{
   backgroundImage: `url(${equipe})`,
@@ -102,7 +104,7 @@ const  Why =({setProgress})=>{
           <img src={ai} alt="Hero Image" className="w-full mt-4 rounded-md" />
       </div>
     </div>
-  </div>
+  </div> */}
     <Details/>
     <Footer/>
     </>

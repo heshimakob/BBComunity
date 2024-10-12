@@ -20,7 +20,7 @@ function NavBar() {
     <div className="bg-black ">
 <div className="py-1 text-center bg-pink-500">
 <div className="text-sm font-light text-light text-white">
-<span>Get the Premium plan at a 15% discount using code</span>
+<span>Profiter de la reduction pour la premiere cohorte jusqu'A 80 %, black born community </span>
 <a href="#" className="inline-flex items-center">
 <span className="mr-2 font-bold">WINTERisCOMING</span>
 <span>

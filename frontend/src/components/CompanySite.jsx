@@ -10,6 +10,7 @@ import swal from 'sweetalert';
 import Cours from './Cours';
 import { Link } from 'react-router-dom';
 import {motion} from "framer-motion"
+import Saving from './Saving';
 
 const CompanySite = ({setProgress}) => {
   const dispatch = useDispatch();
@@ -80,6 +81,7 @@ const CompanySite = ({setProgress}) => {
           </div>
         </div>
       </div>
+      <Saving/>
 
       <div className="container mx-auto px-4 pt-10">
         <div className="mx-auto flex flex-col justify-center items-center">
@@ -148,6 +150,7 @@ Envoyer votre demande d'engagement
       </div>
 
 <Marque/>
+
 {/* <Cours/> */}
 <Details/>
 <Toaster/>
