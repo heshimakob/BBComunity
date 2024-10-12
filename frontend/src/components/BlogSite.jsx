@@ -48,7 +48,7 @@ const BlogSite = ({ setProgress }) => {
     return (
         <>
             <NavBar />
-            <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden'>
+            <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
                 <div className='text-center'>
                     <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"

@@ -17,6 +17,13 @@ import Learner from './Learner';
 import Category from './Category';
 import Centre from './Centre';
 import { motion } from 'framer-motion'; // Importation de Framer Motion
+import Questions from './Questions';
+import Actions from './Actions';
+import eclo from "../assets/icons/eclo.svg";
+import wito from "../assets/icons/wito.svg";
+import institut from "../assets/icons/institut.svg";
+import horizon from "../assets/icons/horizon.svg"
+
 
 const lorem = new LoremIpsum();
 
@@ -33,96 +40,102 @@ const Home = ({ setProgress }) => {
     return (
         <>
             <NavBar />
-            <motion.div
-                className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden md:h-auto sm:h-auto"
-                style={{
-                    backgroundImage: `url(${img})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
-                }}
-                initial={{ opacity: 0 }} // État initial
-                animate={{ opacity: 1 }} // État animé
-                transition={{ duration: 1 }} // Durée de la transition
-            >
-                <div className="bbc-container px-4 mx-auto">
-                    <div className="flex flex-wrap -m-8">
-                        <div className="w-full md:w-1/2 p-8">
-                            <motion.h1
-                                className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"
-                                initial={{ scale: 0 }} // État initial
-                                animate={{ scale: 1 }} // État animé
-                                transition={{ duration: 0.5 }} // Durée de la transition
-                            >
-                                👋BIENVENUE
-                            </motion.h1>
-                            <motion.h1
-                                className="font-heading tracking-tight text-gray-100 text-4xl md:text-6xl font-medium max-w-md md:max-w-4xl"
-                                initial={{ x: -100, opacity: 0 }} // État initial
-                                animate={{ x: 0, opacity: 1 }} // État animé
-                                transition={{ duration: 0.75 }} // Durée de la transition
-                            >
-                                Transformer
-                            </motion.h1>
-                            <motion.h1
-                                className="mb-4 text-3xl font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"
-                                initial={{ y: 50, opacity: 0 }} // État initial
-                                animate={{ y: 0, opacity: 1 }} // État animé
-                                transition={{ duration: 0.75 }} // Durée de la transition
-                            >
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 sm:max-w-2xl md:max-w-4xl">l'apprentissage <br /> des  </span>
-                              
-                                <span className='relative font-serif font-bold italic text-gray-400'>métiers du futur</span>
-                            </motion.h1>
+         
+                <section className="pb-8 bg-top bg-cover bg-no-repeat" style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
+  <div className="container px-4 mx-auto">
+    {/* <nav className="flex justify-between items-center py-6">
+      <a className="text-3xl text-white font-semibold leading-none" href="#">
+        <img className="h-10" src="metis-assets/logos/metis/metis-light-name.svg" alt width="auto" />
+      </a>
+      <div className="lg:hidden">
+        <button className="flex items-center py-2 px-3 text-blueGray-100 hover:text-blueGray-200 rounded border border-blueGray-200 hover:border-blueGray-300">
+          <svg className="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>Mobile menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <ul className="hidden lg:flex lg:items-center lg:w-auto lg:space-x-12">
+        <li><a className="text-sm text-blueGray-100 hover:text-blueGray-200" href="#">Product</a></li>
+        <li><a className="text-sm text-blueGray-100 hover:text-blueGray-200" href="#">Company</a></li>
+        <li><a className="text-sm text-blueGray-100 hover:text-blueGray-200" href="#">About Us</a></li>
+        <li><a className="text-sm text-blueGray-100 hover:text-blueGray-200" href="#">Features</a></li>
+      </ul>
+      <div className="hidden lg:block"><a className="mr-2 inline-block px-4 py-3 text-xs text-blueGray-100 hover:text-blueGray-200 font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" href="#">Log In</a><a className="inline-block px-4 py-3 text-xs font-semibold leading-none bg-blue-600 hover:bg-blue-700 text-white rounded" href="#">Sign Up</a></div>
+    </nav> */}
+    <div className="py-12 text-center">
+      <div className="max-w-lg mx-auto mb-8">
+        <h2 className="text-3xl md:text-4xl mb-4 text-white font-bold font-heading">
+          <span>Transformer</span>
+          <span className="text-blue-600">l'apprentissage
+          des</span>
+          <span>métiers du futur</span>
+        </h2>
+        <p className="text-blueGray-400 leading-relaxed ">The quick brown fox jumps over the lazy dog.</p>
+      </div>
+      <div><a className="block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded" href="#">Check Now</a><a className="block sm:inline-block py-4 px-8 text-xs text-blueGray-100 hover:text-blueGray-200 text-center font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" href="#">Documentation</a></div>
+    </div>
+    <div className="flex flex-wrap items-center justify-center max-w-4xl mx-auto pt-12 pb-4">
+      <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
+        <img className="mx-auto " src={eclo} alt />
+      </div>
+      <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
+        <img className="mx-auto " alt />
+      </div>
+      <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
+        <img className="mx-auto" src={institut} alt />
+      </div>
+      <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
+        <img className="mx-auto" src={wito} alt />
+      </div>
+      <div className="hidden md:block w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
+        <img className="mx-auto" src={horizon} alt />
+      </div>
+    </div>
+  </div>
+  <div className="hidden fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50">
+    <div className="fixed inset-0 bg-blueGray-800 opacity-25" />
+    <nav className="relative flex flex-col py-6 px-6 w-full h-full bg-white border-r overflow-y-auto">
+      <div className="flex items-center mb-8">
+        <a className="mr-auto text-3xl font-semibold leading-none" href="#">
+          <img className="h-10" src="metis-assets/logos/metis/metis.svg" alt width="auto" />
+        </a>
+        <button>
+          <svg className="h-6 w-6 text-blueGray-400 cursor-pointer hover:text-blueGray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div>
+        <ul>
+          <li className="mb-1"><a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-600" href="#">Product</a></li>
+          <li className="mb-1"><a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-600" href="#">Company</a></li>
+          <li className="mb-1"><a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-600" href="#">About Us</a></li>
+          <li className="mb-1"><a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-600" href="#">Features</a></li>
+        </ul>
+        <div className="mt-4 pt-6 border-t border-blueGray-100"><a className="block px-4 py-3 mb-3 text-xs text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 text-white rounded" href="#">Sign Up</a><a className="block px-4 py-3 mb-2 text-xs text-center text-blue-600 hover:text-blue-700 font-semibold leading-none border border-blue-200 hover:border-blue-300 rounded" href="#">Log In</a></div>
+      </div>
+      <div className="mt-auto">
+        <p className="my-4 text-xs text-blueGray-400">
+          <span>Get in Touch</span>
+          <a className="text-blue-600 hover:text-blue-600 underline" href="#">info@example.com</a>
+        </p>
+        <a className="inline-block px-1" href="#">
+          <img src="metis-assets/icons/facebook-blue.svg" alt />
+        </a>
+        <a className="inline-block px-1" href="#">
+          <img src="metis-assets/icons/twitter-blue.svg" alt />
+        </a>
+        <a className="inline-block px-1" href="#">
+          <img src="metis-assets/icons/instagram-blue.svg" alt />
+        </a>
+      </div>
+    </nav>
+  </div>
+</section>
 
-                            <div className="flex flex-wrap -m-1 mb-14 mt-14">
-                                <div className="w-auto p-2">
-                                    <motion.a
-                                        className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200"
-                                        href="/register"
-                                        whileHover={{ scale: 1.1 }} // Effet de survol
-                                        transition={{ duration: 0.3 }} // Durée de la transition
-                                    >
-                                        Inscription
-                                    </motion.a>
-                                </div>
-                                <div className="w-auto p-2">
-                                </div>
-                            </div>
-                            <div className="max-w-md">
-                                <div className="flex flex-wrap -m-1.5">
-                                    <div className="w-auto p-1.5">
-                                        <div className="flex flex-wrap">
-                                            <motion.div whileHover={{ scale: 1.1 }}> 
-                                                <img src={avatar} alt="" />
-                                            </motion.div>
-                                            <motion.div whileHover={{ scale: 1.1 }}>
-                                                <img src={avatar2} alt="" />
-                                            </motion.div>
-                                            <motion.div whileHover={{ scale: 1.1 }}>
-                                                <img src={avatar} alt="" />
-                                            </motion.div>
-                                        </div>
-                                    </div>
-                                    <div className="flex-1 p-1.5">
-                                        <motion.p
-                                            className="mt-4 max-w-xl text-lg text-gray-400"
-                                            initial={{ x: -100, opacity: 0 }} // État initial
-                                            animate={{ x: 0, opacity: 1 }} // État animé
-                                            transition={{ duration: 0.75 }} // Durée de la transition
-                                        >
-                                            Rejoindre notre programme d'apprentissage de plus de 8 cours au profit du peuples africains.
-                                        </motion.p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full md:w-1/2 p-8">
-                            {/* <img className="transform hover:-translate-y-2 transition duration-500 rounded-lg" src={home} alt /> */}
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
+
+         
 
             <div className='pb-24 lg:pb-10 bg-white overflow-hidden'>
                 <Centre />
@@ -131,7 +144,10 @@ const Home = ({ setProgress }) => {
                 <Service />
                 <Outcome />
             </div>
+            <Questions/>
+            <Actions/>
             <Details />
+           
             <Footer />
         </>
     );

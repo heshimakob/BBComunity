@@ -6,6 +6,7 @@ import Details from '../Details';
 import axios from 'axios';
 import { FaFacebook, FaInstagram, FaLinkedin, FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import Loading from '../Loading';
+import Actions from '../Actions';
 
 const BlogPage = ({setProgress}) => {
     const { id } = useParams();
@@ -48,7 +49,7 @@ const BlogPage = ({setProgress}) => {
             ) : ( // Sinon, affichez le contenu du blog
                 Blog && (
                     <>
-                        <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden'>
+                        <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
                             <div className='text-center justify-center items-center'>
                                 <h1 className="mb-4 text-3xl text-center font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl">
                                     <span className=" font-open-sans  text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{Blog.titre}</span>
@@ -105,6 +106,7 @@ const BlogPage = ({setProgress}) => {
                     </>
                 )
             )}
+            <Actions/>
             <Details />
             <Footer />
         </>

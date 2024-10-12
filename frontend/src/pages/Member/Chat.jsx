@@ -85,13 +85,14 @@
 import React, { useState } from 'react'
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css"
 import { MainContainer,ChatContainer,MessageList,Message,MessageInput,TypingIndicator } from '@chatscope/chat-ui-kit-react'
+import NavBar from './NavBar';
 
 const API_KEY="";
 const Chat = () => {
   const [typing, setTyping]= useState(false)
   const [messages,setMessages]=useState([
     {
-      message:"hello, i m mass",
+      message:"Bonjour je suis votre assistant virtuelle de Black born Community",
       sender:"gpt",
       direction : "outgoing"
     }
@@ -151,10 +152,12 @@ const Chat = () => {
 
   }
   return (
-    <div className='bbc-container flex flex-col h-screen'>
+    <>
+    <NavBar/>
+    <div className='bbc-container flex flex-col h-screen '>
       <MainContainer>
         <ChatContainer>
-          <MessageList typingIndicator={typing ? <TypingIndicator content="chat is typing"/>: null}>
+          <MessageList className='mt-24' typingIndicator={typing ? <TypingIndicator content="chat is typing"/>: null}>
             {
 
               messages.map((message,i)=>{
@@ -167,7 +170,7 @@ const Chat = () => {
         </ChatContainer>
       </MainContainer>
       
-    </div>
+    </div></>
   )
 }
 

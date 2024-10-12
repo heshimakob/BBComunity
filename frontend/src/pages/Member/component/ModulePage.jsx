@@ -103,12 +103,12 @@ const ModulePage = () => {
                             className="w-full p-2 mb-4 border border-gray-300 rounded"
                         />
                         <h2 className="font-bold mb-2">Nos chapitres disponibles</h2>
-                        <ul className="bg-blue-950 text-white p-2 font-sans rounded-lg max-h-screen overflow-y-auto">
+                        <ul className="bg-white border text-gray-600 p-2 font-sans rounded-lg max-h-screen overflow-y-auto">
                             {filteredChapters.map((chapter) => (
                                 <li key={chapter._id}>
                                     <button
                                         onClick={() => handleChapterClick(chapter)}
-                                        className={`w-full text-left rounded ${selectedChapter && selectedChapter._id === chapter._id ? 'bg-blue-700 text-white' : 'text-blue-200 hover:bg-blue-600'} p-2`}
+                                        className={`w-full text-left rounded ${selectedChapter && selectedChapter._id === chapter._id ? 'bg-gray-500 text-white' : 'text-gray-500 hover:bg-gray-700 hove:text-white'} p-2`}
                                     >
                                         {chapter.titre}
                                     </button>
@@ -117,7 +117,7 @@ const ModulePage = () => {
                         </ul>
                     </div>
 
-                    <div className="w-full lg:w-3/4 p-4">
+                    <div className="w-full lg:w-3/4 p-4 border">
                         <div className="w-full">
                             <div className="progress-bar h-2 bg-green-500 mb-4 rounded" style={{ width: `${progressPercentage}%` }} />
                             <h1 className="text-lg font-semibold">Progression : {progressPercentage}%</h1>
@@ -152,9 +152,9 @@ const ModulePage = () => {
                                     <h1 className='text-3xl font-bold text-gray-500 mb-4'>{selectedChapter.titre}</h1>
                                     <div className='w-full bg-white text-xl text-gray-600 h-full p-3 mb-6 text-justify leading-7 rounded-xl' dangerouslySetInnerHTML={{ __html: selectedChapter.contenu }} />
                                     <div className='flex justify-between mb-4'>
-                                        <Link to="/member-cours" className='w-full mx-2 bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded text-center'>Tous les cours</Link>
-                                        <button className='w-full mx-2 bg-green-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={() => addProgress(selectedChapter._id)}>Terminer</button>
-                                        <button className='w-full mx-2 bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={handleNextChapter}>Prochain</button>
+                                        <Link to="/member-cours" className='w-full mx-2 bg-gray-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded text-center'>Tous les cours</Link>
+                                        <button className='w-full mx-2 bg-green-900 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={() => addProgress(selectedChapter._id)}>Terminer</button>
+                                        <button className='w-full mx-2 bg-gray-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded' onClick={handleNextChapter}>Prochain</button>
                                     </div>
                                     <div className='w-full bg-gray-300 my-4'>
                                         <h1 className="p-2">Les liens complémentaires du module</h1>

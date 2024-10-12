@@ -34,7 +34,7 @@ const CoursMember = () => {
             <NavBar />
             <Sidebar />
 
-            <div className="w-full min-h-screen p-4 pt-20">
+            <div className="w-full min-h-screen p-4 pt-20 border">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-center py-12 px-6">
                         <div className="md:w-[75%] w-full mb-4 md:mb-0">

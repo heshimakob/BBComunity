@@ -4,184 +4,60 @@ import learner from"../assets/learner.jpeg"
 import { BsCode, BsFileEarmarkBarGraphFill, BsFillBuildingsFill, BsMarkdown, BsScissors, BsWindowDesktop } from 'react-icons/bs';
 import { AiOutlineRight } from 'react-icons/ai';
 
-function CourseCategory({ icon, title, count }) {
-  return (
-    <div className="rounded-full shadow-md p-4 flex  justify-between items-center gap-4 justify-center hover:scale-105 transition-transform duration-300">
-      <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gray-100">
-        {icon}
-      </div>
-      <div className='flex flex-col'>
-      <h3 className="mt-4 text-xl font-semibold text-gray-800">{title}</h3>
-      <p className="mt-1 text-gray-600">{count} Courses</p>
-      </div>
-    </div>
-  );
-}
 
 function Learner() {
   const [isHovered, setIsHovered] = useState(false);
 
 
   return (
-    <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900  overflow-hidden md:h-auto sm:h-auto" style={{
-      backgroundImage: `url(${learner})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      // background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
-    }}>
-    <div className="bbc-container flex  mx-auto bg-gray-100 min-h-screen justify-center items-center py-16 px-4 sm:px-6 lg:px-8 border-none">
-      <div className="flex flex-wrap -m-8 mt-10"  style={{
-      backgroundImage: `url(${learner})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      // background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 65%), url(${img})`,
-    }}>
-        
-      <div className="w-full md:w-1/2 p-8  bg-transparent"  >
-      <img className="transform hover:-translate-y-2 transition duration-500 rounded-lg border-none bg-transparent" src={home} alt />
-
-       </div>
-
-
-
-       <div className="w-full md:w-1/2 p-8  ">
-
-
-
-
-
-       <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-        Académie numérique en ligne : votre chemin vers l'excellence créative
-        </h2>
-        <p className="mt-4 text-lg text-gray-500">
-         
-        A moins qu'ils ne soient aveuglés par la luxure, ils ne sortent pas, ils sont en faute qui font leurs devoirs
-        le désert s'adoucit
-        </p>
-
-        <div className="mt-12 flex flex-col">
-          <ul className="grid grid-cols-1 gap-6 ">
-            <li>
-              <div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className={`relative flex  items-center justify-center p-4 rounded-md bg-white shadow-sm ${
-                  isHovered ? 'hover:bg-gray-200' : ''
-                }`}
-              >
-                <div className=" absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-950 text-white flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <span className="text-gray-900 font-medium">
-                Nos formateurs experts
-                </span>
-              </div>
-            </li>
-            <li>
-              <div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className={`relative flex items-center justify-center p-4 rounded-md bg-white shadow-sm ${
-                  isHovered ? 'hover:bg-gray-200' : ''
-                }`}
-              >
-                <div className="absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-950 text-white flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <span className="text-gray-900 font-medium">
-                Apprentissage à distance en ligne
-                </span>
-              </div>
-            </li>
-            <li>
-              <div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className={`relative flex items-center justify-center p-4 rounded-md bg-white shadow-sm ${
-                  isHovered ? 'hover:bg-gray-200' : ''
-                }`}
-              >
-                <div className="absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-950 text-white flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <span className="text-gray-900 font-medium">
-                Programme facile à suivre
-                </span>
-              </div>
-            </li>
-            <li>
-              <div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className={`relative flex items-center justify-center p-4 rounded-md bg-white shadow-sm ${
-                  isHovered ? 'hover:bg-gray-200' : ''
-                }`}
-              >
-                <div className="absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-950 text-white flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <span className="text-gray-900 font-medium">
-                Accès à vie
-                </span>
-              </div>
-            </li>
-          </ul>
-        </div>
-       </div>
+    <>
+    <section className="py-20">
+<div className="container px-4 mx-auto">
+<div className="flex flex-wrap -mx-8">
+<div className="w-full lg:w-1/2 px-8">
+<div className="mb-12 lg:mb-0 pb-12 lg:pb-0 border-b lg:border-b-0">
+<h2 className="mb-4 text-3xl lg:text-4xl font-bold font-heading">Sed ac magna sit amet risus tristique interdum, at vel velit in hac habitasse platea dictumst.</h2>
+<p className="mb-8 leading-loose text-blueGray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla. Praesent placerat enim ut ex tincidunt vehicula. Fusce sit amet dui tellus.</p>
+<a className="inline-block text-xs py-4 px-8 text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded" href="#">Learn More</a>
+</div>
+</div>
+<div className="w-full lg:w-1/2 px-8">
+<ul className="space-y-12">
+<li className="flex -mx-4">
+<div className="px-4">
+  <span className="flex w-16 h-16 mx-auto items-center justify-center text-2xl font-bold font-heading rounded-full bg-blue-50 text-blue-600">1</span>
+</div>
+<div className="px-4">
+  <h3 className="my-4 text-xl font-semibold">Key Elements</h3>
+  <p className="text-blueGray-400 leading-loose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus eget justo et iaculis.</p>
+</div>
+</li>
+<li className="flex -mx-4">
+<div className="px-4">
+  <span className="flex w-16 h-16 mx-auto items-center justify-center text-2xl font-bold font-heading rounded-full bg-blue-50 text-blue-600">2</span>
+</div>
+<div className="px-4">
+  <h3 className="my-4 text-xl font-semibold">Flexible Elements</h3>
+  <p className="text-blueGray-400 leading-loose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus eget justo et iaculis.</p>
+</div>
+</li>
+<li className="flex -mx-4">
+<div className="px-4">
+  <span className="flex w-16 h-16 mx-auto items-center justify-center text-2xl font-bold font-heading rounded-full bg-blue-50 text-blue-600">3</span>
+</div>
+<div className="px-4">
+  <h3 className="my-4 text-xl font-semibold">Flexible Software</h3>
+  <p className="text-blueGray-400 leading-loose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus eget justo et iaculis.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 
 
-
-
-      </div>
-    </div>
-
-    
-
-    </div>
+</>
   );
 }
 
