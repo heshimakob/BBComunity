@@ -8,6 +8,7 @@ import Informations from './Informations';
 import {motion} from "framer-motion"
 import { Link } from 'react-router-dom';
 import Team from './Team';
+import Stat from './Stat';
 
 const  Why =({setProgress})=>{
   useEffect(()=>{
@@ -50,6 +51,7 @@ const  Why =({setProgress})=>{
 </div>
     </div>
     </div>
+    <Stat/>
     <Informations/>
     <Team/>
 
