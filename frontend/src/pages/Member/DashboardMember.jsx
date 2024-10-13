@@ -7,6 +7,7 @@ import Loading from "../../components/Loading"
 import { FaUserMd, FaPhone, FaEnvelope, FaCalendarAlt, FaMapMarkerAlt, FaUser, FaGenderless, FaCriticalRole } from 'react-icons/fa';
 import Cours from '../../components/Cours';
 import NavBar from './NavBar';
+import AllCours from './component/AllCours';
 
 const DashboardMember = () => {
   const [user, setUser] = useState(null);
@@ -49,60 +50,55 @@ const DashboardMember = () => {
   return (
     <>
     <NavBar/>
-      
-      <Sidebar />
-      <div className="flex flex-col md:flex-row md:h-screen p-10 md:ml-32 mt-20 bg-gray-200">
-        <div className="w-full md:w-2/3 bg-white shadow-lg rounded-lg p-6">
-          <div className="bbc-container flex flex-col md:flex-row items-center bg-slate-300 rounded-xl">
-            
-            <div className="md:w-1/3 mt-10 flex justify-between ml-10">
-             <div  className="h-[100%] w-[100%]">
-             {user.image ? (
-                <img className="rounded-lg w-80 h-[100%]" src={user.image} alt="User" />
-              ) : (
-                <FaUser className="rounded-full w-32 h-32" />
-              )}
-             </div>
-
-             <div className='flex justify-between  ml-10 '>
-  <h2 className="text-3xl font-semibold">{user.name}</h2>
-  <p className="text-gray-600 text-xl flex items-center">
-    <FaCriticalRole  />
-    {user.role}
-  </p>
-  <p className="text-gray-600 text-xl flex items-center">
-    <FaGenderless/>
-    {user.genre}
-  </p>
-</div>
-              
-            </div>
-        
-           
+                <section className="pt-8 pb-2 bg-blueGray-50 mt-32">
+  <div className="container px-4 mx-auto">
+    <div className="flex flex-wrap -mx-3">
+      <div className="w-full md:w-1/3 px-3 mb-6">
+        <div className="p-6 shadow bg-white rounded">
+          <div className="flex justify-between">
+            <p className="text-sm md:text-base text-blueGray-400">Cours</p>
+            <span className="text-xs py-1 px-2 rounded-full font-semibold text-blue-600 bg-blue-100 uppercase">Mois</span>
           </div>
-          <div>
-          <p className="text-gray-600 text-2xl">{user.role}</p>
-          <p className="text-gray-600 text-2xl">{user.genre}</p>
-          </div>
-
-          <div className=' flex flex-col mb-0 bottom-0 mt-52'>
-            <div className='bbc-container mb-10 mt-10'>
-              <h1 className='text-gray-500 text-5xl'>Black Born Community Les cours mise A jours</h1>
-            </div>
-          <Cours/>
-          </div>
-        </div>
-
-        <div className="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-6 md:mt-0 md:ml-6 mb-20">
-          <h3 className="text-4xl font-semibold mb-4"> Historique des Cours</h3>
-          <ul className="list-disc pl-5">
-            <li>Fractured Arm</li>
-            <li>Hey you are looking very good</li>
-            <li>Johnson And Johnson Plaza, New Brunswick, NJ</li>
-          </ul>
+          <p className="text-3xl lg:text-4xl font-bold font-heading">8 </p>
+          <p className="text-sm md:text-base text-blueGray-500">
+            <span className="text-green-600">+80% </span>
+            Reduction
+          </p>
         </div>
       </div>
-    </>
+      <div className="w-full md:w-1/3 px-3 mb-6">
+        <div className="p-6 shadow bg-white rounded">
+          <div className="flex justify-between">
+            <p className="text-sm md:text-base text-blueGray-400">Projets</p>
+            <span className="text-xs py-1 px-2 rounded-full font-semibold text-blue-600 bg-blue-100 uppercase">Bootcamps</span>
+          </div>
+          <p className="text-3xl lg:text-4xl font-bold font-heading">15</p>
+          <p className="text-sm md:text-base text-blueGray-500">
+            <span className="text-green-600">+18% </span>
+            Since last week
+          </p>
+        </div>
+      </div>
+      <div className="w-full md:w-1/3 px-3 mb-6">
+        <div className="p-6 shadow bg-white rounded">
+          <div className="flex justify-between">
+            <p className="text-sm md:text-base text-blueGray-400">Cours en attente</p>
+            <span className="text-xs py-1 px-2 rounded-full font-semibold text-blue-600 bg-blue-100 uppercase">Monthly</span>
+          </div>
+          <p className="text-3xl lg:text-4xl font-bold font-heading">20</p>
+          <p className="text-sm md:text-base text-blueGray-500">
+            <span className="text-red-500">0% </span>
+            mois derniers
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<AllCours/>
+
+
+            </>
   );
 };
 

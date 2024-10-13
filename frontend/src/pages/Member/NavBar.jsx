@@ -6,6 +6,7 @@ import Loading from '../../components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails } from '../../store/userSlice';
 import B from "../../assets/B.png"
+import bbc from "../../assets/icons/bbc.jpg"
 import Sidebar from './Sidebar';
 
 function NavBar() {
@@ -51,13 +52,13 @@ function NavBar() {
                   {/* <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white'>
                     Black Born Community
                   </span> */}
-                  <img src={B} className='w-12 h-12'/>
+                  <img src={bbc} className='w-12 h-12'/>
                 </Link>
               </div>
               <div className="w-auto hidden lg:block">
                 <ul className="flex items-center mr-8">
                   <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight">
-                    <Link to='/user-dashboard'>Dashboard</Link>
+                    <Link to='/user-dashboard'>Home</Link>
                   </li>
                   <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight">
                     <Link to="/member-cours">Nos formations</Link>
