@@ -5,6 +5,7 @@ import bglog from "../assets/bglog.jpeg";
 import { Link } from 'react-router-dom';
 import toast, { Toaster } from "react-hot-toast";
 import swal from "sweetalert";
+import bbc from "../assets/icons/bbc.jpg";
 
 const Register = ({ setProgress }) => {
     const [name, setName] = useState('');
@@ -17,9 +18,9 @@ const Register = ({ setProgress }) => {
     const resetForm = () => {
         setName('');
         setEmail('');
-        setGenre('');
+        setGenre('male'); // Par défaut à 'male'
         setPhoneNumber('');
-        setDomaine('');
+        setDomaine('Software Development'); // Par défaut à 'Software Development'
         setPassword('');
     };
 
@@ -27,8 +28,8 @@ const Register = ({ setProgress }) => {
         setProgress(40);
         setTimeout(() => {
             setProgress(100)
-        }, 2000)
-    }, []);
+        }, 2000);
+    }, [setProgress]);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Empêche le rechargement de la page
@@ -45,133 +46,156 @@ const Register = ({ setProgress }) => {
         try {
             const response = await axios.post('http://localhost:8080/api/candidate/addCandidate', userData);
             console.log(response.data);
-            swal("Demande!", "Demande envoyer", "success");
+            swal("Demande!", "Demande envoyée", "success");
             resetForm();
             window.location.href = '/signin';
         } catch (error) {
             console.error('Erreur lors de l\'envoi des données', error);
-            toast.error("Echec de demande")
+            toast.error("Échec de la demande");
         }
     };
 
     return (
-        <section className="relative pb-20">
+        <section className="h-screen relative pb-20">
+            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-600" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")' }}>
+                {/* <div className="flex items-center h-screen">
+                    <img className="lg:max-w-lg mx-auto" src={walk} alt="Illustration" />
+                </div> */}
+            </div>
     
-            <div className='h-screen flex flex-col md:flex-row'>
-                <div className="h-screen w-full md:w-1/3 p-10 flex flex-col items-center">
-                    <div className="text-center flex flex-col items-center">
-                        <h1 className="text-3xl text-gray-300 mb-10">Black Born Community</h1>
-                        <img src={B} width="20%" height="200px" alt="Logo" />
-                        <h1 className="text-2xl mb-10">S'enregister</h1>
+            <div className="container px-4 mx-auto">
+                <div className="relative flex flex-wrap">
+                    <div className="lg:flex lg:flex-col w-full lg:w-1/2 py-6 lg:pr-20">
+                        <div className="flex justify-between items-center w-full mb-12 lg:mb-20">
+                            <Link className="text-3xl font-semibold leading-none" to="/">
+                                <img className="h-12 " src={bbc} alt="Black Born Community" width="auto" />
+                            </Link>
+                            <Link className="inline-block px-4 py-3 text-xs text-blue-600 hover:text-blue-700 font-semibold leading-none border border-blue-200 hover:border-blue-300 rounded" to="/signin">Se connecter</Link>
+                        </div>
+                        <div className="w-full max-w-lg mx-auto lg:mx-0 my-auto">
+                            <span className="text-sm text-blueGray-400">Créer votre compte</span>
+                            <h4 className="mb-6 text-3xl">Enfin de rejoindre notre communauté</h4>
+                            <form className="mt-14" onSubmit={handleSubmit}>
+                                <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
+                                    Nom complet*
+                                </label>
+                                <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
+                                    <input
+                                        type="name"
+                                        id="name"
+                                        placeholder="Votre nom complet"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
+                                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                                    />
+                                    <svg className="h-6 w-6 ml-4 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                    </svg>
+                                </div>
+
+                                <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+                                    Adresse mail*
+                                </label>
+                                <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="exemple@gmail.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                                    />
+                                    <svg className="h-6 w-6 ml-4 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                    </svg>
+                                </div>
+
+                                <label htmlFor="phone-number" className="block text-gray-700 text-sm font-bold mb-2">
+                                    Numéro de téléphone*
+                                </label>
+                                <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
+                                    <input
+                                        type="text"
+                                        id="phone-number"
+                                        placeholder="+243 999 412 974"
+                                        value={phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        required
+                                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                                    />
+                                    <svg className="h-6 w-6 ml-4 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                    </svg>
+                                </div>
+
+                                <label htmlFor="genre" className="block text-gray-700 text-sm font-bold mb-2">
+                                    Genre*
+                                </label>
+                                <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
+                                    <select
+                                        id="genre"
+                                        required
+                                        value={genre}
+                                        onChange={(e) => setGenre(e.target.value)}
+                                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                                    >
+                                        <option value="male">Masculin</option>
+                                        <option value="female">Féminin</option>
+                                    </select>
+                                </div>
+
+                                <label htmlFor="domaine" className="block text-gray-700 text-sm font-bold mb-2">
+                                    Domain*
+                                </label>
+                                <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
+                                    <select
+                                        id="domaine"
+                                        required
+                                        value={domaine}
+                                        onChange={(e) => setDomaine(e.target.value)}
+                                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                                    >
+                                        <option value="Software Development">Software Development</option>
+                                        <option value="Network">Network</option>
+                                    </select>
+                                </div>
+
+                                <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+                                    Mot de passe*
+                                </label>
+                                <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        placeholder="************"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                                    />
+                                    <button type="button" className="ml-4" onClick={() => setPassword((prev) => prev ? '' : password)}>
+                                        <svg className="h-6 w-6 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <button
+                                    className="block w-full py-4 mb-4 text-center text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
+                                    type="submit"
+                                >
+                                    S'inscrire
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
-                            Nom complet*
-                        </label>
-                        <input
-                            type="name"
-                            id="name"
-                            placeholder="votre nom complet"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                        />
-                        <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-                            Adresse mail*
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="exemple@gmail.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                        />
-                        <label htmlFor="phone-number" className="block text-gray-700 text-sm font-bold mb-2">
-                            Numero de telephone*
-                        </label>
-                        <input
-                            type="text"
-                            id="phone-number"
-                            placeholder="+243 999 412 974"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            required
-                            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                        />
-                        <label htmlFor="genre" className="block text-gray-700 text-sm font-bold mb-2">
-                            Genre*
-                        </label>
-                        <select
-                            id="genre"
-                            required
-                            value={genre}
-                            onChange={(e) => setGenre(e.target.value)}
-                            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                        >
-                            <option value="male">Masculin</option>
-                            <option value="female">Feminin</option>
-                        </select>
-                        <label htmlFor="domaine" className="block text-gray-700 text-sm font-bold mb-2">
-                            Domaine*
-                        </label>
-                        <select
-                            id="domain"
-                            value={domaine}
-                            required
-                            onChange={(e) => setDomaine(e.target.value)}
-                            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                        >
-                            <option value="Software Development">Software Development</option>
-                            <option value="Machine Learning">Machine Learning</option>
-                            <option value="AR and VR">AR and VR</option>
-                            <option value="Design">Design</option>
-                            <option value="Entreprenariat">Entreprenariat</option>
-                        </select>
-                        <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-                            Mot de passe*
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Mot de passe"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className="w-full p-3 mb-6 border border-gray-200 rounded-md"
-                        />
-                        <button
-                            className="w-full bg-blue-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-                            type="submit"
-                        >
-                            S'inscrire
-                        </button>
-                    </form>
-                    <div className="flex flex-col justify-center items-center">
-                        <span className='text-blue-500 hover:text-blue-700 font-bold pt-5 mb-10 '>
-                            <Link to="/signin">Se connecter</Link>
-                        </span>
-                    </div>
-                    <div className='mb-0 mt-auto text-center items-center'>
-                        <p className=' text-gray-300  mb-10'>Black Born community @copyright 2024</p>
-                    </div>
-                </div>
-                <div
-                    className="hidden md:block bg-cover bg-center h-screen w-2/3"
-                    style={{
-                        backgroundImage: `url(${bglog})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }}
-                >
+                 
                 </div>
             </div>
             <Toaster />
-            </section>
-          
-       
+        </section>
     );
 };
 

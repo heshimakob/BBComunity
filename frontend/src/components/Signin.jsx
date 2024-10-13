@@ -58,6 +58,7 @@ const Login = ({setProgress}) => {
                     <img className="lg:max-w-lg mx-auto" src={walk} alt="Illustration" />
                 </div> */}
             </div>
+
             <div className="container px-4 mx-auto">
                 <div className="relative flex flex-wrap">
                     <div className="lg:flex lg:flex-col w-full lg:w-1/2 py-6 lg:pr-20" >
@@ -67,6 +68,12 @@ const Login = ({setProgress}) => {
                             </Link>
                             <Link className="inline-block px-4 py-3 text-xs text-blue-600 hover:text-blue-700 font-semibold leading-none border border-blue-200 hover:border-blue-300 rounded" to="/register">S'inscrire</Link>
                         </div>
+
+
+
+
+
+                        
                         <div className="w-full max-w-lg mx-auto lg:mx-0 my-auto">
                             <span className="text-sm text-blueGray-400">Se connecter</span>
                             <h4 className="mb-6 text-3xl">Rejoindre notre communaute</h4>
@@ -138,6 +145,11 @@ const Login = ({setProgress}) => {
                         </div>
                     </div>
                 </div>
+
+
+
+
+
             </div>
             <Toaster />
         </section>

@@ -23,6 +23,7 @@ import eclo from "../assets/icons/eclo.svg";
 import wito from "../assets/icons/wito.svg";
 import institut from "../assets/icons/institut.svg";
 import horizon from "../assets/icons/horizon.svg"
+import amba from "../assets/icons/amba.svg"
 
 
 const lorem = new LoremIpsum();
@@ -66,34 +67,33 @@ const Home = ({ setProgress }) => {
     <div className="py-12 text-center">
       <div className="max-w-lg mx-auto mb-8">
         <h2 className="text-3xl md:text-4xl mb-4 text-white font-bold font-heading">
-          <span>Transformer</span>
-          <span className="text-blue-600">l'apprentissage
-          des</span>
+          <span>Transformer</span>   
+            <span className="text-blue-600"> l'apprentissage
+          des </span>
           <span>métiers du futur</span>
         </h2>
-        <p className="text-blueGray-400 leading-relaxed ">The quick brown fox jumps over the lazy dog.</p>
+        <p className="text-blueGray-400 leading-relaxed ">Black born community votre platefrome d'apprentissage en ligne </p>
       </div>
-      <div><a className="block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded" href="#">Check Now</a><a className="block sm:inline-block py-4 px-8 text-xs text-blueGray-100 hover:text-blueGray-200 text-center font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" href="#">Documentation</a></div>
+      <div><Link className="block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded" to="/company">Engager maintenant</Link><Link className="block sm:inline-block py-4 px-8 text-xs text-blueGray-100 hover:text-blueGray-200 text-center font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" to="/why">En savoir plus</Link></div>
     </div>
     <div className="flex flex-wrap items-center justify-center max-w-4xl mx-auto pt-12 pb-4">
       <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
         <img className="mx-auto " src={eclo} alt />
       </div>
-      <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
-        <img className="mx-auto " alt />
-      </div>
+    
       <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
         <img className="mx-auto" src={institut} alt />
       </div>
+   
       <div className="w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
         <img className="mx-auto" src={wito} alt />
       </div>
-      <div className="hidden md:block w-1/2 md:w-1/3 lg:w-1/5 px-3 mb-8">
-        <img className="mx-auto" src={horizon} alt />
-      </div>
+    
     </div>
   </div>
-  <div className="hidden fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50">
+
+
+  {/* <div className="hidden fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50">
     <div className="fixed inset-0 bg-blueGray-800 opacity-25" />
     <nav className="relative flex flex-col py-6 px-6 w-full h-full bg-white border-r overflow-y-auto">
       <div className="flex items-center mb-8">
@@ -131,7 +131,10 @@ const Home = ({ setProgress }) => {
         </a>
       </div>
     </nav>
-  </div>
+  </div> */}
+
+
+
 </section>
 
 
