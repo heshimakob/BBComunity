@@ -42,7 +42,7 @@ const Home = ({ setProgress }) => {
         <>
             <NavBar />
          
-                <section className="pb-8 bg-top bg-cover bg-no-repeat" style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
+                <section className="pb-8 bg-top bg-cover bg-no-repeat" style={{backgroundImage: 'url("https://images.unsplash.com/photo-1639664810686-b817b22bb549?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b25saW5lJTIwbWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D")'}}>
   <div className="container px-4 mx-auto">
     {/* <nav className="flex justify-between items-center py-6">
       <a className="text-3xl text-white font-semibold leading-none" href="#">

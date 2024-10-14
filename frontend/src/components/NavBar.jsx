@@ -65,7 +65,7 @@ function NavBar() {
 </a> */}
 </li>
 <li>
-<a href="#" className="text-lg text-white hover:text-gray-300 font-medium transition duration-200">Nos formations &amp; prix</a>
+<Link to="/formule" className="text-lg text-white hover:text-gray-300 font-medium transition duration-200">Nos formations &amp; prix</Link>
 </li>
 </ul>
 <div className="hidden xl:flex items-center gap-2">

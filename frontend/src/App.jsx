@@ -34,6 +34,7 @@ import LoadingBar from "react-top-loading-bar"
 import { useState } from "react";
 import Chat from "./pages/Member/Chat";
 import Candidate from "./pages/Admin/Candidate";
+import Formules from "./components/Formules";
 
 
 
@@ -65,6 +66,7 @@ function App() {
       
         <Route path="/blog-site" element= {<BlogSite setProgress={setProgress}/>} />  
         <Route path="/company" element= {<CompanySite setProgress={setProgress}/>} />  
+        <Route path="/formule" element= {<Formules setProgress={setProgress}/>} />  
         <Route path="/why" element= {<Why setProgress={setProgress}/>} />  
         <Route path="/blogPage/:id" element= {<BlogPage setProgress={setProgress}/>} /> 
 

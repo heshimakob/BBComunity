@@ -178,7 +178,7 @@ const UserTable = () => {
 
   const handleDeleteSubmit = async () => {
     try {
-      await axios.delete(`/api/deleteUser/${selectedUser._id}`, {
+      await axios.delete(`http://localhost:8080/api/users/deleteUser/${selectedUser._id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}` // Ajoutez le token si nécessaire
         }

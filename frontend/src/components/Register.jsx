@@ -14,6 +14,7 @@ const Register = ({ setProgress }) => {
     const [genre, setGenre] = useState('male'); // Pour genre
     const [domaine, setDomaine] = useState('Software Development'); // Pour domaine
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false); // Pour afficher/cacher le mot de passe
 
     const resetForm = () => {
         setName('');
@@ -22,6 +23,7 @@ const Register = ({ setProgress }) => {
         setPhoneNumber('');
         setDomaine('Software Development'); // Par défaut à 'Software Development'
         setPassword('');
+        setShowPassword(false); // Réinitialiser l'état d'affichage du mot de passe
     };
 
     useEffect(() => {
@@ -58,9 +60,6 @@ const Register = ({ setProgress }) => {
     return (
         <section className="h-screen relative pb-20">
             <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-900" style={{ backgroundImage: 'url("https://media.istockphoto.com/id/1921150261/photo/male-and-female-student-icons-on-wooden-blocks-education-concept-for-success.webp?a=1&b=1&s=612x612&w=0&k=20&c=6GB5plW0sNYmie_fivH_F6fncMrDbMKdFnKs4NTVQAg=)' }}>
-                {/* <div className="flex items-center h-screen">
-                    <img className="lg:max-w-lg mx-auto" src={walk} alt="Illustration" />
-                </div> */}
             </div>
     
             <div className="container px-4 mx-auto">
@@ -89,9 +88,6 @@ const Register = ({ setProgress }) => {
                                         required
                                         className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
                                     />
-                                    <svg className="h-6 w-6 ml-4 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                                    </svg>
                                 </div>
 
                                 <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
@@ -107,9 +103,6 @@ const Register = ({ setProgress }) => {
                                         required
                                         className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
                                     />
-                                    <svg className="h-6 w-6 ml-4 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                                    </svg>
                                 </div>
 
                                 <label htmlFor="phone-number" className="block text-gray-700 text-sm font-bold mb-2">
@@ -125,9 +118,6 @@ const Register = ({ setProgress }) => {
                                         required
                                         className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
                                     />
-                                    <svg className="h-6 w-6 ml-4 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                                    </svg>
                                 </div>
 
                                 <label htmlFor="genre" className="block text-gray-700 text-sm font-bold mb-2">
@@ -158,7 +148,9 @@ const Register = ({ setProgress }) => {
                                         className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
                                     >
                                         <option value="Software Development">Software Development</option>
-                                        <option value="Network">Network</option>
+                                        <option value="Network">Machine Learning</option>
+                                        <option value="Entreprenariat">Entreprenariat</option>
+                                        <option value="Art numerique et AR, VR et Design">Art numérique et AR, VR et Design</option>
                                     </select>
                                 </div>
 
@@ -167,7 +159,7 @@ const Register = ({ setProgress }) => {
                                 </label>
                                 <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
                                     <input
-                                        type="password"
+                                        type={showPassword ? 'text' : 'password'} // Change le type basé sur showPassword
                                         id="password"
                                         placeholder="************"
                                         value={password}
@@ -175,10 +167,20 @@ const Register = ({ setProgress }) => {
                                         required
                                         className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
                                     />
-                                    <button type="button" className="ml-4" onClick={() => setPassword((prev) => prev ? '' : password)}>
-                                        <svg className="h-6 w-6 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                                        </svg>
+                                    <button 
+                                        type="button" 
+                                        className="ml-4" 
+                                        onClick={() => setShowPassword(prev => !prev)} // Inverse l'état de showPassword
+                                    >
+                                        {showPassword ? (
+                                            <svg className="h-6 w-6 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A8.964 8.964 0 0012 19c-4.962 0-9-4.034-9-9s4.038-9 9-9c2.048 0 3.94.681 5.438 1.825m-2.563 3.556a4 4 0 00-6.747 2.172m3.688 4.2A4 4 0 0012 15c1.067 0 2.061-.417 2.828-1.172" />
+                                            </svg>
+                                        ) : (
+                                            <svg className="h-6 w-6 my-auto text-blueGray-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18m0 0l-2.45-2.45a11.963 11.963 0 003.44-8.55c0-6.627-5.373-12-12-12C5.373 0 0 5.373 0 12c0 2.048.51 3.96 1.438 5.6" />
+                                            </svg>
+                                        )}
                                     </button>
                                 </div>
 
@@ -191,7 +193,6 @@ const Register = ({ setProgress }) => {
                             </form>
                         </div>
                     </div>
-                 
                 </div>
             </div>
             <Toaster />
