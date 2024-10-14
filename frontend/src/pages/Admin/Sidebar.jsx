@@ -115,7 +115,7 @@ const Sidebar=()=> {
         </SidebarNavItem>
         <SidebarNavItem>
             <SidebarIcon> <BsCalendarEvent/></SidebarIcon>
-            <StyledLink to="/admin/events"> Event</StyledLink>
+            <StyledLink to="/candidate"> Candidat</StyledLink>
         </SidebarNavItem>
 
         <SidebarNavItem>

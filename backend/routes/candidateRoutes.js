@@ -39,23 +39,4 @@ router.get('/getAllCandidates', async (req, res) => {
 });
 
 module.exports= router;
-// router.post('/AddCandidate', (req, res) => {
-//     const { email, phoneNumber, genre, domain, password } = req.body;
-
-//     // Ici, vous pouvez ajouter votre logique pour enregistrer les données dans la base de données.
-
-//     console.log('Données reçues:', {
-//         email,
-//         numero,
-//         genre,
-//         domain,
-//         password,
-//     });
-
-//     res.status(201).send({ message: 'Candidat ajouté avec succès' });
-// });
-
-// app.listen(PORT, () => {
-//     console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
-// });
 

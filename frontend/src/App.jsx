@@ -33,6 +33,7 @@ import AddChapitre from "./pages/Admin/componnent/addChapitre";
 import LoadingBar from "react-top-loading-bar"
 import { useState } from "react";
 import Chat from "./pages/Member/Chat";
+import Candidate from "./pages/Admin/Candidate";
 
 
 
@@ -84,6 +85,7 @@ function App() {
 <Route element={<PrivateRoutes adminOnly />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path='/admin-cours' element={<Courses/>}/>
+          <Route path='/candidate' element={<Candidate/>}/>
           <Route path='/admin-annonce' element={<Annoncement/>}/>
           <Route path='/admin-users' element={<Users/>}/>
           <Route path='/admin-blog' element={<Blog/>}/>

@@ -57,7 +57,7 @@ const Register = ({ setProgress }) => {
 
     return (
         <section className="h-screen relative pb-20">
-            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-600" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")' }}>
+            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-900" style={{ backgroundImage: 'url("https://media.istockphoto.com/id/1921150261/photo/male-and-female-student-icons-on-wooden-blocks-education-concept-for-success.webp?a=1&b=1&s=612x612&w=0&k=20&c=6GB5plW0sNYmie_fivH_F6fncMrDbMKdFnKs4NTVQAg=)' }}>
                 {/* <div className="flex items-center h-screen">
                     <img className="lg:max-w-lg mx-auto" src={walk} alt="Illustration" />
                 </div> */}
