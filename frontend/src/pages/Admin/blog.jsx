@@ -24,6 +24,7 @@ const Blog = () => {
     
     return (
         <>
+        <NavBar/>
         <Sidebar/>
       <div className='container  mx-auto mt-20 p-10'>
       <div className='container mb-20'>
