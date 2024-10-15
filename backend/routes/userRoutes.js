@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User =require('../models/userModel')
 const multer = require('multer');
+const transporter = require('../config/emailConfig');
 
 
 const generateToken = (user) => {
@@ -114,6 +115,26 @@ router.post('/logout', async (req, res) => {
   // Par exemple, la suppression du token du client peut suffire.
   
   res.status(200).json({ message: 'Déconnexion réussie.' });
+});
+
+
+router.post('/subscribe', (req, res) => {
+  const { email } = req.body;
+
+  // Configurer les options de courrier
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Subscription Confirmation',
+    text: 'Thank you for subscribing to our newsletter!'
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).json({ message: 'Failed to send email' });
+    }
+    res.status(200).json({ message: 'Subscription successful!' });
+  });
 });
 
 

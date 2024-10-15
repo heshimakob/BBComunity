@@ -31,7 +31,7 @@ function NavBar() {
             </Link>
           </div>
         </div>
-        <nav className=" bbc-container relative px-12 py-5">
+        <nav className=" bbc-container relative px-12 py-5 ">
           <div className="flex items-center justify-between">
             <Link className="relative z-10 pr-4 lg:pr-0" to="/">
               <img className="h-15 h-20" src={logo} alt="Logo" />
@@ -81,7 +81,7 @@ function NavBar() {
                   <Link className="text-lg text-black hover:text-gray-700 font-medium transition duration-200" to="/signin">Login</Link>
                 </li>
                 <li>
-                  <Link className="text-lg text-white bg-blue-500 hover:bg-blue-600 font-medium transition duration-200 py-2 px-4 rounded-full" to="/register">S'inscrire</Link>
+                  <Link className="text-lg text-white bg-blue-500 hover:bg-blue-600 font-medium transition duration-200 py-2 px-4 rounded-xl" to="/register">S'inscrire</Link>
                 </li>
               </ul>
             </div>
