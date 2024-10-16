@@ -36,7 +36,7 @@ router.post('/AddCandidate', (req, res) => {
                 <li><strong>Numéro de téléphone:</strong> ${phoneNumber}</li>
                 <li><strong>Domaine:</strong> ${domaine}</li>
             </ul>
-             <h1 style="background-color: red; color: white; padding: 10px; border-radius: 5px; margin: 0;">Votre compte sera operation deux jours avant ouverture de bootcamps </h1>
+             <h1 style="background-color: red; color: white; padding: 10px; border-radius: 5px; margin: 0;">Votre compte sera operationnel deux jours avant ouverture de bootcamps </h1>
             <p style="text-align: justify; margin: 0 20px;">Merci pour votre candidature.</p>
             <p style="text-align: justify; margin: 0 20px;">Cordialement,<br>L'équipe d'inscription.</p>
             <p style="text-align: justify; margin: 0 20px;">Adresse mail: inscription@bbcommunity.academy</p>

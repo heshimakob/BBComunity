@@ -126,7 +126,23 @@ router.post('/subscribe', (req, res) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'Subscription Confirmation',
-    text: 'Thank you for subscribing to our newsletter!'
+    html: `
+                      <div style="text-align: center; font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
+            <img src="https://media.istockphoto.com/id/1921150261/photo/male-and-female-student-icons-on-wooden-blocks-education-concept-for-success.webp?a=1&b=1&s=612x612&w=0&k=20&c=6GB5plW0sNYmie_fivH_F6fncMrDbMKdFnKs4NTVQAg=" alt="Header Image" style="max-width: 100%; height: auto; margin-bottom: 20px;" />
+            <h1 style="background-color: #4CAF50; color: white; padding: 10px; border-radius: 5px; margin: 0;">Black Born Community Academy</h1>
+            <h2 style="margin: 20px 0;">Bonjour et Bienvenue,</h2>
+            <p style="text-align: justify; margin: 0 20px;">Merci pour votre abonnement a notre newletter</p>
+            <ul style="list-style-type: none; padding: 0; text-align: left; margin: 20px auto; width: fit-content;">
+           
+            </ul>
+             <h1 style="background-color: red; color: white; padding: 10px; border-radius: 5px; margin: 0;">Beneficiez des opportunites qu'offre balck born community  </h1>
+            <p style="text-align: justify; margin: 0 20px;">Greate</p>
+            <p style="text-align: justify; margin: 0 20px;">Cordialement,<br>L'équipe d'inscription.</p>
+            <p style="text-align: justify; margin: 0 20px;">Adresse mail: inscription@bbcommunity.academy</p>
+            <p style="text-align: justify; margin: 0 20px;">Nos numéros de téléphone: +243999401974 (WhatsApp)</p>
+            <img src="https://media.istockphoto.com/id/1921150261/photo/male-and-female-student-icons-on-wooden-blocks-education-concept-for-success.webp?a=1&b=1&s=612x612&w=0&k=20&c=6GB5plW0sNYmie_fivH_F6fncMrDbMKdFnKs4NTVQAg=" alt="Footer Image" style="max-width: 100%; height: auto; margin-top: 20px;" />
+        </div>
+                `
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
