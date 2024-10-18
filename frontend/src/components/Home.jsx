@@ -67,7 +67,7 @@ const Home = ({ setProgress }) => {
       </ul>
       <div className="hidden lg:block"><a className="mr-2 inline-block px-4 py-3 text-xs text-blueGray-100 hover:text-blueGray-200 font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" href="#">Log In</a><a className="inline-block px-4 py-3 text-xs font-semibold leading-none bg-blue-600 hover:bg-blue-700 text-white rounded" href="#">Sign Up</a></div>
     </nav> */}
-    <div className="py-12 text-center mt-28">
+    <div className="py-12 text-center ">
     <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16 text-left"
                         initial={{ scale: 0 }}
