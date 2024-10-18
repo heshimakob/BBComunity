@@ -27,6 +27,7 @@ const userSchema = mongoose.Schema({
   role: {
     type: String,
     enum: [
+      'user',
       'Software Development',
       'Network',
       'Machine Learning',

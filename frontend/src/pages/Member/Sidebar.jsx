@@ -71,7 +71,7 @@ const Sidebar = () => {
             </div> */}
 
             {/* Sidebar mobile */}
-            <div className="fixed bottom-0 left-0 right-0 bg-gray-800 p-1 h-20 flex justify-around md:hidden">
+            <div className="fixed bottom-0 left-0 right-0 bg-gray-900 p-1 h-20 flex justify-around md:hidden">
   <Link to="/user-dashboard" className='flex flex-col justify-center items-center'>
     <BsGraphUp className="text-white text-2xl" />
     <span className="text-white text-xs">Dashboard</span>

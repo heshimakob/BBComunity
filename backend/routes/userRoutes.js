@@ -173,7 +173,7 @@ router.get('/getAllUsers', authMiddleware, async (req, res) => {
 });
 
 router.put('/update/:id', upload.single('image'), async (req, res) => {
-  const { name, email, password, isAdmin, genre } = req.body;
+  const { name, email, password, isAdmin, genre ,role} = req.body;
   const image = req.file; // Récupérer le fichier image
   const userId = req.params.id; // ID de l'utilisateur à mettre à jour
 
@@ -199,7 +199,9 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
 
       existingUser.isAdmin = isAdmin !== undefined ? isAdmin : existingUser.isAdmin; // Mettre à jour isAdmin s'il est fourni
       existingUser.image = image ? image.path : existingUser.image; // Mettre à jour l'image si donnée
-      existingUser.genre = genre || existingUser.genre; // Mettre à jour le genre s'il est fourni
+      existingUser.genre = genre || existingUser.genre;
+      existingUser.role = role || existingUser.role;
+       // Mettre à jour le genre s'il est fourni
 
       await existingUser.save();
 

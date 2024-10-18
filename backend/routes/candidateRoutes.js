@@ -1,6 +1,6 @@
-const express =require('express')
-const router =express.Router()
-const Candidate =require('../models/candidateSchema')
+const express = require('express');
+const router = express.Router();
+const Candidate = require('../models/candidateSchema');
 const transporter = require('../config/emailConfig');
 
 router.post('/AddCandidate', (req, res) => {
@@ -14,7 +14,15 @@ router.post('/AddCandidate', (req, res) => {
         });
     }
 
-    const newCandidate = new Candidate({ name, genre, email, phoneNumber, domaine, password });
+    const newCandidate = new Candidate({ 
+        name, 
+        genre, 
+        email, 
+        phoneNumber, 
+        domaine, 
+        password,
+        statut: 'Pending' // Ajoutez le statut par défaut
+    });
 
     newCandidate.save()
         .then(() => {
@@ -65,6 +73,30 @@ router.post('/AddCandidate', (req, res) => {
             });
         });
 });
+router.put('/updateStatus/:id', async (req, res) => {
+    const { status } = req.body;
+  
+    if (!['submitted', 'Pending'].includes(status)) {
+      return res.status(400).json({ message: 'Statut invalide.' });
+    }
+  
+    try {
+      const updatedCandidate = await Candidate.findByIdAndUpdate(
+        req.params.id,
+        { status: status },
+        { new: true }
+      );
+  
+      if (!updatedCandidate) {
+        return res.status(404).json({ message: 'Candidat non trouvé.' });
+      }
+  
+      res.status(200).json(updatedCandidate);
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour du candidat:', error);
+      res.status(500).json({ message: 'Erreur serveur.' });
+    }
+  });
 
 router.get('/getAllCandidates', async (req, res) => {
     try {
@@ -75,5 +107,4 @@ router.get('/getAllCandidates', async (req, res) => {
     }
 });
 
-module.exports= router;
-
+module.exports = router;

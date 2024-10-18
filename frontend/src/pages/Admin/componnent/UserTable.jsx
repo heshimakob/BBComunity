@@ -10,6 +10,15 @@ const UserTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 5; // Nombre d'utilisateurs par page
 
+  const roles = [
+    'user',
+    'Software Development',
+    'Network',
+    'Machine Learning',
+    'Entreprenariat',
+    'Art numérique et AR, VR et Design'
+  ]; // Les rôles disponibles
+
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -54,10 +63,11 @@ const UserTable = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/update/${selectedUser.id}`, {
+      await axios.put(`http://localhost:8080/api/users/update/${selectedUser._id}`, {
         name: e.target.name.value,
         email: e.target.email.value,
-        password: e.target.password.value
+        password: e.target.password.value,
+        role: e.target.role.value // Ajout du rôle
       }, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}` // Ajoutez le token si nécessaire
@@ -90,6 +100,7 @@ const UserTable = () => {
           <tr>
             <th className="px-4 py-2">Nom</th>
             <th className="px-4 py-2">Email</th>
+            <th className="px-4 py-2">Role</th>
             <th className="px-4 py-2">Password</th>
             <th className="px-4 py-2">Actions</th>
           </tr>
@@ -170,6 +181,16 @@ const UserTable = () => {
               onChange={(e) => setSelectedUser({ ...selectedUser, password: e.target.value })}
               className="w-full p-2 mb-4 border border-gray-400"
             />
+            <select
+              name="role"
+              value={selectedUser.role}
+              onChange={(e) => setSelectedUser({ ...selectedUser, role: e.target.value })}
+              className="w-full p-2 mb-4 border border-gray-400"
+            >
+              {roles.map((role) => (
+                <option key={role} value={role}>{role}</option>
+              ))}
+            </select>
             <button
               type="submit"
               className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"

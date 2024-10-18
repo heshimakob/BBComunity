@@ -4,14 +4,24 @@ import { FaBookOpen, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import { useSelector } from 'react-redux';
 
 const CoursMember = () => {
     const [courses, setCourses] = useState([]);
     const [error, setError] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState("Tous");
     const [searchTerm, setSearchTerm] = useState("");
-    const { currentUser } = useSelector(state => state.users);
+
+    // Récupérer le rôle de l'utilisateur à partir du token
+    const getUserRoleFromToken = () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const payload = JSON.parse(atob(token.split('.')[1])); // Décoder le payload du JWT
+            return payload.role; // Supposant que le rôle est stocké dans le payload
+        }
+        return null;
+    };
+
+    const userRole = getUserRoleFromToken();
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/cours/getAllcours')
@@ -28,16 +38,19 @@ const CoursMember = () => {
         "Software Development",
         "Network",
         "Machine Learning",
-        "Entrepreneuriat",
+        "Entreprenariat",
         "Design",
         "Art numérique et AR, VR et Design"
     ];
 
-    // Filtre des cours en fonction de la catégorie sélectionnée et du terme de recherche
+    // Filtre des cours en fonction du rôle de l'utilisateur et de la catégorie sélectionnée
     const filteredCourses = courses.filter(course => {
         const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
-        const matchesSearchTerm = course.name.toLowerCase().includes(searchTerm.toLowerCase());
-        return matchesCategory && matchesSearchTerm;
+
+        // Affiche tous les cours si le rôle est 'user', sinon filtre par catégorie
+        const matchesRole = userRole === 'user' || course.category === userRole;
+
+        return matchesCategory && matchesRole && course.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
     return (

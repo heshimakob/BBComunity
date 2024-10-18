@@ -9,6 +9,18 @@ const AllCours = () => {
     const [selectedCategory, setSelectedCategory] = useState("Tous");
     const [searchTerm, setSearchTerm] = useState("");
 
+    // Récupérer le rôle de l'utilisateur à partir du token
+    const getUserRoleFromToken = () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const payload = JSON.parse(atob(token.split('.')[1])); // Décoder le payload du JWT
+            return payload.role; // Supposant que le rôle est stocké dans le payload
+        }
+        return null;
+    };
+
+    const userRole = getUserRoleFromToken();
+
     useEffect(() => {
         axios.get('http://localhost:8080/api/cours/getAllcours')
             .then(response => {
@@ -28,10 +40,16 @@ const AllCours = () => {
         "Art numérique et AR, VR et Design"
     ];
 
+    // Filtre des cours en fonction du rôle de l'utilisateur et de la catégorie sélectionnée
     const filteredCourses = courses.filter(course => {
         const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
+
+        // Affiche tous les cours si le rôle est 'user', sinon filtre par catégorie
+        const matchesRole = userRole === 'user' || course.category === userRole;
+
         const matchesSearchTerm = course.name.toLowerCase().includes(searchTerm.toLowerCase());
-        return matchesCategory && matchesSearchTerm;
+
+        return matchesCategory && matchesRole && matchesSearchTerm;
     });
 
     return (
