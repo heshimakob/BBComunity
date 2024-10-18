@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import instagram from "../assets/sociaux/instagram.svg";
 import facebook from "../assets/sociaux/facebook.svg";
 import twitter from "../assets/sociaux/twitter.svg";
+import bbcc from "../assets/icons/bbcc.png"
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -21,17 +22,17 @@ export default function Footer() {
 
   return (
     <>
-      <section className="pt-24 bg-black">
+      <section className="pt-24 bg-gray-900">
         <div className="container mx-auto px-4">
-          <img className="mb-16 h-9" src="fily-assets/logos/fily-treck-white-logo.svg" alt="Logo" />
+          <img className="mb-16 h-[80px]" src={bbcc} alt="Logo" />
           <div className="flex flex-wrap items-center -m-10 pb-20">
             <div className="w-full md:w-1/2 xl:w-1/3 p-10">
               <div className="h-full p-px bg-gradient-white overflow-hidden rounded-3xl">
                 <div className="relative h-full">
-                  <div className="absolute top-0 left-0 w-full h-full bg-black rounded-3xl" />
+                  <div className="absolute top-0 left-0 w-full h-full bg-gray-700 rounded-3xl" />
                   <div className="relative h-full py-12 px-10">
-                    <h2 className="mb-4 font-heading text-3xl font-bold text-white">Subscribe to our newsletter</h2>
-                    <p className="mb-10 text-lg text-gray-500 font-medium leading-relaxed">Duis pellentesque urna a erat sollicitudin, et molestie leo semper</p>
+                    <h2 className="mb-4 font-heading text-3xl font-bold text-white">Abonnez-vous à notre newsletter</h2>
+                    <p className="mb-10 text-lg text-gray-500 font-medium leading-relaxed">Recevez les dernières mises à jour, des conseils exclusifs et des offres spéciales directement dans votre boîte mail. Ne manquez pas l'occasion de rester informé et d'optimiser votre expérience sur notre plateforme. Inscrivez-vous dès maintenant et rejoignez notre communauté grandissante !</p>
                     <form onSubmit={handleSubscribe}>
                       <div className="relative p-1.5 bg-transparent border border-gray-500 focus-within:ring focus-within:ring-blue-200 rounded-2xl md:rounded-full transiiton duration-200">
                         <div className="relative">
@@ -61,27 +62,26 @@ export default function Footer() {
               </div>
             </div>
             <div className="w-full sm:w-1/2 xl:flex-1 p-10">
-              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Product</h3>
+              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Notre site</h3>
               <ul>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Time Tracking</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Task Management</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Kanban Board</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Team Collaboration</a></li>
-                <li><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Team Scheduling</a></li>
+                <li className="mb-6"><Link to="/blog" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Blogs</Link></li>
+                <li className="mb-6"><Link to="/company" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Pour les entreprises</Link></li>
+                <li className="mb-6"><Link to="/why" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Pourquoi nous ?</Link></li>
+                <li className="mb-6"><Link to="/formule" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Nos formations & prix</Link></li>
+               
               </ul>
             </div>
             <div className="w-full sm:w-1/2 xl:flex-1 p-10">
-              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Use Cases</h3>
+              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Carriere</h3>
               <ul>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Creative & Marketing</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Software & Engineering</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Architecture firms</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Consulting businesses</a></li>
-                <li><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Educational institutions</a></li>
+                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Job</a></li>
+                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Nos solutions</a></li>
+                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Notre Communaute</a></li>
+
               </ul>
             </div>
             <div className="w-full sm:w-1/2 xl:flex-1 p-10">
-              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Resources</h3>
+              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Nos apprentissages</h3>
               <ul>
                 <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Software Development</a></li>
                 <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Machine Learning</a></li>

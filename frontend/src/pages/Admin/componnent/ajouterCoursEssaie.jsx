@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from './Modal';
+import ConfirmationModal from './ConfirmationModal'; // Importer votre modal de confirmation
 import toast, { Toaster } from 'react-hot-toast';
 import { FaBookOpen, FaRegEdit, FaUserCircle, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -12,6 +13,7 @@ function AjouterCours() {
   const [error, setError] = useState(null);
   const [courses, setCourses] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false); // État pour la modal de confirmation
   const [currentCourse, setCurrentCourse] = useState(null); // Pour stocker le cours actuellement modifié ou supprimé
 
   const handleSubmiti = async (formData) => {
@@ -36,15 +38,22 @@ function AjouterCours() {
     setModalOpen(true);
   };
 
-  const handleDelete = async courseId => {
+  const handleDelete = (courseId) => {
+    setCurrentCourse(courseId); // Stocker l'ID du cours à supprimer
+    setConfirmationModalOpen(true); // Ouvrir la modal de confirmation
+  };
+
+  const confirmDelete = async () => {
     try {
       // Supprimer le cours
-      await axios.delete(`http://localhost:8080/api/cours/deleteCours/${courseId}`);
-      setCourses(courses.filter(course => course._id !== courseId)); // Mettre à jour la liste des cours
+      await axios.delete(`http://localhost:8080/api/cours/deleteCours/${currentCourse}`);
+      setCourses(courses.filter(course => course._id !== currentCourse)); // Mettre à jour la liste des cours
       toast.success('Cours supprimé avec succès');
     } catch (error) {
       console.error('Erreur lors de la suppression du cours:', error);
       toast.error('Erreur lors de la suppression du cours');
+    } finally {
+      setConfirmationModalOpen(false); // Fermer la modal de confirmation
     }
   };
 
@@ -60,22 +69,21 @@ function AjouterCours() {
 
   return (
     <>
-     
       <div className="bbc-container mx-auto w-full h-screen p-4 pt-5">
-      <div>
-        <button
-          onClick={() => setModalOpen(true)}
-          className="bg-blue-500 text-white px-4 py-2 mt-10 rounded-xl"
-        >
-          Ajouter un Cours
-        </button>
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setModalOpen(false)}
-          onSubmit={handleSubmiti}
-          course={currentCourse} // Passer le cours courant pour la modification
-        />
-      </div>
+        <div>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="bg-blue-500 text-white px-4 py-2 mt-10 rounded-xl"
+          >
+            Ajouter un Cours
+          </button>
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setModalOpen(false)}
+            onSubmit={handleSubmiti}
+            course={currentCourse} // Passer le cours courant pour la modification
+          />
+        </div>
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center py-12 px-6">
             <div className="w-[75%]">
@@ -107,12 +115,16 @@ function AjouterCours() {
                           <h4 className="text-lg font-bold text-gray-800 mb-2">
                             {course.name}
                           </h4>
-                          <span className="flex justify-between bg-blue-800 text-sm text-white rounded p-2 mb-2"><p className='text-white '>{course.duration} heures</p></span>
+                          <span className="flex justify-between bg-blue-800 text-sm text-white rounded p-2 mb-2">
+                            <p className='text-white '>{course.duration} heures</p>
+                          </span>
                         </div>
                         <img src={course.image} alt={course.name} className="w-full h-48 object-cover mb-2" />
                         <div className='flex justify-between'>
                           <p className="text-sm text-gray-600">{course.description}</p>
-                          <span className="flex justify-between bg-red-600 text-sm text-white rounded p-2"><p className='text-white '>{course.category}</p></span>
+                          <span className="flex justify-between bg-red-600 text-sm text-white rounded p-2">
+                            <p className='text-white '>{course.category}</p>
+                          </span>
                         </div>
                       </div>
                       <div className="px-4 py-3 border-t border-gray-200">
@@ -142,6 +154,14 @@ function AjouterCours() {
         </div>
       </div>
       <Toaster />
+
+      {/* Modal de confirmation */}
+      <ConfirmationModal 
+        isOpen={isConfirmationModalOpen}
+        onClose={() => setConfirmationModalOpen(false)}
+        onConfirm={confirmDelete}
+        message="Êtes-vous sûr de vouloir supprimer ce cours ?"
+      />
     </>
   );
 }

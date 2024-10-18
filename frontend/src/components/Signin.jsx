@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import B from "../assets/B.png";
 import swal from "sweetalert";
 import {motion} from "framer-motion";
-import bbc from "../assets/icons/bbc.jpg"
+import bbc from "../assets/icons/bbc.png"
 import walk from "../assets/background/walk.png"
 import google from "../assets/icons/google.svg"
 import facebook from "../assets/icons/fcebook.svg"
@@ -64,7 +64,7 @@ const Login = ({setProgress}) => {
                     <div className="lg:flex lg:flex-col w-full lg:w-1/2 py-6 lg:pr-20" >
                         <div className="flex justify-between items-center w-full mb-12 lg:mb-20" >
                             <Link className="text-3xl font-semibold leading-none" to="/">
-                                <img className="h-12 " src={bbc}alt="Black Born Community" width="auto" />
+                                <img className="h-[90px] " src={bbc}alt="Black Born Community" width="auto" />
                             </Link>
                             <Link className="inline-block px-4 py-3 text-xs text-blue-600 hover:text-blue-700 font-semibold leading-none border border-blue-200 hover:border-blue-300 rounded" to="/register">S'inscrire</Link>
                         </div>

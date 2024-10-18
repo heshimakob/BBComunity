@@ -11,11 +11,13 @@ import Tabs from '../../components/Tabs';
 import { FaList } from 'react-icons/fa';
 import { MdGridView } from 'react-icons/md';
 import NavBar from './NavBar';
-import CoursTable from './componnent/CoursTable';
+// import CoursTable from './componnent/CoursTable';
+import TableCours from './componnent/TableCours';
 
 const TABS = [
   { title: "les chapitres", icon: <MdGridView /> },
-  { title: "Gestion des cours", icon: <FaList /> },
+  { title: "Ajouts de chapitre a un cours", icon: <FaList /> },
+  { title: "Table des cours", icon: <FaList /> },
 ];
 const Courses=()=> {
 
@@ -31,16 +33,14 @@ const Courses=()=> {
   
 <div className='container mb-20'>
 <Tabs tabs={TABS} setSelected={setSelected}>
-    
-
-    {selected !== 1 ? (
-     <AddChapitre/>
-    ) : (
-      <div className='w-full'>
-        <AjouterCours/>
-      </div>
-    )}
-  </Tabs>
+      {selected === 0 ? (
+        <AddChapitre />
+      ) : selected === 1 ? (
+        <AjouterCours />
+      ) : (
+        <TableCours /> // Affichez le tableau des cours ici
+      )}
+    </Tabs>
 </div>
 
 <div className='container mt-20'>

@@ -8,6 +8,14 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
   const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
 
+  const categories = [
+    'Software Development',
+    'Network',
+    'Machine Learning',
+    'Entreprenariat',
+    'Art numérique et AR, VR et Design'
+  ];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -23,8 +31,8 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="   fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="w-96  h-1/2 bg-white rounded-lg p-10 mt-10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="w-96 h-1/2 bg-white rounded-lg p-10 mt-10">
         <h2 className="text-lg font-bold mb-4">Ajouter un Cours</h2>
         <form onSubmit={handleSubmit}>
           <input
@@ -50,28 +58,35 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
             required
             className="block mb-5 p-2 border border-gray-300 rounded"
           />
-          <input
-            type="text"
-            placeholder="Catégorie"
+          <label htmlFor="category" className="block text-gray-700 text-sm font-bold mb-2">
+            Catégorie du cours*
+          </label>
+          <select
+            id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
             className="block mb-5 p-2 border border-gray-300 rounded"
-          />
+          >
+            <option value="">Sélectionnez une catégorie</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>{category}</option>
+            ))}
+          </select>
           <input
             type="file"
             onChange={(e) => setImage(e.target.files[0])}
             required
             className="block mb-5"
           />
-         <div className='flex justify-between mt-10'>
-         <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-            Ajouter
-          </button>
-          <button type="button" onClick={onClose} className="mt-2 text-gray-600">
-            Annuler
-          </button>
-         </div>
+          <div className="flex justify-between mt-10">
+            <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+              Ajouter
+            </button>
+            <button type="button" onClick={onClose} className="mt-2 text-gray-600">
+              Annuler
+            </button>
+          </div>
         </form>
       </div>
     </div>

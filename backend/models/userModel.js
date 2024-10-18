@@ -26,6 +26,13 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: String,
+    enum: [
+      'Software Development',
+      'Network',
+      'Machine Learning',
+      'Entreprenariat',
+      'Art numérique et AR, VR et Design'
+    ],
     default: 'user'
   },
   isAdmin: {

@@ -25,17 +25,20 @@ const  Why =({setProgress})=>{
 
 
     <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}} >
-      <div className='text-center'>
+      <div className='max-w-lg mx-auto text-center justify-center items-center mb-8'>
       <motion.h1
-                        className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"
+                        className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16 text-left"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        👋 Pourquoi nous choisir?
+                        👋 Pourquoi nous BBComunity Academy?
                     </motion.h1>
 
-    <h1 className="mb-4 text-3xl  text-center font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl"><span className="text-white">Nous sommes une communaute</span></h1>
+    <h1 className="text-3xl md:text-4xl mb-4 text-white font-bold font-heading "><span className="text-white">
+Accélérez votre carrière
+avec Black Born Community</span></h1>
+<p className='text-blueGray-400 leading-relaxed '>Vous pouvez vivre n’importe où dans le monde et travailler sur des projets technologiques stratégiques pour les meilleures marques mondiales. Profitez des programmes d’apprentissage et de développement de carrière et réseautez avec une communauté dynamique de collègues technologues. Rejoignez le marché mondial Andela dès maintenant.</p>
     <div className=" bbc-container  flex justify-center items-center">
   <div className=" w-auto p-2"><Link className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-indigo-800 hover:bg-indigo-600 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" to="/company" > Engager un talent</Link></div>
   <div className="w-auto p-2">
@@ -50,6 +53,14 @@ const  Why =({setProgress})=>{
   </div>
 </div>
     </div>
+
+
+
+
+
+
+
+
     </div>
     <Stat/>
     <Informations/>

@@ -5,7 +5,7 @@ import bglog from "../assets/bglog.jpeg";
 import { Link } from 'react-router-dom';
 import toast, { Toaster } from "react-hot-toast";
 import swal from "sweetalert";
-import bbc from "../assets/icons/bbc.jpg";
+import bbc from "../assets/icons/bbc.png";
 
 const Register = ({ setProgress }) => {
     const [name, setName] = useState('');
@@ -67,7 +67,7 @@ const Register = ({ setProgress }) => {
                     <div className="lg:flex lg:flex-col w-full lg:w-1/2 py-6 lg:pr-20">
                         <div className="flex justify-between items-center w-full mb-12 lg:mb-20">
                             <Link className="text-3xl font-semibold leading-none" to="/">
-                                <img className="h-12 " src={bbc} alt="Black Born Community" width="auto" />
+                                <img className="h-[90px] " src={bbc} alt="Black Born Community" width="auto" />
                             </Link>
                             <Link className="inline-block px-4 py-3 text-xs text-blue-600 hover:text-blue-700 font-semibold leading-none border border-blue-200 hover:border-blue-300 rounded" to="/signin">Se connecter</Link>
                         </div>

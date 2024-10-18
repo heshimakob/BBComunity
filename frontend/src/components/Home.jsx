@@ -64,7 +64,7 @@ const Home = ({ setProgress }) => {
       </ul>
       <div className="hidden lg:block"><a className="mr-2 inline-block px-4 py-3 text-xs text-blueGray-100 hover:text-blueGray-200 font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" href="#">Log In</a><a className="inline-block px-4 py-3 text-xs font-semibold leading-none bg-blue-600 hover:bg-blue-700 text-white rounded" href="#">Sign Up</a></div>
     </nav> */}
-    <div className="py-12 text-center">
+    <div className="py-12 text-center mt-32">
       <div className="max-w-lg mx-auto mb-8">
         <h2 className="text-3xl md:text-4xl mb-4 text-white font-bold font-heading">
           <span>Transformer</span>   

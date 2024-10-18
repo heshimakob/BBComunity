@@ -1,125 +1,174 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { FaUser } from 'react-icons/fa';
-import Loading from '../../components/Loading';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { FaBookOpen, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
+import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
+import NavBar from './NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails } from '../../store/userSlice';
-import B from "../../assets/B.png"
-import bbc from "../../assets/icons/bbc.jpg"
-import Sidebar from './Sidebar';
 
-function NavBar() {
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+const CoursMember = () => {
+    const [courses, setCourses] = useState([]);
+    const [error, setError] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState("Tous");
+    const [searchTerm, setSearchTerm] = useState("");
+    
+    const dispatch = useDispatch();
+    const { currentUser, loading, error: userError } = useSelector(state => state.users);
 
-  const dispatch = useDispatch();
-  const { currentUser, loading, error } = useSelector(state => state.users);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            dispatch(getUserDetails(token));
+        }
+    }, [dispatch]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/cours/getAllcours')
+            .then(response => {
+                setCourses(response.data);
+            })
+            .catch(error => {
+                setError(error.message);
+            });
+    }, []);
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
-  };
+    const categories = [
+        "Tous",
+        "Software Development",
+        "Network",
+        "Machine Learning",
+        "Entrepreneuriat",
+        "Design",
+        "Art numérique et AR, VR et Design"
+    ];
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      dispatch(getUserDetails(token));
+    // Fonction pour filtrer les cours en fonction du rôle et de la catégorie
+    const filteredCourses = courses.filter(course => {
+        const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
+        const matchesSearchTerm = course.name.toLowerCase().includes(searchTerm.toLowerCase());
+        
+        // Vérifiez le rôle de l'utilisateur pour filtrer les cours
+        const userRole = currentUser ? currentUser.role : null;
+        const matchesRole = !userRole || course.category === userRole;
+
+        return matchesCategory && matchesSearchTerm && matchesRole;
+    });
+
+    if (loading) {
+        return <div>Loading...</div>; // Ajouter un composant de chargement si nécessaire
     }
-  }, [dispatch]);
 
-  if (loading) {
-    return <Loading />;
-  }
+    if (userError) {
+        return <div className="text-red-500">{userError}</div>;
+    }
 
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
-  }
+    return (
+        <>
+            <NavBar />
+            <Sidebar />
 
-  return (
-    <>
- 
-      <section className="overflow-hidden fixed top-0 left-0 w-full z-50">
-        <div className="bg-gray-900">
-          <div className="bbc-container px-4 mx-auto">
-            <div className="flex items-center justify-between py-5">
-              <div className="w-auto">
-                <Link to='/user-dashboard' className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
-                  {/* <span className='px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white'>
-                    Black Born Community
-                  </span> */}
-                  <img src={bbc} className='w-12 h-12'/>
-                </Link>
-              </div>
-              <div className="w-auto hidden lg:block">
-                <ul className="flex items-center mr-8">
-                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight">
-                    <Link to='/user-dashboard'>Home</Link>
-                  </li>
-                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight">
-                    <Link to="/member-cours">Nos formations</Link>
-                  </li>
-                  <li className="mr-14 font-medium text-gray-100 hover:text-gray-200 tracking-tight">
-                    <Link to='/Chat'>Assistance AI</Link>
-                  </li>
-                  <li className="mr-8 relative">
-                 <Link to="/member-profile">
-                 <div onClick={togglePopup} className="cursor-pointer flex items-center">
-                      {currentUser?.image ? (
-                        <img className="rounded-lg w-8 h-8" src={currentUser.image} alt="User" />
-                      ) : (
-                        <FaUser className="rounded-full w-8 h-8" />
-                      )}
-                      <span className="ml-2 text-white">{currentUser?.name}</span> {/* Affichage du nom */}
+            <div className="w-full min-h-screen p-4 pt-20 border">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-center py-12 px-6">
+                        <div className="md:w-[75%] w-full mb-4 md:mb-0">
+                            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Apprentissage et développement personnel</h1>
+                            <p className="text-gray-600 mb-12">
+                                Gagnant du potentiel et des qualités afin de dénicher des talents hors normes.
+                            </p>
+                        </div>
+                        <div className="md:w-[25%] w-full">
+                            <img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH1t9B2bcBn8RpB9T_Mpk_ixrvbUPFADIj6g&s://www.shutterstock.com/image-vector/illustration-learning-with-computer-260nw-2076016010.jpg"
+                                alt="Learn"
+                                className="w-full h-auto"
+                            />
+                        </div>
                     </div>
-                 </Link>
-                    {showPopup && (
-                      <ul className="absolute right-0 bg-gray-950 text-white shadow-lg mt-2 rounded-lg p-2">
-                        <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">
-                          <Link to="/parameters">Paramètres</Link>
-                        </li>
-                        <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">
-                          <Link to="/logout">Déconnexion</Link>
-                        </li>
-                        <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">
-                          <Link to="/help-center">Centre d'aide</Link>
-                        </li>
-                      </ul>
-                    )}
-                  </li>
-                </ul>
-              </div>
-              <div className="lg:hidden">
-                <button onClick={toggleMenu} aria-label="Toggle Menu">
-                  <AiOutlineMenu className="text-white" size={24} />
-                </button>
-              </div>
+
+                    <div className="bg-white rounded-md shadow-md p-6 mb-8">
+                        <div className="flex items-center mb-4">
+                            <FaUserCircle className="text-blue-500 mr-2" size={24} />
+                            <h2 className="text-xl font-bold text-gray-800">Nos Cours</h2>
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Rechercher un cours"
+                            className="border p-2 mb-4 w-full"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <div className="flex items-center justify-center mb-4 flex-wrap">
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setSelectedCategory(category)}
+                                    className={`mx-2 px-4 py-2 rounded ${selectedCategory === category ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+                                >
+                                    {category}
+                                </button>
+                            ))}
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {filteredCourses.map((course) => (
+                                <div key={course._id} className="w-full">
+                                    <Link to={`/modulePage/${course._id}`}>
+                                        <div className="bg-white rounded shadow-md">
+                                            <div className="px-4 py-5">
+                                                <div className='flex justify-between'>
+                                                    <h4 className="text-lg font-bold text-gray-800 mb-2">
+                                                        {course.name}
+                                                    </h4>
+                                                    <span className="bg-blue-800 text-sm text-white rounded p-2 mb-5">{course.duration} heures</span>
+                                                </div>
+                                                <img src={course.image} alt={course.name} className="w-full h-48 object-cover mb-2" />
+                                                <div className='flex justify-between'>
+                                                    <p className="text-sm text-gray-600">{course.description}</p>
+                                                    <span className="bg-red-600 text-sm text-gray-300 rounded p-2">
+                                                        <p className='text-white'>{course.category}</p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="px-4 py-3 border-t border-gray-200">
+                                                <div className="flex items-center justify-between p-1">
+                                                    <FaGraduationCap className="text-blue-500 mr-3" size={24} />
+                                                    <div className="relative w-16 h-16">
+                                                        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
+                                                            <circle cx="50" cy="50" r="45" stroke="#e2e8f0" strokeWidth="10" fill="transparent" />
+                                                            <circle cx="50" cy="50" r="45" stroke="#4ade80" strokeWidth="10" fill="transparent" strokeDasharray={282.7433388230814} strokeDashoffset={course.progress ? 282.7433388230814 - (282.7433388230814 * course.progress) / 100 : 282.7433388230814} />
+                                                        </svg>
+                                                        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
+                                                            {course.progress}%
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-md shadow-md p-6 mb-20">
+                        <div className="flex items-center mb-4">
+                            <FaBookOpen className="text-blue-500 mr-2" size={24} />
+                            <h2 className="text-xl font-bold text-gray-800">Courses</h2>
+                        </div>
+                        <p className="text-gray-600">
+                            We pare down complex topics to their key practical components, so you
+                            gain usable skills in a few hours (instead of weeks or months). The
+                            courses are provided at no cost to you and you can now earn
+                            certificates.{' '}
+                            <a href="#" className="underline text-blue-500 hover:text-blue-700">
+                                Learn more.
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </>
+    );
+};
 
-      {isOpen && (
-        <div className={`fixed top-0 right-0 h-full w-64 mt-20 bg-gray-950 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          <div className="flex justify-between items-center p-4">
-            <h2 className="font-bold">Menu</h2>
-            <button onClick={toggleMenu} aria-label="Close Menu">
-              <AiOutlineClose className="text-white" size={24} />
-            </button>
-          </div>
-          <nav className="flex flex-col items-start p-4">
-            <Link className="mb-2 hover:text-gray-400" to="/blog-site">Blog</Link>
-            <Link className="mb-2 hover:text-gray-400" to="/why">Why BBC ?</Link>
-            <Link className="mb-2 hover:text-gray-400" to="/company">For company</Link>
-          </nav>
-        </div>
-      )}
-    </>
-  );
-}
-
-export default NavBar;
+export default CoursMember;

@@ -34,7 +34,7 @@ const Centre = () => {
 </h2>
 </div>
 <div className="w-full lg:w-1/2">
-<p className="lg:pl-16 text-blueGray-400 leading-loose">Lorem ipsum dolor sit amet consectetur adipisicing. Dolor sit amet consectetur adipisicing elit. Aliquid harum ducimus adipisci animi quidem nesciunt similique ex enim accusantium voluptate. Consectetur adipisicing harum ducimus adipisci.</p>
+<p className="lg:pl-16 text-blueGray-400 leading-loose">Nos programmes intensifs sont conçus pour identifier les compétences uniques de chaque individu et les transformer en expertise pratique. En combinant une formation théorique approfondie avec des projets pratiques et des ateliers collaboratifs, nous permettons à nos étudiants de se démarquer dans des secteurs tels que le développement de logiciels, l'entrepreneuriat, l'intelligence artificielle, et bien plus encore.</p>
 </div>
 </div>
 <div className="flex flex-wrap -mx-3 -mb-6">

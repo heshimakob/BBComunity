@@ -10,7 +10,7 @@ const Formules = () => {
     <NavBar/>
     <section className="py-20 xl:bg-contain bg-top bg-no-repeat" style={{backgroundImage: `url(${intersect})`}}>
 <div className="container px-4 mx-auto">
-<div className="text-center mb-16">
+<div className="text-center mb-16 mt-20">
 <h2 className="max-w-lg mx-auto mb-4 text-4xl font-bold font-heading">
 <span>Start saving time today and</span>
 <span className="text-blue-600">choose</span>

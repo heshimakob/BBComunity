@@ -4,12 +4,14 @@ import { FaBookOpen, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
 import Sidebar from './Sidebar';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
+import { useSelector } from 'react-redux';
 
 const CoursMember = () => {
     const [courses, setCourses] = useState([]);
     const [error, setError] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState("Tous");
     const [searchTerm, setSearchTerm] = useState("");
+    const { currentUser } = useSelector(state => state.users);
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/cours/getAllcours')
@@ -21,8 +23,17 @@ const CoursMember = () => {
             });
     }, []);
 
-    const categories = ["Tous", "software", "Machine Learning", "Design", "Entrepreneuriat"];
+    const categories = [
+        "Tous",
+        "Software Development",
+        "Network",
+        "Machine Learning",
+        "Entrepreneuriat",
+        "Design",
+        "Art numérique et AR, VR et Design"
+    ];
 
+    // Filtre des cours en fonction de la catégorie sélectionnée et du terme de recherche
     const filteredCourses = courses.filter(course => {
         const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
         const matchesSearchTerm = course.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -101,7 +112,7 @@ const CoursMember = () => {
                                                     <div className="relative w-16 h-16">
                                                         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
                                                             <circle cx="50" cy="50" r="45" stroke="#e2e8f0" strokeWidth="10" fill="transparent" />
-                                                            <circle cx="50" cy="50" r="45" stroke="#4ade80" strokeWidth="10" fill="transparent" strokeDasharray={282.7433388230814} strokeDashoffset={282.7433388230814 - (282.7433388230814 * course.progress) / 100} />
+                                                            <circle cx="50" cy="50" r="45" stroke="#4ade80" strokeWidth="10" fill="transparent" strokeDasharray={282.7433388230814} strokeDashoffset={course.progress ? 282.7433388230814 - (282.7433388230814 * course.progress) / 100 : 282.7433388230814} />
                                                         </svg>
                                                         <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
                                                             {course.progress}%

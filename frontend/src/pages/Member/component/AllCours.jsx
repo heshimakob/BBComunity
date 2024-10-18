@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaBookOpen, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
-
 import { Link } from 'react-router-dom';
-
 
 const AllCours = () => {
     const [courses, setCourses] = useState([]);
@@ -21,7 +19,14 @@ const AllCours = () => {
             });
     }, []);
 
-    const categories = ["Tous", "software", "Machine Learning", "Design", "Entrepreneuriat"];
+    const categories = [
+        "Tous",
+        "Software Development",
+        "Network",
+        "Machine Learning",
+        "Entreprenariat",
+        "Art numérique et AR, VR et Design"
+    ];
 
     const filteredCourses = courses.filter(course => {
         const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
@@ -31,19 +36,14 @@ const AllCours = () => {
 
     return (
         <>
-          
-
             <div className="w-full min-h-screen p-4 pt-20 border">
                 <div className="max-w-7xl mx-auto">
-                  
-
                     <div className="bg-white rounded-md shadow-md p-6 mb-8">
                         <div className="flex items-center mb-4">
                             <FaUserCircle className="text-blue-500 mr-2" size={24} />
-                            <h2 className="text-xl font-bold text-gray-800">Tous les cours disponible</h2>
+                            <h2 className="text-xl font-bold text-gray-800">Tous les cours disponibles</h2>
                         </div>
-                     
-                        {/* <div className="flex items-center justify-center mb-4 flex-wrap">
+                        <div className="flex items-center justify-center mb-4 flex-wrap">
                             {categories.map((category) => (
                                 <button
                                     key={category}
@@ -53,7 +53,7 @@ const AllCours = () => {
                                     {category}
                                 </button>
                             ))}
-                        </div> */}
+                        </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {filteredCourses.map((course) => (
                                 <div key={course._id} className="w-full">

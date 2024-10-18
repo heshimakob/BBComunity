@@ -73,7 +73,7 @@ router.get('/userDetail', authMiddleware, async (req, res) => {
 });
 
 router.post('/register', upload.single('image'), async (req, res) => {
-  const { name, email, password, isAdmin ,genre} = req.body;
+  const { name, email, password, isAdmin ,genre,role} = req.body;
   const image = req.file; // Récupérer le fichier image
 
   // Vérification de la présence des données
@@ -98,6 +98,7 @@ router.post('/register', upload.single('image'), async (req, res) => {
           email,
           genre,
           isAdmin,
+          role,
           password: hashedPassword,
           image: image ? image.path : null // Ajouter le chemin de l'image si disponible
       });

@@ -210,17 +210,40 @@ router.get('/getSingleChapitre/:id', async (req, res) => {
   router.delete('/deleteCourse/:id', async (req, res) => {
     try {
       const { id } = req.params;
-      await Course.findByIdAndRemove(id);
+  
+      // Vérifiez si l'ID est valide
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({
+          success: false,
+          message: 'ID de cours invalide',
+        });
+      }
+  
+      // Supprimez le cours par ID
+      const deletedCourse = await Cours.findByIdAndDelete(id);
+  
+      // Vérifiez si le cours a été trouvé et supprimé
+      if (!deletedCourse) {
+        return res.status(404).json({
+          success: false,
+          message: 'Cours non trouvé',
+        });
+      }
+  
       res.status(200).json({
         success: true,
-        message: 'Course deleted successfully'
+        message: 'Cours supprimé avec succès',
       });
     } catch (error) {
-      res.status(400).json({
-        message: error,
+      console.error('Erreur lors de la suppression du cours:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Erreur serveur lors de la suppression du cours',
+        error: error.message, // Ajoutez ceci pour plus de détails sur l'erreur
       });
     }
   });
+  
 
 
 
