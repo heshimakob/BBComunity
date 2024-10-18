@@ -26,6 +26,7 @@ import horizon from "../assets/icons/horizon.svg"
 import amba from "../assets/icons/amba.svg"
 
 
+
 const lorem = new LoremIpsum();
 
 const Home = ({ setProgress }) => {
@@ -44,6 +45,8 @@ const Home = ({ setProgress }) => {
          
                 <section className="pb-8 bg-top bg-cover bg-no-repeat" style={{backgroundImage: 'url("https://images.unsplash.com/photo-1639664810686-b817b22bb549?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b25saW5lJTIwbWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D")'}}>
   <div className="container px-4 mx-auto">
+
+
     {/* <nav className="flex justify-between items-center py-6">
       <a className="text-3xl text-white font-semibold leading-none" href="#">
         <img className="h-10" src="metis-assets/logos/metis/metis-light-name.svg" alt width="auto" />
@@ -64,7 +67,15 @@ const Home = ({ setProgress }) => {
       </ul>
       <div className="hidden lg:block"><a className="mr-2 inline-block px-4 py-3 text-xs text-blueGray-100 hover:text-blueGray-200 font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" href="#">Log In</a><a className="inline-block px-4 py-3 text-xs font-semibold leading-none bg-blue-600 hover:bg-blue-700 text-white rounded" href="#">Sign Up</a></div>
     </nav> */}
-    <div className="py-12 text-center mt-32">
+    <div className="py-12 text-center mt-28">
+    <motion.h1
+                        className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16 text-left"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        👋 welcome bbcomunity.academy?
+                    </motion.h1>
       <div className="max-w-lg mx-auto mb-8">
         <h2 className="text-3xl md:text-4xl mb-4 text-white font-bold font-heading">
           <span>Transformer</span>   
