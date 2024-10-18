@@ -101,6 +101,7 @@ const UserTable = () => {
             <th className="px-4 py-2">Nom</th>
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2">Role</th>
+            <th className="px-4 py-2">Administration</th>
             <th className="px-4 py-2">Password</th>
             <th className="px-4 py-2">Actions</th>
           </tr>
@@ -111,6 +112,8 @@ const UserTable = () => {
               <td className="px-4 py-2">{user.name}</td>
               <td className="px-4 py-2">{user.email}</td>
               <td className="px-4 py-2">{user.role}</td>
+              <td className="px-4 py-2">{user.isAdmin}</td>
+              
               <td className="px-4 py-2">{user.password}</td>
               <td className="px-4 py-2 flex justify-center">
                 <button className="mr-2 bg-blue-900 text-white" onClick={() => handleUpdate(user)}>

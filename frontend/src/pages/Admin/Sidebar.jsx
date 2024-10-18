@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import B from "../../assets/B.png";
 import { BsGraphUp, BsBook, BsSendDash, BsCalendarEvent, BsUpload } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import swal from 'sweetalert'; // Assurez-vous que sweetalert est installé
 
 const Sidebar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // État pour gérer la modal de confirmation
+
   const handleLogout = async () => {
     try {
-      // Effectuer la requête de déconnexion vers le serveur
       await axios.post('http://localhost:8080/api/users/logout');
-      
-      // Supprimez le token JWT du stockage du navigateur
-      localStorage.removeItem('token'); // ou sessionStorage.removeItem('token');
-
-      // Optionnel : Rediriger l'utilisateur vers la page de connexion
+      localStorage.removeItem('token');
       window.location.href = '/signin';
-      alert("Vous êtes déconnecté.");
+      swal("Déconnexion!", "Déconnexion réussie!", "success");
     } catch (error) {
       console.error("Erreur lors de la déconnexion:", error);
+      swal("Erreur!", "Erreur lors de la déconnexion.", "error");
+    }
+  };
+
+  const confirmLogout = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = (confirm) => {
+    setIsModalOpen(false);
+    if (confirm) {
+      handleLogout();
     }
   };
 
@@ -52,9 +61,30 @@ const Sidebar = () => {
 
         <li className="flex flex-col items-center py-3 px-4 text-lg border-b border-gray-600 hover:bg-gray-700">
           <div className="text-2xl mb-2"><BsGraphUp /></div>
-          <Link to="/" onClick={handleLogout} className="text-white">Déconnexion</Link>
+          <Link to="#" onClick={confirmLogout} className="text-white">Déconnexion</Link>
         </li>
       </ul>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-200">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-lg font-semibold mb-4">Confirmation de Déconnexion</h2>
+            <p className="mb-4">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+            <div className="flex justify-end">
+              <button 
+                className="bg-red-500 text-white py-2 px-4 rounded mr-2" 
+                onClick={() => handleModalClose(true)}>
+                Oui
+              </button>
+              <button 
+                className="bg-gray-300 text-gray-700 py-2 px-4 rounded" 
+                onClick={() => handleModalClose(false)}>
+                Non
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
