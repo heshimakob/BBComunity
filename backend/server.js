@@ -19,10 +19,12 @@ dotenv.config()
 connectDB()
 
 const app = express()
-// app.use(cors({
-//   origin: 'http://localhost:5173', // Remplacez par l'origine de votre front-end
-//   credentials: true, // Si vous utilisez des cookies ou des informations d'identification
-// }));
+app.use(cors({
+  origin: 'http://localhost:5173', // Votre frontend
+  credentials: true,
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
 
 // CORS configuration
 app.use((req, res, next) => {

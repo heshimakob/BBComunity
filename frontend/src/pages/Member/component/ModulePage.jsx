@@ -4,7 +4,6 @@ import { getAllChapterByCoursId } from '../../../store/coursSlice';
 import { Link, useParams } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaLinkedin, FaCopy, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import Loading from '../../../components/Loading';
-
 import chaptervide from "../../../assets/chaptervide.png";
 import axios from 'axios';
 import NavBar from '../NavBar';
@@ -45,37 +44,37 @@ const ModulePage = () => {
             setSelectedChapter(nextChapter);
         }
     };
+
     const token = localStorage.getItem('token');
     const config = {
         headers: {
+            'Content-Type': 'application/json',
             'x-auth-token': token
-        }
-    };
-
-    const addProgress = async (chapterId) => {
-        try {
-            await axios.post(`http://localhost:8080/api/cours/addProgress`, {
-                chapitres: chapterId,
-                cours: id
-            }, config);
-            await getProgress();
-            alert("Progression ajoutée avec succès!");
-        } catch (error) {
-            console.error(error);
-            alert("Erreur lors de l'ajout de la progression");
         }
     };
 
     const getProgress = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/cours/getProgress?cours=${id}`, config);
-            const { coursProgressPourcentage } = response.data;
-            setProgressPercentage(coursProgressPourcentage);
+            const response = await axios.get(`http://localhost:8080/api/cours/getProgress?cours=${id}`, {
+                headers: {
+                    'x-auth-token': localStorage.getItem('token'),
+                },
+            });
+            return response.data;
         } catch (error) {
-            console.error(error);
-            alert("Erreur lors de la récupération de la progression");
+            if (error.response) {
+                console.error("Erreur de réponse:", error.response.data);
+                console.error("Statut:", error.response.status);
+                console.error("En-têtes:", error.response.headers);
+            } else if (error.request) {
+                console.error("Aucune réponse reçue:", error.request);
+            } else {
+                console.error("Erreur:", error.message);
+            }
         }
     };
+
+
 
     const handleCopy = () => {
         navigator.clipboard.writeText(window.location.href).then(() => {
@@ -91,7 +90,7 @@ const ModulePage = () => {
 
     return (
         <>
-        <NavBar/>
+            <NavBar />
             <div className="app-container mx-auto w-full h-screen p-4 pt-32">
                 <div className="flex flex-col lg:flex-row">
                     <div className="w-full lg:w-1/4 bg-white p-4 lg:sticky lg:top-20 mb-4 lg:mb-0">

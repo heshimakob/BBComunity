@@ -10,18 +10,30 @@ const CoursMember = () => {
     const [error, setError] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState("Tous");
     const [searchTerm, setSearchTerm] = useState("");
+    const [userRole, setUserRole] = useState(null);
 
-    // Récupérer le rôle de l'utilisateur à partir du token
-    const getUserRoleFromToken = () => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const payload = JSON.parse(atob(token.split('.')[1])); // Décoder le payload du JWT
-            return payload.role; // Supposant que le rôle est stocké dans le payload
-        }
-        return null;
-    };
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:8080/api/users/userDetail', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                const userData = response.data;
+                console.log('User data:', userData); // Afficher les données de l'utilisateur dans la console
 
-    const userRole = getUserRoleFromToken();
+                if (userData && userData.role) {
+                    setUserRole(userData.role);
+                } else {
+                    console.error("Le rôle de l'utilisateur est manquant dans la réponse");
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des détails de l’utilisateur :', error);
+            }
+        };
+
+        fetchUserRole();
+    }, []);
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/cours/getAllcours')
@@ -47,8 +59,8 @@ const CoursMember = () => {
     const filteredCourses = courses.filter(course => {
         const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
 
-        // Affiche tous les cours si le rôle est 'user', sinon filtre par catégorie
-        const matchesRole = userRole === 'user' || course.category === userRole;
+        // Affiche tous les cours si le rôle est 'user', sinon filtre par catégorie correspondant au rôle
+        const matchesRole = userRole === 'user' || (userRole !== 'user' && course.category === userRole);
 
         return matchesCategory && matchesRole && course.name.toLowerCase().includes(searchTerm.toLowerCase());
     });

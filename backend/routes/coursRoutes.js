@@ -3,7 +3,25 @@ const mongoose = require('mongoose');
 const router =express.Router()
 const Cours =require('../models/coursModel')
 const Chapitre= require ('../models/chapitreModel');
-const Progress= require('../models/progressModel')
+const Progress= require('../models/ProgressModel');
+
+
+
+const authMiddleware = (req, res, next) => {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+      return res.status(403).send({ message: 'Aucun token fourni.' });
+  }
+
+  jwt.verify(token.split(' ')[1], 'your_jwt_secret', (err, user) => {
+      if (err) {
+          return res.status(401).send({ message: 'Token invalide.' });
+      }
+      req.user = user;
+      next();
+  });
+};
 
 
 const multer = require('multer');
@@ -285,88 +303,58 @@ router.get('/getSingleChapitre/:id', async (req, res) => {
 //         res.status(500).json({ message: "Error adding progress", error: error.message });
 //     }
 // });
-router.post('/addProgress', async (req, res) => {
+router.post('/addProgress',authMiddleware, async (req, res) => {
   const { chapitres, cours } = req.body;
   try {
-      let progression = await Progress.findOne({ user: req.user._id, cours });
+    let progression = await Progress.findOne({ user: req.user._id, cours });
 
-      if (progression) {
-          if (!progression.chapitres.includes(chapitres)) {
-              progression.chapitres.push(chapitres);
-          }
-      } else {
-          progression = new Progress({
-              user: req.user._id,
-              cours,
-              chapitres: [chapitres]
-          });
+    if (progression) {
+      if (!progression.chapitres.includes(chapitres)) {
+        progression.chapitres.push(chapitres);
       }
+    } else {
+      progression = new Progress({
+        user: req.user._id,
+        cours,
+        chapitres: [chapitres]
+      });
+    }
 
-      await progression.save();
+    await progression.save();
 
-      res.json(progression);
+    res.json(progression);
   } catch (error) {
-      console.error(error.message);
-      res.status(500).send('Server Error');
+    console.error(error.message);
+    res.status(500).send('Server Error');
   }
 });
 
 
-// router.get('/getProgress', async (req, res) => {
-//   try {
-//       const { cours } = req.query; // Le ID du cours est passé dans la requête
-
-//       if (!req.user) {
-//           return res.status(401).json({ message: "User not authenticated." });
-//       }
-
-//       if (!courseId) {
-//           return res.status(400).json({ message: "Course ID is required." });
-//       }
-
-//       const progress = await Progress.findOne({
-//           user: req.user._id,
-//           course: cours,
-//       });
-
-//       if (!progress) {
-//           return res.status(404).json({ message: "Progress not found." });
-//       }
-
-//       const allChapitre = await Chapitre.countDocuments({ cours: courseId });
-//       const completedLecture = progress.completedLecture.length;
-//       const coursProgressPourcentage = (completedLecture * 100) / allChapitre;
-
-//       res.status(200).json({
-//           coursProgressPourcentage,
-//           completedLecture,
-//           allChapitre,
-//           progress,
-//       });
-//   } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ error: `Error fetching progress: ${err.message}` });
-//   }
-// });
 router.get('/getProgress', async (req, res) => {
   const { cours } = req.query;
+
+  if (!cours) {
+      return res.status(400).json({ msg: 'Le paramètre cours est requis.' });
+  }
+
   try {
       const progression = await Progress.findOne({ user: req.user.id, cours });
 
       if (progression) {
           const totalChapters = await Chapitre.countDocuments({ cours });
           const completedChapters = progression.chapitres.length;
-          const coursProgressPourcentage = (completedChapters / totalChapters) * 100;
+          const coursProgressPourcentage = totalChapters > 0 ? (completedChapters / totalChapters) * 100 : 0;
 
-          res.json({ coursProgressPourcentage });
+          return res.json({ coursProgressPourcentage });
       } else {
-          res.json({ coursProgressPourcentage: 0 });
+          return res.json({ coursProgressPourcentage: 0 });
       }
   } catch (error) {
       console.error(error.message);
-      res.status(500).send('Server Error');
+      return res.status(500).send('Erreur du serveur');
   }
 });
+
 
 
 

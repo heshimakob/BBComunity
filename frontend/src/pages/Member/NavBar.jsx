@@ -2,21 +2,25 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsChatDots, BsChat } from 'react-icons/bs';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import { FaUser, FaBookOpen, FaRegQuestionCircle, FaDatabase, FaRegMinusSquare } from 'react-icons/fa';
+import { FaUser, FaBookOpen, FaRegQuestionCircle, FaRegMinusSquare } from 'react-icons/fa';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails } from '../../store/userSlice';
-import Loading from '../../components/Loading';
 import bbcc from "../../assets/icons/bbcc.png";
-import Sidebar from './Sidebar';
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const dispatch = useDispatch();
-  const { currentUser, loading, error } = useSelector(state => state.users);
-  const popupRef = useRef(null); // Référence pour le popup
+  const [userDetails, setUserDetails] = useState({
+    id: '',
+    name: '',
+    email: '',
+    gender: '',
+    password: '',
+    image: '',
+    imagePreview: null,
+  });
+  
+  const popupRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -28,50 +32,47 @@ const NavBar = () => {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        setError("Token manquant");
-        setLoading(false);
-        return;
-      }
       try {
+        const token = localStorage.getItem('token');
         const response = await axios.get('http://localhost:8080/api/users/userDetail', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
+          headers: { Authorization: `Bearer ${token}` },
         });
-        setUser(response.data);
-      } catch (err) {
-        setError(err.response?.data?.message || "Erreur inconnue");
-      } finally {
-        setLoading(false);
+        const userData = response.data;
+
+        if (userData._id) {
+          setUserDetails(prev => ({ ...prev, id: userData._id }));
+        } else {
+          console.error("L'ID de l'utilisateur est manquant dans la réponse");
+        }
+        setUserDetails(prev => ({
+          ...prev,
+          name: userData.name,
+          email: userData.email,
+          gender: userData.gender,
+          password: userData.password,
+          image: userData.image,
+          imagePreview: userData.image ? userData.image : null,
+        }));
+      } catch (error) {
+        console.error('Erreur lors de la récupération des détails de l’utilisateur :', error);
       }
     };
+
     fetchUserDetails();
   }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Vérifiez si le clic est à l'extérieur du popup
       if (popupRef.current && !popupRef.current.contains(event.target)) {
         setShowPopup(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
-  if (loading) {
-    return <div>Chargement des détails de l'utilisateur...</div>;
-  }
-
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
-  }
 
   return (
     <>
@@ -80,7 +81,7 @@ const NavBar = () => {
           <div className="flex items-center justify-between py-5">
             <div className="flex items-center">
               <Link to='/user-dashboard' className='flex items-center text-white'>
-                <img src={bbcc} className='h-[72px]' alt="Logo"/>
+                <img src={bbcc} className='h-[72px]' alt="Logo" />
               </Link>
             </div>
             <div className="hidden lg:flex items-center space-x-8">
@@ -93,15 +94,15 @@ const NavBar = () => {
               <Link to='/Chat' className='flex items-center text-gray-100 hover:text-gray-200'>
                 <BsChat className="mr-2" /> Assistance AI
               </Link>
-              <div className="relative" ref={popupRef}> {/* Ajout de ref ici */}
-                <Link className="flex items-center cursor-pointer" onClick={togglePopup}>
-                  {currentUser?.image ? (
-                    <img className="rounded-lg w-8 h-8" src={currentUser.image} alt="User" />
+              <div className="relative" ref={popupRef}>
+                <div className="flex items-center cursor-pointer" onClick={togglePopup}>
+                  {userDetails.image ? (
+                    <img className="rounded-lg w-8 h-8" src={userDetails.image} alt="User" />
                   ) : (
                     <FaUser className="rounded-full w-8 h-8" />
                   )}
-                  <span className="ml-2 text-white">{currentUser?.name}</span>
-                </Link>
+                  <span className="ml-2 text-white">{userDetails.name}</span>
+                </div>
                 {showPopup && (
                   <ul className="absolute right-0 bg-gray-900 text-white shadow-lg mt-2 rounded-lg p-2">
                     <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">

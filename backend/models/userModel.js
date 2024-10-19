@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'name is required']
@@ -13,12 +13,11 @@ const userSchema = mongoose.Schema({
   genre: {
     type: String,
     enum: ['Masculin', 'Féminin'],
-    default: 'Masculin', // Définir "Masculin" comme valeur par défaut
-    required: [false, 'genre n\'est pas obligatoire']
+    default: 'Masculin'
   },
   image: {
     type: String,
-    required: [false, 'image n\'est pas obligatoire']
+    required: false
   },
   password: {
     type: String,

@@ -282,16 +282,29 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
 
 
   router.post('/signin', async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const token = generateToken(user);
-      res.json({ token, isAdmin: user.isAdmin });
-    } else {
-      res.status(401).json({ message: 'Invalid credentials' });
+    try {
+      const { email, password } = req.body;
+      
+      // Vérifiez que l'email et le mot de passe sont fournis
+      if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required' });
+      }
+  
+      const user = await User.findOne({ email });
+  
+      // Vérifiez si l'utilisateur existe et si le mot de passe est correct
+      if (user && (await bcrypt.compare(password, user.password))) {
+        const token = generateToken(user);
+        return res.json({ token, isAdmin: user.isAdmin });
+      } else {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+      return res.status(500).json({ message: 'Server error' });
     }
   });
+  
   
   router.delete('/deleteUser/:id', async (req, res) => {
     const { id } = req.params;
