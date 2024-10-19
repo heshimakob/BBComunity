@@ -11,6 +11,7 @@ import Cours from './Cours';
 import { Link } from 'react-router-dom';
 import {motion} from "framer-motion"
 import Saving from './Saving';
+import Actions from './Actions';
 
 const CompanySite = ({setProgress}) => {
   const dispatch = useDispatch();
@@ -150,6 +151,7 @@ Envoyer votre demande d'engagement
       </div>
 
 <Marque/>
+<Actions/>
 
 {/* <Cours/> */}
 <Details/>
