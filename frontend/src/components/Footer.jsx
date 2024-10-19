@@ -76,7 +76,7 @@ export default function Footer() {
               <ul>
                 <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Job</a></li>
                 <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Nos solutions</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Notre Communaute</a></li>
+                <li className="mb-6"><a href="https://discord.gg/u4x2E62v" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Notre Communaute</a></li>
 
               </ul>
             </div>

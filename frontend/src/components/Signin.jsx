@@ -12,6 +12,7 @@ import bbc from "../assets/icons/bbc.png"
 import walk from "../assets/background/walk.png"
 import google from "../assets/icons/google.svg"
 import facebook from "../assets/icons/fcebook.svg"
+import bbclog from "../assets/background/bbclog.png"
 
 const Login = ({setProgress}) => {
     const [email, setEmail] = useState('');
@@ -53,7 +54,7 @@ const Login = ({setProgress}) => {
 
     return (
         <section className="h-screen relative pb-20">
-            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-600" style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
+            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-600" style={{backgroundImage: `url(${bbclog})`}}>
                 {/* <div className="flex items-center h-screen">
                     <img className="lg:max-w-lg mx-auto" src={walk} alt="Illustration" />
                 </div> */}

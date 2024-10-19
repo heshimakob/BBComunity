@@ -1,4 +1,3 @@
-import B from "../assets/B.png";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import bglog from "../assets/bglog.jpeg";
@@ -6,6 +5,9 @@ import { Link } from 'react-router-dom';
 import toast, { Toaster } from "react-hot-toast";
 import swal from "sweetalert";
 import bbc from "../assets/icons/bbc.png";
+import bbclog from "../assets/background/bbclog.png";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 const Register = ({ setProgress }) => {
     const [name, setName] = useState('');
@@ -59,7 +61,7 @@ const Register = ({ setProgress }) => {
 
     return (
         <section className="h-screen relative pb-20">
-            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-900" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1639664810686-b817b22bb549?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b25saW5lJTIwbWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D' }}>
+            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-900" style={{backgroundImage: `url(${bbclog})`}}>
             </div>
     
             <div className="container px-4 mx-auto">
@@ -80,7 +82,7 @@ const Register = ({ setProgress }) => {
                                 </label>
                                 <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
                                     <input
-                                        type="name"
+                                        type="text"
                                         id="name"
                                         placeholder="Votre nom complet"
                                         value={name}
@@ -109,14 +111,14 @@ const Register = ({ setProgress }) => {
                                     Numéro de téléphone*
                                 </label>
                                 <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
-                                    <input
-                                        type="text"
-                                        id="phone-number"
-                                        placeholder="+243 999 412 974"
+                                    <PhoneInput
+                                        country={'cd'} // Pays par défaut à RDC (République Démocratique du Congo)
                                         value={phoneNumber}
-                                        onChange={(e) => setPhoneNumber(e.target.value)}
-                                        required
-                                        className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
+                                        onChange={setPhoneNumber}
+                                     
+                                        buttonClass="hidden" // Cache le drapeau pour qu'il ne soit pas visible deux fois
+                                        dropdownClass="w-full"
+                                          className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
                                     />
                                 </div>
 
@@ -137,7 +139,7 @@ const Register = ({ setProgress }) => {
                                 </div>
 
                                 <label htmlFor="domaine" className="block text-gray-700 text-sm font-bold mb-2">
-                                    Domain*
+                                    Domaine*
                                 </label>
                                 <div className="flex mb-4 px-4 bg-blueGray-50 rounded">
                                     <select
@@ -148,7 +150,8 @@ const Register = ({ setProgress }) => {
                                         className="w-full py-4 text-xs placeholder-blueGray-400 font-semibold leading-none bg-blueGray-50 outline-none"
                                     >
                                         <option value="Software Development">Software Development</option>
-                                        <option value="Network">Machine Learning</option>
+                                        <option value="Network">Network</option>
+                                        <option value="Machine Learning">Machine Learning</option>
                                         <option value="Entreprenariat">Entreprenariat</option>
                                         <option value="Art numerique et AR, VR et Design">Art numérique et AR, VR et Design</option>
                                     </select>
