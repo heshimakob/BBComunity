@@ -2,25 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import des icônes de navigation
 import quote from "../assets/icons/quote.svg";
 import intersect from "../assets/background/intersect.svg";
+import pdga from "../assets/avatar/pdga.jpeg"
+import pdg from "../assets/avatar/pdg.jpeg"
+import manager from "../assets/avatar/manager.jpeg"
 
 const testimonials = [
   {
     text: "Ce bootcamp a transformé ma carrière ! Les cours sont complets et les instructeurs sont très compétents. Je recommande vivement à tous ceux qui veulent se lancer dans le développement web.",
     name: "Yasmine Kashemwa",
     title: "Développeuse Web",
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    img: manager
   },
   {
     text: "Les cours en ligne sont bien structurés et faciles à suivre. J'ai pu apprendre à mon rythme et acquérir des compétences précieuses en machine learning.",
     name: "Vincent Asani",
     title: "CTO Wito Xr Studio",
-    img: "https://images.unsplash.com/photo-1502764613149-7f1d229e2300?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    img: pdg
   },
   {
     text: "Grâce à ce programme, j'ai pu changer de carrière et décrocher un poste dans une grande entreprise de technologie. Les mentors sont incroyablement soutenants.",
-    name: "David Bugobe",
+    name: "Moise kadesi",
     title: "Ingénieure Logiciel",
-    img: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    img:pdga
   }
 ];
 
