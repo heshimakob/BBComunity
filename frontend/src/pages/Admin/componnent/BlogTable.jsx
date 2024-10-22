@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBlogs } from "../../../store/blogSlice";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
 
 const BlogTable = () => {
     const dispatch = useDispatch();
@@ -13,27 +15,43 @@ const BlogTable = () => {
     const [selectedBlog, setSelectedBlog] = useState({});
     const [updatedBlog, setUpdatedBlog] = useState({ titre: '', description: '', image: '', auteur: '' });
 
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const blogsPerPage = 5;
+
+    // Quill setup
+    const { quill, quillRef } = useQuill();
+
+    useEffect(() => {
+        if (quill && selectedBlog.description) {
+            quill.clipboard.dangerouslyPasteHTML(selectedBlog.description);
+            quill.on('text-change', () => {
+                setUpdatedBlog(prevState => ({
+                    ...prevState,
+                    description: quill.root.innerHTML
+                }));
+            });
+        }
+    }, [quill, selectedBlog]);
+
     useEffect(() => {
         dispatch(getBlogs());
     }, [dispatch]);
 
-    // Fonction pour ouvrir le modal de mise à jour
     const handleUpdate = (blog) => {
         setSelectedBlog(blog);
         setUpdatedBlog(blog);
         setUpdateModal(true);
     };
 
-    // Fonction pour ouvrir le modal de suppression
     const handleDelete = (blog) => {
         setSelectedBlog(blog);
         setDeleteModal(true);
     };
 
-    // Fonction pour soumettre la demande de suppression
     const handleDeleteSubmit = async () => {
         try {
-            await axios.delete(`/deleteBlog/${selectedBlog._id}`);
+            await axios.delete(`http://localhost:8080/api/blogs/deleteBlog/${selectedBlog._id}`);
             setDeleteModal(false);
             dispatch(getBlogs());
         } catch (error) {
@@ -41,11 +59,10 @@ const BlogTable = () => {
         }
     };
 
-    // Fonction pour soumettre la mise à jour du blog
     const handleUpdateSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/updateBlog/${selectedBlog._id}`, updatedBlog);
+            await axios.put(`http://localhost:8080/api/blogs/updateBlog/${selectedBlog._id}`, updatedBlog);
             setUpdateModal(false);
             dispatch(getBlogs());
         } catch (error) {
@@ -53,16 +70,37 @@ const BlogTable = () => {
         }
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setUpdatedBlog(prevState => ({
+                    ...prevState,
+                    image: reader.result
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // Get current blogs
+    const indexOfLastBlog = currentPage * blogsPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+    const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="overflow-x-auto mb-10 border rounded-xl">
-            <table className="table-auto w-full">
+            <table className="table-auto w-full border">
                 <thead className="bg-gray-100">
                     <tr>
                         <th className="px-4 py-2">Titre</th>
-                        <th className="px-4 py-2">Description</th>
                         <th className="px-4 py-2">Auteur</th>
                         <th className="px-4 py-2">Catégorie</th>
                         <th className="px-4 py-2">Image</th>
@@ -70,10 +108,9 @@ const BlogTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {blogs.map(blog => (
-                        <tr key={blog._id}>
+                    {currentBlogs.map(blog => (
+                        <tr key={blog._id} className='border'>
                             <td className="px-4 py-2">{blog.titre}</td>
-                            <td className="px-4 py-2"></td>
                             <td className="px-4 py-2">{blog.auteur}</td>
                             <td className="px-4 py-2">{blog.category}</td>
                             <td className="px-4 py-2">
@@ -92,6 +129,18 @@ const BlogTable = () => {
                 </tbody>
             </table>
 
+            <div className="flex justify-center mt-4">
+                {[...Array(Math.ceil(blogs.length / blogsPerPage)).keys()].map(number => (
+                    <button
+                        key={number + 1}
+                        onClick={() => paginate(number + 1)}
+                        className={`mx-1 px-3 py-1 border rounded ${currentPage === number + 1 ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
+                    >
+                        {number + 1}
+                    </button>
+                ))}
+            </div>
+
             {/* Update Modal */}
             {updateModal && (
                 <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center rounded-2xl">
@@ -107,18 +156,14 @@ const BlogTable = () => {
                             className="w-full p-2 mb-4 border border-gray-400"
                             placeholder="Titre"
                         />
-                        <textarea
-                            value={updatedBlog.description}
-                            onChange={(e) => setUpdatedBlog({ ...updatedBlog, description: e.target.value })}
-                            className="w-full p-2 mb-4 border border-gray-400"
-                            placeholder="Description"
-                        />
+                        <div style={{ width: 700, height: 500 }}>
+                            <div ref={quillRef} />
+                        </div>
                         <input
-                            type="text"
-                            value={updatedBlog.image}
-                            onChange={(e) => setUpdatedBlog({ ...updatedBlog, image: e.target.value })}
-                            className="w-full p-2 mb-4 border border-gray-400"
-                            placeholder="Image URL"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="w-full p-2 mb-4 mt-20 border border-gray-400"
                         />
                         <input
                             type="text"

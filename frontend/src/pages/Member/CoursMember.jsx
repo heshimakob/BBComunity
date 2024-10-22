@@ -1,49 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { FaBookOpen, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
-import Sidebar from './Sidebar';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import NavBar from './NavBar';
+import Sidebar from './Sidebar';
+import { FaBookOpen, FaGraduationCap, FaUserCircle } from 'react-icons/fa';
+import Loading from '../../components/Loading';
 
 const CoursMember = () => {
+    const dispatch = useDispatch();
+    const [userId, setUserId] = useState('');
     const [courses, setCourses] = useState([]);
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState("Tous");
     const [searchTerm, setSearchTerm] = useState("");
-    const [userRole, setUserRole] = useState(null);
-
-    useEffect(() => {
-        const fetchUserRole = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:8080/api/users/userDetail', {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
-                const userData = response.data;
-                console.log('User data:', userData); // Afficher les données de l'utilisateur dans la console
-
-                if (userData && userData.role) {
-                    setUserRole(userData.role);
-                } else {
-                    console.error("Le rôle de l'utilisateur est manquant dans la réponse");
-                }
-            } catch (error) {
-                console.error('Erreur lors de la récupération des détails de l’utilisateur :', error);
-            }
-        };
-
-        fetchUserRole();
-    }, []);
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/cours/getAllcours')
-            .then(response => {
-                setCourses(response.data);
-            })
-            .catch(error => {
-                setError(error.message);
-            });
-    }, []);
+    const [progressData, setProgressData] = useState({});
 
     const categories = [
         "Tous",
@@ -55,15 +26,65 @@ const CoursMember = () => {
         "Art numérique et AR, VR et Design"
     ];
 
-    // Filtre des cours en fonction du rôle de l'utilisateur et de la catégorie sélectionnée
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:8080/api/users/userDetail', {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const userData = response.data;
+                if (userData._id) {
+                    setUserId(userData._id);
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des détails de l’utilisateur :', error);
+            }
+        };
+
+        fetchUserDetails();
+    }, []);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/cours/getAllcours');
+                setCourses(response.data);
+                await getProgress(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des cours :', error);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+    const getProgress = async (courses) => {
+        try {
+            const progress = {};
+            for (const course of courses) {
+                const response = await axios.get(`http://localhost:8080/api/progress/getProgress?cours=${course._id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                progress[course._id] = response.data.chapitres.length;
+            }
+            setProgressData(progress);
+        } catch (error) {
+            console.error("Erreur lors de la récupération de la progression:", error.response ? error.response.data : error.message);
+        }
+    };
+
     const filteredCourses = courses.filter(course => {
         const matchesCategory = selectedCategory === "Tous" || course.category === selectedCategory;
-
-        // Affiche tous les cours si le rôle est 'user', sinon filtre par catégorie correspondant au rôle
-        const matchesRole = userRole === 'user' || (userRole !== 'user' && course.category === userRole);
-
-        return matchesCategory && matchesRole && course.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesSearchTerm = course.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return matchesCategory && matchesSearchTerm;
     });
+    if (loading) {
+        return <Loading />;
+    }
 
     return (
         <>
@@ -112,60 +133,52 @@ const CoursMember = () => {
                             ))}
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {filteredCourses.map((course) => (
-                                <div key={course._id} className="w-full">
-                                    <Link to={`/modulePage/${course._id}`}>
-                                        <div className="bg-white rounded shadow-md">
-                                            <div className="px-4 py-5">
-                                                <div className='flex justify-between'>
-                                                    <h4 className="text-lg font-bold text-gray-800 mb-2">
-                                                        {course.name}
-                                                    </h4>
-                                                    <span className="bg-blue-800 text-sm text-white rounded p-2 mb-5">{course.duration} heures</span>
-                                                </div>
-                                                <img src={course.image} alt={course.name} className="w-full h-48 object-cover mb-2" />
-                                                <div className='flex justify-between'>
-                                                    <p className="text-sm text-gray-600">{course.description}</p>
-                                                    <span className="bg-red-600 text-sm text-gray-300 rounded p-2">
-                                                        <p className='text-white'>{course.category}</p>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div className="px-4 py-3 border-t border-gray-200">
-                                                <div className="flex items-center justify-between p-1">
-                                                    <FaGraduationCap className="text-blue-500 mr-3" size={24} />
-                                                    <div className="relative w-16 h-16">
-                                                        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
-                                                            <circle cx="50" cy="50" r="45" stroke="#e2e8f0" strokeWidth="10" fill="transparent" />
-                                                            <circle cx="50" cy="50" r="45" stroke="#4ade80" strokeWidth="10" fill="transparent" strokeDasharray={282.7433388230814} strokeDashoffset={course.progress ? 282.7433388230814 - (282.7433388230814 * course.progress) / 100 : 282.7433388230814} />
-                                                        </svg>
-                                                        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
-                                                            {course.progress}%
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                        {filteredCourses.map((course) => {
+            const completedChapters = progressData[course._id] || 0;
 
-                    <div className="bg-white rounded-md shadow-md p-6 mb-20">
-                        <div className="flex items-center mb-4">
-                            <FaBookOpen className="text-blue-500 mr-2" size={24} />
-                            <h2 className="text-xl font-bold text-gray-800">Courses</h2>
+            // Vérifiez si course.chapters est défini
+            const totalChapters = course.chapters ? course.chapters.length : 0; // Définit 0 si chapters est undefined
+            const progressPercentage = totalChapters > 0 ? (completedChapters / totalChapters) * 100 : 0; // Évite la division par zéro
+
+            return (
+                <div key={course._id} className="w-full">
+                    <Link to={`/modulePage/${course._id}`}>
+                        <div className="bg-white rounded shadow-md">
+                            <div className="px-4 py-5">
+                                <div className='flex justify-between'>
+                                    <h4 className="text-lg font-bold text-gray-800 mb-2">
+                                        {course.name}
+                                    </h4>
+                                    <span className="bg-blue-800 text-sm text-white rounded p-2 mb-5">{course.duration} heures</span>
+                                </div>
+                                <img src={course.image} alt={course.name} className="w-full h-48 object-cover mb-2" />
+                                <div className='flex justify-between'>
+                                    <p className="text-sm text-gray-600">{course.description}</p>
+                                    <span className="bg-red-600 text-sm text-gray-300 rounded p-2">
+                                        <p className='text-white'>{course.category}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="px-4 py-3 border-t border-gray-200">
+                                <div className="flex items-center justify-between p-1">
+                                    <FaGraduationCap className="text-blue-500 mr-3" size={24} />
+                                    <div className="relative w-16 h-16">
+                                        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
+                                            <circle cx="50" cy="50" r="45" stroke="#e2e8f0" strokeWidth="10" fill="transparent" />
+                                            <circle cx="50" cy="50" r="45" stroke="#4ade80" strokeWidth="10" fill="transparent" strokeDasharray={282.7433388230814} strokeDashoffset={282.7433388230814 - (progressPercentage / 100) * 282.7433388230814} />
+                                        </svg>
+                                        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 font-bold">
+                                            {progressPercentage.toFixed(0)}%
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p className="text-gray-600">
-                            We pare down complex topics to their key practical components, so you
-                            gain usable skills in a few hours (instead of weeks or months). The
-                            courses are provided at no cost to you and you can now earn
-                            certificates.{' '}
-                            <a href="#" className="underline text-blue-500 hover:text-blue-700">
-                                Learn more.
-                            </a>
-                        </p>
+                    </Link>
+                </div>
+            );
+        })}
+                        </div>
                     </div>
                 </div>
             </div>

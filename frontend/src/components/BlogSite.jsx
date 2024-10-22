@@ -12,8 +12,10 @@ const BlogSite = ({ setProgress }) => {
     const dispatch = useDispatch();
     const { data: blogState } = useSelector((state) => state.blogs);
 
-    const [filteredBlogs, setFilteredBlogs] = useState(blogState);
+    const [filteredBlogs, setFilteredBlogs] = useState([]);
+    const [visibleBlogs, setVisibleBlogs] = useState([]);
     const [activeCategory, setActiveCategory] = useState('all');
+    const [blogsToShow, setBlogsToShow] = useState(9);
 
     useEffect(() => {
         dispatch(getBlogs());
@@ -24,7 +26,7 @@ const BlogSite = ({ setProgress }) => {
         setTimeout(() => {
             setProgress(100);
         }, 2000);
-    }, []);
+    }, [setProgress]);
 
     useEffect(() => {
         if (activeCategory === 'all') {
@@ -33,6 +35,10 @@ const BlogSite = ({ setProgress }) => {
             setFilteredBlogs(blogState.filter(blog => blog.category === activeCategory));
         }
     }, [activeCategory, blogState]);
+
+    useEffect(() => {
+        setVisibleBlogs(filteredBlogs.slice(0, blogsToShow));
+    }, [filteredBlogs, blogsToShow]);
 
     const categories = [
         { name: 'All Blogs', value: 'all' },
@@ -45,10 +51,14 @@ const BlogSite = ({ setProgress }) => {
         { name: 'Event', value: 'event' },
     ];
 
+    const handleSeeMore = () => {
+        setBlogsToShow(prevCount => prevCount + 9);
+    };
+
     return (
         <>
             <NavBar />
-            <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
+            <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")' }}>
                 <div className='text-center'>
                     <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"
@@ -80,32 +90,37 @@ const BlogSite = ({ setProgress }) => {
                         </div>
                     </div>
                     <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {filteredBlogs.map((blog) => (
+                        {visibleBlogs.map((blog) => (
                             <div key={blog.id} className="bg-cover bg-center overflow-hidden border border-gray-100 p-4 m-2 rounded-lg transition-transform transform hover:scale-105">
-                              <div className='w-full'>
-                              <Link to={`/blogPage/${blog._id}`}>
-                                    <img className="w-full h-48 object-cover rounded-lg" src={blog.image} alt={blog.titre} />
-                                </Link>
-                              </div>
+                                <div className='w-full'>
+                                    <Link to={`/blogPage/${blog._id}`}>
+                                        <img className="w-full h-48 object-cover rounded-lg" src={blog.image} alt={blog.titre} />
+                                    </Link>
+                                </div>
                                 <div className="flex flex-col justify-between h-full p-4">
                                     <Link className='text-white' to={`/blogPage/${blog._id}`}>
                                         <h2 className="text-2xl font-bold text-blue-800 hover:underline hover:underline-offset-2">{blog.titre}</h2>
                                         <div className='flex justify-between text-blue-600 mt-5'>
-                                        <h2 className="rounded-2xl p-1 bg-blue-200 font-bold p-2" >{blog.category}</h2>
-                                        <button className="bg-white  text-blue-500 font-bold py-2 px-4 rounded">
-                                            lire plus...
-                                        </button>
-                                    </div>
-                             
+                                            <h2 className="rounded-2xl p-1 bg-blue-200 font-bold p-2" >{blog.category}</h2>
+                                            <button className="bg-white text-blue-500 font-bold py-2 px-4 rounded">
+                                                lire plus...
+                                            </button>
+                                        </div>
                                     </Link>
-                                    </div>
-                                    {/* <div className='text-justify leading-relaxed text-gray-700'>
-                                        {blog.description.replace(/<[^>]+>/g, '').slice(0, 30)}...
-                                    </div> */}
-                                  
+                                </div>
                             </div>
                         ))}
                     </div>
+                    {blogsToShow < filteredBlogs.length && (
+                        <div className="flex justify-center mt-6">
+                            <button
+                                onClick={handleSeeMore}
+                                className="px-6 py-3 font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-800 transition duration-200"
+                            >
+                                Voir plus
+                            </button>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <div className="text-center mb-10">
@@ -117,6 +132,6 @@ const BlogSite = ({ setProgress }) => {
             <Footer />
         </>
     );
-}
+};
 
 export default BlogSite;

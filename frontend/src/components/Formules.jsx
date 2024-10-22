@@ -7,6 +7,7 @@ import people from "../assets/illustration/people.png"
 import job from "../assets/illustration/job-interview.png"
 import team from "../assets/illustration/team-management.png"
 import Actions from './Actions'
+import Details from './Details'
 
 const Formules = () => {
   return (
@@ -34,7 +35,8 @@ découvrez nos  </span>
 <div className="pt-16 pb-8 px-4 text-center bg-white rounded shadow">
 <img className="h-20 mb-6 mx-auto" src={people} alt />
 <h3 className="mb-2 text-4xl font-bold font-heading">BootCamp en ligne</h3>
-<span className="text-4xl text-blue-600 font-bold font-heading">$50</span>
+<span className="text-4xl text-blue-600 font-bold font-heading">$50 (un seul domaine)</span>
+   <span className="text-4xl text-blue-600 font-bold font-heading">$80 (Tous les domaine)</span>
 <p className="mt-2 mb-8 text-blueGray-400">Sur 4 mois de bootcamp</p>
 <div className="flex flex-col items-center mb-8">
 <ul className="text-blueGray-400">
@@ -115,7 +117,12 @@ découvrez nos  </span>
 
 </ul>
 </div>
-<div><a className="block sm:inline-block py-4 px-6 mb-4 sm:mb-0 sm:mr-3 text-xs text-blue-600 text-center font-semibold leading-none bg-white hover:bg-blueGray-50 rounded" href="#">inscription@bbcommunity.academy</a></div>
+<div><a
+    className="block sm:inline-block py-4 px-6 mb-4 sm:mb-0 sm:mr-3 text-xs text-blue-600 text-center font-semibold leading-none bg-white hover:bg-blueGray-50 rounded"
+    href="mailto:inscription@bbcommunity.academy"
+>
+    inscription@bbcommunity.academy
+</a></div>
 </div>
 </div>
 <div className="w-full lg:w-1/3 px-3 mb-6">
@@ -152,13 +159,19 @@ découvrez nos  </span>
   </li>
 </ul>
 </div>
-<div><a className="block sm:inline-block py-4 px-6 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded" href="#">inscription@bbcommunity.academy</a></div>
+<div><a
+    className="block sm:inline-block py-4 px-6 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
+    href="mailto:inscription@bbcommunity.academy"
+>
+    inscription@bbcommunity.academy
+</a></div>
 </div>
 </div>
 </div>
 </div>
 </section>
 <Actions/>
+<Details/>
 
 <Footer/>
 

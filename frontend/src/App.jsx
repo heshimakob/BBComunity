@@ -35,6 +35,8 @@ import { useState } from "react";
 import Chat from "./pages/Member/Chat";
 import Candidate from "./pages/Admin/Candidate";
 import Formules from "./components/Formules";
+import Term from "./components/Term";
+import Privacy from "./components/Privacy";
 
 
 
@@ -68,6 +70,8 @@ function App() {
         <Route path="/company" element= {<CompanySite setProgress={setProgress}/>} />  
         <Route path="/formule" element= {<Formules setProgress={setProgress}/>} />  
         <Route path="/why" element= {<Why setProgress={setProgress}/>} />  
+        <Route path="/term" element= {<Term setProgress={setProgress}/>} />  
+        <Route path="/privacy" element= {<Privacy setProgress={setProgress}/>} />  
         <Route path="/blogPage/:id" element= {<BlogPage setProgress={setProgress}/>} /> 
 
 

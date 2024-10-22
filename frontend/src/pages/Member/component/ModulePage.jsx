@@ -65,8 +65,11 @@ const ModulePage = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             });
-            setProgression(response.data.chapitres);
-            setProgressPercentage((response.data.chapitres.length / chapterData.length) * 100);
+            const chaptersCompleted = response.data.chapitres;
+            setProgression(chaptersCompleted);
+
+            const progress = (chaptersCompleted.length / chapterData.length) * 100;
+            setProgressPercentage(progress > 100 ? 100 : progress);
         } catch (error) {
             console.error("Erreur lors de la récupération de la progression:", error.response ? error.response.data : error.message);
         }
@@ -93,7 +96,10 @@ const ModulePage = () => {
             setCompletedChapters(new Set([...completedChapters, chapitreId]));
 
             if (chapterData.length > 0) {
-                setProgressPercentage((prev) => ((prev + 1) / chapterData.length) * 100);
+                setProgressPercentage((prev) => {
+                    const newProgress = ((prev + 1) / chapterData.length) * 100;
+                    return newProgress > 100 ? 100 : newProgress;
+                });
             }
 
             setIsButtonDisabled(true);

@@ -29,7 +29,7 @@ export default function Footer() {
             <div className="w-full md:w-1/2 xl:w-1/3 p-10">
               <div className="h-full p-px bg-gradient-white overflow-hidden rounded-3xl">
                 <div className="relative h-full">
-                  <div className="absolute top-0 left-0 w-full h-full bg-gray-700 rounded-3xl" />
+                  <div className="absolute top-0 left-0 w-full h-full bg-white bg-opacity-5 rounded-3xl" />
                   <div className="relative h-full py-12 px-10">
                     <h2 className="mb-4 font-heading text-3xl font-bold text-white">Abonnez-vous à notre newsletter</h2>
                     <p className="mb-10 text-lg text-gray-500 font-medium leading-relaxed">Recevez les dernières mises à jour, des conseils exclusifs et des offres spéciales directement dans votre boîte mail. Ne manquez pas l'occasion de rester informé et d'optimiser votre expérience sur notre plateforme. Inscrivez-vous dès maintenant et rejoignez notre communauté grandissante !</p>
@@ -101,8 +101,8 @@ export default function Footer() {
                 </div>
                 <div className="w-auto p-2">
                   <ul className="flex flex-wrap gap-4">
-                    <li><a href="#" className="text-gray-500 hover:text-gray-600 font-medium transition duration-200">Terms</a></li>
-                    <li><a href="#" className="text-gray-500 hover:text-gray-600 font-medium transition duration-200">Privacy Policy</a></li>
+                    <li><Link to="/term" className="text-gray-500 hover:text-gray-600 font-medium transition duration-200">Terme</Link></li>
+                    <li><Link to="/privacy" className="text-gray-500 hover:text-gray-600 font-medium transition duration-200">Politique de confidentialité</Link></li>
                   </ul>
                 </div>
               </div>

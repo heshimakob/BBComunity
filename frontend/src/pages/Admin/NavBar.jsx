@@ -17,19 +17,19 @@ const NavBar = () => {
   }, [token, dispatch]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full h-16 bg-gray-900 text-white flex items-center justify-between px-4">
+    <nav className="fixed top-0 left-0 w-full h-16 bg-black text-white flex items-center justify-between px-4">
       <Link to="/" className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white">
         <span className="px-2 py-1 bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg text-white">
           Black Born Community
         </span>
       </Link>
       <div className="flex items-center justify-end">
-        <div className="mr-4">
+        {/* <div className="mr-4">
           <BsChatDots size={20} />
         </div>
         <div className="mr-4">
           <BsChat size={20} />
-        </div>
+        </div> */}
         {/* <div className="flex items-center mr-4">
           <img src="" alt="Profile" className="w-8 h-8 rounded-full mr-2" />
           {user && user.userDetail ? (

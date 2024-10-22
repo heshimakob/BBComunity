@@ -160,7 +160,7 @@ router.post('/subscribe', (req, res) => {
 
 
 
-router.get('/getAllUsers', authMiddleware, async (req, res) => {     
+router.get('/getAllUsers',async (req, res) => {     
     try {         
         const user = await User.find({}); // Récupération des utilisateurs à partir de la base de données
         if (user.length === 0) {
@@ -313,12 +313,13 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
     const existingUser = await User.findById(id);
     if (!existingUser) {
       return res.status(404).json({
+        success: false,
         message: 'Utilisateur non trouvé',
       });
     }
   
     try {
-      await User.findByIdAndRemove(new mongoose.Types.ObjectId(id));
+      await User.findByIdAndDelete(id); // Utiliser findByIdAndDelete
       res.status(200).json({
         success: true,
         message: 'Utilisateur supprimé avec succès',
@@ -326,11 +327,12 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
     } catch (error) {
       console.error(error); // Affiche l'erreur dans la console
       res.status(400).json({
+        success: false,
         message: 'Erreur lors de la suppression de l\'utilisateur',
         error: error.message, // Affiche le message d'erreur
       });
     }
   });
-
+  
 
   module.exports= router;
