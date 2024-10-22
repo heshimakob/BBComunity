@@ -36,13 +36,13 @@ const Team = () => {
 <p className="text-blue-600">Director, Product Development</p>
 </div>
 <div className="w-1/2 lg:w-1/4 px-5 mb-12">
-<img className="h-20 w-20 mx-auto rounded-full object-cover object-top" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt />
-<p className="mt-6 mb-2 text-xl">Julie Brown</p>
+<img className="h-20 w-20 mx-auto rounded-full object-cover object-top" src={manager} alt />
+<p className="mt-6 mb-2 text-xl">Julie christine</p>
 <p className="text-blue-600">frontend developer</p>
 </div>
 <div className="w-1/2 lg:w-1/4 px-5 mb-12">
-<img className="h-20 w-20 mx-auto rounded-full object-cover object-top" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt />
-<p className="mt-6 mb-2 text-xl">Ian Bailey</p>
+<img className="h-20 w-20 mx-auto rounded-full object-cover object-top" src={pdga} alt />
+<p className="mt-6 mb-2 text-xl">Yan Bradley</p>
 <p className="text-blue-600">CTO and Software developer</p>
 </div>
 
