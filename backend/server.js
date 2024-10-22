@@ -49,6 +49,7 @@ app.use('/api/message', require('./routes/messageRoutes'));
 app.use('/api/candidate', require('./routes/candidateRoutes'));
 app.use('/api/chapitre', require('./routes/chapitreRoutes'));
 app.use('/api/blogs', require('./routes/blogRoutes'));
+app.use('/api/progress', require('./routes/ProgressRoute'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/event', require('./routes/eventRoutes'));
 app.use('/api/company', require('./routes/companyRoutes'));
