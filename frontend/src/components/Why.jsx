@@ -9,6 +9,7 @@ import {motion} from "framer-motion"
 import { Link } from 'react-router-dom';
 import Team from './Team';
 import Stat from './Stat';
+import { FaChevronRight } from 'react-icons/fa';
 
 const  Why =({setProgress})=>{
   useEffect(()=>{
@@ -24,7 +25,16 @@ const  Why =({setProgress})=>{
     <NavBar/>
 
 
-    <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}} >
+    <div className='pb-8 bg-top bg-cover bg-no-repeat' style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}} >
+      
+    <div className="flex justify-center items-center space-x-2 mb-4">
+                                    <span className="text-white mt-5">{window.location.hostname}</span>
+                                    <FaChevronRight className="text-blue-400 mt-5" />
+                                    <span className="text-white mt-5">Pourquoi nous ?  </span>
+                                    {/* <FaChevronRight className="text-blue-400" /> */}
+                                    {/* <span className="text-white">{Blog.titre}</span> */}
+                                </div>
+      
       <div className='max-w-lg mx-auto text-center justify-center items-center mb-8'>
       <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16 text-left"

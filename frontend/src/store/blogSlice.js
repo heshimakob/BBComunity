@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const blogSlice = createSlice({
-    name: 'blog',
+    name: 'blogs',
     initialState,
     reducers: {
         addBlog(state, action) {
@@ -34,7 +34,7 @@ export const { addBlog, fetchBlog, deleteBlog, updateBlog, getBlogById } = blogS
 export default blogSlice.reducer;
 
 export function getBlogs() {
-    return async function getBlogsThunk(dispatch, getState) {
+    return async function getBlogsThunk(dispatch) {
         try {
             const response = await axios.get("http://localhost:8080/api/blogs/getAllBlog");
             const result = response.data;
@@ -46,7 +46,7 @@ export function getBlogs() {
 }
 
 export function addBlogToDB(blog) {
-    return async function addBlogToDBThunk(dispatch, getState) {
+    return async function addBlogToDBThunk(dispatch) {
         try {
             const response = await axios.post("http://localhost:8080/api/blogs/addBlog", blog);
             dispatch(addBlog(response.data)); // Nous attendons un objet de blog
@@ -57,7 +57,7 @@ export function addBlogToDB(blog) {
 }
 
 export function updateBlogInDB(blog) {
-    return async function updateBlogInDBThunk(dispatch, getState) {
+    return async function updateBlogInDBThunk(dispatch) {
         try {
             const response = await axios.put(`http://localhost:8080/api/blogs/updateBlog/${blog.id}`, blog);
             dispatch(updateBlog(response.data));
@@ -68,7 +68,7 @@ export function updateBlogInDB(blog) {
 }
 
 export function deleteBlogFromDB(id) {
-    return async function deleteBlogFromDBThunk(dispatch, getState) {
+    return async function deleteBlogFromDBThunk(dispatch) {
         try {
             await axios.delete(`http://localhost:8080/api/blogs/deleteBlog/${id}`);
             dispatch(deleteBlog(id));
@@ -79,7 +79,7 @@ export function deleteBlogFromDB(id) {
 }
 
 export function getBlogByIdDb(id) {
-    return async function getBlogByIdThunk(dispatch, getState) {
+    return async function getBlogByIdThunk(dispatch) {
         try {
             const response = await axios.get(`http://localhost:8080/api/blogs/getBlogById/${id}`);
             const result = response.data;

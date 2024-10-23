@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
 
-const Term = () => {
+const Term = ({setProgress}) => {
+  useEffect(()=>{
+    setProgress(40);
+    setTimeout(()=>{
+        setProgress(100)
+    },2000)
+},[]);
+  
   return (
    <>
    <NavBar/>

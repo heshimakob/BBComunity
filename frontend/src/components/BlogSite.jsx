@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { getBlogs } from '../store/blogSlice';
 import Loading from './Loading';
 import { motion } from 'framer-motion';
+import { FaChevronRight } from 'react-icons/fa';
 
 const BlogSite = ({ setProgress }) => {
     const dispatch = useDispatch();
@@ -58,7 +59,14 @@ const BlogSite = ({ setProgress }) => {
     return (
         <>
             <NavBar />
-            <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")' }}>
+            <div className='pb-8 bg-top bg-cover bg-no-repeat' style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")' }}>
+            <div className="flex justify-center items-center space-x-2 mb-4 ">
+                                    <span className="text-white mt-5">{window.location.hostname}</span>
+                                    <FaChevronRight className="text-blue-400 mt-5" />
+                                    <span className="text-white mt-5">Nos blogs</span>
+                                    {/* <FaChevronRight className="text-blue-400" /> */}
+                                    {/* <span className="text-white">{Blog.titre}</span> */}
+                                </div>
                 <div className='text-center'>
                     <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"
@@ -69,7 +77,7 @@ const BlogSite = ({ setProgress }) => {
                         👋 Nos blogs
                     </motion.h1>
                     <h1 className="mb-4 text-3xl text-center font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl">
-                        <span className="font-open-sans tex-xl text-white font-bold">Restez connecté</span>
+                        <span className="font-open-sans tex-xl text-white font-bold mb-10">Restez connecté</span>
                     </h1>
                 </div>
             </div>

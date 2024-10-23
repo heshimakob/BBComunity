@@ -83,10 +83,10 @@ export default function Footer() {
             <div className="w-full sm:w-1/2 xl:flex-1 p-10">
               <h3 className="mb-8 font-heading text-2xl text-white font-bold">Nos apprentissages</h3>
               <ul>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Software Development</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Machine Learning</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Entreprenariat</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Art Numerique et Design</a></li>
+                <li className="mb-6"><Link to="/formule" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Software Development</Link></li>
+                <li className="mb-6"><Link to="/formule" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Machine Learning</Link></li>
+                <li className="mb-6"><Link to="/formule" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Entreprenariat</Link></li>
+                <li className="mb-6"><Link to="/formule" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Art Numerique et Design</Link></li>
                 <li><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Project Tracker</a></li>
               </ul>
             </div>

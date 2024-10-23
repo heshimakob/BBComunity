@@ -68,8 +68,8 @@ const Sidebar = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-200">
           <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-lg font-semibold mb-4">Confirmation de Déconnexion</h2>
-            <p className="mb-4">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+            <h2 className="text-lg font-semibold mb-4 text-blue-950">Confirmation de Déconnexion</h2>
+            <p className="mb-4 text-blue-950">Êtes-vous sûr de vouloir vous déconnecter ?</p>
             <div className="flex justify-end">
               <button 
                 className="bg-red-500 text-white py-2 px-4 rounded mr-2" 

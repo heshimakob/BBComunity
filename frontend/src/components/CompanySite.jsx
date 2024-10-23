@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import {motion} from "framer-motion"
 import Saving from './Saving';
 import Actions from './Actions';
+import { FaChevronRight } from 'react-icons/fa';
 
 const CompanySite = ({setProgress}) => {
   const dispatch = useDispatch();
@@ -62,8 +63,15 @@ const CompanySite = ({setProgress}) => {
     <>
       <NavBar />
 
-      <div className="pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden" style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
-        <div className="text-center mt-5">
+      <div className="pb-8 bg-top bg-cover bg-no-repeat " style={{backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")'}}>
+      <div className="flex justify-center items-center space-x-2 mb-4">
+                                    <span className="text-white mt-5">{window.location.hostname}</span>
+                                    <FaChevronRight className="text-blue-400 mt-5" />
+                                    <span className="text-white mt-5">Pour les entreprises </span>
+                                    {/* <FaChevronRight className="text-blue-400" /> */}
+                                    {/* <span className="text-white">{Blog.titre}</span> */}
+                                </div>
+        <div className="text-center ">
         <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16"
                         initial={{ scale: 0 }}
@@ -73,9 +81,9 @@ const CompanySite = ({setProgress}) => {
                         👋 Ce que nous offons pour les entreprises?
                     </motion.h1>
           <h1 className="mb-4 text-3xl text-center font-extrabold text-black dark:text-white md:text-5xl lg:text-6xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span> Des excellent(e)s candidat(e)s
+            <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"></span> Les candidats et les formations
           </h1>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mt-10 mb-10">
             <div className="w-auto p-2">
               <Link className="inline-block px-5 py-4 text-white font-semibold tracking-tight bg-blue-500 w-full rounded hover:bg-blue-400 rounded-lg focus:ring-4 focus:ring-indigo-400 transition duration-200" to="/register">S'enregistrer sur la liste d'attente</Link>
             </div>

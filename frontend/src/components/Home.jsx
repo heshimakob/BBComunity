@@ -24,6 +24,7 @@ import wito from "../assets/icons/wito.svg";
 import institut from "../assets/icons/institut.svg";
 import horizon from "../assets/icons/horizon.svg"
 import amba from "../assets/icons/amba.svg"
+import { FaChevronRight } from 'react-icons/fa';
 
 
 
@@ -68,6 +69,13 @@ const Home = ({ setProgress }) => {
       <div className="hidden lg:block"><a className="mr-2 inline-block px-4 py-3 text-xs text-blueGray-100 hover:text-blueGray-200 font-semibold leading-none border border-blueGray-200 hover:border-blueGray-300 rounded" href="#">Log In</a><a className="inline-block px-4 py-3 text-xs font-semibold leading-none bg-blue-600 hover:bg-blue-700 text-white rounded" href="#">Sign Up</a></div>
     </nav> */}
     <div className="py-12 text-center ">
+    <div className="flex justify-center items-center space-x-2 mb-4">
+                                    <span className="text-white">{window.location.hostname}</span>
+                                    <FaChevronRight className="text-blue-400" />
+                                    <span className="text-white">Accueil</span>
+                                    <FaChevronRight className="text-blue-400" />
+                                    {/* <span className="text-white">{Blog.titre}</span> */}
+                                </div>
     <motion.h1
                         className="inline-block mb-5 px-3 py-1 text-white font-semibold bg-gray-800 rounded-full mt-16 text-left"
                         initial={{ scale: 0 }}

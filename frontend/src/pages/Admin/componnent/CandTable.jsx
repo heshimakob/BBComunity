@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { MdUpdate, MdDelete } from 'react-icons/md';
+import * as XLSX from 'xlsx';
 
 const CandTable = () => {
   const [candidates, setCandidates] = useState([]);
@@ -100,49 +101,59 @@ const CandTable = () => {
     setFilteredCandidates(updatedCandidates);
   };
 
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(filteredCandidates);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Candidats');
+    XLSX.writeFile(workbook, 'candidats.xlsx');
+  };
+
   return (
     <div className="container mx-auto mt-32">
       {error && <p className="text-red-500">{error}</p>}
-      <div className="mb-4">
-        <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)} className="mr-2 p-2 border">
-          <option value="">Tous les genres</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="mr-2 p-2 border">
-          <option value="">Tous les états</option>
-          <option value="submitted">Submitted</option>
-          <option value="pending">Pending</option>
-        </select>
-        <select value={domaineFilter} onChange={(e) => setDomaineFilter(e.target.value)} className="mr-2 p-2 border">
-          <option value="">Tous les domaines</option>
-          <option value="Entreprenariat">Entreprenariat</option>
-          <option value="Software Development">Software Development</option>
-          <option value="Machine Learning">Machine Learning</option>
-          <option value="Art numerique">Art numerique</option>
-          <option value="AR, VR et Design">AR, VR et Design</option>
-        </select>
-        <input 
-          type="number" 
-          placeholder="Jour" 
-          value={dateFilter.day} 
-          onChange={(e) => setDateFilter({...dateFilter, day: e.target.value})} 
-          className="mr-2 p-2 border" 
-        />
-        <input 
-          type="number" 
-          placeholder="Mois" 
-          value={dateFilter.month} 
-          onChange={(e) => setDateFilter({...dateFilter, month: e.target.value})} 
-          className="mr-2 p-2 border" 
-        />
-        <input 
-          type="number" 
-          placeholder="Année" 
-          value={dateFilter.year} 
-          onChange={(e) => setDateFilter({...dateFilter, year: e.target.value})} 
-          className="mr-2 p-2 border" 
-        />
+      <div className="mb-4 flex justify-between">
+        <div>
+          <select value={genreFilter} onChange={(e) => setGenreFilter(e.target.value)} className="mr-2 p-2 border">
+            <option value="">Tous les genres</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="mr-2 p-2 border">
+            <option value="">Tous les états</option>
+            <option value="submitted">Submitted</option>
+            <option value="pending">Pending</option>
+          </select>
+          <select value={domaineFilter} onChange={(e) => setDomaineFilter(e.target.value)} className="mr-2 p-2 border">
+            <option value="">Tous les domaines</option>
+            <option value="Entreprenariat">Entreprenariat</option>
+            <option value="Software Development">Software Development</option>
+            <option value="Machine Learning">Machine Learning</option>
+            <option value="Art numerique">Art numerique</option>
+            <option value="AR, VR et Design">AR, VR et Design</option>
+          </select>
+          <input 
+            type="number" 
+            placeholder="Jour" 
+            value={dateFilter.day} 
+            onChange={(e) => setDateFilter({...dateFilter, day: e.target.value})} 
+            className="mr-2 p-2 border" 
+          />
+          <input 
+            type="number" 
+            placeholder="Mois" 
+            value={dateFilter.month} 
+            onChange={(e) => setDateFilter({...dateFilter, month: e.target.value})} 
+            className="mr-2 p-2 border" 
+          />
+          <input 
+            type="number" 
+            placeholder="Année" 
+            value={dateFilter.year} 
+            onChange={(e) => setDateFilter({...dateFilter, year: e.target.value})} 
+            className="mr-2 p-2 border" 
+          />
+        </div>
+        <button onClick={exportToExcel} className="bg-blue-500 text-white px-4 py-2 rounded">Exporter vers Excel</button>
       </div>
       {filteredCandidates.length === 0 ? (
         <p className="text-gray-500">Aucun candidat à afficher.</p>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from './Footer'
 import NavBar from './NavBar'
 import intersect  from "../assets/background/intersect.svg"
@@ -8,13 +8,27 @@ import job from "../assets/illustration/job-interview.png"
 import team from "../assets/illustration/team-management.png"
 import Actions from './Actions'
 import Details from './Details'
+import { FaChevronRight } from 'react-icons/fa'
 
-const Formules = () => {
+const Formules = ({setProgress}) => {
+  useEffect(()=>{
+    setProgress(40);
+    setTimeout(()=>{
+        setProgress(100)
+    },2000)
+},[]);
   return (
     <>
     <NavBar/>
     <section className="py-20 xl:bg-contain bg-top bg-no-repeat" style={{backgroundImage: `url(${intersect})`}}>
-<div className="container px-4 mx-auto">
+<div className="container px-4 mx-auto space-x-2">
+<div className="flex justify-center items-center space-x-2 mb-4">
+                                    <span className="text-blue-500">{window.location.hostname}</span>
+                                    <FaChevronRight className="text-blue-400" />
+                                    <span className="text-blue-500">Nos formations et prix</span>
+                                   
+                                    {/* <span className="text-white">{Blog.titre}</span> */}
+                                </div>
 
 
 

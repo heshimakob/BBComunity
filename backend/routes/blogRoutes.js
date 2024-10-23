@@ -59,7 +59,25 @@ router.get('/getAllBlog', async (req, res) => {
         res.status(500).json({ message: 'Erreur lors de la récupération des blogs', erreur: error.message });
     }
 });
+//blog recente 4
+router.get('/getRecentBlogs', async (req, res) => {
+    try {
+        const blogs = await Blog.find().sort({ createdAt: -1 }).limit(4);
+        const formattedBlogs = blogs.map(blog => ({
+            ...blog.toObject(),
+            image: `http://localhost:8080/${blog.image}`,
+        }));
 
+        if (!formattedBlogs.length) {
+            res.status(404).json({ message: 'Aucun blog trouvé' });
+        } else {
+            res.status(200).json(formattedBlogs);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Erreur lors de la récupération des blogs', erreur: error.message });
+    }
+});
 // Route pour obtenir les blogs récents
 router.get('/getRecentBlog', async (req, res) => {
     try {

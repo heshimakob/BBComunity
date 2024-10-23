@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import Details from './Details';
 import Footer from './Footer';
 
-const Privacy = () => {
+const Privacy = ({setProgress}) => {
+  useEffect(()=>{
+    setProgress(40);
+    setTimeout(()=>{
+        setProgress(100)
+    },2000)
+},[]);
   return (
 <>
 <NavBar/>
