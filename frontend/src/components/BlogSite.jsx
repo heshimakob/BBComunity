@@ -132,10 +132,16 @@ const BlogSite = ({ setProgress }) => {
                     )}
                 </div>
             ) : (
-                <div className="flex justify-center items-center mb-10">
-                    <img className='h-96' src={vide} />
-                    <p>Aucun Blog disponible pour le moment ou vérifier votre connexion internet</p>
-                </div>
+              <div className="flex flex-col items-center justify-center mb-10 space-y-4">
+    <img className="h-96" src={vide} alt="No content" />
+    <p>Aucun Blog disponible pour le moment ou vérifier votre connexion internet</p>
+    <Link
+        className="block w-100 p-4 text-center text-xs text-white font-semibold leading-none bg-blue-600 hover:bg-blue-700 rounded"
+        to="/"
+    >
+        Voir tous nos blogs
+    </Link>
+</div>
             )}
             <Details />
             <Footer />

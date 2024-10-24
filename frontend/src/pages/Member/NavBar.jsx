@@ -5,11 +5,13 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { FaUser, FaBookOpen, FaRegQuestionCircle, FaRegMinusSquare } from 'react-icons/fa';
 import axios from 'axios';
 import bbcc from "../../assets/icons/bbcc.png";
+import swal from 'sweetalert';
 
 const NavBar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userDetails, setUserDetails] = useState({
     id: '',
     name: '',
@@ -28,6 +30,28 @@ const NavBar = () => {
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:8080/api/users/logout');
+      localStorage.removeItem('token');
+      window.location.href = '/signin';
+      swal("Deconnexion!", "Déconnexion réussie!", "success");
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion:", error);
+    }
+  };
+
+  const confirmLogout = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = (confirm) => {
+    setIsModalOpen(false);
+    if (confirm) {
+      handleLogout();
+    }
   };
 
   useEffect(() => {
@@ -111,7 +135,7 @@ const NavBar = () => {
                       </Link>
                     </li>
                     <li className="py-2 px-4 hover:bg-gray-200 cursor-pointer">
-                      <Link to="/logout" className="flex items-center">
+                      <Link onClick={confirmLogout} className="flex items-center">
                         <FaUser className="mr-2" /> Déconnexion
                       </Link>
                     </li>
@@ -132,6 +156,7 @@ const NavBar = () => {
           </div>
         </div>
       </section>
+
       {isOpen && (
         <div className={`fixed top-0 right-0 h-full w-64 bg-gray-900 text-white transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="flex justify-between items-center p-4 mt-32">
@@ -151,6 +176,28 @@ const NavBar = () => {
               <FaUser className="mr-2" /> For company
             </Link>
           </nav>
+        </div>
+      )}
+
+      {/* Modal de déconnexion */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-2xl text-red-500">Confirmation de Déconnexion</h2>
+            <p className="text-lg">Voulez-vous vraiment vous déconnecter ?</p>
+            <div className="flex justify-between mt-4">
+              <button
+                className="bg-red-500 text-lg text-white font-bold rounded-lg w-32 p-2"
+                onClick={() => handleModalClose(true)}>
+                Oui
+              </button>
+              <button
+                className="bg-blue-500 text-lg text-white font-bold rounded-lg w-32 p-2"
+                onClick={() => handleModalClose(false)}>
+                Non
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </>
