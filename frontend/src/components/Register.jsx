@@ -61,7 +61,7 @@ const Register = ({ setProgress }) => {
 
     return (
         <section className="h-screen relative pb-20">
-            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-900" style={{backgroundImage: `url(${bbclog})`}}>
+            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-900 bg-cover bg-no-repeat" style={{backgroundImage: `url(${bbclog})`}}>
             </div>
     
             <div className="container px-4 mx-auto">

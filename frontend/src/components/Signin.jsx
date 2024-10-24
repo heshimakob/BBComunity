@@ -54,7 +54,7 @@ const Login = ({setProgress}) => {
 
     return (
         <section className="h-screen relative pb-20">
-            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-600" style={{backgroundImage: `url(${bbclog})`}}>
+            <div className="hidden lg:block absolute inset-0 w-1/2 ml-auto bg-blue-600 bg-cover bg-no-repeat" style={{backgroundImage: `url(${bbclog})`}}>
                 {/* <div className="flex items-center h-screen">
                     <img className="lg:max-w-lg mx-auto" src={walk} alt="Illustration" />
                 </div> */}
@@ -77,7 +77,7 @@ const Login = ({setProgress}) => {
                         
                         <div className="w-full max-w-lg mx-auto lg:mx-0 my-auto">
                             <span className="text-sm text-blueGray-400">Se connecter</span>
-                            <h4 className="mb-6 text-3xl">Rejoindre notre communaute</h4>
+                            <h4 className="mb-6 text-3xl">Rejoindre Black Born Community</h4>
                             <form className="mt-14" onSubmit={handleSubmit}>
                                 <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
                                     Adresse mail*
@@ -122,7 +122,7 @@ const Login = ({setProgress}) => {
                                     {loading ? 'Loading...' : 'Se connecter'}
                                 </button>
                             </form>
-                            <p className="my-6 text-xs text-blueGray-400 text-center">or continue with</p>
+                            {/* <p className="my-6 text-xs text-blueGray-400 text-center">or continue with</p>
                             <button className="flex items-center w-full px-4 py-3 mb-2 text-xs text-blueGray-500 font-semibold leading-none border hover:bg-blueGray-50 rounded" href="#">
                                 <img className="h-6 pr-10" src={facebook} alt="Facebook Logo" />
                                 <span>Sign In with Facebook</span>
@@ -130,7 +130,7 @@ const Login = ({setProgress}) => {
                             <button className="flex items-center px-4 py-3 w-full text-xs text-blueGray-500 font-semibold leading-none border hover:bg-blueGray-50 rounded" href="#">
                                 <img className="h-6 pr-10" src={google} alt="Google Logo" />
                                 <span>Sign In with Google</span>
-                            </button>
+                            </button> */}
                             <div className="flex flex-col text-center gap-2 text-sm mt-5">
                                 <span>Vous n'avez pas de compte?</span>
                                 <Link to='/register' className='text-blue-500'>
@@ -142,7 +142,7 @@ const Login = ({setProgress}) => {
                             )}
                         </div>
                         <div>
-                            <p className="mt-8 text-xs text-blueGray-400 text-center lg:text-left"><a className="underline hover:text-blueGray-500" href="#">Privacy Policy</a> and <a className="underline hover:text-blueGray-500" href="#">Terms of Use</a></p>
+                            <p className="mt-8 text-xs text-blueGray-400 text-center lg:text-left"><Link className="underline hover:text-blueGray-500" to="/privacy">Politique de confidentialite</Link> et <Link className="underline hover:text-blueGray-500" to="/term">Terme</Link></p>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ const Stat = () => {
   const [projects, setProjects] = useState(0);
 
   // Valeurs cibles
-  const targetFollowers = 248;
+  const targetFollowers = 148;
   const targetCustomers = 12;
   const targetProjects = 8;
 
@@ -46,7 +46,7 @@ const Stat = () => {
                 <p className="text-3xl lg:text-4xl font-bold font-heading">{followers.toLocaleString()}</p>
                 <p className="text-sm md:text-base text-blueGray-500">
                   <span className="text-green-600">+10%</span>
-                  Deniere semaine
+                  Denier mois
                 </p>
               </div>
             </div>
@@ -54,7 +54,7 @@ const Stat = () => {
               <div className="p-6 shadow bg-white rounded">
                 <div className="flex justify-between">
                   <p className="text-sm md:text-base text-blueGray-400">Entreprise partenaire</p>
-                  <span className="text-xs py-1 px-2 rounded-full font-semibold text-blue-600 bg-blue-100 uppercase">Ans</span>
+                  <span className="text-xs py-1 px-2 rounded-full font-semibold text-blue-600 bg-blue-100 uppercase">Actuellement</span>
                 </div>
                 <p className="text-3xl lg:text-4xl font-bold font-heading">{customers.toLocaleString()}</p>
                 {/* <p className="text-sm md:text-base text-blueGray-500">
@@ -66,7 +66,7 @@ const Stat = () => {
             <div className="w-full md:w-1/3 px-3 mb-6">
               <div className="p-6 shadow bg-white rounded">
                 <div className="flex justify-between">
-                  <p className="text-sm md:text-base text-blueGray-400">Solution Tech</p>
+                  <p className="text-sm md:text-base text-blueGray-400">Solution Innovantes</p>
                   <span className="text-xs py-1 px-2 rounded-full font-semibold text-blue-600 bg-blue-100 uppercase">Dans la community</span>
                 </div>
                 <p className="text-3xl lg:text-4xl font-bold font-heading">{projects}</p>

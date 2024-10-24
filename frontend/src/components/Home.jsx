@@ -88,7 +88,7 @@ const Home = ({ setProgress }) => {
         <h2 className="text-3xl md:text-4xl mb-4 text-white font-bold font-heading">
           <span>Transformer</span>   
             <span className="text-blue-600"> l'apprentissage
-          des </span>
+          des </span>bg-cover bg-no-repeat
           <span>métiers du futur</span>
         </h2>
         <p className="text-blueGray-400 leading-relaxed ">Black born community votre platefrome d'apprentissage en ligne </p>
