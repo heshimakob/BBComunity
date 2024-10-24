@@ -6,7 +6,7 @@ const Stat = () => {
   const [projects, setProjects] = useState(0);
 
   // Valeurs cibles
-  const targetFollowers = 148;
+  const targetFollowers = 48;
   const targetCustomers = 12;
   const targetProjects = 8;
 
