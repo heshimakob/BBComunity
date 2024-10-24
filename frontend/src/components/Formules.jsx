@@ -9,6 +9,7 @@ import team from "../assets/illustration/team-management.png"
 import Actions from './Actions'
 import Details from './Details'
 import { FaChevronRight } from 'react-icons/fa'
+import Marque from './marque/Marque'
 
 const Formules = ({setProgress}) => {
   useEffect(()=>{
@@ -184,6 +185,7 @@ découvrez nos  </span>
 </div>
 </div>
 </section>
+<Marque/>
 <Actions/>
 <Details/>
 

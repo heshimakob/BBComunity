@@ -72,10 +72,10 @@ export default function Footer() {
               </ul>
             </div>
             <div className="w-full sm:w-1/2 xl:flex-1 p-10">
-              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Carriere</h3>
+              <h3 className="mb-8 font-heading text-2xl text-white font-bold">Carriere et talent</h3>
               <ul>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Job</a></li>
-                <li className="mb-6"><a href="#" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Nos solutions</a></li>
+                <li className="mb-6"><Link to="/signin" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Job</Link></li>
+                <li className="mb-6"><Link to="/signin" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Talent and solutions</Link></li>
                 <li className="mb-6"><a href="https://discord.gg/u4x2E62v" className="text-lg text-gray-500 hover:text-gray-600 font-medium transition duration-200">Notre Communaute</a></li>
 
               </ul>

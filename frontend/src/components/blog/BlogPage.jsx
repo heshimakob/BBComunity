@@ -42,6 +42,12 @@ const BlogPage = ({ setProgress }) => {
         fetch();
     }, [id]);
 
+    // Format de la date
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('fr-FR', options);
+    };
+
     return (
         <>
             <NavBar />
@@ -54,7 +60,6 @@ const BlogPage = ({ setProgress }) => {
                     <>
                         <div className='pt-16 lg:pt-32 pb-24 lg:pb-52 bg-gray-900 overflow-hidden' style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&h=450&q=80&blend=1e293b&sat=30&blend-mode=multiply")' }}>
                             <div className='text-center justify-center items-center'>
-                                {/* Nouveau div pour l'URL, icône, onglet et titre du blog */}
                                 <div className="flex justify-center items-center space-x-2 mb-4">
                                     <span className="text-white">{window.location.hostname}</span>
                                     <FaChevronRight className="text-blue-400" />
@@ -75,20 +80,20 @@ const BlogPage = ({ setProgress }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className='bbc-container mx-auto px-4 pt-10'>
+                        <div className='blog-container mx-auto px-4 pt-10'>
                             <div className="bbc-container flex flex-col justify-center items-center">
                                 <div className='relative h-60 sm:h-96 w-full -translate-y-28 -mb-28 sm:-translate-y-44 sm:-mb-44'>
                                 <div className='absolute top-1/2 transform -translate-y-1/2 left-0 right-0 h-52 sm:h-80 w-full ifg-randomise-bg-color'></div>
                                 <img className="relative w-full h-60 sm:h-96 px-4 sm:px-6 object-cover" src={Blog.image} alt={Blog.titre} />
                                 </div>
-                                <div className='w-full flex justify-between mt-10 bg-blue-100 rounded-xl p-10'>
+                                <div className='w-full flex justify-between mt-10 bg-gray-100 rounded-xl p-10'>
                                     <div>
                                         <h1 className='text-bold text-2xl'>{Blog.titre}</h1>
-                                        <h2 className='text-bold'>{Blog.createdAt}</h2>
+                                        <h2 className='text-bold'>{formatDate(Blog.createdAt)}</h2> {/* Date formatée ici */}
                                     </div>
                                     <div>
-                                        <span><h2 className='text-bold bg-red-500  p-1 text-gray-300'>{Blog.auteur}</h2></span>
-                                        <span><h2 className='text-bold bg-blue-700  p-1 text-gray-300 mt-10'>{Blog.category}</h2></span>
+                                        <span><h2 className='text-bold bg-red-500  p-2 text-gray-300'>{Blog.auteur}</h2></span>
+                                        <span><h2 className='text-bold bg-blue-400  p-2 text-gray-300 mt-10'>{Blog.category}</h2></span>
                                     </div>
                                 </div>
                                 <div

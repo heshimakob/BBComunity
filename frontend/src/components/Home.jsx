@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navbar, Logo, NavigationLinks, NavLink, ButtonsContainer, LoginButton, GuestButton, HomeContainer, SchoolInfo, SchoolImage, Title, LoremTextContainer, AdminRegisterLink } from '../styles/styles';
 import { LoremIpsum } from 'lorem-ipsum';
-import avatar2 from "../assets/avatar2.png";
-import avatar from "../assets/avatar.png";
-import home from "../assets/home.png";
+
 import NavBar from './NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from './Footer';

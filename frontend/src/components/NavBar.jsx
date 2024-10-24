@@ -8,10 +8,6 @@ function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
 
-  const handleLoginClick = () => {
-    navigate('/signin');
-  };
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -22,7 +18,7 @@ function NavBar() {
 
   return (
     <>
-      <div className=" bg-gray-900">
+      <div className="bg-gray-900">
         {isBannerVisible && (
           <div className="py-1 text-center bg-pink-500 relative">
             <div className="text-sm font-light text-white">
@@ -61,8 +57,22 @@ function NavBar() {
               </li>
             </ul>
             <div className="hidden xl:flex items-center gap-2">
-              <Link className="inline-flex justify-center items-center text-center h-12 p-5 px-6 font-semibold text-white hover:text-black focus:text-black bg-transparent hover:bg-white focus:bg-white border border-gray-300 rounded-xl focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-200" to="/signin">Login</Link>
-              <Link className="inline-flex justify-center items-center text-center h-12 p-5 px-6 font-semibold text-white hover:text-white focus:text-white bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 rounded-xl focus:ring-4 focus:ring-blue-200 transition duration-200" to="/register">S'inscrire</Link>
+              <a
+                href="/signin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex justify-center items-center text-center h-12 p-5 px-6 font-semibold text-white hover:text-black focus:text-black bg-transparent hover:bg-white focus:bg-white border border-gray-300 rounded-xl focus:ring-4 focus:ring-white focus:ring-opacity-50 transition duration-200"
+              >
+                Login
+              </a>
+              <a
+                href="/register"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex justify-center items-center text-center h-12 p-5 px-6 font-semibold text-white hover:text-white focus:text-white bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 rounded-xl focus:ring-4 focus:ring-blue-200 transition duration-200"
+              >
+                S'inscrire
+              </a>
             </div>
             <div className="xl:hidden">
               <button onClick={toggleMenu} className="flex items-center justify-center h-12 p-5 text-white border border-gray-300 rounded-full">
@@ -88,10 +98,24 @@ function NavBar() {
                   <Link className="text-lg text-black hover:text-gray-700 font-medium transition duration-200" to="/formule">Nos formations &amp; prix</Link>
                 </li>
                 <li>
-                  <Link className="text-lg text-black hover:text-gray-700 font-medium transition duration-200" to="/signin">Login</Link>
+                  <a
+                    href="/signin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-lg text-black hover:text-gray-700 font-medium transition duration-200"
+                  >
+                    Login
+                  </a>
                 </li>
                 <li>
-                  <Link className="text-lg text-white bg-blue-500 hover:bg-blue-600 font-medium transition duration-200 py-2 px-4 rounded-xl" to="/register">S'inscrire</Link>
+                  <a
+                    href="/register"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-lg text-white bg-blue-500 hover:bg-blue-600 font-medium transition duration-200 py-2 px-4 rounded-xl"
+                  >
+                    S'inscrire
+                  </a>
                 </li>
               </ul>
             </div>
@@ -103,4 +127,3 @@ function NavBar() {
 }
 
 export default NavBar;
- 

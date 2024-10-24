@@ -9,6 +9,7 @@ import Loading from './Loading';
 import { motion } from 'framer-motion';
 import { FaChevronRight } from 'react-icons/fa';
 import vide from "../assets/illustration/vide.svg"
+import Marque from './marque/Marque';
 
 const BlogSite = ({ setProgress }) => {
     const dispatch = useDispatch();
@@ -142,7 +143,8 @@ const BlogSite = ({ setProgress }) => {
         Voir tous nos blogs
     </Link>
 </div>
-            )}
+            )}.
+            <Marque/>
             <Details />
             <Footer />
         </>

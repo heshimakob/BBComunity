@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import NavBar from './NavBar';
 import Footer from './Footer';
 import Details from './Details';
-import equipe from "../assets/equipe.webp"
-import ai from "../assets/ai.jpg"
+
 import Informations from './Informations';
 import {motion} from "framer-motion"
 import { Link } from 'react-router-dom';
 import Team from './Team';
 import Stat from './Stat';
 import { FaChevronRight } from 'react-icons/fa';
+import Marque from './marque/Marque';
 
 const  Why =({setProgress})=>{
   useEffect(()=>{
@@ -75,6 +75,7 @@ avec Black Born Community</span></h1>
     <Stat/>
     <Informations/>
     <Team/>
+    <Marque/>
 
 
 {/* 

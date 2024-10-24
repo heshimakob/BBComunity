@@ -1,9 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import home from "../assets/home.jpeg";
-import insi from "../assets/insi.jpg";
-import oppo from "../assets/oppo.jpeg";
-import inno from "../assets/inno.jpeg";
+
+
 
 const Centre = () => {
   // Variantes d'animation

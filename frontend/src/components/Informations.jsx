@@ -1,5 +1,5 @@
 import React from 'react';
-import home from "../assets/home.jpeg";
+
 import { Link } from 'react-router-dom';
 import work from "../assets/illustration/work-tv.png"
 import financial from "../assets/illustration/financial-report.png"

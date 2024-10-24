@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import home from "../assets/home.jpeg"
-import learner from"../assets/learner.jpeg"
+
 import { BsCode, BsFileEarmarkBarGraphFill, BsFillBuildingsFill, BsMarkdown, BsScissors, BsWindowDesktop } from 'react-icons/bs';
 import { AiOutlineRight } from 'react-icons/ai';
 
