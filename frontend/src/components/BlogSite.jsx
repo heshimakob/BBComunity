@@ -8,6 +8,7 @@ import { getBlogs } from '../store/blogSlice';
 import Loading from './Loading';
 import { motion } from 'framer-motion';
 import { FaChevronRight } from 'react-icons/fa';
+import vide from "../assets/illustration/vide.svg"
 
 const BlogSite = ({ setProgress }) => {
     const dispatch = useDispatch();
@@ -131,8 +132,8 @@ const BlogSite = ({ setProgress }) => {
                     )}
                 </div>
             ) : (
-                <div className="text-center mb-10">
-                    <Loading />
+                <div className="flex justify-center items-center mb-10">
+                    <img className='h-96' src={vide} />
                     <p>Aucun Blog disponible pour le moment ou vérifier votre connexion internet</p>
                 </div>
             )}
